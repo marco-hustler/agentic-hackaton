@@ -1,0 +1,524 @@
+{
+  "namespace": "get_product_details",
+  "request": {
+    "productRef": "pr.v1.k1.gqAQUxatOt5LdMX8J8QRria-0v37HYO0o6KvL5woi6_wqgE",
+    "country": "DE"
+  },
+  "cached_at": 1795727007.037751,
+  "data": {
+    "productRef": "pr.v1.k1.gqAQUxatOt5LdMX8J8QRria-0v37HYO0o6KvL5woi6_wqgE",
+    "itemType": "PRODUCT",
+    "siteId": 1,
+    "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/5083655_-artisan-5ksm175ps-eca-liebesapfelrot-kitchenaid.html",
+    "name": "KitchenAid Artisan 5KSM175PS",
+    "nameDelta": "ECA liebesapfelrot",
+    "imageUrls": [
+      "https://cdn.idealo.com/folder/Product/5083/6/5083655/s1_produktbild_mobil/kitchenaid-artisan-5ksm175ps-eca-liebesapfelrot.jpg"
+    ],
+    "nextOffset": 3,
+    "offers": [
+      {
+        "key": "361c88429e9fffd2c76c9f49ba8d4366",
+        "price": "399,99 €",
+        "basePrice": null,
+        "shop": {
+          "shopId": "24111",
+          "merchantId": null,
+          "name": "euronics.de",
+          "merchantName": "Euronics XXL Öhringen",
+          "rating": {
+            "count": null,
+            "avg": null
+          },
+          "isMarketplace": true
+        },
+        "payments": [
+          {
+            "costCode": "PP",
+            "name": "PayPal"
+          },
+          {
+            "costCode": "CBC",
+            "name": "Kreditkarte"
+          },
+          {
+            "costCode": "APPLE_PAY",
+            "name": "Apple Pay"
+          },
+          {
+            "costCode": "CIA",
+            "name": "Vorkasse"
+          }
+        ],
+        "showPaymentDisclaimer": false,
+        "delivery": {
+          "deliveryText": "bis Sa. 28.11.2026",
+          "deliveryStatus": "SHORT",
+          "earlyDeliveryDate": null,
+          "lateDeliveryDate": "2026-11-28"
+        },
+        "freeReturnDays": null,
+        "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=361c88429e9fffd2c76c9f49ba8d4366&categoryId=3512&pos=1&price=399.99&productid=5083655&sid=24111&type=offer&media=ipc-public-mcp",
+        "minShippingCost": "6,99 €",
+        "hasAlwaysFreeShipping": false,
+        "cheapestTotalPriceOffer": true,
+        "freshness": "2026-11-26T20:03:26.897Z"
+      },
+      {
+        "key": "f9690130a13c5e645db1815b9d990b83",
+        "price": "422,22 €",
+        "basePrice": null,
+        "shop": {
+          "shopId": "313752",
+          "merchantId": null,
+          "name": "ramershoven.com",
+          "merchantName": null,
+          "rating": {
+            "count": 75,
+            "avg": 5
+          },
+          "isMarketplace": false
+        },
+        "payments": [
+          {
+            "costCode": "INV",
+            "name": "Rechnung"
+          },
+          {
+            "costCode": "PP",
+            "name": "PayPal"
+          },
+          {
+            "costCode": "CBC",
+            "name": "Kreditkarte"
+          },
+          {
+            "costCode": "CIA",
+            "name": "Vorkasse"
+          },
+          {
+            "costCode": "AMZP",
+            "name": "Amazon Pay"
+          }
+        ],
+        "showPaymentDisclaimer": false,
+        "delivery": {
+          "deliveryText": "Sa. 28.11.–Mo. 30.11.2026",
+          "deliveryStatus": "SHORT",
+          "earlyDeliveryDate": "2026-11-28",
+          "lateDeliveryDate": "2026-11-30"
+        },
+        "freeReturnDays": null,
+        "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=f9690130a13c5e645db1815b9d990b83&categoryId=3512&pos=2&price=422.22&productid=5083655&sid=313752&type=offer&media=ipc-public-mcp",
+        "minShippingCost": "1,95 €",
+        "hasAlwaysFreeShipping": false,
+        "cheapestTotalPriceOffer": false,
+        "freshness": "2026-11-26T20:03:26.898Z"
+      },
+      {
+        "key": "8b1fe99f298a51b90fb6adac263a314c",
+        "price": "423,99 €",
+        "basePrice": null,
+        "shop": {
+          "shopId": "317105",
+          "merchantId": null,
+          "name": "galaxus.de",
+          "merchantName": null,
+          "rating": {
+            "count": 2667,
+            "avg": 4.63
+          },
+          "isMarketplace": false
+        },
+        "payments": [
+          {
+            "costCode": "INV",
+            "name": "Rechnung"
+          },
+          {
+            "costCode": "PP",
+            "name": "PayPal"
+          },
+          {
+            "costCode": "SUW",
+            "name": "Sofort."
+          },
+          {
+            "costCode": "CBC",
+            "name": "Kreditkarte"
+          },
+          {
+            "costCode": "CIA",
+            "name": "Vorkasse"
+          }
+        ],
+        "showPaymentDisclaimer": false,
+        "delivery": {
+          "deliveryText": "bis Sa. 28.11.2026",
+          "deliveryStatus": "SHORT",
+          "earlyDeliveryDate": null,
+          "lateDeliveryDate": "2026-11-28"
+        },
+        "freeReturnDays": 30,
+        "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=8b1fe99f298a51b90fb6adac263a314c&categoryId=3512&pos=3&price=423.99&productid=5083655&sid=317105&type=offer&media=ipc-public-mcp",
+        "minShippingCost": "0,00 €",
+        "hasAlwaysFreeShipping": true,
+        "cheapestTotalPriceOffer": false,
+        "freshness": "2026-11-26T20:03:26.898Z"
+      }
+    ],
+    "prosCons": {
+      "pros": [
+        "Hingucker in der Küche dank Retro-Design",
+        "sehr große Auswahl an Farbvariationen",
+        "schwere und massive Konstruktion"
+      ],
+      "cons": [
+        "nicht alle Zubehörteile spülmaschinengeeignet",
+        "Spritzschutzdeckel nicht optimal konstruiert",
+        "für nur 1¬kg Teig",
+        "mangelnde Sicherheit"
+      ]
+    },
+    "testReports": {
+      "summary": {
+        "grade": "2,6",
+        "averageRating": 68.25,
+        "rating": "befriedigend",
+        "ratingCount": 4
+      },
+      "list": [
+        {
+          "providerName": "ETM Testmagazin",
+          "shortDescription": "Küchenmaschinen",
+          "summaryText": "Überzeugend sind die solide Ausstattung und der zuverlässige Betrieb des Modells. Es vermischt die Zutaten in der Schüssel recht flott. Kritik gibt es für den verbesserungswürdigen Spritzschutz. Außerdem ist die Maschine recht laut.",
+          "ratingValue": "91,60/100",
+          "publishedAt": 1564135200000,
+          "language": "de",
+          "issue": "08/2019",
+          "testedProductsCount": 2
+        },
+        {
+          "providerName": "Stiftung Warentest",
+          "shortDescription": "Küchenmaschinen",
+          "ratingValue": "2,8",
+          "publishedAt": 1542884400000,
+          "language": "de",
+          "issue": "12/2018",
+          "testedProductsCount": 12
+        },
+        {
+          "providerName": "Stiftung Warentest",
+          "shortDescription": "Küchenmaschinen mit Schwenkarm von oben",
+          "summaryText": "Die robuste KitchenAid hat neben einer 2. kleineren Schüssel kaum weiteres Zubehör im Lieferumfang. Sie verfügt über eine anständige Gebrauchsanweisung und knetet einen ordentliche Hefeteig. Allerdings sitzt dabei der Deckel nicht richtig auf der Schüssel. Am Schwenkarm musst Du aufpassen, dass Du Dir die Finger nicht einklemmst.",
+          "ratingValue": "2,8",
+          "publishedAt": 1542884400000,
+          "language": "de",
+          "issue": "12/2018",
+          "testedProductsCount": 8
+        },
+        {
+          "providerName": "Konsument",
+          "shortDescription": "Küchenmaschinen",
+          "ratingValue": "54/100",
+          "publishedAt": 1548932400000,
+          "language": "de",
+          "issue": "02/2019",
+          "testedProductsCount": 9
+        }
+      ]
+    },
+    "productSpecification": {
+      "groups": [
+        {
+          "name": "Funktionen & Eigenschaften",
+          "type": "DEFAULT",
+          "attributes": [
+            {
+              "name": "Funktionen",
+              "value": "Direktantrieb, Sanftanlauf, Planetenrührwerk, Kabelaufwicklung"
+            },
+            {
+              "name": "Füllmenge Rührschüsseln",
+              "value": "3 Liter, 4,8 Liter"
+            },
+            {
+              "name": "Schüsseleigenschaften",
+              "value": "rostfrei, mit Griff"
+            },
+            {
+              "name": "Zubereitungsmenge",
+              "value": "1 kg Teig"
+            },
+            {
+              "name": "Sicherheitseinrichtung",
+              "value": "Abschaltautomatik"
+            },
+            {
+              "name": "Zubereitungsarten",
+              "value": "Kneten, Schlagen, Rühren, Mischen, Hefeteige kneten"
+            }
+          ]
+        },
+        {
+          "name": "Austattung",
+          "type": "DEFAULT",
+          "attributes": [
+            {
+              "name": "Ausstattungen",
+              "value": "kippbarer Motorkopf, Ansatznabe, Zubehöranschluss"
+            },
+            {
+              "name": "Lieferumfang",
+              "value": "Schneebesen, 2 Rührschüsseln, Knethaken, Flachrührer, Spritzschutz, Flexi-Rührer, Patisserie-Set"
+            },
+            {
+              "name": "Bedienelemente",
+              "value": "Schiebeschalter"
+            }
+          ]
+        },
+        {
+          "name": "Farbe & Material",
+          "type": "DEFAULT",
+          "attributes": [
+            {
+              "name": "Farbe",
+              "value": "rot"
+            },
+            {
+              "name": "Gehäusematerial",
+              "value": "Aluminium"
+            },
+            {
+              "name": "Material Schüssel",
+              "value": "Edelstahl"
+            }
+          ]
+        },
+        {
+          "name": "Technische Daten",
+          "type": "DEFAULT",
+          "attributes": [
+            {
+              "name": "Leistung (W)",
+              "value": "300 Watt"
+            },
+            {
+              "name": "Geschwindigkeitsstufe",
+              "value": "10"
+            },
+            {
+              "name": "maximale Drehzahl",
+              "value": "220 U/min"
+            },
+            {
+              "name": "Kabellänge",
+              "value": "106 cm"
+            },
+            {
+              "name": "Zubehöranschluss",
+              "value": "1"
+            },
+            {
+              "name": "PS",
+              "value": "0,19 PS"
+            }
+          ]
+        },
+        {
+          "name": "Maße & Gewicht",
+          "type": "DEFAULT",
+          "attributes": [
+            {
+              "name": "Gewicht",
+              "value": "10,98 kg"
+            },
+            {
+              "name": "Breite",
+              "value": "24 cm"
+            },
+            {
+              "name": "Höhe",
+              "value": "36 cm"
+            },
+            {
+              "name": "Tiefe",
+              "value": "37 cm"
+            }
+          ]
+        },
+        {
+          "name": "",
+          "type": "IMPORTANT",
+          "attributes": [
+            {
+              "name": "Gelistet seit",
+              "value": "Juli 2016"
+            },
+            {
+              "name": "Produkttypen",
+              "value": "Knetmaschine, Multifunktions-Küchenmaschine"
+            },
+            {
+              "name": "Serie",
+              "value": "KitchenAid Artisan"
+            }
+          ]
+        },
+        {
+          "name": "",
+          "type": "OTHER",
+          "attributes": [
+            {
+              "name": "Hinweis",
+              "value": "Um Schäden am Gerät zu vermeiden sollten die Hinweise der Betriebsanleitung, bezüglich Betriebsdauer und Verarbeitungsmenge, beachtet werden."
+            }
+          ]
+        }
+      ]
+    },
+    "productOverview": [
+      "Füllmenge Rührschüssel 3 Liter",
+      "300 Watt",
+      "maximale Drehzahl 220 U/min",
+      "10,98 kg",
+      "Breite 24 cm",
+      "Höhe 36 cm",
+      "Tiefe 37 cm",
+      "Patisserie-Set",
+      "Planetenrührwerk",
+      "Sanftanlauf",
+      "Direktantrieb"
+    ],
+    "productDetailsUrl": "https://www.idealo.de/preisvergleich/OffersOfProduct/5083655_-artisan-5ksm175ps-eca-liebesapfelrot-kitchenaid.html#datasheet",
+    "priceTrend": {
+      "history": [
+        {
+          "dateTime": 1793141999999,
+          "price": 43700
+        },
+        {
+          "dateTime": 1793228399999,
+          "price": 43700
+        },
+        {
+          "dateTime": 1793314799999,
+          "price": 43700
+        },
+        {
+          "dateTime": 1793401199999,
+          "price": 43700
+        },
+        {
+          "dateTime": 1793487599999,
+          "price": 41700
+        },
+        {
+          "dateTime": 1793573999999,
+          "price": 41700
+        },
+        {
+          "dateTime": 1793660399999,
+          "price": 41700
+        },
+        {
+          "dateTime": 1793746799999,
+          "price": 42222
+        },
+        {
+          "dateTime": 1793833199999,
+          "price": 42222
+        },
+        {
+          "dateTime": 1793919599999,
+          "price": 42222
+        },
+        {
+          "dateTime": 1794005999999,
+          "price": 42222
+        },
+        {
+          "dateTime": 1794092399999,
+          "price": 42222
+        },
+        {
+          "dateTime": 1794178799999,
+          "price": 42222
+        },
+        {
+          "dateTime": 1794265199999,
+          "price": 42222
+        },
+        {
+          "dateTime": 1794351599999,
+          "price": 42222
+        },
+        {
+          "dateTime": 1794437999999,
+          "price": 42222
+        },
+        {
+          "dateTime": 1794524399999,
+          "price": 42222
+        },
+        {
+          "dateTime": 1794610799999,
+          "price": 42222
+        },
+        {
+          "dateTime": 1794697199999,
+          "price": 42222
+        },
+        {
+          "dateTime": 1794783599999,
+          "price": 42222
+        },
+        {
+          "dateTime": 1794869999999,
+          "price": 38399
+        },
+        {
+          "dateTime": 1794956399999,
+          "price": 42399
+        },
+        {
+          "dateTime": 1795042799999,
+          "price": 42399
+        },
+        {
+          "dateTime": 1795129199999,
+          "price": 43700
+        },
+        {
+          "dateTime": 1795215599999,
+          "price": 43700
+        },
+        {
+          "dateTime": 1795301999999,
+          "price": 43400
+        },
+        {
+          "dateTime": 1795388399999,
+          "price": 43400
+        },
+        {
+          "dateTime": 1795474799999,
+          "price": 43400
+        },
+        {
+          "dateTime": 1795561199999,
+          "price": 42399
+        },
+        {
+          "dateTime": 1795647599999,
+          "price": 42399
+        },
+        {
+          "dateTime": 1795723406905,
+          "price": 39999
+        }
+      ]
+    }
+  }
+}

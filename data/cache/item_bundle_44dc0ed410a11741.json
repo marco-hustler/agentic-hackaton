@@ -1,0 +1,1596 @@
+{
+  "namespace": "item_bundle",
+  "request": {
+    "query": "Bosch Serie 6 Waschmaschine 8 kg",
+    "country": "DE"
+  },
+  "cached_at": 1795727015.2936692,
+  "data": {
+    "query": "Bosch Serie 6 Waschmaschine 8 kg",
+    "country": "DE",
+    "product_ref": "pr.v1.k1.8I-MoeT9qcuYL5W3ucSCKG1DsEIEV2oK6fRtpo0VsYNY7ayoiA",
+    "top_product": {
+      "productRef": "pr.v1.k1.8I-MoeT9qcuYL5W3ucSCKG1DsEIEV2oK6fRtpo0VsYNY7ayoiA",
+      "itemType": "PRODUCT",
+      "siteId": 1,
+      "name": "Bosch WUU28T70",
+      "price": "549,00 €",
+      "imageUrl": "https://cdn.idealo.com/folder/Product/202091/4/202091404/s1_produktbild_mobil/bosch-wuu28t70.jpg",
+      "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/202091404_-wuu28t70-bosch.html",
+      "userReviewsSummary": {
+        "averageRating": 4.54,
+        "totalReviewCount": 26
+      },
+      "testReportsSummary": {
+        "grade": "1,7"
+      },
+      "totalOfferCount": 29
+    },
+    "search": {
+      "query": "Bosch Serie 6 Waschmaschine 8 kg",
+      "availableCategories": [
+        {
+          "categoryId": "1941",
+          "categoryName": "Waschmaschinen",
+          "amount": 0
+        }
+      ],
+      "availableManufacturers": [
+        {
+          "manufacturerId": "1032",
+          "manufacturerName": "Bosch",
+          "amount": 6,
+          "searchFilterId": "178563"
+        }
+      ],
+      "availableFilters": [
+        {
+          "attributeId": "15583",
+          "name": "Produkttyp",
+          "filters": [
+            {
+              "filterId": "1201412",
+              "content": "Frontlader",
+              "amount": 6
+            }
+          ]
+        },
+        {
+          "attributeId": "30448",
+          "name": "bei idealo gelistet",
+          "filters": [
+            {
+              "filterId": "105414189",
+              "content": "seit 2022",
+              "amount": 6
+            }
+          ]
+        },
+        {
+          "attributeId": "16732",
+          "name": "Serie",
+          "filters": [
+            {
+              "filterId": "2075360",
+              "content": "Bosch Serie 6",
+              "amount": 6
+            },
+            {
+              "filterId": "1212629",
+              "content": "Bosch Serie 8",
+              "amount": 1
+            },
+            {
+              "filterId": "3343942",
+              "content": "Bosch Serie 4",
+              "amount": 12
+            },
+            {
+              "filterId": "3323389",
+              "content": "Bosch Serie 2",
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "attributeId": "1338",
+          "name": "Farbe",
+          "filters": [
+            {
+              "filterId": "1855609",
+              "content": "weiß",
+              "amount": 6
+            }
+          ]
+        },
+        {
+          "attributeId": "30855",
+          "name": "Energieeffizienzklasse",
+          "filters": [
+            {
+              "filterId": "101858184",
+              "content": "A",
+              "amount": 4
+            },
+            {
+              "filterId": "101858185",
+              "content": "B",
+              "amount": 1
+            },
+            {
+              "filterId": "101858186",
+              "content": "C",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "attributeId": "16152",
+          "name": "Füllmenge",
+          "filters": [
+            {
+              "filterId": "4987412",
+              "content": "9 kg",
+              "amount": 44
+            },
+            {
+              "filterId": "4987411",
+              "content": "8 kg",
+              "amount": 6
+            },
+            {
+              "filterId": "4987413",
+              "content": "10 kg",
+              "amount": 15
+            },
+            {
+              "filterId": "4987414",
+              "content": "11 kg",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "attributeId": "17917",
+          "name": "Schleuderlautstärke",
+          "filters": [
+            {
+              "filterId": "1983877",
+              "content": "bis 73 dB(A)",
+              "amount": 6
+            }
+          ]
+        },
+        {
+          "attributeId": "30848",
+          "name": "Luftschallemissionsklasse",
+          "filters": [
+            {
+              "filterId": "101880218",
+              "content": "A",
+              "amount": 6
+            }
+          ]
+        },
+        {
+          "attributeId": "29014",
+          "name": "max. Schleuderdrehzahl",
+          "filters": [
+            {
+              "filterId": "1136994",
+              "content": "1400 U/Min",
+              "amount": 5
+            },
+            {
+              "filterId": "87889",
+              "content": "1200 U/Min",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "attributeId": "19649",
+          "name": "Trommelvolumen",
+          "filters": [
+            {
+              "filterId": "106497622",
+              "content": "52 bis 58 Liter",
+              "amount": 1
+            },
+            {
+              "filterId": "105998212",
+              "content": "58 bis 64 Liter",
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "attributeId": "19969",
+          "name": "Waschdauer",
+          "filters": [
+            {
+              "filterId": "106499317",
+              "content": "209 bis 219 min",
+              "amount": 3
+            },
+            {
+              "filterId": "103886573",
+              "content": "ab 240 min",
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "attributeId": "29027",
+          "name": "Sicherheitseinrichtung",
+          "filters": [
+            {
+              "filterId": "1197023",
+              "content": "AquaStop",
+              "amount": 3
+            },
+            {
+              "filterId": "1207694",
+              "content": "Unwuchtkontrolle",
+              "amount": 5
+            },
+            {
+              "filterId": "1207683",
+              "content": "Schaumregulierung",
+              "amount": 6
+            },
+            {
+              "filterId": "1197024",
+              "content": "Kindersicherung",
+              "amount": 6
+            }
+          ]
+        },
+        {
+          "attributeId": "29031",
+          "name": "Anzeige",
+          "filters": [
+            {
+              "filterId": "5390536",
+              "content": "Restlaufzeit",
+              "amount": 6
+            },
+            {
+              "filterId": "7404050",
+              "content": "Schleuderdrehzahl",
+              "amount": 2
+            },
+            {
+              "filterId": "5390537",
+              "content": "Verbrauch",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "attributeId": "29028",
+          "name": "Bauart",
+          "filters": [
+            {
+              "filterId": "7327568",
+              "content": "unterbaufähig",
+              "amount": 4
+            },
+            {
+              "filterId": "758595",
+              "content": "freistehend",
+              "amount": 5
+            },
+            {
+              "filterId": "10034572",
+              "content": "unterschiebbar ab 85 cm Nischenhöhe",
+              "amount": 5
+            }
+          ]
+        },
+        {
+          "attributeId": "30128",
+          "name": "Türanschlag",
+          "filters": [
+            {
+              "filterId": "1855611",
+              "content": "links",
+              "amount": 5
+            }
+          ]
+        },
+        {
+          "attributeId": "30079",
+          "name": "Hauptmerkmale",
+          "filters": [
+            {
+              "filterId": "3857565",
+              "content": "für 3-4 Personen",
+              "amount": 6
+            },
+            {
+              "filterId": "101999634",
+              "content": "für Allergiker geeignet",
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "attributeId": "25428",
+          "name": "Höhe",
+          "filters": [
+            {
+              "filterId": "7327531",
+              "content": "85 cm",
+              "amount": 5
+            },
+            {
+              "filterId": "10035978",
+              "content": "65 cm",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "attributeId": "23477",
+          "name": "Breite",
+          "filters": [
+            {
+              "filterId": "5258170",
+              "content": "60 cm",
+              "amount": 6
+            }
+          ]
+        },
+        {
+          "attributeId": "25249",
+          "name": "Tiefe",
+          "filters": [
+            {
+              "filterId": "5278904",
+              "content": "55 cm",
+              "amount": 1
+            },
+            {
+              "filterId": "5278909",
+              "content": "60 cm",
+              "amount": 4
+            },
+            {
+              "filterId": "5278914",
+              "content": "65 cm",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "attributeId": "25251",
+          "name": "Komfortfunktionen",
+          "filters": [
+            {
+              "filterId": "1207678",
+              "content": "Mengenautomatik",
+              "amount": 3
+            },
+            {
+              "filterId": "1574199",
+              "content": "Nachlegefunktion",
+              "amount": 6
+            },
+            {
+              "filterId": "1207675",
+              "content": "Knitterschutz",
+              "amount": 1
+            },
+            {
+              "filterId": "1207684",
+              "content": "wählbare Schleuderdrehzahl",
+              "amount": 3
+            },
+            {
+              "filterId": "1552797",
+              "content": "wählbare Temperatur",
+              "amount": 2
+            },
+            {
+              "filterId": "1207689",
+              "content": "Startzeitvorwahl",
+              "amount": 1
+            },
+            {
+              "filterId": "1207668",
+              "content": "Endzeitvorwahl",
+              "amount": 3
+            },
+            {
+              "filterId": "5390531",
+              "content": "Reinigungsprogramm",
+              "amount": 3
+            }
+          ]
+        },
+        {
+          "attributeId": "30085",
+          "name": "Spezialwaschprogramme",
+          "filters": [
+            {
+              "filterId": "1530520",
+              "content": "Kurzprogramm",
+              "amount": 2
+            },
+            {
+              "filterId": "1530517",
+              "content": "Allergie/Antibakteriell/Hygiene",
+              "amount": 2
+            },
+            {
+              "filterId": "1530530",
+              "content": "Sport/Outdoor/Synthetik",
+              "amount": 4
+            },
+            {
+              "filterId": "4871025",
+              "content": "Hemden/Blusen/Bügelleicht",
+              "amount": 6
+            },
+            {
+              "filterId": "1530527",
+              "content": "Bettdecken/Kopfkissen",
+              "amount": 2
+            },
+            {
+              "filterId": "1530524",
+              "content": "Kaltwäsche",
+              "amount": 2
+            },
+            {
+              "filterId": "4871023",
+              "content": "optional: extra spülen",
+              "amount": 2
+            },
+            {
+              "filterId": "7254858",
+              "content": "optional: variable Waschzeit",
+              "amount": 1
+            },
+            {
+              "filterId": "5460927",
+              "content": "Nachtwäsche/Leise Wäsche",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "suggestedFilters": [
+        {
+          "id": "1201412",
+          "type": "SEARCH_FILTER"
+        },
+        {
+          "id": "4987412",
+          "type": "SEARCH_FILTER"
+        },
+        {
+          "id": "178563",
+          "type": "MANUFACTURER"
+        },
+        {
+          "id": "4987411",
+          "type": "SEARCH_FILTER"
+        },
+        {
+          "id": "4987413",
+          "type": "SEARCH_FILTER"
+        },
+        {
+          "id": "101858184",
+          "type": "SEARCH_FILTER"
+        },
+        {
+          "id": "4987414",
+          "type": "SEARCH_FILTER"
+        },
+        {
+          "id": "2075360",
+          "type": "SEARCH_FILTER"
+        },
+        {
+          "id": "1212629",
+          "type": "SEARCH_FILTER"
+        },
+        {
+          "id": "1136994",
+          "type": "SEARCH_FILTER"
+        }
+      ],
+      "sizeAttributes": [],
+      "results": [
+        {
+          "productRef": "pr.v1.k1.8I-MoeT9qcuYL5W3ucSCKG1DsEIEV2oK6fRtpo0VsYNY7ayoiA",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "Bosch WUU28T70",
+          "price": "549,00 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/202091/4/202091404/s1_produktbild_mobil/bosch-wuu28t70.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/202091404_-wuu28t70-bosch.html",
+          "userReviewsSummary": {
+            "averageRating": 4.54,
+            "totalReviewCount": 26
+          },
+          "testReportsSummary": {
+            "grade": "1,7"
+          },
+          "totalOfferCount": 29
+        },
+        {
+          "productRef": "pr.v1.k1.tx19K_4-0zIu8MIuzzV8OEqVPOZJuiGEr1BAI83gvf7ugTpoSg",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "Bosch WUU28T48",
+          "price": "549,00 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/202187/7/202187746/s1_produktbild_mobil/bosch-wuu28t48.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/202187746_-wuu28t48-bosch.html",
+          "userReviewsSummary": {
+            "averageRating": 4.61,
+            "totalReviewCount": 33
+          },
+          "totalOfferCount": 22
+        },
+        {
+          "productRef": "pr.v1.k1.C4tvSHXKZqzJtgsd_jByFXqAnQqMr1H-t_f-nkDIZ_jH4vWBRQ",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "Bosch WUU28TH1",
+          "price": "579,00 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/202247/2/202247221/s1_produktbild_mobil/bosch-wuu28th1.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/202247221_-wuu28th1-bosch.html",
+          "totalOfferCount": 17
+        },
+        {
+          "productRef": "pr.v1.k1.ioDrjhJiNo085EBMVMBPXQqShD4VMM1zH4ftMKFTg9keLo9nJQ",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "Bosch WUU28T18FR",
+          "price": "712,03 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/202259/6/202259609/s1_produktbild_mobil/bosch-wuu28t18fr.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/202259609_-wuu28t18fr-bosch.html",
+          "totalOfferCount": 4
+        },
+        {
+          "productRef": "pr.v1.k1.Lx2FLAge4eTwkLowaqaogN0WwGcaVfjaO3tWER_VEVauWNAmVA",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "Bosch WIW24342EU",
+          "price": "999,00 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/202239/3/202239358/s1_produktbild_mobil/bosch-wiw24342eu.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/202239358_-wiw24342eu-bosch.html",
+          "totalOfferCount": 1
+        },
+        {
+          "productRef": "pr.v1.k1.uW4idtxotBZLTLKCyJmcX9BpXwkwHBZDfTGLnBVMt_21UNDPkg",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "Bosch WUU28T63ES",
+          "price": "643,50 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/202180/5/202180585/s1_produktbild_mobil/bosch-wuu28t63es.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/202180585_-wuu28t63es-bosch.html",
+          "totalOfferCount": 2
+        }
+      ]
+    },
+    "details": {
+      "productRef": "pr.v1.k1.8I-MoeT9qcuYL5W3ucSCKG1DsEIEV2oK6fRtpo0VsYNY7ayoiA",
+      "itemType": "PRODUCT",
+      "siteId": 1,
+      "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/202091404_-wuu28t70-bosch.html",
+      "name": "Bosch WUU28T70",
+      "imageUrls": [
+        "https://cdn.idealo.com/folder/Product/202091/4/202091404/s1_produktbild_mobil/bosch-wuu28t70.jpg"
+      ],
+      "nextOffset": 3,
+      "offers": [
+        {
+          "key": "5d92072aa6bab30f6524283d4f374a35",
+          "price": "549,00 €",
+          "basePrice": null,
+          "shop": {
+            "shopId": "322253",
+            "merchantId": null,
+            "name": "coolblue.de",
+            "merchantName": null,
+            "rating": {
+              "count": 9867,
+              "avg": 4.64
+            },
+            "isMarketplace": false
+          },
+          "payments": [
+            {
+              "costCode": "INV",
+              "name": "Rechnung"
+            },
+            {
+              "costCode": "PP",
+              "name": "PayPal"
+            },
+            {
+              "costCode": "SUW",
+              "name": "Sofort."
+            },
+            {
+              "costCode": "CBC",
+              "name": "Kreditkarte"
+            },
+            {
+              "costCode": "CIA",
+              "name": "Vorkasse"
+            }
+          ],
+          "showPaymentDisclaimer": false,
+          "delivery": {
+            "deliveryText": "bis Fr. 27.11.2026",
+            "deliveryStatus": "SHORT",
+            "earlyDeliveryDate": null,
+            "lateDeliveryDate": "2026-11-27"
+          },
+          "freeReturnDays": 30,
+          "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=5d92072aa6bab30f6524283d4f374a35&categoryId=1941&pos=1&price=549.00&productid=202091404&sid=322253&type=offer&media=ipc-public-mcp",
+          "minShippingCost": "35,00 €",
+          "hasAlwaysFreeShipping": false,
+          "cheapestTotalPriceOffer": false,
+          "freshness": "2026-11-26T20:03:34.115Z"
+        },
+        {
+          "key": "3620df294fe9162da08efafe2808f91e",
+          "price": "574,00 €",
+          "basePrice": null,
+          "shop": {
+            "shopId": "24111",
+            "merchantId": null,
+            "name": "euronics.de",
+            "merchantName": "Euronics XXL Neu-Neu-Ulm",
+            "rating": {
+              "count": null,
+              "avg": null
+            },
+            "isMarketplace": true
+          },
+          "payments": [
+            {
+              "costCode": "PP",
+              "name": "PayPal"
+            },
+            {
+              "costCode": "CBC",
+              "name": "Kreditkarte"
+            },
+            {
+              "costCode": "APPLE_PAY",
+              "name": "Apple Pay"
+            },
+            {
+              "costCode": "CIA",
+              "name": "Vorkasse"
+            }
+          ],
+          "showPaymentDisclaimer": false,
+          "delivery": {
+            "deliveryText": "Sa. 28.11.–Mi. 02.12.2026",
+            "deliveryStatus": "MEDIUM",
+            "earlyDeliveryDate": "2026-11-28",
+            "lateDeliveryDate": "2026-12-02"
+          },
+          "freeReturnDays": null,
+          "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=3620df294fe9162da08efafe2808f91e&categoryId=1941&pos=2&price=574.00&productid=202091404&sid=24111&type=offer&media=ipc-public-mcp",
+          "minShippingCost": "4,99 €",
+          "hasAlwaysFreeShipping": false,
+          "cheapestTotalPriceOffer": true,
+          "freshness": "2026-11-26T20:03:34.115Z"
+        },
+        {
+          "key": "c049524ed1270a47ecd82ab42d204150",
+          "price": "575,69 €",
+          "basePrice": null,
+          "shop": {
+            "shopId": "273179",
+            "merchantId": null,
+            "name": "smartgoods.de",
+            "merchantName": null,
+            "rating": {
+              "count": 2476,
+              "avg": 4.57
+            },
+            "isMarketplace": false
+          },
+          "payments": [
+            {
+              "costCode": "PP",
+              "name": "PayPal"
+            },
+            {
+              "costCode": "CBC",
+              "name": "Kreditkarte"
+            },
+            {
+              "costCode": "CIA",
+              "name": "Vorkasse"
+            }
+          ],
+          "showPaymentDisclaimer": false,
+          "delivery": {
+            "deliveryText": "Sa. 28.11.–Mo. 30.11.2026",
+            "deliveryStatus": "SHORT",
+            "earlyDeliveryDate": "2026-11-28",
+            "lateDeliveryDate": "2026-11-30"
+          },
+          "freeReturnDays": null,
+          "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=c049524ed1270a47ecd82ab42d204150&categoryId=1941&pos=3&price=575.69&productid=202091404&sid=273179&type=offer&media=ipc-public-mcp",
+          "minShippingCost": "59,95 €",
+          "hasAlwaysFreeShipping": false,
+          "cheapestTotalPriceOffer": false,
+          "freshness": "2026-11-26T20:03:34.115Z"
+        }
+      ],
+      "prosCons": {
+        "pros": [
+          "sehr geräuscharm",
+          "mit Hygieneprogramm",
+          "inklusive Nachlegefunktion"
+        ],
+        "cons": [
+          "könnte noch etwas energieeffizienter sein",
+          "keine Dampffunktion",
+          "kein Outdoorprogramm",
+          "ohne App-Anbindung"
+        ]
+      },
+      "testReports": {
+        "summary": {
+          "grade": "1,7",
+          "averageRating": 86,
+          "rating": "gut",
+          "ratingCount": 1
+        },
+        "list": [
+          {
+            "providerName": "Stiftung Warentest",
+            "shortDescription": "Waschmaschinen",
+            "summaryText": "Guter Testsieger zum vernünftigen Preis: Der Bosch-Frontlader überzeugte im Test mit seinen guten Waschergebnissen, der einfachen Handhabung und einer prima Ausstattung. Der Strom- und Wasserverbrauch ist niedrig. Lange Waschzeiten.   ",
+            "ratingValue": "1,7",
+            "publishedAt": 1729764000000,
+            "language": "de",
+            "issue": "11/2024",
+            "testedProductsCount": 11
+          }
+        ]
+      },
+      "expertReview": {
+        "author": "Unsere Redaktion",
+        "autogenerated": false,
+        "created": "2024-11-17T23:00",
+        "rating": 90,
+        "teaser": "Die Bosch WUU28T70 wäscht deine Wäsche klaglos sauber und bietet dabei ein brauchbares, wenn auch nur basales Programm- und Funktionsspektrum. Ihre Energieeffizienz ist ok, aber nicht optimal, der Geräuschwert sehr niedrig.",
+        "text": "<h2>Bosch WUU28T70 mit Blick auf Black Friday</h2>\n<p>Black Friday bringt Bewegung in viele Preise. Wer für eine Waschmaschine verschiedene Angebote im Auge behält, kann mögliche Unterschiede entspannt einordnen.</p>\n<h2>Bosch WUU28T70</h2>\n<ul>\n<li>Frontlader-Waschmaschine mit bis zu 8 kg Fassungsvermögen</li>\n<li>EEK B</li>\n<li>69 dB</li>\n</ul>\n<h2>Energieeffizienz mäßig, Geräuschdämpfung top</h2>\n<p>Die WUU28T70 von Bosch ist eine Waschmaschine mit mäßiger Energieeffizienz: mit einem Verbrauch von 0,54 kWh Strom je Zyklus erreicht sie nur die zweitbeste Energieeffizienzklasse B - die Klasse A kann bei heutigen Modellen eigentlich mittlerweile als Standard gelten. Dafür schießt sie bei der Geräuschdämpfung den Vogel ab: beim Schleudern emittiert sie nur 69 dB und ist damit deutlich leiser als die meisten Konkurrentinnen. Die geringe Lautstärke fällt den insgesamt zufriedenen Rezensent:innen auf amazon.de auch tatsächlich häufig auf. Mit einem smarten, also per WLAN und App steuer- und überwachbaren Gerät hast du es hier nicht zu tun.</p>\n<h2>Modernes, aber nicht luxuriöses Programmangebot</h2>\n<p>Die Programmauswahl sieht bei der Bosch WUU28T70 eher überschaubar aus: außer den gängigen Standards hast du hier nur ein Hygiene-, ein Sportkleidungs- und ein Deckenprogramm. Nicht an Bord sind zum Beispiel Spezialprogramme für imprägnierte Outdoorkleidung, für Jeans oder Daunenwaren. Auch eine Dampffunktion für effektive Hygienepflege und Entknitterung spart sich die Maschine. Bei den Zusatzfunktionen sind mit Extraspülen, Vorwäsche und Zeitsparen alle wesentlichen dabei. Auch eine Nachlegefunktion ist eingerichtet. Von Kund:innen auf otto.de gibt es vorwiegend sehr positives Feedback.</p>"
+      },
+      "productSpecification": {
+        "groups": [
+          {
+            "name": "Energielabeldaten",
+            "type": "DEFAULT",
+            "attributes": [
+              {
+                "name": "Energieeffizienzklasse",
+                "value": "B"
+              },
+              {
+                "name": "Energieverbrauch Waschen",
+                "value": "54 kWh / 100 Zyklen"
+              },
+              {
+                "name": "Füllmenge",
+                "value": "8 kg"
+              },
+              {
+                "name": "Wasserverbrauch",
+                "value": "46 Liter"
+              },
+              {
+                "name": "Schleuderwirkungsklasse",
+                "value": "B"
+              },
+              {
+                "name": "Schleuderlautstärke",
+                "value": "69 dB(A)"
+              },
+              {
+                "name": "Luftschallemissionsklasse",
+                "value": "A"
+              }
+            ]
+          },
+          {
+            "name": "Technische Daten",
+            "type": "DEFAULT",
+            "attributes": [
+              {
+                "name": "max. Schleuderdrehzahl",
+                "value": "1.400 U/Min"
+              },
+              {
+                "name": "Waschdauer",
+                "value": "215 min"
+              },
+              {
+                "name": "Anschlusswert",
+                "value": "230 Watt"
+              },
+              {
+                "name": "Netzabsicherung",
+                "value": "10 A"
+              }
+            ]
+          },
+          {
+            "name": "Komfort & Sicherheit",
+            "type": "DEFAULT",
+            "attributes": [
+              {
+                "name": "Funktionen",
+                "value": "Reinigungsprogramm, Erinnerung an Reinigung, Nachlegefunktion, ohne Schleudern/Spülstopp, anpassbare Temperatur, Endzeitvorwahl, Signalton bei Programmende, anpassbare Schleuderdrehzahl, Mengenautomatik, Knitterschutz"
+              },
+              {
+                "name": "Ausstattung",
+                "value": "Flüssigwaschmitteleinsatz, Leichtreinigungsschublade, verstellbare Gerätefüße, Anti Vibration"
+              },
+              {
+                "name": "Sicherheitseinrichtungen",
+                "value": "Kindersicherung, Unwuchtkontrolle, AquaStop, Schaumregulierung"
+              },
+              {
+                "name": "Zeitvorwahl",
+                "value": "24 h"
+              },
+              {
+                "name": "Bedienungsart",
+                "value": "Einknopf-Programmwahl, Sensor/Touch-Bedienung"
+              },
+              {
+                "name": "Display",
+                "value": "LED"
+              },
+              {
+                "name": "Anzeigen",
+                "value": "Endezeit, Restlaufzeit"
+              },
+              {
+                "name": "Hersteller-Besonderheiten",
+                "value": "EcoSilence Drive, SpeedPerfect, ActiveWater Plus, AntiVibrationDesign"
+              }
+            ]
+          },
+          {
+            "name": "Bauart & Material",
+            "type": "DEFAULT",
+            "attributes": [
+              {
+                "name": "Bauart",
+                "value": "freistehend, unterschiebbar ab 85 cm Nischenhöhe, unterbaufähig"
+              },
+              {
+                "name": "Türanschlag",
+                "value": "links"
+              },
+              {
+                "name": "Material Laugenbehälter",
+                "value": "Kunststoff"
+              }
+            ]
+          },
+          {
+            "name": "Programme & Optionen",
+            "type": "DEFAULT",
+            "attributes": [
+              {
+                "name": "Waschprogramme",
+                "value": "Standardprogramme, Spülen/Schleudern/Abpumpen, Spezialprogramme, Schnellprogramme, Eco-Programm, Blusen/Hemden, Sport/Outdoor/Synthetik, Bettdecken/Kopfkissen, Allergie/Antibakteriell/Hygiene, Extra Spülen, Vorwäsche, Kaltwäsche"
+              }
+            ]
+          },
+          {
+            "name": "Maße & Gewicht",
+            "type": "DEFAULT",
+            "attributes": [
+              {
+                "name": "Höhe",
+                "value": "36 cm"
+              },
+              {
+                "name": "Breite",
+                "value": "59,8 cm"
+              },
+              {
+                "name": "Tiefe",
+                "value": "59,9 cm"
+              },
+              {
+                "name": "Tiefe bei geschlossener Tür",
+                "value": "63,2 cm"
+              },
+              {
+                "name": "Tiefe bei geöffneter Tür",
+                "value": "106,3 cm"
+              },
+              {
+                "name": "Bullauge Einfüllöffnung",
+                "value": "32 cm"
+              },
+              {
+                "name": "Gewicht",
+                "value": "73,9 kg"
+              },
+              {
+                "name": "Türöffnungswinkel",
+                "value": "171 °"
+              }
+            ]
+          },
+          {
+            "name": "Betriebskosten",
+            "type": "DEFAULT",
+            "attributes": [
+              {
+                "name": "Quellen",
+                "value": "*Ø Strompreis Eurostat (Stand 1. Halbjahr 2020), **Ø Nutzungsdauer nach Initiative EnergieEffizienz (Stand 2013), ***Ø Mischpreis aus Trink- und Abwasserkosten (Statistisches Bundesamt 2013, DWA 2013)"
+              }
+            ]
+          },
+          {
+            "name": "",
+            "type": "IMPORTANT",
+            "attributes": [
+              {
+                "name": "Gelistet seit",
+                "value": "September 2022"
+              },
+              {
+                "name": "Waschmaschinentyp",
+                "value": "Frontlader"
+              },
+              {
+                "name": "bei idealo gelistet",
+                "value": "seit 2022"
+              },
+              {
+                "name": "Serie",
+                "value": "Bosch Serie 6"
+              },
+              {
+                "name": "Farbe",
+                "value": "weiß"
+              },
+              {
+                "name": "Farben Bullauge",
+                "value": "grau, weiß"
+              },
+              {
+                "name": "Haushaltsgröße",
+                "value": "mittlerer Haushalt (3-4 Personen)"
+              },
+              {
+                "name": "Geräuschpegel",
+                "value": "leise"
+              }
+            ]
+          }
+        ]
+      },
+      "productOverview": [
+        "69 dB(A)",
+        "Einknopf-Programmwahl",
+        "LED Display",
+        "Endzeitvorwahl",
+        "Mengenautomatik",
+        "Nachlegefunktion",
+        "8 kg",
+        "1.400 U/Min",
+        "215 min Waschdauer",
+        "Breite 59,8 cm",
+        "Tiefe 59,9 cm"
+      ],
+      "productDetailsUrl": "https://www.idealo.de/preisvergleich/OffersOfProduct/202091404_-wuu28t70-bosch.html#datasheet",
+      "priceTrend": {
+        "history": [
+          {
+            "dateTime": 1793141999999,
+            "price": 55900
+          },
+          {
+            "dateTime": 1793228399999,
+            "price": 55900
+          },
+          {
+            "dateTime": 1793314799999,
+            "price": 55900
+          },
+          {
+            "dateTime": 1793401199999,
+            "price": 55900
+          },
+          {
+            "dateTime": 1793487599999,
+            "price": 55900
+          },
+          {
+            "dateTime": 1793573999999,
+            "price": 55900
+          },
+          {
+            "dateTime": 1793660399999,
+            "price": 55900
+          },
+          {
+            "dateTime": 1793746799999,
+            "price": 54852
+          },
+          {
+            "dateTime": 1793833199999,
+            "price": 57300
+          },
+          {
+            "dateTime": 1793919599999,
+            "price": 57300
+          },
+          {
+            "dateTime": 1794005999999,
+            "price": 55500
+          },
+          {
+            "dateTime": 1794092399999,
+            "price": 54852
+          },
+          {
+            "dateTime": 1794178799999,
+            "price": 57300
+          },
+          {
+            "dateTime": 1794265199999,
+            "price": 57300
+          },
+          {
+            "dateTime": 1794351599999,
+            "price": 55500
+          },
+          {
+            "dateTime": 1794437999999,
+            "price": 55500
+          },
+          {
+            "dateTime": 1794524399999,
+            "price": 57300
+          },
+          {
+            "dateTime": 1794610799999,
+            "price": 57300
+          },
+          {
+            "dateTime": 1794697199999,
+            "price": 55500
+          },
+          {
+            "dateTime": 1794783599999,
+            "price": 55500
+          },
+          {
+            "dateTime": 1794869999999,
+            "price": 55500
+          },
+          {
+            "dateTime": 1794956399999,
+            "price": 55500
+          },
+          {
+            "dateTime": 1795042799999,
+            "price": 58410
+          },
+          {
+            "dateTime": 1795129199999,
+            "price": 55900
+          },
+          {
+            "dateTime": 1795215599999,
+            "price": 54900
+          },
+          {
+            "dateTime": 1795301999999,
+            "price": 54900
+          },
+          {
+            "dateTime": 1795388399999,
+            "price": 54900
+          },
+          {
+            "dateTime": 1795474799999,
+            "price": 54900
+          },
+          {
+            "dateTime": 1795561199999,
+            "price": 54900
+          },
+          {
+            "dateTime": 1795647599999,
+            "price": 54900
+          },
+          {
+            "dateTime": 1795723414148,
+            "price": 54900
+          }
+        ]
+      }
+    },
+    "offers": {
+      "nextOffset": 5,
+      "offers": [
+        {
+          "key": "5d92072aa6bab30f6524283d4f374a35",
+          "price": "549,00 €",
+          "basePrice": null,
+          "shop": {
+            "shopId": "322253",
+            "merchantId": null,
+            "name": "coolblue.de",
+            "merchantName": null,
+            "rating": {
+              "count": 9867,
+              "avg": 4.64
+            },
+            "isMarketplace": false
+          },
+          "payments": [
+            {
+              "costCode": "INV",
+              "name": "Rechnung"
+            },
+            {
+              "costCode": "PP",
+              "name": "PayPal"
+            },
+            {
+              "costCode": "SUW",
+              "name": "Sofort."
+            },
+            {
+              "costCode": "CBC",
+              "name": "Kreditkarte"
+            },
+            {
+              "costCode": "CIA",
+              "name": "Vorkasse"
+            }
+          ],
+          "showPaymentDisclaimer": false,
+          "delivery": {
+            "deliveryText": "bis Fr. 27.11.2026",
+            "deliveryStatus": "SHORT",
+            "earlyDeliveryDate": null,
+            "lateDeliveryDate": "2026-11-27"
+          },
+          "freeReturnDays": 30,
+          "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=5d92072aa6bab30f6524283d4f374a35&categoryId=1941&pos=1&price=549.00&productid=202091404&sid=322253&type=offer&media=ipc-public-mcp",
+          "minShippingCost": "35,00 €",
+          "hasAlwaysFreeShipping": false,
+          "cheapestTotalPriceOffer": false,
+          "freshness": "2026-11-26T20:03:34.469Z"
+        },
+        {
+          "key": "3620df294fe9162da08efafe2808f91e",
+          "price": "574,00 €",
+          "basePrice": null,
+          "shop": {
+            "shopId": "24111",
+            "merchantId": null,
+            "name": "euronics.de",
+            "merchantName": "Euronics XXL Neu-Neu-Ulm",
+            "rating": {
+              "count": null,
+              "avg": null
+            },
+            "isMarketplace": true
+          },
+          "payments": [
+            {
+              "costCode": "PP",
+              "name": "PayPal"
+            },
+            {
+              "costCode": "CBC",
+              "name": "Kreditkarte"
+            },
+            {
+              "costCode": "APPLE_PAY",
+              "name": "Apple Pay"
+            },
+            {
+              "costCode": "CIA",
+              "name": "Vorkasse"
+            }
+          ],
+          "showPaymentDisclaimer": false,
+          "delivery": {
+            "deliveryText": "Sa. 28.11.–Mi. 02.12.2026",
+            "deliveryStatus": "MEDIUM",
+            "earlyDeliveryDate": "2026-11-28",
+            "lateDeliveryDate": "2026-12-02"
+          },
+          "freeReturnDays": null,
+          "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=3620df294fe9162da08efafe2808f91e&categoryId=1941&pos=2&price=574.00&productid=202091404&sid=24111&type=offer&media=ipc-public-mcp",
+          "minShippingCost": "4,99 €",
+          "hasAlwaysFreeShipping": false,
+          "cheapestTotalPriceOffer": true,
+          "freshness": "2026-11-26T20:03:34.469Z"
+        },
+        {
+          "key": "c049524ed1270a47ecd82ab42d204150",
+          "price": "575,69 €",
+          "basePrice": null,
+          "shop": {
+            "shopId": "273179",
+            "merchantId": null,
+            "name": "smartgoods.de",
+            "merchantName": null,
+            "rating": {
+              "count": 2476,
+              "avg": 4.57
+            },
+            "isMarketplace": false
+          },
+          "payments": [
+            {
+              "costCode": "PP",
+              "name": "PayPal"
+            },
+            {
+              "costCode": "CBC",
+              "name": "Kreditkarte"
+            },
+            {
+              "costCode": "CIA",
+              "name": "Vorkasse"
+            }
+          ],
+          "showPaymentDisclaimer": false,
+          "delivery": {
+            "deliveryText": "Sa. 28.11.–Mo. 30.11.2026",
+            "deliveryStatus": "SHORT",
+            "earlyDeliveryDate": "2026-11-28",
+            "lateDeliveryDate": "2026-11-30"
+          },
+          "freeReturnDays": null,
+          "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=c049524ed1270a47ecd82ab42d204150&categoryId=1941&pos=3&price=575.69&productid=202091404&sid=273179&type=offer&media=ipc-public-mcp",
+          "minShippingCost": "59,95 €",
+          "hasAlwaysFreeShipping": false,
+          "cheapestTotalPriceOffer": false,
+          "freshness": "2026-11-26T20:03:34.469Z"
+        },
+        {
+          "key": "02c1c9962eaee7215cf4222c6a3a7aa9",
+          "price": "575,69 €",
+          "basePrice": null,
+          "shop": {
+            "shopId": "1140",
+            "merchantId": null,
+            "name": "computeruniverse.net",
+            "merchantName": null,
+            "rating": {
+              "count": 29704,
+              "avg": 3.78
+            },
+            "isMarketplace": false
+          },
+          "payments": [
+            {
+              "costCode": "INV",
+              "name": "Rechnung"
+            },
+            {
+              "costCode": "PP",
+              "name": "PayPal"
+            },
+            {
+              "costCode": "SUW",
+              "name": "Sofort."
+            },
+            {
+              "costCode": "CBC",
+              "name": "Kreditkarte"
+            },
+            {
+              "costCode": "APPLE_PAY",
+              "name": "Apple Pay"
+            },
+            {
+              "costCode": "CIA",
+              "name": "Vorkasse"
+            },
+            {
+              "costCode": "AMZP",
+              "name": "Amazon Pay"
+            }
+          ],
+          "showPaymentDisclaimer": false,
+          "delivery": {
+            "deliveryText": "Sa. 28.11.–Mo. 30.11.2026",
+            "deliveryStatus": "SHORT",
+            "earlyDeliveryDate": "2026-11-28",
+            "lateDeliveryDate": "2026-11-30"
+          },
+          "freeReturnDays": 30,
+          "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=02c1c9962eaee7215cf4222c6a3a7aa9&categoryId=1941&pos=4&price=575.69&productid=202091404&sid=1140&type=offer&media=ipc-public-mcp",
+          "minShippingCost": "39,99 €",
+          "hasAlwaysFreeShipping": false,
+          "cheapestTotalPriceOffer": false,
+          "freshness": "2026-11-26T20:03:34.469Z"
+        },
+        {
+          "key": "9b33aa58f9778d939306804fb8521693",
+          "price": "575,69 €",
+          "basePrice": null,
+          "shop": {
+            "shopId": "2400",
+            "merchantId": null,
+            "name": "cyberport.de",
+            "merchantName": null,
+            "rating": {
+              "count": 26245,
+              "avg": 3.35
+            },
+            "isMarketplace": false
+          },
+          "payments": [
+            {
+              "costCode": "INV",
+              "name": "Rechnung"
+            },
+            {
+              "costCode": "PP",
+              "name": "PayPal"
+            },
+            {
+              "costCode": "SUW",
+              "name": "Sofort."
+            },
+            {
+              "costCode": "CBC",
+              "name": "Kreditkarte"
+            },
+            {
+              "costCode": "CIA",
+              "name": "Vorkasse"
+            },
+            {
+              "costCode": "AMZP",
+              "name": "Amazon Pay"
+            }
+          ],
+          "showPaymentDisclaimer": false,
+          "delivery": {
+            "deliveryText": "Sa. 28.11.–Mo. 30.11.2026",
+            "deliveryStatus": "SHORT",
+            "earlyDeliveryDate": "2026-11-28",
+            "lateDeliveryDate": "2026-11-30"
+          },
+          "freeReturnDays": 30,
+          "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=9b33aa58f9778d939306804fb8521693&categoryId=1941&pos=5&price=575.69&productid=202091404&sid=2400&type=offer&media=ipc-public-mcp",
+          "minShippingCost": "39,99 €",
+          "hasAlwaysFreeShipping": false,
+          "cheapestTotalPriceOffer": false,
+          "freshness": "2026-11-26T20:03:34.469Z"
+        }
+      ]
+    },
+    "price_history": {
+      "priceTrend": {
+        "history": [
+          {
+            "dateTime": 1793141999999,
+            "price": "559,00 €",
+            "dateTimeISO": "2026-10-27T22:59:59.999Z"
+          },
+          {
+            "dateTime": 1793228399999,
+            "price": "559,00 €",
+            "dateTimeISO": "2026-10-28T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1793314799999,
+            "price": "559,00 €",
+            "dateTimeISO": "2026-10-29T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1793401199999,
+            "price": "559,00 €",
+            "dateTimeISO": "2026-10-30T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1793487599999,
+            "price": "559,00 €",
+            "dateTimeISO": "2026-10-31T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1793573999999,
+            "price": "559,00 €",
+            "dateTimeISO": "2026-11-01T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1793660399999,
+            "price": "559,00 €",
+            "dateTimeISO": "2026-11-02T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1793746799999,
+            "price": "548,52 €",
+            "dateTimeISO": "2026-11-03T22:59:59.999Z",
+            "priceChangePercent": -1.8747763864042934
+          },
+          {
+            "dateTime": 1793833199999,
+            "price": "573,00 €",
+            "dateTimeISO": "2026-11-04T22:59:59.999Z",
+            "priceChangePercent": 4.462918398599869
+          },
+          {
+            "dateTime": 1793919599999,
+            "price": "573,00 €",
+            "dateTimeISO": "2026-11-05T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1794005999999,
+            "price": "555,00 €",
+            "dateTimeISO": "2026-11-06T22:59:59.999Z",
+            "priceChangePercent": -3.1413612565445024
+          },
+          {
+            "dateTime": 1794092399999,
+            "price": "548,52 €",
+            "dateTimeISO": "2026-11-07T22:59:59.999Z",
+            "priceChangePercent": -1.1675675675675674
+          },
+          {
+            "dateTime": 1794178799999,
+            "price": "573,00 €",
+            "dateTimeISO": "2026-11-08T22:59:59.999Z",
+            "priceChangePercent": 4.462918398599869
+          },
+          {
+            "dateTime": 1794265199999,
+            "price": "573,00 €",
+            "dateTimeISO": "2026-11-09T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1794351599999,
+            "price": "555,00 €",
+            "dateTimeISO": "2026-11-10T22:59:59.999Z",
+            "priceChangePercent": -3.1413612565445024
+          },
+          {
+            "dateTime": 1794437999999,
+            "price": "555,00 €",
+            "dateTimeISO": "2026-11-11T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1794524399999,
+            "price": "573,00 €",
+            "dateTimeISO": "2026-11-12T22:59:59.999Z",
+            "priceChangePercent": 3.2432432432432434
+          },
+          {
+            "dateTime": 1794610799999,
+            "price": "573,00 €",
+            "dateTimeISO": "2026-11-13T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1794697199999,
+            "price": "555,00 €",
+            "dateTimeISO": "2026-11-14T22:59:59.999Z",
+            "priceChangePercent": -3.1413612565445024
+          },
+          {
+            "dateTime": 1794783599999,
+            "price": "555,00 €",
+            "dateTimeISO": "2026-11-15T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1794869999999,
+            "price": "555,00 €",
+            "dateTimeISO": "2026-11-16T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1794956399999,
+            "price": "555,00 €",
+            "dateTimeISO": "2026-11-17T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1795042799999,
+            "price": "584,10 €",
+            "dateTimeISO": "2026-11-18T22:59:59.999Z",
+            "priceChangePercent": 5.243243243243243
+          },
+          {
+            "dateTime": 1795129199999,
+            "price": "559,00 €",
+            "dateTimeISO": "2026-11-19T22:59:59.999Z",
+            "priceChangePercent": -4.2972093819551445
+          },
+          {
+            "dateTime": 1795215599999,
+            "price": "549,00 €",
+            "dateTimeISO": "2026-11-20T22:59:59.999Z",
+            "priceChangePercent": -1.7889087656529516
+          },
+          {
+            "dateTime": 1795301999999,
+            "price": "549,00 €",
+            "dateTimeISO": "2026-11-21T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1795388399999,
+            "price": "549,00 €",
+            "dateTimeISO": "2026-11-22T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1795474799999,
+            "price": "549,00 €",
+            "dateTimeISO": "2026-11-23T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1795561199999,
+            "price": "549,00 €",
+            "dateTimeISO": "2026-11-24T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1795647599999,
+            "price": "549,00 €",
+            "dateTimeISO": "2026-11-25T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1795723415155,
+            "price": "549,00 €",
+            "dateTimeISO": "2026-11-26T20:03:35.155Z",
+            "priceChangePercent": 0
+          }
+        ],
+        "statistics": {
+          "minPrice": "548,52 €",
+          "maxPrice": "584,10 €",
+          "avgPrice": "558,68 €",
+          "currentPrice": "549,00 €",
+          "priceChangePercent": -1.7889087656529516,
+          "lowestPriceDate": "2026-11-03T22:59:59.999Z",
+          "highestPriceDate": "2026-11-18T22:59:59.999Z"
+        },
+        "samplingGranularity": "daily",
+        "dataSourceConfidence": 0.95,
+        "periodDays": 29.9,
+        "totalDataPoints": 31
+      }
+    },
+    "all_cached": true
+  }
+}

@@ -1,0 +1,1414 @@
+{
+  "namespace": "item_bundle",
+  "request": {
+    "query": "Nintendo Switch OLED",
+    "country": "DE"
+  },
+  "cached_at": 1795727011.915946,
+  "data": {
+    "query": "Nintendo Switch OLED",
+    "country": "DE",
+    "product_ref": "pr.v1.k1.K_aNx8ijE2MFwWvuLosQ3EKierjRdQZtvJGziM-3xuGbsvLUdA",
+    "top_product": {
+      "productRef": "pr.v1.k1.K_aNx8ijE2MFwWvuLosQ3EKierjRdQZtvJGziM-3xuGbsvLUdA",
+      "itemType": "PRODUCT",
+      "siteId": 1,
+      "name": "Nintendo Switch (OLED-Modell)",
+      "nameDelta": "weiß",
+      "price": "319,00 €",
+      "imageUrl": "https://cdn.idealo.com/folder/Product/201447/3/201447343/s1_produktbild_mobil/nintendo-switch-oled-modell-weiss.jpg",
+      "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/201447343_-switch-oled-modell-weiss-nintendo.html",
+      "userReviewsSummary": {
+        "averageRating": 4.42,
+        "totalReviewCount": 416
+      },
+      "testReportsSummary": {
+        "grade": "1,8"
+      },
+      "totalOfferCount": 44
+    },
+    "search": {
+      "query": "Nintendo Switch OLED",
+      "availableCategories": [
+        {
+          "categoryId": "3189",
+          "categoryName": "Spielekonsolen",
+          "amount": 0
+        }
+      ],
+      "availableManufacturers": [
+        {
+          "manufacturerId": "1275",
+          "manufacturerName": "Nintendo",
+          "amount": 32,
+          "searchFilterId": "471421"
+        }
+      ],
+      "availableFilters": [
+        {
+          "attributeId": "15583",
+          "name": "Produkttyp",
+          "filters": [
+            {
+              "filterId": "104371515",
+              "content": "Nintendo Switch Konsole",
+              "amount": 32
+            },
+            {
+              "filterId": "469667",
+              "content": "Heimkonsole",
+              "amount": 32
+            },
+            {
+              "filterId": "9053411",
+              "content": "Nintendo Switch Bundle",
+              "amount": 19
+            },
+            {
+              "filterId": "469666",
+              "content": "Handheld",
+              "amount": 32
+            }
+          ]
+        },
+        {
+          "attributeId": "29866",
+          "name": "interner Speicher",
+          "filters": [
+            {
+              "filterId": "236067",
+              "content": "bis 500 GB",
+              "amount": 29
+            }
+          ]
+        },
+        {
+          "attributeId": "20490",
+          "name": "Veröffentlichungsjahr",
+          "filters": [
+            {
+              "filterId": "104846653",
+              "content": "2024",
+              "amount": 1
+            },
+            {
+              "filterId": "103999995",
+              "content": "2023",
+              "amount": 8
+            },
+            {
+              "filterId": "9853470",
+              "content": "2019",
+              "amount": 1
+            },
+            {
+              "filterId": "103483789",
+              "content": "2022",
+              "amount": 8
+            },
+            {
+              "filterId": "101642605",
+              "content": "2021",
+              "amount": 3
+            }
+          ]
+        }
+      ],
+      "suggestedFilters": [
+        {
+          "id": "104371515",
+          "type": "SEARCH_FILTER"
+        },
+        {
+          "id": "471421",
+          "type": "MANUFACTURER"
+        },
+        {
+          "id": "469667",
+          "type": "SEARCH_FILTER"
+        },
+        {
+          "id": "9053411",
+          "type": "SEARCH_FILTER"
+        },
+        {
+          "id": "469666",
+          "type": "SEARCH_FILTER"
+        },
+        {
+          "id": "104846653",
+          "type": "SEARCH_FILTER"
+        },
+        {
+          "id": "103999995",
+          "type": "SEARCH_FILTER"
+        },
+        {
+          "id": "9853470",
+          "type": "SEARCH_FILTER"
+        },
+        {
+          "id": "103483789",
+          "type": "SEARCH_FILTER"
+        },
+        {
+          "id": "101642605",
+          "type": "SEARCH_FILTER"
+        }
+      ],
+      "sizeAttributes": [],
+      "results": [
+        {
+          "productRef": "pr.v1.k1.K_aNx8ijE2MFwWvuLosQ3EKierjRdQZtvJGziM-3xuGbsvLUdA",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "Nintendo Switch (OLED-Modell)",
+          "nameDelta": "weiß",
+          "price": "319,00 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/201447/3/201447343/s1_produktbild_mobil/nintendo-switch-oled-modell-weiss.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/201447343_-switch-oled-modell-weiss-nintendo.html",
+          "userReviewsSummary": {
+            "averageRating": 4.42,
+            "totalReviewCount": 416
+          },
+          "testReportsSummary": {
+            "grade": "1,8"
+          },
+          "totalOfferCount": 44
+        },
+        {
+          "productRef": "pr.v1.k1.YjKgd9SXIYVoOU9uguOCXWpx0WMwHe1mub7s-bn7zo7lwdIhrw",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "Nintendo Switch (OLED-Modell)",
+          "nameDelta": "neon-blau/neon-rot",
+          "price": "319,00 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/201447/3/201447342/s1_produktbild_mobil/nintendo-switch-oled-modell-neon-blau-neon-rot.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/201447342_-switch-oled-modell-neon-blau-neon-rot-nintendo.html",
+          "userReviewsSummary": {
+            "averageRating": 4.42,
+            "totalReviewCount": 416
+          },
+          "testReportsSummary": {
+            "grade": "1,8"
+          },
+          "totalOfferCount": 34
+        },
+        {
+          "productRef": "pr.v1.k1.XFmKRx3oFgfTMzTSe3O8xjV28CedI9Ao-KRQyB-TLEdalUA2TQ",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "Nintendo Switch (OLED-Modell)",
+          "nameDelta": "The Legend Of Zelda Tears Of The Kingdom Edition",
+          "price": "333,00 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/202600/9/202600914/s1_produktbild_mobil/nintendo-switch-oled-modell-the-legend-of-zelda-tears-of-the-kingdom-edition.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/202600914_-switch-oled-modell-the-legend-of-zelda-tears-of-the-kingdom-edition-nintendo.html",
+          "userReviewsSummary": {
+            "averageRating": 4.42,
+            "totalReviewCount": 416
+          },
+          "testReportsSummary": {
+            "grade": "1,8"
+          },
+          "totalOfferCount": 14
+        },
+        {
+          "productRef": "pr.v1.k1.E8ufqCTguluniSInvsp9i5e6kIAQxuRqFXrJSqlDrFN-Ac_j2g",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "Nintendo Switch (OLED-Modell)",
+          "nameDelta": "neon-blau/neon-rot + Mario Kart 8 Deluxe",
+          "price": "362,99 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/202773/9/202773932/s1_produktbild_mobil/nintendo-switch-oled-modell-neon-blau-neon-rot-mario-kart-8-deluxe.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/202773932_-switch-oled-modell-neon-blau-neon-rot-mario-kart-8-deluxe-nintendo.html",
+          "userReviewsSummary": {
+            "averageRating": 4.42,
+            "totalReviewCount": 416
+          },
+          "testReportsSummary": {
+            "grade": "1,8"
+          },
+          "totalOfferCount": 4
+        },
+        {
+          "productRef": "pr.v1.k1.cSbLs_tnpae_ZyZaV5rEaVE7uy7OKhF9HGbjXuyab62w3_tagg",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "Nintendo Switch (OLED-Modell)",
+          "nameDelta": "neon-blau/neon-rot + Super Mario Bros. Wonder",
+          "price": "362,06 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/203194/5/203194539/s1_produktbild_mobil/nintendo-switch-oled-modell-neon-blau-neon-rot-super-mario-bros-wonder.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/203194539_-switch-oled-modell-neon-blau-neon-rot-super-mario-bros-wonder-nintendo.html",
+          "userReviewsSummary": {
+            "averageRating": 4.42,
+            "totalReviewCount": 416
+          },
+          "testReportsSummary": {
+            "grade": "1,8"
+          },
+          "totalOfferCount": 4
+        },
+        {
+          "productRef": "pr.v1.k1.eq-SrwKxMK77kex1QrUCntTQjFGyQlp1vyQfzZQJoyYMnF8",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "Nintendo Switch",
+          "nameDelta": "neon-rot/neon-blau (neue Edition)",
+          "price": "274,00 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/6732/8/6732882/s1_produktbild_mobil/nintendo-switch-neon-rot-neon-blau-neue-edition.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/6732882_-switch-neon-rot-neon-blau-neue-edition-nintendo.html",
+          "userReviewsSummary": {
+            "averageRating": 4.6,
+            "totalReviewCount": 2866
+          },
+          "totalOfferCount": 43
+        },
+        {
+          "productRef": "pr.v1.k1.e1HeJSYkpSSue3OQC7bNLIoqUmqG9CABDQMhsDjA12IOZl6wjA",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "Nintendo Switch (OLED-Modell)",
+          "nameDelta": "weiß + Mario Kart 8 Deluxe",
+          "price": "364,99 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/202773/9/202773929/s1_produktbild_mobil/nintendo-switch-oled-modell-weiss-mario-kart-8-deluxe.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/202773929_-switch-oled-modell-weiss-mario-kart-8-deluxe-nintendo.html",
+          "userReviewsSummary": {
+            "averageRating": 4.42,
+            "totalReviewCount": 416
+          },
+          "testReportsSummary": {
+            "grade": "1,8"
+          },
+          "totalOfferCount": 3
+        },
+        {
+          "productRef": "pr.v1.k1.lyFqNAMtAy5lHo8MnEUYs8K5mETwKLZYfMfPVip1R-ThNj8MJw",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "Nintendo Switch (OLED-Modell)",
+          "nameDelta": "weiß + Super Mario Bros. Wonder",
+          "price": "364,06 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/203194/4/203194442/s1_produktbild_mobil/nintendo-switch-oled-modell-weiss-super-mario-bros-wonder.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/203194442_-switch-oled-modell-weiss-super-mario-bros-wonder-nintendo.html",
+          "userReviewsSummary": {
+            "averageRating": 4.42,
+            "totalReviewCount": 416
+          },
+          "testReportsSummary": {
+            "grade": "1,8"
+          },
+          "totalOfferCount": 3
+        },
+        {
+          "productRef": "pr.v1.k1.eKKkPpMxB9Q7ty32KHp2VK_Mmvs8_Mshvkx_fCEE4VIMRABTjw",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "Nintendo Switch (OLED-Modell)",
+          "nameDelta": "Mario-Edition (rot)",
+          "price": "359,00 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/203219/6/203219655/s1_produktbild_mobil/nintendo-switch-oled-modell-mario-edition-rot.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/203219655_-switch-oled-modell-mario-edition-rot-nintendo.html",
+          "userReviewsSummary": {
+            "averageRating": 4.42,
+            "totalReviewCount": 416
+          },
+          "testReportsSummary": {
+            "grade": "1,8"
+          },
+          "totalOfferCount": 6
+        },
+        {
+          "productRef": "pr.v1.k1.6-6z5WOiDZoAVBDH9su6QBjdo0qbIFBJN48vmUOwud_UeP-UkQ",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "Nintendo Switch (OLED-Modell)",
+          "nameDelta": "Pokémon Karmesin & Purpur-Edition",
+          "price": "424,00 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/202143/9/202143910/s1_produktbild_mobil/nintendo-switch-oled-modell-pokemon-karmesin-purpur-edition.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/202143910_-switch-oled-modell-pokemon-karmesin-purpur-edition-nintendo.html",
+          "userReviewsSummary": {
+            "averageRating": 4.42,
+            "totalReviewCount": 416
+          },
+          "testReportsSummary": {
+            "grade": "1,8"
+          },
+          "totalOfferCount": 6
+        }
+      ]
+    },
+    "details": {
+      "productRef": "pr.v1.k1.K_aNx8ijE2MFwWvuLosQ3EKierjRdQZtvJGziM-3xuGbsvLUdA",
+      "itemType": "PRODUCT",
+      "siteId": 1,
+      "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/201447343_-switch-oled-modell-weiss-nintendo.html",
+      "name": "Nintendo Switch (OLED-Modell)",
+      "nameDelta": "weiß",
+      "imageUrls": [
+        "https://cdn.idealo.com/folder/Product/201447/3/201447343/s1_produktbild_mobil/nintendo-switch-oled-modell-weiss.jpg"
+      ],
+      "nextOffset": 3,
+      "offers": [
+        {
+          "key": "61ca02a3e150db016747380984dad6a5",
+          "price": "319,00 €",
+          "basePrice": null,
+          "shop": {
+            "shopId": "321944",
+            "merchantId": null,
+            "name": "sparhandy.de/",
+            "merchantName": null,
+            "rating": {
+              "count": 685,
+              "avg": 2.6
+            },
+            "isMarketplace": false
+          },
+          "payments": [
+            {
+              "costCode": "PP",
+              "name": "PayPal"
+            },
+            {
+              "costCode": "DD",
+              "name": "Lastschrift"
+            },
+            {
+              "costCode": "CBC",
+              "name": "Kreditkarte"
+            }
+          ],
+          "showPaymentDisclaimer": false,
+          "delivery": {
+            "deliveryText": "Sa. 28.11.–Mo. 30.11.2026",
+            "deliveryStatus": "SHORT",
+            "earlyDeliveryDate": "2026-11-28",
+            "lateDeliveryDate": "2026-11-30"
+          },
+          "freeReturnDays": 14,
+          "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=61ca02a3e150db016747380984dad6a5&categoryId=3189&pos=1&price=319.00&productid=201447343&sid=321944&type=offer&media=ipc-public-mcp",
+          "minShippingCost": "6,99 €",
+          "hasAlwaysFreeShipping": false,
+          "cheapestTotalPriceOffer": false,
+          "freshness": "2026-11-26T20:03:28.879Z"
+        },
+        {
+          "key": "f9a3f367ed6db27b6714dd679022e3a6",
+          "price": "321,00 €",
+          "basePrice": null,
+          "shop": {
+            "shopId": "24111",
+            "merchantId": null,
+            "name": "euronics.de",
+            "merchantName": "Euronics XXL Otto Mölln",
+            "rating": {
+              "count": null,
+              "avg": null
+            },
+            "isMarketplace": true
+          },
+          "payments": [
+            {
+              "costCode": "PP",
+              "name": "PayPal"
+            },
+            {
+              "costCode": "CBC",
+              "name": "Kreditkarte"
+            },
+            {
+              "costCode": "APPLE_PAY",
+              "name": "Apple Pay"
+            },
+            {
+              "costCode": "CIA",
+              "name": "Vorkasse"
+            }
+          ],
+          "showPaymentDisclaimer": false,
+          "delivery": {
+            "deliveryText": "bis Sa. 28.11.2026",
+            "deliveryStatus": "SHORT",
+            "earlyDeliveryDate": null,
+            "lateDeliveryDate": "2026-11-28"
+          },
+          "freeReturnDays": null,
+          "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=f9a3f367ed6db27b6714dd679022e3a6&categoryId=3189&pos=3&price=321.00&productid=201447343&sid=24111&type=offer&media=ipc-public-mcp",
+          "minShippingCost": "4,99 €",
+          "hasAlwaysFreeShipping": false,
+          "cheapestTotalPriceOffer": false,
+          "freshness": "2026-11-26T20:03:28.879Z"
+        }
+      ],
+      "prosCons": {
+        "pros": [
+          "tolles OLED-Display",
+          "verbesserter Ständer",
+          "verbesserte Lautsprecher"
+        ],
+        "cons": [
+          "Verbesserungen gelten nur dem Handheld-Modus"
+        ]
+      },
+      "testReports": {
+        "summary": {
+          "grade": "1,8",
+          "averageRating": 83.38461538461539,
+          "rating": "gut",
+          "ratingCount": 13
+        },
+        "list": [
+          {
+            "providerName": "Expert Reviews",
+            "shortDescription": "Einzeltest Nintendo Switch OLED",
+            "summaryText": "Das große OLED-Display und der neue Kickstand kommen gut an und rechtfertigen den Aufpreis. Ansonsten gibt es aber keine Verbesserungen an der Hardware.",
+            "ratingValue": "4/5",
+            "publishedAt": 1633514400000,
+            "language": "de",
+            "issue": "online",
+            "testedProductsCount": 1
+          },
+          {
+            "providerName": "Tech Advisor",
+            "shortDescription": "Einzeltest Nintendo Switch OLED",
+            "ratingValue": "4/5",
+            "publishedAt": 1633514400000,
+            "language": "de",
+            "issue": "online",
+            "testedProductsCount": 1
+          },
+          {
+            "providerName": "tomsguide.com",
+            "shortDescription": "Einzeltest Nintendo Switch OLED",
+            "summaryText": "Die Nintendo Switch OLED verfügt über einen wunderschönen Bildschirm, einen verbesserten Kickstand und viel Speicherplatz. Es ist eine gute Kaufempfehlung für alle, die noch keine Switch haben.",
+            "ratingValue": "4/5",
+            "publishedAt": 1644404400000,
+            "language": "de",
+            "issue": "online",
+            "testedProductsCount": 1
+          },
+          {
+            "providerName": "PCMag.com",
+            "shortDescription": "Einzeltest Nintendo Switch OLED",
+            "ratingValue": "4,5/5",
+            "publishedAt": 1633514400000,
+            "language": "de",
+            "issue": "online",
+            "testedProductsCount": 1
+          },
+          {
+            "providerName": "toptechnews.de",
+            "shortDescription": "Einzeltest Nintendo Switch OLED",
+            "summaryText": "Qualität: 9/10 – Steuerung: 9/10 – Design: 9/10 – Preis-Leistung: 8,5/10 – Ausstattung: 9/10",
+            "ratingValue": "8,9/10",
+            "publishedAt": 1679742000000,
+            "language": "de",
+            "issue": "online",
+            "testedProductsCount": 1
+          },
+          {
+            "providerName": "Techradar",
+            "shortDescription": "Einzeltest Nintendo Switch OLED",
+            "summaryText": "Aufgrund des Hybrid-Designs der Konsole ist die Swtich OLED von Natur aus ein falsches Produkt: Wenn man sie nämlich andockt, verschwinden die Vorteile des prächtigen neuen 7-Zoll-Displays, des neu gestalteten Kickstandes und der verbesserten Lautsprecher. Wenn Du zum ersten Mal eine Switch kaufen willst, ist dies zweifellos das richtige Modell, aber die Verbesserungen gegenüber dem Vorgänger kommen nur den Nutzern des Handheld- und Tabletop-Modus zugute.",
+            "ratingValue": "4/5",
+            "publishedAt": 1633514400000,
+            "language": "de",
+            "issue": "online",
+            "testedProductsCount": 1
+          },
+          {
+            "providerName": "stuff.tv",
+            "shortDescription": "Einzeltest Nintendo Switch OLED",
+            "ratingValue": "4/5",
+            "publishedAt": 1633514400000,
+            "language": "de",
+            "issue": "online",
+            "testedProductsCount": 1
+          },
+          {
+            "providerName": "trustedreviews.com",
+            "shortDescription": "Einzeltest Nintendo Switch OLED",
+            "summaryText": "Die Nintendo Switch OLED ist ein fantastisches Upgrade für das mobile Spielen, da der neue Bildschirm deutlich besser aussieht als der des Standardmodells. Da es aber keine wesentliche Verbesserung für den angedockten Modus gibt, lohnt sich der Kauf nicht für diejenigen, die nur eine Heimkonsole für den Fernseher wollen.",
+            "ratingValue": "4/5",
+            "publishedAt": 1633514400000,
+            "language": "de",
+            "issue": "online",
+            "testedProductsCount": 1
+          },
+          {
+            "providerName": "theverge.com",
+            "shortDescription": "Einzeltest Nintendo Switch OLED",
+            "summaryText": "Das OLED-Display ist wunderbar, es gibt viel Speicher und auch der Kickstand kann überzeugen. Leider wurden an der Performance und den Joy-Cons nicht geändert.",
+            "ratingValue": "8/10",
+            "publishedAt": 1633514400000,
+            "language": "de",
+            "issue": "online",
+            "testedProductsCount": 1
+          },
+          {
+            "providerName": "Digital Trends",
+            "shortDescription": "Einzeltest Nintendo Switch OLED",
+            "ratingValue": "4/5",
+            "publishedAt": 1633514400000,
+            "language": "de",
+            "issue": "online",
+            "testedProductsCount": 1
+          },
+          {
+            "providerName": "ComputerBild",
+            "shortDescription": "Einzeltest Nintendo Switch OLED",
+            "summaryText": "Das OLED-Display und die kleinen Design-Änderungen sind nett und richten sich an Spieler im Handheld-Modus. Wer eher das Dock nutzt, um am Fernseher zu zocken, kann auch ruhig die herkömmliche Switch nutzen, da sie günstiger ist.",
+            "ratingValue": "gut (2,2)",
+            "publishedAt": 1651831200000,
+            "language": "de",
+            "issue": "online",
+            "testedProductsCount": 1
+          },
+          {
+            "providerName": "Pocket-lint",
+            "shortDescription": "Einzeltest Nintendo Switch OLED",
+            "ratingValue": "5/5",
+            "publishedAt": 1633514400000,
+            "language": "de",
+            "issue": "online",
+            "testedProductsCount": 1
+          },
+          {
+            "providerName": "heise bestenlisten",
+            "shortDescription": "Einzeltest Nintendo Switch OLED",
+            "summaryText": "Das neue Gehäuse, das OLED-Display und der Aufsteller kommen gut an. Die Neuerungen machen sich nur im Handheld-Modus bemerkbar. Die Ladestation hat zudem einen qualitativer Rückschritt erfahren.",
+            "ratingValue": "4,5/5",
+            "publishedAt": 1636110000000,
+            "language": "de",
+            "issue": "online",
+            "testedProductsCount": 1
+          }
+        ]
+      },
+      "productSpecification": {
+        "groups": [
+          {
+            "name": "Spieler",
+            "type": "DEFAULT",
+            "attributes": [
+              {
+                "name": "Spielerzahl max.",
+                "value": "8 Spieler"
+              }
+            ]
+          },
+          {
+            "name": "Datenspeicher",
+            "type": "DEFAULT",
+            "attributes": [
+              {
+                "name": "Speicher erweiterbar",
+                "value": "Ja"
+              },
+              {
+                "name": "Festplattentyp",
+                "value": "Flash-Speicher"
+              },
+              {
+                "name": "Speichererweiterung",
+                "value": "microSD-Karte"
+              },
+              {
+                "name": "mitgelieferter Speicher",
+                "value": "64 GB"
+              },
+              {
+                "name": "Speichermedium",
+                "value": "Module"
+              }
+            ]
+          },
+          {
+            "name": "Display",
+            "type": "DEFAULT",
+            "attributes": [
+              {
+                "name": "Displaytyp",
+                "value": "OLED"
+              },
+              {
+                "name": "Touchscreen",
+                "value": "kapazitiver, Multitouch"
+              },
+              {
+                "name": "Displayfarben",
+                "value": "16,7 Millionen"
+              },
+              {
+                "name": "Bildformat",
+                "value": "16:9"
+              },
+              {
+                "name": "Display Anzahl",
+                "value": "1"
+              },
+              {
+                "name": "Displayauflösung",
+                "value": "1280 x 720 Pixel"
+              },
+              {
+                "name": "Bildschirmdiagonale",
+                "value": "7 Zoll"
+              }
+            ]
+          },
+          {
+            "name": "Anschlüsse",
+            "type": "DEFAULT",
+            "attributes": [
+              {
+                "name": "HDMI-Ausgänge",
+                "value": "1"
+              },
+              {
+                "name": "Datenkommunikation",
+                "value": "Bluetooth, WLAN, Near Field Communication, Netzwerk"
+              },
+              {
+                "name": "WLAN-Standard",
+                "value": "IEEE 802.11 a/b/g/n/ac"
+              },
+              {
+                "name": "WLAN-Frequenzbänder",
+                "value": "2,4 GHz, 5,0 GHz"
+              },
+              {
+                "name": "digitaler Eingang",
+                "value": "USB"
+              },
+              {
+                "name": "weiterer Anschluss",
+                "value": "LAN"
+              }
+            ]
+          },
+          {
+            "name": "Leistung",
+            "type": "DEFAULT",
+            "attributes": [
+              {
+                "name": "Prozessortyp",
+                "value": "NVIDIA Tegra X1"
+              }
+            ]
+          },
+          {
+            "name": "Design",
+            "type": "DEFAULT",
+            "attributes": [
+              {
+                "name": "Farbe",
+                "value": "weiß"
+              },
+              {
+                "name": "Oberfläche",
+                "value": "matt"
+              },
+              {
+                "name": "Standgerät",
+                "value": "Ja"
+              }
+            ]
+          },
+          {
+            "name": "Controller",
+            "type": "DEFAULT",
+            "attributes": [
+              {
+                "name": "Spielsteuerungen",
+                "value": "Bewegungssteuerung, Controller"
+              },
+              {
+                "name": "Controllertyp",
+                "value": "Bluetooth-Controller"
+              },
+              {
+                "name": "Controller-Eigenschaften",
+                "value": "Lautsprecher, Lautstärkeregelung, Spieler-Identifikation, nach außen gewölbte Analog-Sticks, Mikrofon, Vibration, Headset-Anschluss via 3,5mm Klinke"
+              }
+            ]
+          },
+          {
+            "name": "Funktion",
+            "type": "DEFAULT",
+            "attributes": [
+              {
+                "name": "onlinefähig",
+                "value": "Ja"
+              },
+              {
+                "name": "Marketplace",
+                "value": "Nintendo eShop"
+              },
+              {
+                "name": "Spielfunktionen",
+                "value": "Kindersicherung, Nintendo Network"
+              },
+              {
+                "name": "kostenpflichtiges Abo möglich",
+                "value": "Ja"
+              },
+              {
+                "name": "Abo-Vorteile",
+                "value": "Gruppenchats, Guthabenaufladung über Gutscheincode, Online-Multiplayer, Spielersuche"
+              }
+            ]
+          },
+          {
+            "name": "Wiedergabe",
+            "type": "DEFAULT",
+            "attributes": [
+              {
+                "name": "Multimedia-Funktion",
+                "value": "Spielaufzeichnung"
+              },
+              {
+                "name": "Soundmodus",
+                "value": "5.1"
+              },
+              {
+                "name": "Unterstützte Auflösungen",
+                "value": "1080p Full HD"
+              }
+            ]
+          },
+          {
+            "name": "Kamera",
+            "type": "DEFAULT",
+            "attributes": [
+              {
+                "name": "Kamerafunktion",
+                "value": "Tiefensensor"
+              }
+            ]
+          },
+          {
+            "name": "Betrieb",
+            "type": "DEFAULT",
+            "attributes": [
+              {
+                "name": "Stromversorgung",
+                "value": "Akku, Netzteil"
+              },
+              {
+                "name": "eingebautes Netzteil",
+                "value": "Nein"
+              },
+              {
+                "name": "externes Netzteil",
+                "value": "Ja"
+              },
+              {
+                "name": "Akku austauschbar",
+                "value": "Nein"
+              },
+              {
+                "name": "Akkulaufzeit",
+                "value": "6 h"
+              },
+              {
+                "name": "Akku-Ladezeit",
+                "value": "3 h"
+              },
+              {
+                "name": "Akku-Kapazität",
+                "value": "4.310 mAh"
+              }
+            ]
+          },
+          {
+            "name": "Abmessungen und Lieferumfang",
+            "type": "DEFAULT",
+            "attributes": [
+              {
+                "name": "Abmessungen",
+                "value": "242 x 102 x 13,9 mm"
+              },
+              {
+                "name": "Gewicht",
+                "value": "420 g"
+              },
+              {
+                "name": "Mitgelieferte Hardware",
+                "value": "2 x Controller"
+              },
+              {
+                "name": "mitgeliefertes Spiel",
+                "value": "ohne Spiel"
+              },
+              {
+                "name": "Standfuß inklusive",
+                "value": "Ja"
+              },
+              {
+                "name": "Lieferumfang",
+                "value": "HDMI-Kabel, Netzteil"
+              }
+            ]
+          },
+          {
+            "name": "",
+            "type": "IMPORTANT",
+            "attributes": [
+              {
+                "name": "Gelistet seit",
+                "value": "Juli 2021"
+              },
+              {
+                "name": "Produkttypen",
+                "value": "Handheld, Nintendo Switch Konsole, Heimkonsole"
+              },
+              {
+                "name": "interner Speicher",
+                "value": "64 GB"
+              },
+              {
+                "name": "Veröffentlichungsjahr",
+                "value": "2021"
+              }
+            ]
+          }
+        ]
+      },
+      "productOverview": [
+        "interner Speicher 64 GB",
+        "OLED",
+        "Displayauflösung 1280 x 720 Pixel",
+        "Bildschirmdiagonale 7 Zoll",
+        "NVIDIA Tegra X1",
+        "Heimkonsole",
+        "2 Controller",
+        "WLAN",
+        "LAN"
+      ],
+      "productDetailsUrl": "https://www.idealo.de/preisvergleich/OffersOfProduct/201447343_-switch-oled-modell-weiss-nintendo.html#datasheet",
+      "priceTrend": {
+        "history": [
+          {
+            "dateTime": 1793141999999,
+            "price": 31900
+          },
+          {
+            "dateTime": 1793228399999,
+            "price": 28900
+          },
+          {
+            "dateTime": 1793314799999,
+            "price": 28900
+          },
+          {
+            "dateTime": 1793401199999,
+            "price": 28900
+          },
+          {
+            "dateTime": 1793487599999,
+            "price": 31900
+          },
+          {
+            "dateTime": 1793573999999,
+            "price": 31900
+          },
+          {
+            "dateTime": 1793660399999,
+            "price": 31900
+          },
+          {
+            "dateTime": 1793746799999,
+            "price": 31900
+          },
+          {
+            "dateTime": 1793833199999,
+            "price": 32282
+          },
+          {
+            "dateTime": 1793919599999,
+            "price": 32282
+          },
+          {
+            "dateTime": 1794005999999,
+            "price": 32282
+          },
+          {
+            "dateTime": 1794092399999,
+            "price": 32505
+          },
+          {
+            "dateTime": 1794178799999,
+            "price": 32505
+          },
+          {
+            "dateTime": 1794265199999,
+            "price": 32282
+          },
+          {
+            "dateTime": 1794351599999,
+            "price": 32282
+          },
+          {
+            "dateTime": 1794437999999,
+            "price": 32282
+          },
+          {
+            "dateTime": 1794524399999,
+            "price": 32282
+          },
+          {
+            "dateTime": 1794610799999,
+            "price": 32282
+          },
+          {
+            "dateTime": 1794697199999,
+            "price": 32282
+          },
+          {
+            "dateTime": 1794783599999,
+            "price": 32282
+          },
+          {
+            "dateTime": 1794869999999,
+            "price": 32282
+          },
+          {
+            "dateTime": 1794956399999,
+            "price": 32282
+          },
+          {
+            "dateTime": 1795042799999,
+            "price": 32282
+          },
+          {
+            "dateTime": 1795129199999,
+            "price": 31322
+          },
+          {
+            "dateTime": 1795215599999,
+            "price": 29900
+          },
+          {
+            "dateTime": 1795301999999,
+            "price": 31322
+          },
+          {
+            "dateTime": 1795388399999,
+            "price": 31322
+          },
+          {
+            "dateTime": 1795474799999,
+            "price": 31322
+          },
+          {
+            "dateTime": 1795561199999,
+            "price": 31322
+          },
+          {
+            "dateTime": 1795647599999,
+            "price": 31322
+          },
+          {
+            "dateTime": 1795723408896,
+            "price": 31900
+          }
+        ]
+      }
+    },
+    "offers": {
+      "nextOffset": 5,
+      "offers": [
+        {
+          "key": "61ca02a3e150db016747380984dad6a5",
+          "price": "319,00 €",
+          "basePrice": null,
+          "shop": {
+            "shopId": "321944",
+            "merchantId": null,
+            "name": "sparhandy.de/",
+            "merchantName": null,
+            "rating": {
+              "count": 685,
+              "avg": 2.6
+            },
+            "isMarketplace": false
+          },
+          "payments": [
+            {
+              "costCode": "PP",
+              "name": "PayPal"
+            },
+            {
+              "costCode": "DD",
+              "name": "Lastschrift"
+            },
+            {
+              "costCode": "CBC",
+              "name": "Kreditkarte"
+            }
+          ],
+          "showPaymentDisclaimer": false,
+          "delivery": {
+            "deliveryText": "Sa. 28.11.–Mo. 30.11.2026",
+            "deliveryStatus": "SHORT",
+            "earlyDeliveryDate": "2026-11-28",
+            "lateDeliveryDate": "2026-11-30"
+          },
+          "freeReturnDays": 14,
+          "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=61ca02a3e150db016747380984dad6a5&categoryId=3189&pos=1&price=319.00&productid=201447343&sid=321944&type=offer&media=ipc-public-mcp",
+          "minShippingCost": "6,99 €",
+          "hasAlwaysFreeShipping": false,
+          "cheapestTotalPriceOffer": false,
+          "freshness": "2026-11-26T20:03:31.538Z"
+        },
+        {
+          "key": "f9a3f367ed6db27b6714dd679022e3a6",
+          "price": "321,00 €",
+          "basePrice": null,
+          "shop": {
+            "shopId": "24111",
+            "merchantId": null,
+            "name": "euronics.de",
+            "merchantName": "Euronics XXL Otto Mölln",
+            "rating": {
+              "count": null,
+              "avg": null
+            },
+            "isMarketplace": true
+          },
+          "payments": [
+            {
+              "costCode": "PP",
+              "name": "PayPal"
+            },
+            {
+              "costCode": "CBC",
+              "name": "Kreditkarte"
+            },
+            {
+              "costCode": "APPLE_PAY",
+              "name": "Apple Pay"
+            },
+            {
+              "costCode": "CIA",
+              "name": "Vorkasse"
+            }
+          ],
+          "showPaymentDisclaimer": false,
+          "delivery": {
+            "deliveryText": "bis Sa. 28.11.2026",
+            "deliveryStatus": "SHORT",
+            "earlyDeliveryDate": null,
+            "lateDeliveryDate": "2026-11-28"
+          },
+          "freeReturnDays": null,
+          "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=f9a3f367ed6db27b6714dd679022e3a6&categoryId=3189&pos=3&price=321.00&productid=201447343&sid=24111&type=offer&media=ipc-public-mcp",
+          "minShippingCost": "4,99 €",
+          "hasAlwaysFreeShipping": false,
+          "cheapestTotalPriceOffer": false,
+          "freshness": "2026-11-26T20:03:31.538Z"
+        },
+        {
+          "key": "0c7c916c76cb69aa8732b0012e321bdd",
+          "price": "321,00 €",
+          "basePrice": null,
+          "shop": {
+            "shopId": "335764",
+            "merchantId": null,
+            "name": "joybuy.de",
+            "merchantName": null,
+            "rating": {
+              "count": 171,
+              "avg": 2.32
+            },
+            "isMarketplace": false
+          },
+          "payments": [
+            {
+              "costCode": "PP",
+              "name": "PayPal"
+            },
+            {
+              "costCode": "SUW",
+              "name": "Sofort."
+            },
+            {
+              "costCode": "CBC",
+              "name": "Kreditkarte"
+            }
+          ],
+          "showPaymentDisclaimer": false,
+          "delivery": {
+            "deliveryText": "bis Sa. 28.11.2026",
+            "deliveryStatus": "SHORT",
+            "earlyDeliveryDate": null,
+            "lateDeliveryDate": "2026-11-28"
+          },
+          "freeReturnDays": 30,
+          "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=0c7c916c76cb69aa8732b0012e321bdd&categoryId=3189&pos=4&price=321.00&productid=201447343&sid=335764&type=offer&media=ipc-public-mcp",
+          "minShippingCost": "0,00 €",
+          "hasAlwaysFreeShipping": true,
+          "cheapestTotalPriceOffer": true,
+          "freshness": "2026-11-26T20:03:31.538Z"
+        },
+        {
+          "key": "c9262fd49f5973f1a613da162c6550d9",
+          "price": "322,90 €",
+          "basePrice": null,
+          "shop": {
+            "shopId": "322253",
+            "merchantId": null,
+            "name": "coolblue.de",
+            "merchantName": null,
+            "rating": {
+              "count": 9867,
+              "avg": 4.64
+            },
+            "isMarketplace": false
+          },
+          "payments": [
+            {
+              "costCode": "INV",
+              "name": "Rechnung"
+            },
+            {
+              "costCode": "PP",
+              "name": "PayPal"
+            },
+            {
+              "costCode": "SUW",
+              "name": "Sofort."
+            },
+            {
+              "costCode": "CBC",
+              "name": "Kreditkarte"
+            },
+            {
+              "costCode": "CIA",
+              "name": "Vorkasse"
+            }
+          ],
+          "showPaymentDisclaimer": false,
+          "delivery": {
+            "deliveryText": "bis Fr. 27.11.2026",
+            "deliveryStatus": "SHORT",
+            "earlyDeliveryDate": null,
+            "lateDeliveryDate": "2026-11-27"
+          },
+          "freeReturnDays": 30,
+          "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=c9262fd49f5973f1a613da162c6550d9&categoryId=3189&pos=5&price=322.90&productid=201447343&sid=322253&type=offer&media=ipc-public-mcp",
+          "minShippingCost": "0,00 €",
+          "hasAlwaysFreeShipping": true,
+          "cheapestTotalPriceOffer": false,
+          "freshness": "2026-11-26T20:03:31.539Z"
+        }
+      ]
+    },
+    "price_history": {
+      "priceTrend": {
+        "history": [
+          {
+            "dateTime": 1793141999999,
+            "price": "319,00 €",
+            "dateTimeISO": "2026-10-27T22:59:59.999Z"
+          },
+          {
+            "dateTime": 1793228399999,
+            "price": "289,00 €",
+            "dateTimeISO": "2026-10-28T22:59:59.999Z",
+            "priceChangePercent": -9.404388714733543
+          },
+          {
+            "dateTime": 1793314799999,
+            "price": "289,00 €",
+            "dateTimeISO": "2026-10-29T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1793401199999,
+            "price": "289,00 €",
+            "dateTimeISO": "2026-10-30T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1793487599999,
+            "price": "319,00 €",
+            "dateTimeISO": "2026-10-31T22:59:59.999Z",
+            "priceChangePercent": 10.380622837370241
+          },
+          {
+            "dateTime": 1793573999999,
+            "price": "319,00 €",
+            "dateTimeISO": "2026-11-01T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1793660399999,
+            "price": "319,00 €",
+            "dateTimeISO": "2026-11-02T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1793746799999,
+            "price": "319,00 €",
+            "dateTimeISO": "2026-11-03T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1793833199999,
+            "price": "322,82 €",
+            "dateTimeISO": "2026-11-04T22:59:59.999Z",
+            "priceChangePercent": 1.1974921630094044
+          },
+          {
+            "dateTime": 1793919599999,
+            "price": "322,82 €",
+            "dateTimeISO": "2026-11-05T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1794005999999,
+            "price": "322,82 €",
+            "dateTimeISO": "2026-11-06T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1794092399999,
+            "price": "325,05 €",
+            "dateTimeISO": "2026-11-07T22:59:59.999Z",
+            "priceChangePercent": 0.6907874357226937
+          },
+          {
+            "dateTime": 1794178799999,
+            "price": "325,05 €",
+            "dateTimeISO": "2026-11-08T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1794265199999,
+            "price": "322,82 €",
+            "dateTimeISO": "2026-11-09T22:59:59.999Z",
+            "priceChangePercent": -0.6860483002614982
+          },
+          {
+            "dateTime": 1794351599999,
+            "price": "322,82 €",
+            "dateTimeISO": "2026-11-10T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1794437999999,
+            "price": "322,82 €",
+            "dateTimeISO": "2026-11-11T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1794524399999,
+            "price": "322,82 €",
+            "dateTimeISO": "2026-11-12T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1794610799999,
+            "price": "322,82 €",
+            "dateTimeISO": "2026-11-13T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1794697199999,
+            "price": "322,82 €",
+            "dateTimeISO": "2026-11-14T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1794783599999,
+            "price": "322,82 €",
+            "dateTimeISO": "2026-11-15T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1794869999999,
+            "price": "322,82 €",
+            "dateTimeISO": "2026-11-16T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1794956399999,
+            "price": "322,82 €",
+            "dateTimeISO": "2026-11-17T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1795042799999,
+            "price": "322,82 €",
+            "dateTimeISO": "2026-11-18T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1795129199999,
+            "price": "313,22 €",
+            "dateTimeISO": "2026-11-19T22:59:59.999Z",
+            "priceChangePercent": -2.9737934452636146
+          },
+          {
+            "dateTime": 1795215599999,
+            "price": "299,00 €",
+            "dateTimeISO": "2026-11-20T22:59:59.999Z",
+            "priceChangePercent": -4.53993997829002
+          },
+          {
+            "dateTime": 1795301999999,
+            "price": "313,22 €",
+            "dateTimeISO": "2026-11-21T22:59:59.999Z",
+            "priceChangePercent": 4.7558528428093645
+          },
+          {
+            "dateTime": 1795388399999,
+            "price": "313,22 €",
+            "dateTimeISO": "2026-11-22T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1795474799999,
+            "price": "313,22 €",
+            "dateTimeISO": "2026-11-23T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1795561199999,
+            "price": "313,22 €",
+            "dateTimeISO": "2026-11-24T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1795647599999,
+            "price": "313,22 €",
+            "dateTimeISO": "2026-11-25T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1795723411859,
+            "price": "319,00 €",
+            "dateTimeISO": "2026-11-26T20:03:31.859Z",
+            "priceChangePercent": 1.8453483174765342
+          }
+        ],
+        "statistics": {
+          "minPrice": "289,00 €",
+          "maxPrice": "325,05 €",
+          "avgPrice": "316,33 €",
+          "currentPrice": "319,00 €",
+          "priceChangePercent": 0,
+          "lowestPriceDate": "2026-10-28T22:59:59.999Z",
+          "highestPriceDate": "2026-11-07T22:59:59.999Z"
+        },
+        "samplingGranularity": "daily",
+        "dataSourceConfidence": 0.95,
+        "periodDays": 29.9,
+        "totalDataPoints": 31
+      }
+    },
+    "all_cached": true
+  }
+}

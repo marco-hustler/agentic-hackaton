@@ -1,0 +1,197 @@
+{
+  "namespace": "get_product_offers",
+  "request": {
+    "productRef": "pr.v1.k1.K_aNx8ijE2MFwWvuLosQ3EKierjRdQZtvJGziM-3xuGbsvLUdA",
+    "country": "DE"
+  },
+  "cached_at": 1795727011.638881,
+  "data": {
+    "nextOffset": 5,
+    "offers": [
+      {
+        "key": "61ca02a3e150db016747380984dad6a5",
+        "price": "319,00 €",
+        "basePrice": null,
+        "shop": {
+          "shopId": "321944",
+          "merchantId": null,
+          "name": "sparhandy.de/",
+          "merchantName": null,
+          "rating": {
+            "count": 685,
+            "avg": 2.6
+          },
+          "isMarketplace": false
+        },
+        "payments": [
+          {
+            "costCode": "PP",
+            "name": "PayPal"
+          },
+          {
+            "costCode": "DD",
+            "name": "Lastschrift"
+          },
+          {
+            "costCode": "CBC",
+            "name": "Kreditkarte"
+          }
+        ],
+        "showPaymentDisclaimer": false,
+        "delivery": {
+          "deliveryText": "Sa. 28.11.–Mo. 30.11.2026",
+          "deliveryStatus": "SHORT",
+          "earlyDeliveryDate": "2026-11-28",
+          "lateDeliveryDate": "2026-11-30"
+        },
+        "freeReturnDays": 14,
+        "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=61ca02a3e150db016747380984dad6a5&categoryId=3189&pos=1&price=319.00&productid=201447343&sid=321944&type=offer&media=ipc-public-mcp",
+        "minShippingCost": "6,99 €",
+        "hasAlwaysFreeShipping": false,
+        "cheapestTotalPriceOffer": false,
+        "freshness": "2026-11-26T20:03:31.538Z"
+      },
+      {
+        "key": "f9a3f367ed6db27b6714dd679022e3a6",
+        "price": "321,00 €",
+        "basePrice": null,
+        "shop": {
+          "shopId": "24111",
+          "merchantId": null,
+          "name": "euronics.de",
+          "merchantName": "Euronics XXL Otto Mölln",
+          "rating": {
+            "count": null,
+            "avg": null
+          },
+          "isMarketplace": true
+        },
+        "payments": [
+          {
+            "costCode": "PP",
+            "name": "PayPal"
+          },
+          {
+            "costCode": "CBC",
+            "name": "Kreditkarte"
+          },
+          {
+            "costCode": "APPLE_PAY",
+            "name": "Apple Pay"
+          },
+          {
+            "costCode": "CIA",
+            "name": "Vorkasse"
+          }
+        ],
+        "showPaymentDisclaimer": false,
+        "delivery": {
+          "deliveryText": "bis Sa. 28.11.2026",
+          "deliveryStatus": "SHORT",
+          "earlyDeliveryDate": null,
+          "lateDeliveryDate": "2026-11-28"
+        },
+        "freeReturnDays": null,
+        "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=f9a3f367ed6db27b6714dd679022e3a6&categoryId=3189&pos=3&price=321.00&productid=201447343&sid=24111&type=offer&media=ipc-public-mcp",
+        "minShippingCost": "4,99 €",
+        "hasAlwaysFreeShipping": false,
+        "cheapestTotalPriceOffer": false,
+        "freshness": "2026-11-26T20:03:31.538Z"
+      },
+      {
+        "key": "0c7c916c76cb69aa8732b0012e321bdd",
+        "price": "321,00 €",
+        "basePrice": null,
+        "shop": {
+          "shopId": "335764",
+          "merchantId": null,
+          "name": "joybuy.de",
+          "merchantName": null,
+          "rating": {
+            "count": 171,
+            "avg": 2.32
+          },
+          "isMarketplace": false
+        },
+        "payments": [
+          {
+            "costCode": "PP",
+            "name": "PayPal"
+          },
+          {
+            "costCode": "SUW",
+            "name": "Sofort."
+          },
+          {
+            "costCode": "CBC",
+            "name": "Kreditkarte"
+          }
+        ],
+        "showPaymentDisclaimer": false,
+        "delivery": {
+          "deliveryText": "bis Sa. 28.11.2026",
+          "deliveryStatus": "SHORT",
+          "earlyDeliveryDate": null,
+          "lateDeliveryDate": "2026-11-28"
+        },
+        "freeReturnDays": 30,
+        "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=0c7c916c76cb69aa8732b0012e321bdd&categoryId=3189&pos=4&price=321.00&productid=201447343&sid=335764&type=offer&media=ipc-public-mcp",
+        "minShippingCost": "0,00 €",
+        "hasAlwaysFreeShipping": true,
+        "cheapestTotalPriceOffer": true,
+        "freshness": "2026-11-26T20:03:31.538Z"
+      },
+      {
+        "key": "c9262fd49f5973f1a613da162c6550d9",
+        "price": "322,90 €",
+        "basePrice": null,
+        "shop": {
+          "shopId": "322253",
+          "merchantId": null,
+          "name": "coolblue.de",
+          "merchantName": null,
+          "rating": {
+            "count": 9867,
+            "avg": 4.64
+          },
+          "isMarketplace": false
+        },
+        "payments": [
+          {
+            "costCode": "INV",
+            "name": "Rechnung"
+          },
+          {
+            "costCode": "PP",
+            "name": "PayPal"
+          },
+          {
+            "costCode": "SUW",
+            "name": "Sofort."
+          },
+          {
+            "costCode": "CBC",
+            "name": "Kreditkarte"
+          },
+          {
+            "costCode": "CIA",
+            "name": "Vorkasse"
+          }
+        ],
+        "showPaymentDisclaimer": false,
+        "delivery": {
+          "deliveryText": "bis Fr. 27.11.2026",
+          "deliveryStatus": "SHORT",
+          "earlyDeliveryDate": null,
+          "lateDeliveryDate": "2026-11-27"
+        },
+        "freeReturnDays": 30,
+        "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=c9262fd49f5973f1a613da162c6550d9&categoryId=3189&pos=5&price=322.90&productid=201447343&sid=322253&type=offer&media=ipc-public-mcp",
+        "minShippingCost": "0,00 €",
+        "hasAlwaysFreeShipping": true,
+        "cheapestTotalPriceOffer": false,
+        "freshness": "2026-11-26T20:03:31.539Z"
+      }
+    ]
+  }
+}

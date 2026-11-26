@@ -1,0 +1,647 @@
+{
+  "namespace": "search_products",
+  "request": {
+    "query": "KitchenAid Artisan 5KSM175PS",
+    "country": "DE"
+  },
+  "cached_at": 1795727006.691623,
+  "data": {
+    "query": "KitchenAid Artisan 5KSM175PS",
+    "availableCategories": [
+      {
+        "categoryId": "3512",
+        "categoryName": "Küchenmaschinen",
+        "amount": 0
+      }
+    ],
+    "availableManufacturers": [
+      {
+        "manufacturerId": "1502",
+        "manufacturerName": "KitchenAid",
+        "amount": 74,
+        "searchFilterId": "182289"
+      }
+    ],
+    "availableFilters": [
+      {
+        "attributeId": "15583",
+        "name": "Produkttyp",
+        "filters": [
+          {
+            "filterId": "1648332",
+            "content": "Knetmaschine",
+            "amount": 69
+          },
+          {
+            "filterId": "474189",
+            "content": "Multifunktions-Küchenmaschine",
+            "amount": 55
+          }
+        ]
+      },
+      {
+        "attributeId": "16732",
+        "name": "Serie",
+        "filters": [
+          {
+            "filterId": "1241432",
+            "content": "KitchenAid Artisan",
+            "amount": 65
+          }
+        ]
+      },
+      {
+        "attributeId": "10800",
+        "name": "Funktionen",
+        "filters": [
+          {
+            "filterId": "101451005",
+            "content": "Planetenrührwerk",
+            "amount": 48
+          },
+          {
+            "filterId": "5618750",
+            "content": "Direktantrieb",
+            "amount": 26
+          },
+          {
+            "filterId": "5034752",
+            "content": "Sanftanlauf",
+            "amount": 22
+          },
+          {
+            "filterId": "101451004",
+            "content": "Kabelaufwicklung",
+            "amount": 22
+          },
+          {
+            "filterId": "5034753",
+            "content": "stufenlose Geschwindigkeitsregelung",
+            "amount": 1
+          }
+        ]
+      },
+      {
+        "attributeId": "29715",
+        "name": "Füllmenge Rührschüssel",
+        "filters": [
+          {
+            "filterId": "5618736",
+            "content": "4 bis 5 Liter",
+            "amount": 63
+          },
+          {
+            "filterId": "5618734",
+            "content": "bis 3 Liter",
+            "amount": 30
+          }
+        ]
+      },
+      {
+        "attributeId": "16806",
+        "name": "Sicherheitseinrichtung",
+        "filters": [
+          {
+            "filterId": "2402462",
+            "content": "Überlastungsschutz",
+            "amount": 1
+          },
+          {
+            "filterId": "5872600",
+            "content": "Anti-Rutsch-Füße",
+            "amount": 1
+          },
+          {
+            "filterId": "2397359",
+            "content": "Abschaltautomatik",
+            "amount": 22
+          },
+          {
+            "filterId": "107708115",
+            "content": "Überlaufschutzabdeckung",
+            "amount": 13
+          }
+        ]
+      },
+      {
+        "attributeId": "31905",
+        "name": "Zubereitungsart",
+        "filters": [
+          {
+            "filterId": "1062576",
+            "content": "Rühren",
+            "amount": 49
+          },
+          {
+            "filterId": "1062570",
+            "content": "Kneten",
+            "amount": 53
+          },
+          {
+            "filterId": "101452378",
+            "content": "Hefeteige kneten",
+            "amount": 40
+          },
+          {
+            "filterId": "1062572",
+            "content": "Mixen",
+            "amount": 2
+          },
+          {
+            "filterId": "1062573",
+            "content": "Mischen",
+            "amount": 45
+          },
+          {
+            "filterId": "1062577",
+            "content": "Schlagen",
+            "amount": 49
+          }
+        ]
+      },
+      {
+        "attributeId": "20630",
+        "name": "Ausstattung",
+        "filters": [
+          {
+            "filterId": "107503869",
+            "content": "Knethaken",
+            "amount": 16
+          },
+          {
+            "filterId": "101453777",
+            "content": "kippbarer Motorkopf",
+            "amount": 40
+          },
+          {
+            "filterId": "107503871",
+            "content": "Rührschüssel",
+            "amount": 16
+          },
+          {
+            "filterId": "101453786",
+            "content": "Zubehöranschluss",
+            "amount": 26
+          },
+          {
+            "filterId": "101453780",
+            "content": "Multifunktionsarm",
+            "amount": 1
+          },
+          {
+            "filterId": "107503870",
+            "content": "Quirl",
+            "amount": 16
+          },
+          {
+            "filterId": "101453771",
+            "content": "Ansatznabe",
+            "amount": 26
+          },
+          {
+            "filterId": "107503872",
+            "content": "Spatel",
+            "amount": 1
+          }
+        ]
+      },
+      {
+        "attributeId": "1171",
+        "name": "Lieferumfang",
+        "filters": [
+          {
+            "filterId": "101450967",
+            "content": "Fleischwolf",
+            "amount": 1
+          },
+          {
+            "filterId": "2397282",
+            "content": "Knethaken",
+            "amount": 69
+          },
+          {
+            "filterId": "2397306",
+            "content": "2 Rührschüsseln",
+            "amount": 42
+          },
+          {
+            "filterId": "101450975",
+            "content": "Mixeraufsatz",
+            "amount": 1
+          },
+          {
+            "filterId": "2397266",
+            "content": "Deckel",
+            "amount": 1
+          },
+          {
+            "filterId": "101450981",
+            "content": "Schnitzelwerk",
+            "amount": 5
+          },
+          {
+            "filterId": "101450969",
+            "content": "Gemüseschneider",
+            "amount": 6
+          },
+          {
+            "filterId": "2397312",
+            "content": "Schneebesen",
+            "amount": 69
+          },
+          {
+            "filterId": "2402460",
+            "content": "Spritzschutz",
+            "amount": 58
+          },
+          {
+            "filterId": "2397305",
+            "content": "Rührschüssel",
+            "amount": 11
+          },
+          {
+            "filterId": "10320499",
+            "content": "Durchlaufschnitzler",
+            "amount": 5
+          },
+          {
+            "filterId": "2397273",
+            "content": "Flachrührer",
+            "amount": 62
+          },
+          {
+            "filterId": "101338138",
+            "content": "Ballonschneebesen",
+            "amount": 16
+          },
+          {
+            "filterId": "106616312",
+            "content": "Patisserie-Set",
+            "amount": 37
+          },
+          {
+            "filterId": "101466413",
+            "content": "Rührbesen",
+            "amount": 20
+          },
+          {
+            "filterId": "101466414",
+            "content": "Schlagbesen",
+            "amount": 16
+          },
+          {
+            "filterId": "101869675",
+            "content": "Eisbereiter",
+            "amount": 2
+          },
+          {
+            "filterId": "101450977",
+            "content": "Pasta-Aufsatz",
+            "amount": 2
+          },
+          {
+            "filterId": "100711924",
+            "content": "Flexi-Rührer",
+            "amount": 33
+          },
+          {
+            "filterId": "101890871",
+            "content": "Rührhaken",
+            "amount": 1
+          },
+          {
+            "filterId": "102893946",
+            "content": "Teigschaber",
+            "amount": 5
+          },
+          {
+            "filterId": "101229320",
+            "content": "Glasschüssel",
+            "amount": 1
+          }
+        ]
+      },
+      {
+        "attributeId": "1338",
+        "name": "Farbe",
+        "filters": [
+          {
+            "filterId": "2742520",
+            "content": "schwarz",
+            "amount": 12
+          },
+          {
+            "filterId": "2742519",
+            "content": "rot",
+            "amount": 16
+          },
+          {
+            "filterId": "2742522",
+            "content": "weiß",
+            "amount": 6
+          },
+          {
+            "filterId": "2742515",
+            "content": "grün",
+            "amount": 8
+          },
+          {
+            "filterId": "2339970",
+            "content": "beige",
+            "amount": 1
+          },
+          {
+            "filterId": "2339965",
+            "content": "creme",
+            "amount": 6
+          },
+          {
+            "filterId": "2742521",
+            "content": "silber",
+            "amount": 12
+          },
+          {
+            "filterId": "2742511",
+            "content": "blau",
+            "amount": 7
+          },
+          {
+            "filterId": "2742518",
+            "content": "rosa",
+            "amount": 4
+          },
+          {
+            "filterId": "2339969",
+            "content": "kupfer",
+            "amount": 1
+          },
+          {
+            "filterId": "2742514",
+            "content": "grau",
+            "amount": 6
+          },
+          {
+            "filterId": "2742517",
+            "content": "orange",
+            "amount": 1
+          },
+          {
+            "filterId": "2742513",
+            "content": "gelb",
+            "amount": 2
+          },
+          {
+            "filterId": "2742516",
+            "content": "lila",
+            "amount": 1
+          }
+        ]
+      },
+      {
+        "attributeId": "7108",
+        "name": "Gehäusematerial",
+        "filters": [
+          {
+            "filterId": "2397258",
+            "content": "Edelstahl",
+            "amount": 10
+          },
+          {
+            "filterId": "2397261",
+            "content": "Metall",
+            "amount": 1
+          },
+          {
+            "filterId": "6128375",
+            "content": "Aluminium",
+            "amount": 42
+          },
+          {
+            "filterId": "106477768",
+            "content": "Zink",
+            "amount": 4
+          }
+        ]
+      },
+      {
+        "attributeId": "5530",
+        "name": "Leistung (W)",
+        "filters": [
+          {
+            "filterId": "105944515",
+            "content": "bis 550 Watt",
+            "amount": 56
+          }
+        ]
+      }
+    ],
+    "suggestedFilters": [
+      {
+        "id": "182289",
+        "type": "MANUFACTURER"
+      },
+      {
+        "id": "1241432",
+        "type": "SEARCH_FILTER"
+      },
+      {
+        "id": "1648332",
+        "type": "SEARCH_FILTER"
+      },
+      {
+        "id": "474189",
+        "type": "SEARCH_FILTER"
+      },
+      {
+        "id": "101450967",
+        "type": "SEARCH_FILTER"
+      },
+      {
+        "id": "5618736",
+        "type": "SEARCH_FILTER"
+      },
+      {
+        "id": "2742520",
+        "type": "SEARCH_FILTER"
+      },
+      {
+        "id": "2742519",
+        "type": "SEARCH_FILTER"
+      },
+      {
+        "id": "2397282",
+        "type": "SEARCH_FILTER"
+      },
+      {
+        "id": "107503869",
+        "type": "SEARCH_FILTER"
+      }
+    ],
+    "sizeAttributes": [],
+    "results": [
+      {
+        "productRef": "pr.v1.k1.gqAQUxatOt5LdMX8J8QRria-0v37HYO0o6KvL5woi6_wqgE",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "KitchenAid Artisan 5KSM175PS",
+        "nameDelta": "ECA liebesapfelrot",
+        "price": "399,99 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/5083/6/5083655/s1_produktbild_mobil/kitchenaid-artisan-5ksm175ps-eca-liebesapfelrot.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/5083655_-artisan-5ksm175ps-eca-liebesapfelrot-kitchenaid.html",
+        "userReviewsSummary": {
+          "averageRating": 4.75,
+          "totalReviewCount": 1666
+        },
+        "testReportsSummary": {
+          "grade": "2,6"
+        },
+        "totalOfferCount": 80
+      },
+      {
+        "productRef": "pr.v1.k1.CjmTLrqs_KEw8wX8pDVRPpURfYYBsafXqQTCvJbfr1O1H5g",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "KitchenAid Artisan 5KSM175PS",
+        "nameDelta": "EBK Gusseisen schwarz",
+        "price": "399,99 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/5083/6/5083675/s1_produktbild_mobil/kitchenaid-artisan-5ksm175ps-ebk-gusseisen-schwarz.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/5083675_-artisan-5ksm175ps-ebk-gusseisen-schwarz-kitchenaid.html",
+        "userReviewsSummary": {
+          "averageRating": 4.75,
+          "totalReviewCount": 1666
+        },
+        "totalOfferCount": 78
+      },
+      {
+        "productRef": "pr.v1.k1.N_y9uwJPyueV-ZXy77ZNJUVGmK25Z2qMM31NGzHOC_Btz8Y",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "KitchenAid Artisan 5KSM175PS",
+        "nameDelta": "EER empire-rot",
+        "price": "419,00 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/5653/1/5653177/s1_produktbild_mobil/kitchenaid-artisan-5ksm175ps-eer-empire-rot.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/5653177_-artisan-5ksm175ps-eer-empire-rot-kitchenaid.html",
+        "userReviewsSummary": {
+          "averageRating": 4.75,
+          "totalReviewCount": 1666
+        },
+        "totalOfferCount": 73
+      },
+      {
+        "productRef": "pr.v1.k1.CEFVc8Ve58vl_j6i6wUcB6IfHgR7Y2rTt_0LjpjLe8HEItk",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "KitchenAid Artisan 5KSM175PS",
+        "nameDelta": "EAC creme",
+        "price": "399,99 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/6087/3/6087317/s1_produktbild_mobil/kitchenaid-artisan-5ksm175ps-eac-creme.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/6087317_-artisan-5ksm175ps-eac-creme-kitchenaid.html",
+        "userReviewsSummary": {
+          "averageRating": 4.75,
+          "totalReviewCount": 1666
+        },
+        "totalOfferCount": 74
+      },
+      {
+        "productRef": "pr.v1.k1.h3WaY63oL302b2RUlj2st0btMZFIrocDT78F1UdGzij0_CM",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "KitchenAid Artisan 5KSM175PS",
+        "nameDelta": "EOB onyx-schwarz",
+        "price": "419,00 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/6087/3/6087328/s1_produktbild_mobil/kitchenaid-artisan-5ksm175ps-eob-onyx-schwarz.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/6087328_-artisan-5ksm175ps-eob-onyx-schwarz-kitchenaid.html",
+        "userReviewsSummary": {
+          "averageRating": 4.75,
+          "totalReviewCount": 1666
+        },
+        "totalOfferCount": 60
+      },
+      {
+        "productRef": "pr.v1.k1.ZILMQgrysn2ekV4NfE0rOtTF4FbmQsZy21mrSuV6jtD09lEsyw",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "KitchenAid Artisan 5KSM175PS",
+        "nameDelta": "EDR altrosa",
+        "price": "415,00 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/200190/9/200190963/s1_produktbild_mobil/kitchenaid-artisan-5ksm175ps-edr-altrosa.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/200190963_-artisan-5ksm175ps-edr-altrosa-kitchenaid.html",
+        "userReviewsSummary": {
+          "averageRating": 4.75,
+          "totalReviewCount": 1666
+        },
+        "totalOfferCount": 59,
+        "badges": {
+          "bargain": {
+            "discountRate": 11,
+            "tags": [
+              "REGULAR",
+              "SHORTTERM",
+              "BLACK_FRIDAY"
+            ]
+          }
+        }
+      },
+      {
+        "productRef": "pr.v1.k1.dns2ZvFg6LFzc8CA2uGWCWWgyLumLk9-4uWiTxrBwZPDR-FfpA",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "KitchenAid Artisan 5KSM175PS",
+        "nameDelta": "EPT pistazie + Allrounderset",
+        "price": "578,29 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/206517/9/206517950/s1_produktbild_mobil/kitchenaid-artisan-5ksm175ps-ept-pistazie-allrounderset.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/206517950_-artisan-5ksm175ps-ept-pistazie-allrounderset-kitchenaid.html",
+        "userReviewsSummary": {
+          "averageRating": 4.75,
+          "totalReviewCount": 1666
+        },
+        "totalOfferCount": 4
+      },
+      {
+        "productRef": "pr.v1.k1.kLfXsFVSTq8HNyISzmpWOXp49KcMSsXlnvjsCsS2BC-_nqM",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "KitchenAid Artisan 5KSM175PS",
+        "nameDelta": "EMS medaillon-silber",
+        "price": "429,00 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/5086/0/5086063/s1_produktbild_mobil/kitchenaid-artisan-5ksm175ps-ems-medaillon-silber.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/5086063_-artisan-5ksm175ps-ems-medaillon-silber-kitchenaid.html",
+        "userReviewsSummary": {
+          "averageRating": 4.75,
+          "totalReviewCount": 1666
+        },
+        "totalOfferCount": 63
+      },
+      {
+        "productRef": "pr.v1.k1.HpAAoudHv21IQ6qx5Vk0S5lgqzyLNynE_RCyJDJhIex-BlE",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "KitchenAid Artisan 5KSM175PS",
+        "nameDelta": "EVB samtblau",
+        "price": "415,00 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/6084/8/6084892/s1_produktbild_mobil/kitchenaid-artisan-5ksm175ps-evb-samtblau.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/6084892_-artisan-5ksm175ps-evb-samtblau-kitchenaid.html",
+        "userReviewsSummary": {
+          "averageRating": 4.75,
+          "totalReviewCount": 1666
+        },
+        "totalOfferCount": 53
+      },
+      {
+        "productRef": "pr.v1.k1.9nt5YwdplEqQzKJmAisx2OWxmzdHmjlBIqzf7OZBXv1s2uc",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "KitchenAid Artisan 5KSM175PS",
+        "nameDelta": "EFL fresh linen",
+        "price": "436,08 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/6948/8/6948866/s1_produktbild_mobil/kitchenaid-artisan-5ksm175ps-efl-fresh-linen.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/6948866_-artisan-5ksm175ps-efl-fresh-linen-kitchenaid.html",
+        "userReviewsSummary": {
+          "averageRating": 4.75,
+          "totalReviewCount": 1666
+        },
+        "totalOfferCount": 51
+      }
+    ]
+  }
+}

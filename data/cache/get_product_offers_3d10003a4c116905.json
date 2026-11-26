@@ -1,0 +1,209 @@
+{
+  "namespace": "get_product_offers",
+  "request": {
+    "productRef": "pr.v1.k1.d6KGWt7AJMhcdj4Xam6clTy0otBknWl0iEAs1kOcksFx3J4xdg",
+    "country": "DE"
+  },
+  "cached_at": 1795727000.459347,
+  "data": {
+    "nextOffset": 5,
+    "offers": [
+      {
+        "key": "8d907fd8497d541235c52d4793df16e2",
+        "price": "479,00 €",
+        "basePrice": null,
+        "shop": {
+          "shopId": "322253",
+          "merchantId": null,
+          "name": "coolblue.de",
+          "merchantName": null,
+          "rating": {
+            "count": 9867,
+            "avg": 4.64
+          },
+          "isMarketplace": false
+        },
+        "payments": [
+          {
+            "costCode": "INV",
+            "name": "Rechnung"
+          },
+          {
+            "costCode": "PP",
+            "name": "PayPal"
+          },
+          {
+            "costCode": "SUW",
+            "name": "Sofort."
+          },
+          {
+            "costCode": "CBC",
+            "name": "Kreditkarte"
+          },
+          {
+            "costCode": "CIA",
+            "name": "Vorkasse"
+          }
+        ],
+        "showPaymentDisclaimer": false,
+        "delivery": {
+          "deliveryText": "bis Fr. 27.11.2026",
+          "deliveryStatus": "SHORT",
+          "earlyDeliveryDate": null,
+          "lateDeliveryDate": "2026-11-27"
+        },
+        "freeReturnDays": 30,
+        "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=8d907fd8497d541235c52d4793df16e2&categoryId=33153&pos=2&price=479.00&productid=212246371&sid=322253&type=offer&media=ipc-public-mcp",
+        "minShippingCost": "0,00 €",
+        "hasAlwaysFreeShipping": true,
+        "cheapestTotalPriceOffer": true,
+        "freshness": "2026-11-26T20:03:20.429Z"
+      },
+      {
+        "key": "210965b9315e08129b9b84f67cfa0f4f",
+        "price": "479,00 €",
+        "basePrice": null,
+        "shop": {
+          "shopId": "317062",
+          "merchantId": null,
+          "name": "shop.dyson.de",
+          "merchantName": null,
+          "rating": {
+            "count": 600,
+            "avg": 3.75
+          },
+          "isMarketplace": false
+        },
+        "payments": [
+          {
+            "costCode": "INV",
+            "name": "Rechnung"
+          },
+          {
+            "costCode": "PP",
+            "name": "PayPal"
+          },
+          {
+            "costCode": "SUW",
+            "name": "Sofort."
+          },
+          {
+            "costCode": "CBC",
+            "name": "Kreditkarte"
+          }
+        ],
+        "showPaymentDisclaimer": false,
+        "delivery": {
+          "deliveryText": "bis Sa. 28.11.2026",
+          "deliveryStatus": "SHORT",
+          "earlyDeliveryDate": null,
+          "lateDeliveryDate": "2026-11-28"
+        },
+        "freeReturnDays": 30,
+        "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=210965b9315e08129b9b84f67cfa0f4f&categoryId=33153&pos=3&price=479.00&productid=212246371&sid=317062&type=offer&media=ipc-public-mcp",
+        "minShippingCost": "0,00 €",
+        "hasAlwaysFreeShipping": true,
+        "cheapestTotalPriceOffer": true,
+        "freshness": "2026-11-26T20:03:20.429Z"
+      },
+      {
+        "key": "d6c989d287e363249c17ea00a2dbf07c",
+        "price": "479,00 €",
+        "basePrice": null,
+        "shop": {
+          "shopId": "10401",
+          "merchantId": null,
+          "name": "berlet.de",
+          "merchantName": null,
+          "rating": {
+            "count": 3119,
+            "avg": 4.77
+          },
+          "isMarketplace": false
+        },
+        "payments": [
+          {
+            "costCode": "PP",
+            "name": "PayPal"
+          },
+          {
+            "costCode": "SUW",
+            "name": "Sofort."
+          },
+          {
+            "costCode": "CBC",
+            "name": "Kreditkarte"
+          },
+          {
+            "costCode": "CIA",
+            "name": "Vorkasse"
+          },
+          {
+            "costCode": "AMZP",
+            "name": "Amazon Pay"
+          }
+        ],
+        "showPaymentDisclaimer": false,
+        "delivery": {
+          "deliveryText": "Sa. 28.11.–Mo. 30.11.2026",
+          "deliveryStatus": "SHORT",
+          "earlyDeliveryDate": "2026-11-28",
+          "lateDeliveryDate": "2026-11-30"
+        },
+        "freeReturnDays": null,
+        "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=d6c989d287e363249c17ea00a2dbf07c&categoryId=33153&pos=4&price=479.00&productid=212246371&sid=10401&type=offer&media=ipc-public-mcp",
+        "minShippingCost": "0,00 €",
+        "hasAlwaysFreeShipping": true,
+        "cheapestTotalPriceOffer": true,
+        "freshness": "2026-11-26T20:03:20.429Z"
+      },
+      {
+        "key": "daf15240961d77857fd964483713b13b",
+        "price": "479,00 €",
+        "basePrice": null,
+        "shop": {
+          "shopId": "24111",
+          "merchantId": null,
+          "name": "euronics.de",
+          "merchantName": "Euronics Berlet",
+          "rating": {
+            "count": null,
+            "avg": null
+          },
+          "isMarketplace": true
+        },
+        "payments": [
+          {
+            "costCode": "PP",
+            "name": "PayPal"
+          },
+          {
+            "costCode": "CBC",
+            "name": "Kreditkarte"
+          },
+          {
+            "costCode": "APPLE_PAY",
+            "name": "Apple Pay"
+          },
+          {
+            "costCode": "CIA",
+            "name": "Vorkasse"
+          }
+        ],
+        "showPaymentDisclaimer": false,
+        "delivery": {
+          "deliveryText": "bis Sa. 28.11.2026",
+          "deliveryStatus": "SHORT",
+          "earlyDeliveryDate": null,
+          "lateDeliveryDate": "2026-11-28"
+        },
+        "freeReturnDays": null,
+        "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=daf15240961d77857fd964483713b13b&categoryId=33153&pos=5&price=479.00&productid=212246371&sid=24111&type=offer&media=ipc-public-mcp",
+        "minShippingCost": "0,00 €",
+        "hasAlwaysFreeShipping": true,
+        "cheapestTotalPriceOffer": true,
+        "freshness": "2026-11-26T20:03:20.429Z"
+      }
+    ]
+  }
+}

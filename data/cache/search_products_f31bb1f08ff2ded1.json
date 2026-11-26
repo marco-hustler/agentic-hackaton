@@ -1,0 +1,713 @@
+{
+  "namespace": "search_products",
+  "request": {
+    "query": "Dyson V15 Detect Absolute",
+    "country": "DE"
+  },
+  "cached_at": 1795726999.8259041,
+  "data": {
+    "query": "Dyson V15 Detect Absolute",
+    "availableCategories": [
+      {
+        "categoryId": "33153",
+        "categoryName": "Akku-Staubsauger",
+        "amount": 0
+      }
+    ],
+    "availableManufacturers": [
+      {
+        "manufacturerId": "1100",
+        "manufacturerName": "Dyson",
+        "amount": 28,
+        "searchFilterId": "107494045"
+      }
+    ],
+    "availableFilters": [
+      {
+        "attributeId": "15583",
+        "name": "Produkttyp",
+        "filters": [
+          {
+            "filterId": "107480222",
+            "content": "Stielstaubsauger",
+            "amount": 20
+          },
+          {
+            "filterId": "107480219",
+            "content": "2 in 1 Staubsauger",
+            "amount": 5
+          },
+          {
+            "filterId": "107480224",
+            "content": "Zyklonstaubsauger",
+            "amount": 2
+          }
+        ]
+      },
+      {
+        "attributeId": "16732",
+        "name": "Serie",
+        "filters": [
+          {
+            "filterId": "107480241",
+            "content": "Dyson V8",
+            "amount": 3
+          },
+          {
+            "filterId": "107480237",
+            "content": "Dyson V12",
+            "amount": 5
+          },
+          {
+            "filterId": "107480238",
+            "content": "Dyson V15",
+            "amount": 12
+          },
+          {
+            "filterId": "107480235",
+            "content": "Dyson V10",
+            "amount": 3
+          },
+          {
+            "filterId": "107963924",
+            "content": "Dyson V6",
+            "amount": 2
+          }
+        ]
+      },
+      {
+        "attributeId": "15664",
+        "name": "geeignet für",
+        "filters": [
+          {
+            "filterId": "107480263",
+            "content": "Tierbesitzer",
+            "amount": 11
+          },
+          {
+            "filterId": "107480256",
+            "content": "Hartboden",
+            "amount": 27
+          },
+          {
+            "filterId": "107480262",
+            "content": "Teppichboden",
+            "amount": 27
+          },
+          {
+            "filterId": "107480254",
+            "content": "Allergiker",
+            "amount": 11
+          },
+          {
+            "filterId": "107480260",
+            "content": "Parkett",
+            "amount": 8
+          },
+          {
+            "filterId": "107480259",
+            "content": "Möbel",
+            "amount": 5
+          },
+          {
+            "filterId": "107480261",
+            "content": "Ritzen",
+            "amount": 3
+          },
+          {
+            "filterId": "107480258",
+            "content": "Matratzen",
+            "amount": 2
+          }
+        ]
+      },
+      {
+        "attributeId": "1338",
+        "name": "Farbe",
+        "filters": [
+          {
+            "filterId": "107480270",
+            "content": "kupfer",
+            "amount": 1
+          },
+          {
+            "filterId": "107480272",
+            "content": "orange",
+            "amount": 2
+          },
+          {
+            "filterId": "107480267",
+            "content": "gold",
+            "amount": 1
+          },
+          {
+            "filterId": "107480268",
+            "content": "grau",
+            "amount": 17
+          },
+          {
+            "filterId": "107480276",
+            "content": "silber",
+            "amount": 3
+          },
+          {
+            "filterId": "107480271",
+            "content": "lila",
+            "amount": 3
+          },
+          {
+            "filterId": "107480266",
+            "content": "gelb",
+            "amount": 7
+          }
+        ]
+      },
+      {
+        "attributeId": "30714",
+        "name": "Staubsauger Reinigungsmethode",
+        "filters": [
+          {
+            "filterId": "107679211",
+            "content": "Saugen",
+            "amount": 27
+          },
+          {
+            "filterId": "107679212",
+            "content": "Wischen",
+            "amount": 1
+          }
+        ]
+      },
+      {
+        "attributeId": "26207",
+        "name": "Akkuspannung",
+        "filters": [
+          {
+            "filterId": "107480303",
+            "content": "25,2 V",
+            "amount": 2
+          },
+          {
+            "filterId": "107480296",
+            "content": "21,6 V",
+            "amount": 1
+          },
+          {
+            "filterId": "107480311",
+            "content": "29,4 V",
+            "amount": 1
+          }
+        ]
+      },
+      {
+        "attributeId": "29013",
+        "name": "Betriebszeit",
+        "filters": [
+          {
+            "filterId": "107781212",
+            "content": "50 bis 65 Min.",
+            "amount": 21
+          },
+          {
+            "filterId": "107781213",
+            "content": "ab 65 Min.",
+            "amount": 1
+          },
+          {
+            "filterId": "107781211",
+            "content": "40 bis 50 Min.",
+            "amount": 5
+          }
+        ]
+      },
+      {
+        "attributeId": "17411",
+        "name": "Ladezeit",
+        "filters": [
+          {
+            "filterId": "107678562",
+            "content": "4 h",
+            "amount": 5
+          },
+          {
+            "filterId": "107678560",
+            "content": "3,5 h",
+            "amount": 7
+          },
+          {
+            "filterId": "107678564",
+            "content": "5 h",
+            "amount": 2
+          },
+          {
+            "filterId": "107678563",
+            "content": "4,5 h",
+            "amount": 12
+          }
+        ]
+      },
+      {
+        "attributeId": "17088",
+        "name": "Behältervolumen",
+        "filters": [
+          {
+            "filterId": "107511768",
+            "content": "0,7 bis 0,85 Liter",
+            "amount": 15
+          },
+          {
+            "filterId": "107480348",
+            "content": "0,5 bis 0,55 Liter",
+            "amount": 1
+          },
+          {
+            "filterId": "107480349",
+            "content": "0,55 bis 0,7 Liter",
+            "amount": 5
+          },
+          {
+            "filterId": "107480347",
+            "content": "bis 0,5 Liter",
+            "amount": 6
+          }
+        ]
+      },
+      {
+        "attributeId": "16820",
+        "name": "Filtersystem",
+        "filters": [
+          {
+            "filterId": "107491587",
+            "content": "HEPA-Filter",
+            "amount": 16
+          },
+          {
+            "filterId": "107491585",
+            "content": "Abluftfilter",
+            "amount": 10
+          },
+          {
+            "filterId": "107491586",
+            "content": "EPA-Filter",
+            "amount": 1
+          },
+          {
+            "filterId": "107491589",
+            "content": "Mehrfachfilter",
+            "amount": 4
+          },
+          {
+            "filterId": "107491591",
+            "content": "Vormotorfilter",
+            "amount": 2
+          },
+          {
+            "filterId": "107491590",
+            "content": "Mikrofilter",
+            "amount": 4
+          }
+        ]
+      },
+      {
+        "attributeId": "24840",
+        "name": "Saugtechnologie",
+        "filters": [
+          {
+            "filterId": "107480352",
+            "content": "beutellos",
+            "amount": 27
+          },
+          {
+            "filterId": "107679907",
+            "content": "Zyklon",
+            "amount": 7
+          }
+        ]
+      },
+      {
+        "attributeId": "20333",
+        "name": "Anzahl Akkus",
+        "filters": [
+          {
+            "filterId": "107480373",
+            "content": "mit 1 Akku",
+            "amount": 27
+          }
+        ]
+      },
+      {
+        "attributeId": "8806",
+        "name": "Ausstattung",
+        "filters": [
+          {
+            "filterId": "107488540",
+            "content": "mit LED-Licht",
+            "amount": 3
+          },
+          {
+            "filterId": "107488536",
+            "content": "Ladestation",
+            "amount": 5
+          },
+          {
+            "filterId": "107488548",
+            "content": "Wandhalterung",
+            "amount": 25
+          },
+          {
+            "filterId": "107678104",
+            "content": "Bürste mit Entwirrungsfunktion",
+            "amount": 10
+          },
+          {
+            "filterId": "107488549",
+            "content": "waschbarer Filter",
+            "amount": 14
+          },
+          {
+            "filterId": "107488539",
+            "content": "mit abnehmbaren Handstück",
+            "amount": 7
+          },
+          {
+            "filterId": "107488545",
+            "content": "Teleskoprohr",
+            "amount": 4
+          },
+          {
+            "filterId": "107488528",
+            "content": "durchsichtiger Behälter",
+            "amount": 1
+          },
+          {
+            "filterId": "107488535",
+            "content": "integriertes Zubehörfach",
+            "amount": 2
+          }
+        ]
+      },
+      {
+        "attributeId": "19051",
+        "name": "Funktionen",
+        "filters": [
+          {
+            "filterId": "107488531",
+            "content": "elektronische Saugkraftregulierung",
+            "amount": 5
+          }
+        ]
+      },
+      {
+        "attributeId": "25132",
+        "name": "enthaltene Düse",
+        "filters": [
+          {
+            "filterId": "107687190",
+            "content": "Bodendüse",
+            "amount": 24
+          },
+          {
+            "filterId": "107687195",
+            "content": "Fugendüse",
+            "amount": 24
+          },
+          {
+            "filterId": "107687208",
+            "content": "Tierhaardüse",
+            "amount": 9
+          },
+          {
+            "filterId": "107687193",
+            "content": "Elektrobürste",
+            "amount": 10
+          },
+          {
+            "filterId": "107687203",
+            "content": "Polsterdüse",
+            "amount": 6
+          },
+          {
+            "filterId": "107687196",
+            "content": "Hartbodendüse",
+            "amount": 1
+          },
+          {
+            "filterId": "107687201",
+            "content": "Möbeldüse",
+            "amount": 1
+          },
+          {
+            "filterId": "107687197",
+            "content": "Kombidüse",
+            "amount": 18
+          },
+          {
+            "filterId": "107687209",
+            "content": "Turbodüse",
+            "amount": 12
+          },
+          {
+            "filterId": "107687207",
+            "content": "Staubpinsel",
+            "amount": 4
+          },
+          {
+            "filterId": "107687202",
+            "content": "Parkettdüse",
+            "amount": 4
+          }
+        ]
+      },
+      {
+        "attributeId": "18435",
+        "name": "Gesamtgewicht",
+        "filters": [
+          {
+            "filterId": "107685202",
+            "content": "2,5 bis 3,5 kg",
+            "amount": 20
+          },
+          {
+            "filterId": "107685201",
+            "content": "2 bis 2,5 kg",
+            "amount": 6
+          },
+          {
+            "filterId": "107480372",
+            "content": "ab 3,5 kg",
+            "amount": 1
+          }
+        ]
+      }
+    ],
+    "suggestedFilters": [
+      {
+        "id": "107494045",
+        "type": "MANUFACTURER"
+      },
+      {
+        "id": "107480222",
+        "type": "SEARCH_FILTER"
+      },
+      {
+        "id": "107480219",
+        "type": "SEARCH_FILTER"
+      },
+      {
+        "id": "107480241",
+        "type": "SEARCH_FILTER"
+      },
+      {
+        "id": "107480237",
+        "type": "SEARCH_FILTER"
+      },
+      {
+        "id": "107480238",
+        "type": "SEARCH_FILTER"
+      },
+      {
+        "id": "107480235",
+        "type": "SEARCH_FILTER"
+      },
+      {
+        "id": "107781212",
+        "type": "SEARCH_FILTER"
+      },
+      {
+        "id": "107781213",
+        "type": "SEARCH_FILTER"
+      },
+      {
+        "id": "107491587",
+        "type": "SEARCH_FILTER"
+      }
+    ],
+    "sizeAttributes": [],
+    "results": [
+      {
+        "productRef": "pr.v1.k1.d6KGWt7AJMhcdj4Xam6clTy0otBknWl0iEAs1kOcksFx3J4xdg",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "Dyson V15 Detect Absolute (2026)",
+        "price": "479,00 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/212246/3/212246371/s1_produktbild_mobil/dyson-v15-detect-absolute-2026.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/212246371_-v15-detect-absolute-2026-dyson.html",
+        "userReviewsSummary": {
+          "averageRating": 4.82,
+          "totalReviewCount": 11
+        },
+        "totalOfferCount": 35,
+        "badges": {
+          "bargain": {
+            "discountRate": 12,
+            "tags": [
+              "REGULAR"
+            ]
+          }
+        }
+      },
+      {
+        "productRef": "pr.v1.k1.vUzqgwPwEG9Sty_BIgj0xOJBA_KL01GedvNehUX-b7DvIig-pA",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "Dyson V15 Detect Absolute (2023)",
+        "price": "549,00 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/202681/2/202681273/s1_produktbild_mobil/dyson-v15-detect-absolute-2023.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/202681273_-v15-detect-absolute-2023-dyson.html",
+        "userReviewsSummary": {
+          "averageRating": 4.46,
+          "totalReviewCount": 257
+        },
+        "testReportsSummary": {
+          "grade": "1,4"
+        },
+        "totalOfferCount": 22
+      },
+      {
+        "productRef": "pr.v1.k1.JMnbxcRaWrLl9dexF_eZfbo3uUyTyauSGd7fFzbvV8Q_1E7qfg",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "Dyson V12 Detect Slim Absolute (2026)",
+        "price": "366,00 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/211849/5/211849574/s1_produktbild_mobil/dyson-v12-detect-slim-absolute-2026.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/211849574_-v12-detect-slim-absolute-2026-dyson.html",
+        "userReviewsSummary": {
+          "averageRating": 4.67,
+          "totalReviewCount": 24
+        },
+        "totalOfferCount": 30,
+        "badges": {
+          "bargain": {
+            "discountRate": 13,
+            "tags": [
+              "REGULAR"
+            ]
+          }
+        }
+      },
+      {
+        "productRef": "pr.v1.k1.qk2qpAJLbkVxwgv1-2GX1b7WYxvSjqe7IpEbmzZJkIA6pHnUhg",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "Dyson V15 Detect Absolute (2021)",
+        "price": "709,30 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/201372/4/201372412/s1_produktbild_mobil/dyson-v15-detect-absolute-2021.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/201372412_-v15-detect-absolute-2021-dyson.html",
+        "userReviewsSummary": {
+          "averageRating": 4.56,
+          "totalReviewCount": 144
+        },
+        "testReportsSummary": {
+          "grade": "1,7"
+        },
+        "totalOfferCount": 3,
+        "badges": {
+          "bargain": {
+            "discountRate": 12,
+            "tags": [
+              "REGULAR",
+              "SHORTTERM",
+              "BLACK_FRIDAY"
+            ]
+          }
+        }
+      },
+      {
+        "productRef": "pr.v1.k1.Io6pamtY9uV9BPiMn8vuVXcpUvuQaziSFQ075kWa9EB2YpmJfQ",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "Dyson V15 Detect Extra (2022)",
+        "price": "588,56 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/202245/3/202245381/s1_produktbild_mobil/dyson-v15-detect-extra-2022.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/202245381_-v15-detect-extra-2022-dyson.html",
+        "totalOfferCount": 2
+      },
+      {
+        "productRef": "pr.v1.k1.3GTpH0Vz6mboQcuuTM3dENCBWnYcud-fgEAFPydBH-BXY2z72A",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "Dyson V15 Detect Absolute (2023) 447000-01",
+        "price": "785,70 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/203292/5/203292523/s1_produktbild_mobil/dyson-v15-detect-absolute-2023-447000-01.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/203292523_-v15-detect-absolute-2023-447000-01-dyson.html",
+        "userReviewsSummary": {
+          "averageRating": 4.49,
+          "totalReviewCount": 126
+        },
+        "totalOfferCount": 2
+      },
+      {
+        "productRef": "pr.v1.k1.D-6lqVNyiR5VRII-V51Xmy4gyVd1RU1UOjx9REgub5EXfFpzRg",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "Dyson V15 Detect Absolute (2022)",
+        "price": "789,99 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/202007/6/202007611/s1_produktbild_mobil/dyson-v15-detect-absolute-2022.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/202007611_-v15-detect-absolute-2022-dyson.html",
+        "userReviewsSummary": {
+          "averageRating": 4.67,
+          "totalReviewCount": 385
+        },
+        "testReportsSummary": {
+          "grade": "2,1"
+        },
+        "totalOfferCount": 3,
+        "badges": {
+          "bargain": {
+            "discountRate": 11,
+            "tags": [
+              "REGULAR",
+              "SHORTTERM",
+              "BLACK_FRIDAY"
+            ]
+          }
+        }
+      },
+      {
+        "productRef": "pr.v1.k1.OIjsbus2jGXDwf02MrT6I5yQZTZAF26cEDKZEag1hWdDVQ2Log",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "Dyson V15 Detect Fluffy",
+        "price": "647,90 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/203290/7/203290734/s1_produktbild_mobil/dyson-v15-detect-fluffy-2023.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/203290734_-v15-detect-fluffy-dyson.html",
+        "userReviewsSummary": {
+          "averageRating": 4.69,
+          "totalReviewCount": 133
+        },
+        "totalOfferCount": 4
+      },
+      {
+        "productRef": "pr.v1.k1.NS8u-Nfu3O7-x3N_5P01IuqPwkAYv7k4Cu5-xfkph0qZzzh7KQ",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "Dyson V15 Detect grau ( 2022)",
+        "price": "539,00 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/202188/0/202188045/s1_produktbild_mobil/dyson-v15-detect-grau-2022.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/202188045_-v15-detect-grau-2022-dyson.html",
+        "userReviewsSummary": {
+          "averageRating": 4.57,
+          "totalReviewCount": 570
+        },
+        "totalOfferCount": 2
+      },
+      {
+        "productRef": "pr.v1.k1.D7cLq7eKZdO5Hm5FGA2TPh2ec6BCGLTY4LZ-Q-WoKJp1TaRGAw",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "Dyson V12 Detect Slim Absolute (2022)",
+        "price": "699,00 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/202007/6/202007608/s1_produktbild_mobil/dyson-v12-detect-slim-absolute-2022.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/202007608_-v12-detect-slim-absolute-2022-dyson.html",
+        "userReviewsSummary": {
+          "averageRating": 4.39,
+          "totalReviewCount": 18
+        },
+        "testReportsSummary": {
+          "grade": "1,5"
+        },
+        "totalOfferCount": 3
+      }
+    ]
+  }
+}

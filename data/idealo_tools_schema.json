@@ -1,0 +1,1187 @@
+[
+  {
+    "name": "search_products",
+    "title": "Search catalog",
+    "description": "Search idealo product catalog. Entry point for any product discovery flow.\n\nWHEN TO USE:\n- User asks to find / browse / look for / show products (\"find laptops\", \"show me running shoes\")\n- User refines a previous search (\"cheaper\", \"only Samsung\", \"under €500\", \"with feature X\") — re-call this tool with filter IDs from the prior response, not a new search\n\nRETURNS:\n- results: products with name, price, images, URLs, ratings, productRef\n- categories / manufacturers / filters / sizeAttributes / suggestedFilters: IDs + names you reuse to refine\n\nREFINEMENT LOOP:\n1. Broad query first (e.g. \"macbook\") to discover available category/brand/filter IDs.\n2. Re-call with includeCategories / includeManufacturers / includeSearchFilters using IDs from step 1.\n\nPair includeSearchFilters or includeSizeFilters with includeCategories (see server validation).\n\nStructured output: query, results (each with productRef), and optional availableCategories, availableManufacturers, availableFilters, sizeAttributes, suggestedFilters for refinement.",
+    "input_schema": {
+      "type": "object",
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "properties": {
+        "query": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Natural-language product search terms (e.g. laptop, running shoes)."
+        },
+        "country": {
+          "description": "Marketplace: DE (Germany), AT (Austria), GB or UK (United Kingdom), FR (France), IT (Italy), ES (Spain). An omitted or unknown code uses Germany.",
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 2
+        },
+        "filters": {
+          "description": "Optional refinements for price, availability, deals, category, brand, attributes, or size. IDs come from fields on a previous search response.",
+          "type": "object",
+          "properties": {
+            "minPrice": {
+              "description": "Lower price bound in EUR (for example 50 for €50). The server converts this value to cents.",
+              "type": "number"
+            },
+            "maxPrice": {
+              "description": "Upper price bound in EUR (for example 200 for €200). The server converts this value to cents.",
+              "type": "number"
+            },
+            "availableOnly": {
+              "description": "Set to true to show only products currently available for purchase (in stock). Use this when the user wants to see only products they can buy immediately, excluding out-of-stock items. Default is false (shows all products).",
+              "type": "boolean"
+            },
+            "bargainsOnly": {
+              "description": "Set to true to show only products with special discounts or price drops (bargains/deals). Use this when the user is specifically looking for discounted products, special offers, or the best deals. Default is false (shows all products).",
+              "type": "boolean"
+            },
+            "includeCategories": {
+              "description": "Category IDs from a prior response `availableCategories` entry. Required whenever you pass attribute or size filter IDs.",
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^\\d+$"
+              }
+            },
+            "includeManufacturers": {
+              "description": "Manufacturer IDs from a prior response `availableManufacturers` entry to limit results to selected brands.",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "includeSearchFilters": {
+              "description": "Attribute filter IDs from `availableFilters` (color, material, etc.). Use `includeSizeFilters` for sizes. Pair with `includeCategories`.",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "includeSizeFilters": {
+              "description": "Size filter IDs from `sizeAttributes` (`attributeKeyValue` values). Pair with `includeCategories`.",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "required": [
+        "query"
+      ]
+    },
+    "execution": null,
+    "output_schema": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "Echo of the submitted search query"
+        },
+        "results": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "productRef": {
+                "type": "string",
+                "description": "Pass to get_product_details, get_product_offers, get_product_price_history"
+              },
+              "itemType": {
+                "type": "string",
+                "description": "PRODUCT, CLUSTER, or SINGLE_OFFER — use as `type` on follow-up calls when needed"
+              },
+              "siteId": {
+                "type": "number",
+                "description": "Internal marketplace id for the hit"
+              },
+              "name": {
+                "type": "string",
+                "description": "Display title of the product"
+              },
+              "nameDelta": {
+                "description": "Variant or configuration suffix when present",
+                "type": "string"
+              },
+              "price": {
+                "description": "Best listed price when available",
+                "type": "string"
+              },
+              "imageUrl": {
+                "type": "string",
+                "description": "Primary product image URL"
+              },
+              "url": {
+                "description": "idealo product or offer page URL",
+                "type": "string"
+              },
+              "totalOfferCount": {
+                "description": "Number of shop offers aggregated for the product",
+                "type": "number"
+              },
+              "badges": {
+                "description": "Deal or highlight badges (e.g. bargain)"
+              },
+              "userReviewsSummary": {
+                "description": "Aggregate user rating summary when present"
+              },
+              "testReportsSummary": {
+                "description": "Expert test report summary when present"
+              }
+            },
+            "required": [
+              "productRef",
+              "itemType",
+              "siteId",
+              "name",
+              "imageUrl"
+            ],
+            "additionalProperties": false
+          },
+          "description": "Matching catalog items for the query and filters"
+        },
+        "availableCategories": {
+          "description": "Categories in this result set — use categoryId values in includeCategories"
+        },
+        "availableManufacturers": {
+          "description": "Brands in this result set — use manufacturerId in includeManufacturers"
+        },
+        "availableFilters": {
+          "description": "Grouped attribute filters — use filterId in includeSearchFilters"
+        },
+        "sizeAttributes": {
+          "description": "Grouped size options — use attributeKeyValue in includeSizeFilters"
+        },
+        "suggestedFilters": {
+          "description": "Suggested next filters based on the query"
+        },
+        "searchResultsUrl": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "query",
+        "results"
+      ],
+      "additionalProperties": false
+    },
+    "icons": null,
+    "annotations": {
+      "title": null,
+      "read_only_hint": true,
+      "destructive_hint": false,
+      "idempotent_hint": true,
+      "open_world_hint": true
+    },
+    "meta": null
+  },
+  {
+    "name": "get_product_details",
+    "title": "Product details",
+    "description": "Get full product page data for a single product.\n\nWHEN TO USE:\n- User asks \"tell me about\", \"details on\", \"specs of\", \"reviews of\" a specific product\n- User picked one item from search_products results and wants depth\n\nRETURNS:\n- name, images, URL, specifications, overview\n- up to 3 preview offers (shop, price, delivery)\n- user review summary with rating distribution\n- expert test reports + idealo expert review\n- category-level pros / cons\n- 30-day price trend snippet (for chart-style preview)\n\nStructured output: single product object (name, images, specs, preview offers, reviews, pros/cons, optional priceTrend snippet). Use get_product_offers for all shops or get_product_price_history for full trend.",
+    "input_schema": {
+      "type": "object",
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "properties": {
+        "productRef": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Opaque productRef from search_products. It identifies the item. The marketplace comes from country."
+        },
+        "country": {
+          "description": "Marketplace: DE (Germany), AT (Austria), GB or UK (United Kingdom), FR (France), IT (Italy), ES (Spain). An omitted or unknown code uses Germany.",
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 2
+        },
+        "type": {
+          "description": "Catalog item shape from search result `itemType`. Omit unless you need CLUSTER or SINGLE_OFFER.",
+          "type": "string",
+          "enum": [
+            "CLUSTER",
+            "PRODUCT",
+            "SINGLE_OFFER"
+          ]
+        }
+      },
+      "required": [
+        "productRef"
+      ]
+    },
+    "execution": null,
+    "output_schema": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "type": "object",
+      "properties": {
+        "productRef": {
+          "type": "string",
+          "description": "Same opaque reference as the request"
+        },
+        "itemType": {
+          "type": "string",
+          "description": "Catalog item shape"
+        },
+        "siteId": {
+          "type": "number",
+          "description": "Marketplace site id"
+        },
+        "name": {
+          "type": "string",
+          "description": "Product title"
+        },
+        "nameDelta": {
+          "description": "Variant suffix when present",
+          "type": "string"
+        },
+        "url": {
+          "description": "Canonical product URL",
+          "type": "string"
+        },
+        "imageUrls": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Gallery URLs (count may depend on client tier)"
+        },
+        "nextOffset": {
+          "type": "number",
+          "description": "Offers pagination hint — use get_product_offers for the full shop list"
+        },
+        "offers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "key": {
+                "type": "string",
+                "description": "Offer key"
+              },
+              "relocatorUrl": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "Redirect URL for tracking"
+              },
+              "price": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "Formatted price"
+              },
+              "basePrice": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "Price per unit"
+              },
+              "shop": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "shopId": {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "description": "Shop ID"
+                      },
+                      "merchantId": {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "description": "Merchant ID"
+                      },
+                      "name": {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "description": "Shop name"
+                      },
+                      "merchantName": {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "description": "Merchant name"
+                      },
+                      "logoUrl": {
+                        "description": "Shop logo URL (PartnerTier only)",
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "isMarketplace": {
+                        "type": "boolean",
+                        "description": "Whether the shop is a marketplace"
+                      },
+                      "rating": {
+                        "anyOf": [
+                          {
+                            "type": "object",
+                            "properties": {
+                              "avg": {
+                                "anyOf": [
+                                  {
+                                    "type": "number"
+                                  },
+                                  {
+                                    "type": "null"
+                                  }
+                                ],
+                                "description": "Average rating"
+                              },
+                              "count": {
+                                "anyOf": [
+                                  {
+                                    "type": "number"
+                                  },
+                                  {
+                                    "type": "null"
+                                  }
+                                ],
+                                "description": "Rating count"
+                              },
+                              "url": {
+                                "description": "Rating URL (PartnerTier only)",
+                                "anyOf": [
+                                  {
+                                    "type": "string"
+                                  },
+                                  {
+                                    "type": "null"
+                                  }
+                                ]
+                              }
+                            },
+                            "required": [
+                              "avg",
+                              "count"
+                            ],
+                            "additionalProperties": false
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "description": "Shop rating"
+                      }
+                    },
+                    "required": [
+                      "shopId",
+                      "merchantId",
+                      "name",
+                      "merchantName",
+                      "isMarketplace",
+                      "rating"
+                    ],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "Shop details"
+              },
+              "payments": {
+                "anyOf": [
+                  {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "costCode": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "name": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        }
+                      },
+                      "required": [
+                        "costCode",
+                        "name"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "Accepted payment methods"
+              },
+              "showPaymentDisclaimer": {
+                "type": "boolean"
+              },
+              "delivery": {
+                "type": "object",
+                "properties": {
+                  "deliveryText": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "deliveryStatus": {
+                    "type": "string"
+                  },
+                  "earlyDeliveryDate": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "lateDeliveryDate": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "deliveryText",
+                  "deliveryStatus",
+                  "earlyDeliveryDate",
+                  "lateDeliveryDate"
+                ],
+                "additionalProperties": false
+              },
+              "freeReturnDays": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "cheapestTotalPriceOffer": {
+                "type": "boolean"
+              },
+              "freshness": {
+                "type": "string"
+              },
+              "minShippingCost": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "hasAlwaysFreeShipping": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "key",
+              "relocatorUrl",
+              "price",
+              "basePrice",
+              "shop",
+              "payments",
+              "showPaymentDisclaimer",
+              "delivery",
+              "freeReturnDays",
+              "cheapestTotalPriceOffer",
+              "freshness",
+              "minShippingCost",
+              "hasAlwaysFreeShipping"
+            ],
+            "additionalProperties": false
+          },
+          "description": "Up to three preview shop offers"
+        },
+        "badges": {
+          "description": "Highlight badges on the product"
+        },
+        "userReviews": {
+          "description": "User review content when exposed for the client tier"
+        },
+        "prosCons": {
+          "description": "Category-level pros and cons bullets",
+          "type": "object",
+          "properties": {
+            "pros": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "cons": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "pros",
+            "cons"
+          ],
+          "additionalProperties": false
+        },
+        "testReports": {
+          "description": "Linked expert test reports when available"
+        },
+        "expertReview": {
+          "description": "idealo expert review summary when available"
+        },
+        "productSpecification": {
+          "description": "Structured specification fields"
+        },
+        "productOverview": {
+          "description": "Short overview paragraphs",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "productDetailsUrl": {
+          "description": "idealo PDP URL",
+          "type": "string"
+        },
+        "priceTrend": {
+          "description": "Compact recent price snapshot; use get_product_price_history for full analytics"
+        }
+      },
+      "required": [
+        "productRef",
+        "itemType",
+        "siteId",
+        "name",
+        "imageUrls",
+        "nextOffset",
+        "offers"
+      ],
+      "additionalProperties": false
+    },
+    "icons": null,
+    "annotations": {
+      "title": null,
+      "read_only_hint": true,
+      "destructive_hint": false,
+      "idempotent_hint": true,
+      "open_world_hint": true
+    },
+    "meta": null
+  },
+  {
+    "name": "get_product_offers",
+    "title": "Product offers",
+    "description": "Get paginated shop offers for a product (5 per page).\n\nWHEN TO USE:\n- User asks \"more shops\", \"all sellers\", \"where can I buy\", \"cheapest with shipping\"\n- User asks about payment methods, delivery options, return policies across sellers\n- get_product_details only shows 3 preview offers — use this for the full list\n\nRETURNS per offer:\n- shop: name, logo, merchant info, ratings\n- pricing: price, base price (per unit), shipping cost\n- delivery: status, dates, free-shipping flag\n- payment: accepted methods\n- meta: return policy days, offer freshness\n- nextOffset: feed into next call; 0 means no more pages\n\nPAGINATION LOOP:\n1. First call: omit offset (defaults to 0).\n2. Read nextOffset from response.\n3. If nextOffset > 0, call again with offset=nextOffset.\n4. Stop when nextOffset === 0.\n\nINPUT: productRef + optional offset + optional country (DE default) + optional type.\nOUTPUT: up to 5 offers + nextOffset.",
+    "input_schema": {
+      "type": "object",
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "properties": {
+        "productRef": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Opaque `productRef` from search_products or get_product_details."
+        },
+        "country": {
+          "description": "Marketplace: DE (Germany), AT (Austria), GB or UK (United Kingdom), FR (France), IT (Italy), ES (Spain). An omitted or unknown code uses Germany.",
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 2
+        },
+        "type": {
+          "description": "Catalog item shape from search. Omit unless non-PRODUCT.",
+          "type": "string",
+          "enum": [
+            "CLUSTER",
+            "PRODUCT",
+            "SINGLE_OFFER"
+          ]
+        },
+        "offset": {
+          "description": "Page cursor. Omit on the first page; pass `nextOffset` from the previous offers response for later pages.",
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "productRef"
+      ]
+    },
+    "execution": null,
+    "output_schema": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "type": "object",
+      "properties": {
+        "nextOffset": {
+          "type": "number",
+          "description": "Offset for next page (0 = no more pages)"
+        },
+        "offers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "key": {
+                "type": "string",
+                "description": "Offer key"
+              },
+              "relocatorUrl": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "Redirect URL for tracking"
+              },
+              "price": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "Formatted price"
+              },
+              "basePrice": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "Price per unit"
+              },
+              "shop": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "shopId": {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "description": "Shop ID"
+                      },
+                      "merchantId": {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "description": "Merchant ID"
+                      },
+                      "name": {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "description": "Shop name"
+                      },
+                      "merchantName": {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "description": "Merchant name"
+                      },
+                      "logoUrl": {
+                        "description": "Shop logo URL (PartnerTier only)",
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "isMarketplace": {
+                        "type": "boolean",
+                        "description": "Whether the shop is a marketplace"
+                      },
+                      "rating": {
+                        "anyOf": [
+                          {
+                            "type": "object",
+                            "properties": {
+                              "avg": {
+                                "anyOf": [
+                                  {
+                                    "type": "number"
+                                  },
+                                  {
+                                    "type": "null"
+                                  }
+                                ],
+                                "description": "Average rating"
+                              },
+                              "count": {
+                                "anyOf": [
+                                  {
+                                    "type": "number"
+                                  },
+                                  {
+                                    "type": "null"
+                                  }
+                                ],
+                                "description": "Rating count"
+                              },
+                              "url": {
+                                "description": "Rating URL (PartnerTier only)",
+                                "anyOf": [
+                                  {
+                                    "type": "string"
+                                  },
+                                  {
+                                    "type": "null"
+                                  }
+                                ]
+                              }
+                            },
+                            "required": [
+                              "avg",
+                              "count"
+                            ],
+                            "additionalProperties": false
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "description": "Shop rating"
+                      }
+                    },
+                    "required": [
+                      "shopId",
+                      "merchantId",
+                      "name",
+                      "merchantName",
+                      "isMarketplace",
+                      "rating"
+                    ],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "Shop details"
+              },
+              "payments": {
+                "anyOf": [
+                  {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "costCode": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "name": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        }
+                      },
+                      "required": [
+                        "costCode",
+                        "name"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "Accepted payment methods"
+              },
+              "showPaymentDisclaimer": {
+                "type": "boolean"
+              },
+              "delivery": {
+                "type": "object",
+                "properties": {
+                  "deliveryText": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "deliveryStatus": {
+                    "type": "string"
+                  },
+                  "earlyDeliveryDate": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "lateDeliveryDate": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "deliveryText",
+                  "deliveryStatus",
+                  "earlyDeliveryDate",
+                  "lateDeliveryDate"
+                ],
+                "additionalProperties": false
+              },
+              "freeReturnDays": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "cheapestTotalPriceOffer": {
+                "type": "boolean"
+              },
+              "freshness": {
+                "type": "string"
+              },
+              "minShippingCost": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "hasAlwaysFreeShipping": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "key",
+              "relocatorUrl",
+              "price",
+              "basePrice",
+              "shop",
+              "payments",
+              "showPaymentDisclaimer",
+              "delivery",
+              "freeReturnDays",
+              "cheapestTotalPriceOffer",
+              "freshness",
+              "minShippingCost",
+              "hasAlwaysFreeShipping"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "message": {
+          "description": "Tier-related notice, e.g. trial cap reached",
+          "type": "string"
+        }
+      },
+      "required": [
+        "nextOffset",
+        "offers"
+      ],
+      "additionalProperties": false
+    },
+    "icons": null,
+    "annotations": {
+      "title": null,
+      "read_only_hint": true,
+      "destructive_hint": false,
+      "idempotent_hint": true,
+      "open_world_hint": true
+    },
+    "meta": null
+  },
+  {
+    "name": "get_product_price_history",
+    "title": "Price history",
+    "description": "30-day price analytics for a product.\n\nWHEN TO USE:\n- User asks \"is this a good deal\", \"should I buy now\", \"when to buy\"\n- User asks \"price trend\", \"price drop\", \"historical low/high\"\n- User wants to compare current price against the past month\n\nRETURNS (structuredContent.priceTrend, or null when data is missing):\n- history: time series of formatted prices with ISO timestamps and point-to-point change %\n- statistics: current/min/max/average prices, total change %, dates of lows and highs\n- samplingGranularity, dataSourceConfidence, periodDays, totalDataPoints\n\nINPUT: productRef from search_products + optional marketplace country + optional item type.\nOUTPUT: { priceTrend: { history, statistics, ... } | null }.",
+    "input_schema": {
+      "type": "object",
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "properties": {
+        "productRef": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Opaque `productRef` from search_products identifying the product to chart."
+        },
+        "country": {
+          "description": "Marketplace: DE (Germany), AT (Austria), GB or UK (United Kingdom), FR (France), IT (Italy), ES (Spain). An omitted or unknown code uses Germany.",
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 2
+        },
+        "type": {
+          "description": "Catalog item shape from search. Omit unless non-PRODUCT.",
+          "type": "string",
+          "enum": [
+            "CLUSTER",
+            "PRODUCT",
+            "SINGLE_OFFER"
+          ]
+        }
+      },
+      "required": [
+        "productRef"
+      ]
+    },
+    "execution": null,
+    "output_schema": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "type": "object",
+      "properties": {
+        "priceTrend": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "history": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "dateTime": {
+                        "type": "number",
+                        "description": "Unix timestamp in milliseconds"
+                      },
+                      "price": {
+                        "type": "string",
+                        "description": "Formatted price"
+                      },
+                      "dateTimeISO": {
+                        "type": "string",
+                        "description": "ISO 8601 timestamp"
+                      },
+                      "priceChangePercent": {
+                        "description": "Change from previous point %",
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "dateTime",
+                      "price",
+                      "dateTimeISO"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "description": "Sampled price points for the period. Read samplingGranularity for the interval."
+                },
+                "statistics": {
+                  "type": "object",
+                  "properties": {
+                    "minPrice": {
+                      "type": "string",
+                      "description": "Lowest price in period"
+                    },
+                    "maxPrice": {
+                      "type": "string",
+                      "description": "Highest price in period"
+                    },
+                    "avgPrice": {
+                      "type": "string",
+                      "description": "Average price in period"
+                    },
+                    "currentPrice": {
+                      "type": "string",
+                      "description": "Current price"
+                    },
+                    "priceChangePercent": {
+                      "type": "number",
+                      "description": "Total price change %"
+                    },
+                    "lowestPriceDate": {
+                      "type": "string",
+                      "description": "Date of lowest price (ISO 8601)"
+                    },
+                    "highestPriceDate": {
+                      "type": "string",
+                      "description": "Date of highest price (ISO 8601)"
+                    }
+                  },
+                  "required": [
+                    "minPrice",
+                    "maxPrice",
+                    "avgPrice",
+                    "currentPrice",
+                    "priceChangePercent",
+                    "lowestPriceDate",
+                    "highestPriceDate"
+                  ],
+                  "additionalProperties": false
+                },
+                "samplingGranularity": {
+                  "type": "string",
+                  "description": "Data sampling frequency (hourly/daily/weekly/monthly)"
+                },
+                "dataSourceConfidence": {
+                  "type": "number",
+                  "description": "Data confidence score (0.0–1.0)"
+                },
+                "periodDays": {
+                  "type": "number",
+                  "description": "Number of days covered"
+                },
+                "totalDataPoints": {
+                  "type": "number",
+                  "description": "Total number of data points"
+                }
+              },
+              "required": [
+                "history",
+                "statistics",
+                "samplingGranularity",
+                "dataSourceConfidence",
+                "periodDays",
+                "totalDataPoints"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Price trend data (null if unavailable)"
+        }
+      },
+      "required": [
+        "priceTrend"
+      ],
+      "additionalProperties": false
+    },
+    "icons": null,
+    "annotations": {
+      "title": null,
+      "read_only_hint": true,
+      "destructive_hint": false,
+      "idempotent_hint": true,
+      "open_world_hint": true
+    },
+    "meta": null
+  }
+]

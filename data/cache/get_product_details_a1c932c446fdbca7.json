@@ -1,0 +1,557 @@
+{
+  "namespace": "get_product_details",
+  "request": {
+    "productRef": "pr.v1.k1.8I-MoeT9qcuYL5W3ucSCKG1DsEIEV2oK6fRtpo0VsYNY7ayoiA",
+    "country": "DE"
+  },
+  "cached_at": 1795727014.205985,
+  "data": {
+    "productRef": "pr.v1.k1.8I-MoeT9qcuYL5W3ucSCKG1DsEIEV2oK6fRtpo0VsYNY7ayoiA",
+    "itemType": "PRODUCT",
+    "siteId": 1,
+    "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/202091404_-wuu28t70-bosch.html",
+    "name": "Bosch WUU28T70",
+    "imageUrls": [
+      "https://cdn.idealo.com/folder/Product/202091/4/202091404/s1_produktbild_mobil/bosch-wuu28t70.jpg"
+    ],
+    "nextOffset": 3,
+    "offers": [
+      {
+        "key": "5d92072aa6bab30f6524283d4f374a35",
+        "price": "549,00 €",
+        "basePrice": null,
+        "shop": {
+          "shopId": "322253",
+          "merchantId": null,
+          "name": "coolblue.de",
+          "merchantName": null,
+          "rating": {
+            "count": 9867,
+            "avg": 4.64
+          },
+          "isMarketplace": false
+        },
+        "payments": [
+          {
+            "costCode": "INV",
+            "name": "Rechnung"
+          },
+          {
+            "costCode": "PP",
+            "name": "PayPal"
+          },
+          {
+            "costCode": "SUW",
+            "name": "Sofort."
+          },
+          {
+            "costCode": "CBC",
+            "name": "Kreditkarte"
+          },
+          {
+            "costCode": "CIA",
+            "name": "Vorkasse"
+          }
+        ],
+        "showPaymentDisclaimer": false,
+        "delivery": {
+          "deliveryText": "bis Fr. 27.11.2026",
+          "deliveryStatus": "SHORT",
+          "earlyDeliveryDate": null,
+          "lateDeliveryDate": "2026-11-27"
+        },
+        "freeReturnDays": 30,
+        "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=5d92072aa6bab30f6524283d4f374a35&categoryId=1941&pos=1&price=549.00&productid=202091404&sid=322253&type=offer&media=ipc-public-mcp",
+        "minShippingCost": "35,00 €",
+        "hasAlwaysFreeShipping": false,
+        "cheapestTotalPriceOffer": false,
+        "freshness": "2026-11-26T20:03:34.115Z"
+      },
+      {
+        "key": "3620df294fe9162da08efafe2808f91e",
+        "price": "574,00 €",
+        "basePrice": null,
+        "shop": {
+          "shopId": "24111",
+          "merchantId": null,
+          "name": "euronics.de",
+          "merchantName": "Euronics XXL Neu-Neu-Ulm",
+          "rating": {
+            "count": null,
+            "avg": null
+          },
+          "isMarketplace": true
+        },
+        "payments": [
+          {
+            "costCode": "PP",
+            "name": "PayPal"
+          },
+          {
+            "costCode": "CBC",
+            "name": "Kreditkarte"
+          },
+          {
+            "costCode": "APPLE_PAY",
+            "name": "Apple Pay"
+          },
+          {
+            "costCode": "CIA",
+            "name": "Vorkasse"
+          }
+        ],
+        "showPaymentDisclaimer": false,
+        "delivery": {
+          "deliveryText": "Sa. 28.11.–Mi. 02.12.2026",
+          "deliveryStatus": "MEDIUM",
+          "earlyDeliveryDate": "2026-11-28",
+          "lateDeliveryDate": "2026-12-02"
+        },
+        "freeReturnDays": null,
+        "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=3620df294fe9162da08efafe2808f91e&categoryId=1941&pos=2&price=574.00&productid=202091404&sid=24111&type=offer&media=ipc-public-mcp",
+        "minShippingCost": "4,99 €",
+        "hasAlwaysFreeShipping": false,
+        "cheapestTotalPriceOffer": true,
+        "freshness": "2026-11-26T20:03:34.115Z"
+      },
+      {
+        "key": "c049524ed1270a47ecd82ab42d204150",
+        "price": "575,69 €",
+        "basePrice": null,
+        "shop": {
+          "shopId": "273179",
+          "merchantId": null,
+          "name": "smartgoods.de",
+          "merchantName": null,
+          "rating": {
+            "count": 2476,
+            "avg": 4.57
+          },
+          "isMarketplace": false
+        },
+        "payments": [
+          {
+            "costCode": "PP",
+            "name": "PayPal"
+          },
+          {
+            "costCode": "CBC",
+            "name": "Kreditkarte"
+          },
+          {
+            "costCode": "CIA",
+            "name": "Vorkasse"
+          }
+        ],
+        "showPaymentDisclaimer": false,
+        "delivery": {
+          "deliveryText": "Sa. 28.11.–Mo. 30.11.2026",
+          "deliveryStatus": "SHORT",
+          "earlyDeliveryDate": "2026-11-28",
+          "lateDeliveryDate": "2026-11-30"
+        },
+        "freeReturnDays": null,
+        "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=c049524ed1270a47ecd82ab42d204150&categoryId=1941&pos=3&price=575.69&productid=202091404&sid=273179&type=offer&media=ipc-public-mcp",
+        "minShippingCost": "59,95 €",
+        "hasAlwaysFreeShipping": false,
+        "cheapestTotalPriceOffer": false,
+        "freshness": "2026-11-26T20:03:34.115Z"
+      }
+    ],
+    "prosCons": {
+      "pros": [
+        "sehr geräuscharm",
+        "mit Hygieneprogramm",
+        "inklusive Nachlegefunktion"
+      ],
+      "cons": [
+        "könnte noch etwas energieeffizienter sein",
+        "keine Dampffunktion",
+        "kein Outdoorprogramm",
+        "ohne App-Anbindung"
+      ]
+    },
+    "testReports": {
+      "summary": {
+        "grade": "1,7",
+        "averageRating": 86,
+        "rating": "gut",
+        "ratingCount": 1
+      },
+      "list": [
+        {
+          "providerName": "Stiftung Warentest",
+          "shortDescription": "Waschmaschinen",
+          "summaryText": "Guter Testsieger zum vernünftigen Preis: Der Bosch-Frontlader überzeugte im Test mit seinen guten Waschergebnissen, der einfachen Handhabung und einer prima Ausstattung. Der Strom- und Wasserverbrauch ist niedrig. Lange Waschzeiten.   ",
+          "ratingValue": "1,7",
+          "publishedAt": 1729764000000,
+          "language": "de",
+          "issue": "11/2024",
+          "testedProductsCount": 11
+        }
+      ]
+    },
+    "expertReview": {
+      "author": "Unsere Redaktion",
+      "autogenerated": false,
+      "created": "2024-11-17T23:00",
+      "rating": 90,
+      "teaser": "Die Bosch WUU28T70 wäscht deine Wäsche klaglos sauber und bietet dabei ein brauchbares, wenn auch nur basales Programm- und Funktionsspektrum. Ihre Energieeffizienz ist ok, aber nicht optimal, der Geräuschwert sehr niedrig.",
+      "text": "<h2>Bosch WUU28T70 mit Blick auf Black Friday</h2>\n<p>Black Friday bringt Bewegung in viele Preise. Wer für eine Waschmaschine verschiedene Angebote im Auge behält, kann mögliche Unterschiede entspannt einordnen.</p>\n<h2>Bosch WUU28T70</h2>\n<ul>\n<li>Frontlader-Waschmaschine mit bis zu 8 kg Fassungsvermögen</li>\n<li>EEK B</li>\n<li>69 dB</li>\n</ul>\n<h2>Energieeffizienz mäßig, Geräuschdämpfung top</h2>\n<p>Die WUU28T70 von Bosch ist eine Waschmaschine mit mäßiger Energieeffizienz: mit einem Verbrauch von 0,54 kWh Strom je Zyklus erreicht sie nur die zweitbeste Energieeffizienzklasse B - die Klasse A kann bei heutigen Modellen eigentlich mittlerweile als Standard gelten. Dafür schießt sie bei der Geräuschdämpfung den Vogel ab: beim Schleudern emittiert sie nur 69 dB und ist damit deutlich leiser als die meisten Konkurrentinnen. Die geringe Lautstärke fällt den insgesamt zufriedenen Rezensent:innen auf amazon.de auch tatsächlich häufig auf. Mit einem smarten, also per WLAN und App steuer- und überwachbaren Gerät hast du es hier nicht zu tun.</p>\n<h2>Modernes, aber nicht luxuriöses Programmangebot</h2>\n<p>Die Programmauswahl sieht bei der Bosch WUU28T70 eher überschaubar aus: außer den gängigen Standards hast du hier nur ein Hygiene-, ein Sportkleidungs- und ein Deckenprogramm. Nicht an Bord sind zum Beispiel Spezialprogramme für imprägnierte Outdoorkleidung, für Jeans oder Daunenwaren. Auch eine Dampffunktion für effektive Hygienepflege und Entknitterung spart sich die Maschine. Bei den Zusatzfunktionen sind mit Extraspülen, Vorwäsche und Zeitsparen alle wesentlichen dabei. Auch eine Nachlegefunktion ist eingerichtet. Von Kund:innen auf otto.de gibt es vorwiegend sehr positives Feedback.</p>"
+    },
+    "productSpecification": {
+      "groups": [
+        {
+          "name": "Energielabeldaten",
+          "type": "DEFAULT",
+          "attributes": [
+            {
+              "name": "Energieeffizienzklasse",
+              "value": "B"
+            },
+            {
+              "name": "Energieverbrauch Waschen",
+              "value": "54 kWh / 100 Zyklen"
+            },
+            {
+              "name": "Füllmenge",
+              "value": "8 kg"
+            },
+            {
+              "name": "Wasserverbrauch",
+              "value": "46 Liter"
+            },
+            {
+              "name": "Schleuderwirkungsklasse",
+              "value": "B"
+            },
+            {
+              "name": "Schleuderlautstärke",
+              "value": "69 dB(A)"
+            },
+            {
+              "name": "Luftschallemissionsklasse",
+              "value": "A"
+            }
+          ]
+        },
+        {
+          "name": "Technische Daten",
+          "type": "DEFAULT",
+          "attributes": [
+            {
+              "name": "max. Schleuderdrehzahl",
+              "value": "1.400 U/Min"
+            },
+            {
+              "name": "Waschdauer",
+              "value": "215 min"
+            },
+            {
+              "name": "Anschlusswert",
+              "value": "230 Watt"
+            },
+            {
+              "name": "Netzabsicherung",
+              "value": "10 A"
+            }
+          ]
+        },
+        {
+          "name": "Komfort & Sicherheit",
+          "type": "DEFAULT",
+          "attributes": [
+            {
+              "name": "Funktionen",
+              "value": "Reinigungsprogramm, Erinnerung an Reinigung, Nachlegefunktion, ohne Schleudern/Spülstopp, anpassbare Temperatur, Endzeitvorwahl, Signalton bei Programmende, anpassbare Schleuderdrehzahl, Mengenautomatik, Knitterschutz"
+            },
+            {
+              "name": "Ausstattung",
+              "value": "Flüssigwaschmitteleinsatz, Leichtreinigungsschublade, verstellbare Gerätefüße, Anti Vibration"
+            },
+            {
+              "name": "Sicherheitseinrichtungen",
+              "value": "Kindersicherung, Unwuchtkontrolle, AquaStop, Schaumregulierung"
+            },
+            {
+              "name": "Zeitvorwahl",
+              "value": "24 h"
+            },
+            {
+              "name": "Bedienungsart",
+              "value": "Einknopf-Programmwahl, Sensor/Touch-Bedienung"
+            },
+            {
+              "name": "Display",
+              "value": "LED"
+            },
+            {
+              "name": "Anzeigen",
+              "value": "Endezeit, Restlaufzeit"
+            },
+            {
+              "name": "Hersteller-Besonderheiten",
+              "value": "EcoSilence Drive, SpeedPerfect, ActiveWater Plus, AntiVibrationDesign"
+            }
+          ]
+        },
+        {
+          "name": "Bauart & Material",
+          "type": "DEFAULT",
+          "attributes": [
+            {
+              "name": "Bauart",
+              "value": "freistehend, unterschiebbar ab 85 cm Nischenhöhe, unterbaufähig"
+            },
+            {
+              "name": "Türanschlag",
+              "value": "links"
+            },
+            {
+              "name": "Material Laugenbehälter",
+              "value": "Kunststoff"
+            }
+          ]
+        },
+        {
+          "name": "Programme & Optionen",
+          "type": "DEFAULT",
+          "attributes": [
+            {
+              "name": "Waschprogramme",
+              "value": "Standardprogramme, Spülen/Schleudern/Abpumpen, Spezialprogramme, Schnellprogramme, Eco-Programm, Blusen/Hemden, Sport/Outdoor/Synthetik, Bettdecken/Kopfkissen, Allergie/Antibakteriell/Hygiene, Extra Spülen, Vorwäsche, Kaltwäsche"
+            }
+          ]
+        },
+        {
+          "name": "Maße & Gewicht",
+          "type": "DEFAULT",
+          "attributes": [
+            {
+              "name": "Höhe",
+              "value": "36 cm"
+            },
+            {
+              "name": "Breite",
+              "value": "59,8 cm"
+            },
+            {
+              "name": "Tiefe",
+              "value": "59,9 cm"
+            },
+            {
+              "name": "Tiefe bei geschlossener Tür",
+              "value": "63,2 cm"
+            },
+            {
+              "name": "Tiefe bei geöffneter Tür",
+              "value": "106,3 cm"
+            },
+            {
+              "name": "Bullauge Einfüllöffnung",
+              "value": "32 cm"
+            },
+            {
+              "name": "Gewicht",
+              "value": "73,9 kg"
+            },
+            {
+              "name": "Türöffnungswinkel",
+              "value": "171 °"
+            }
+          ]
+        },
+        {
+          "name": "Betriebskosten",
+          "type": "DEFAULT",
+          "attributes": [
+            {
+              "name": "Quellen",
+              "value": "*Ø Strompreis Eurostat (Stand 1. Halbjahr 2020), **Ø Nutzungsdauer nach Initiative EnergieEffizienz (Stand 2013), ***Ø Mischpreis aus Trink- und Abwasserkosten (Statistisches Bundesamt 2013, DWA 2013)"
+            }
+          ]
+        },
+        {
+          "name": "",
+          "type": "IMPORTANT",
+          "attributes": [
+            {
+              "name": "Gelistet seit",
+              "value": "September 2022"
+            },
+            {
+              "name": "Waschmaschinentyp",
+              "value": "Frontlader"
+            },
+            {
+              "name": "bei idealo gelistet",
+              "value": "seit 2022"
+            },
+            {
+              "name": "Serie",
+              "value": "Bosch Serie 6"
+            },
+            {
+              "name": "Farbe",
+              "value": "weiß"
+            },
+            {
+              "name": "Farben Bullauge",
+              "value": "grau, weiß"
+            },
+            {
+              "name": "Haushaltsgröße",
+              "value": "mittlerer Haushalt (3-4 Personen)"
+            },
+            {
+              "name": "Geräuschpegel",
+              "value": "leise"
+            }
+          ]
+        }
+      ]
+    },
+    "productOverview": [
+      "69 dB(A)",
+      "Einknopf-Programmwahl",
+      "LED Display",
+      "Endzeitvorwahl",
+      "Mengenautomatik",
+      "Nachlegefunktion",
+      "8 kg",
+      "1.400 U/Min",
+      "215 min Waschdauer",
+      "Breite 59,8 cm",
+      "Tiefe 59,9 cm"
+    ],
+    "productDetailsUrl": "https://www.idealo.de/preisvergleich/OffersOfProduct/202091404_-wuu28t70-bosch.html#datasheet",
+    "priceTrend": {
+      "history": [
+        {
+          "dateTime": 1793141999999,
+          "price": 55900
+        },
+        {
+          "dateTime": 1793228399999,
+          "price": 55900
+        },
+        {
+          "dateTime": 1793314799999,
+          "price": 55900
+        },
+        {
+          "dateTime": 1793401199999,
+          "price": 55900
+        },
+        {
+          "dateTime": 1793487599999,
+          "price": 55900
+        },
+        {
+          "dateTime": 1793573999999,
+          "price": 55900
+        },
+        {
+          "dateTime": 1793660399999,
+          "price": 55900
+        },
+        {
+          "dateTime": 1793746799999,
+          "price": 54852
+        },
+        {
+          "dateTime": 1793833199999,
+          "price": 57300
+        },
+        {
+          "dateTime": 1793919599999,
+          "price": 57300
+        },
+        {
+          "dateTime": 1794005999999,
+          "price": 55500
+        },
+        {
+          "dateTime": 1794092399999,
+          "price": 54852
+        },
+        {
+          "dateTime": 1794178799999,
+          "price": 57300
+        },
+        {
+          "dateTime": 1794265199999,
+          "price": 57300
+        },
+        {
+          "dateTime": 1794351599999,
+          "price": 55500
+        },
+        {
+          "dateTime": 1794437999999,
+          "price": 55500
+        },
+        {
+          "dateTime": 1794524399999,
+          "price": 57300
+        },
+        {
+          "dateTime": 1794610799999,
+          "price": 57300
+        },
+        {
+          "dateTime": 1794697199999,
+          "price": 55500
+        },
+        {
+          "dateTime": 1794783599999,
+          "price": 55500
+        },
+        {
+          "dateTime": 1794869999999,
+          "price": 55500
+        },
+        {
+          "dateTime": 1794956399999,
+          "price": 55500
+        },
+        {
+          "dateTime": 1795042799999,
+          "price": 58410
+        },
+        {
+          "dateTime": 1795129199999,
+          "price": 55900
+        },
+        {
+          "dateTime": 1795215599999,
+          "price": 54900
+        },
+        {
+          "dateTime": 1795301999999,
+          "price": 54900
+        },
+        {
+          "dateTime": 1795388399999,
+          "price": 54900
+        },
+        {
+          "dateTime": 1795474799999,
+          "price": 54900
+        },
+        {
+          "dateTime": 1795561199999,
+          "price": 54900
+        },
+        {
+          "dateTime": 1795647599999,
+          "price": 54900
+        },
+        {
+          "dateTime": 1795723414148,
+          "price": 54900
+        }
+      ]
+    }
+  }
+}

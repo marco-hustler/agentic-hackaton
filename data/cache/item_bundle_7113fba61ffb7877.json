@@ -1,0 +1,1651 @@
+{
+  "namespace": "item_bundle",
+  "request": {
+    "query": "KitchenAid Artisan 5KSM175PS",
+    "country": "DE"
+  },
+  "cached_at": 1795727007.586875,
+  "data": {
+    "query": "KitchenAid Artisan 5KSM175PS",
+    "country": "DE",
+    "product_ref": "pr.v1.k1.gqAQUxatOt5LdMX8J8QRria-0v37HYO0o6KvL5woi6_wqgE",
+    "top_product": {
+      "productRef": "pr.v1.k1.gqAQUxatOt5LdMX8J8QRria-0v37HYO0o6KvL5woi6_wqgE",
+      "itemType": "PRODUCT",
+      "siteId": 1,
+      "name": "KitchenAid Artisan 5KSM175PS",
+      "nameDelta": "ECA liebesapfelrot",
+      "price": "399,99 €",
+      "imageUrl": "https://cdn.idealo.com/folder/Product/5083/6/5083655/s1_produktbild_mobil/kitchenaid-artisan-5ksm175ps-eca-liebesapfelrot.jpg",
+      "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/5083655_-artisan-5ksm175ps-eca-liebesapfelrot-kitchenaid.html",
+      "userReviewsSummary": {
+        "averageRating": 4.75,
+        "totalReviewCount": 1666
+      },
+      "testReportsSummary": {
+        "grade": "2,6"
+      },
+      "totalOfferCount": 80
+    },
+    "search": {
+      "query": "KitchenAid Artisan 5KSM175PS",
+      "availableCategories": [
+        {
+          "categoryId": "3512",
+          "categoryName": "Küchenmaschinen",
+          "amount": 0
+        }
+      ],
+      "availableManufacturers": [
+        {
+          "manufacturerId": "1502",
+          "manufacturerName": "KitchenAid",
+          "amount": 74,
+          "searchFilterId": "182289"
+        }
+      ],
+      "availableFilters": [
+        {
+          "attributeId": "15583",
+          "name": "Produkttyp",
+          "filters": [
+            {
+              "filterId": "1648332",
+              "content": "Knetmaschine",
+              "amount": 69
+            },
+            {
+              "filterId": "474189",
+              "content": "Multifunktions-Küchenmaschine",
+              "amount": 55
+            }
+          ]
+        },
+        {
+          "attributeId": "16732",
+          "name": "Serie",
+          "filters": [
+            {
+              "filterId": "1241432",
+              "content": "KitchenAid Artisan",
+              "amount": 65
+            }
+          ]
+        },
+        {
+          "attributeId": "10800",
+          "name": "Funktionen",
+          "filters": [
+            {
+              "filterId": "101451005",
+              "content": "Planetenrührwerk",
+              "amount": 48
+            },
+            {
+              "filterId": "5618750",
+              "content": "Direktantrieb",
+              "amount": 26
+            },
+            {
+              "filterId": "5034752",
+              "content": "Sanftanlauf",
+              "amount": 22
+            },
+            {
+              "filterId": "101451004",
+              "content": "Kabelaufwicklung",
+              "amount": 22
+            },
+            {
+              "filterId": "5034753",
+              "content": "stufenlose Geschwindigkeitsregelung",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "attributeId": "29715",
+          "name": "Füllmenge Rührschüssel",
+          "filters": [
+            {
+              "filterId": "5618736",
+              "content": "4 bis 5 Liter",
+              "amount": 63
+            },
+            {
+              "filterId": "5618734",
+              "content": "bis 3 Liter",
+              "amount": 30
+            }
+          ]
+        },
+        {
+          "attributeId": "16806",
+          "name": "Sicherheitseinrichtung",
+          "filters": [
+            {
+              "filterId": "2402462",
+              "content": "Überlastungsschutz",
+              "amount": 1
+            },
+            {
+              "filterId": "5872600",
+              "content": "Anti-Rutsch-Füße",
+              "amount": 1
+            },
+            {
+              "filterId": "2397359",
+              "content": "Abschaltautomatik",
+              "amount": 22
+            },
+            {
+              "filterId": "107708115",
+              "content": "Überlaufschutzabdeckung",
+              "amount": 13
+            }
+          ]
+        },
+        {
+          "attributeId": "31905",
+          "name": "Zubereitungsart",
+          "filters": [
+            {
+              "filterId": "1062576",
+              "content": "Rühren",
+              "amount": 49
+            },
+            {
+              "filterId": "1062570",
+              "content": "Kneten",
+              "amount": 53
+            },
+            {
+              "filterId": "101452378",
+              "content": "Hefeteige kneten",
+              "amount": 40
+            },
+            {
+              "filterId": "1062572",
+              "content": "Mixen",
+              "amount": 2
+            },
+            {
+              "filterId": "1062573",
+              "content": "Mischen",
+              "amount": 45
+            },
+            {
+              "filterId": "1062577",
+              "content": "Schlagen",
+              "amount": 49
+            }
+          ]
+        },
+        {
+          "attributeId": "20630",
+          "name": "Ausstattung",
+          "filters": [
+            {
+              "filterId": "107503869",
+              "content": "Knethaken",
+              "amount": 16
+            },
+            {
+              "filterId": "101453777",
+              "content": "kippbarer Motorkopf",
+              "amount": 40
+            },
+            {
+              "filterId": "107503871",
+              "content": "Rührschüssel",
+              "amount": 16
+            },
+            {
+              "filterId": "101453786",
+              "content": "Zubehöranschluss",
+              "amount": 26
+            },
+            {
+              "filterId": "101453780",
+              "content": "Multifunktionsarm",
+              "amount": 1
+            },
+            {
+              "filterId": "107503870",
+              "content": "Quirl",
+              "amount": 16
+            },
+            {
+              "filterId": "101453771",
+              "content": "Ansatznabe",
+              "amount": 26
+            },
+            {
+              "filterId": "107503872",
+              "content": "Spatel",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "attributeId": "1171",
+          "name": "Lieferumfang",
+          "filters": [
+            {
+              "filterId": "101450967",
+              "content": "Fleischwolf",
+              "amount": 1
+            },
+            {
+              "filterId": "2397282",
+              "content": "Knethaken",
+              "amount": 69
+            },
+            {
+              "filterId": "2397306",
+              "content": "2 Rührschüsseln",
+              "amount": 42
+            },
+            {
+              "filterId": "101450975",
+              "content": "Mixeraufsatz",
+              "amount": 1
+            },
+            {
+              "filterId": "2397266",
+              "content": "Deckel",
+              "amount": 1
+            },
+            {
+              "filterId": "101450981",
+              "content": "Schnitzelwerk",
+              "amount": 5
+            },
+            {
+              "filterId": "101450969",
+              "content": "Gemüseschneider",
+              "amount": 6
+            },
+            {
+              "filterId": "2397312",
+              "content": "Schneebesen",
+              "amount": 69
+            },
+            {
+              "filterId": "2402460",
+              "content": "Spritzschutz",
+              "amount": 58
+            },
+            {
+              "filterId": "2397305",
+              "content": "Rührschüssel",
+              "amount": 11
+            },
+            {
+              "filterId": "10320499",
+              "content": "Durchlaufschnitzler",
+              "amount": 5
+            },
+            {
+              "filterId": "2397273",
+              "content": "Flachrührer",
+              "amount": 62
+            },
+            {
+              "filterId": "101338138",
+              "content": "Ballonschneebesen",
+              "amount": 16
+            },
+            {
+              "filterId": "106616312",
+              "content": "Patisserie-Set",
+              "amount": 37
+            },
+            {
+              "filterId": "101466413",
+              "content": "Rührbesen",
+              "amount": 20
+            },
+            {
+              "filterId": "101466414",
+              "content": "Schlagbesen",
+              "amount": 16
+            },
+            {
+              "filterId": "101869675",
+              "content": "Eisbereiter",
+              "amount": 2
+            },
+            {
+              "filterId": "101450977",
+              "content": "Pasta-Aufsatz",
+              "amount": 2
+            },
+            {
+              "filterId": "100711924",
+              "content": "Flexi-Rührer",
+              "amount": 33
+            },
+            {
+              "filterId": "101890871",
+              "content": "Rührhaken",
+              "amount": 1
+            },
+            {
+              "filterId": "102893946",
+              "content": "Teigschaber",
+              "amount": 5
+            },
+            {
+              "filterId": "101229320",
+              "content": "Glasschüssel",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "attributeId": "1338",
+          "name": "Farbe",
+          "filters": [
+            {
+              "filterId": "2742520",
+              "content": "schwarz",
+              "amount": 12
+            },
+            {
+              "filterId": "2742519",
+              "content": "rot",
+              "amount": 16
+            },
+            {
+              "filterId": "2742522",
+              "content": "weiß",
+              "amount": 6
+            },
+            {
+              "filterId": "2742515",
+              "content": "grün",
+              "amount": 8
+            },
+            {
+              "filterId": "2339970",
+              "content": "beige",
+              "amount": 1
+            },
+            {
+              "filterId": "2339965",
+              "content": "creme",
+              "amount": 6
+            },
+            {
+              "filterId": "2742521",
+              "content": "silber",
+              "amount": 12
+            },
+            {
+              "filterId": "2742511",
+              "content": "blau",
+              "amount": 7
+            },
+            {
+              "filterId": "2742518",
+              "content": "rosa",
+              "amount": 4
+            },
+            {
+              "filterId": "2339969",
+              "content": "kupfer",
+              "amount": 1
+            },
+            {
+              "filterId": "2742514",
+              "content": "grau",
+              "amount": 6
+            },
+            {
+              "filterId": "2742517",
+              "content": "orange",
+              "amount": 1
+            },
+            {
+              "filterId": "2742513",
+              "content": "gelb",
+              "amount": 2
+            },
+            {
+              "filterId": "2742516",
+              "content": "lila",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "attributeId": "7108",
+          "name": "Gehäusematerial",
+          "filters": [
+            {
+              "filterId": "2397258",
+              "content": "Edelstahl",
+              "amount": 10
+            },
+            {
+              "filterId": "2397261",
+              "content": "Metall",
+              "amount": 1
+            },
+            {
+              "filterId": "6128375",
+              "content": "Aluminium",
+              "amount": 42
+            },
+            {
+              "filterId": "106477768",
+              "content": "Zink",
+              "amount": 4
+            }
+          ]
+        },
+        {
+          "attributeId": "5530",
+          "name": "Leistung (W)",
+          "filters": [
+            {
+              "filterId": "105944515",
+              "content": "bis 550 Watt",
+              "amount": 56
+            }
+          ]
+        }
+      ],
+      "suggestedFilters": [
+        {
+          "id": "182289",
+          "type": "MANUFACTURER"
+        },
+        {
+          "id": "1241432",
+          "type": "SEARCH_FILTER"
+        },
+        {
+          "id": "1648332",
+          "type": "SEARCH_FILTER"
+        },
+        {
+          "id": "474189",
+          "type": "SEARCH_FILTER"
+        },
+        {
+          "id": "101450967",
+          "type": "SEARCH_FILTER"
+        },
+        {
+          "id": "5618736",
+          "type": "SEARCH_FILTER"
+        },
+        {
+          "id": "2742520",
+          "type": "SEARCH_FILTER"
+        },
+        {
+          "id": "2742519",
+          "type": "SEARCH_FILTER"
+        },
+        {
+          "id": "2397282",
+          "type": "SEARCH_FILTER"
+        },
+        {
+          "id": "107503869",
+          "type": "SEARCH_FILTER"
+        }
+      ],
+      "sizeAttributes": [],
+      "results": [
+        {
+          "productRef": "pr.v1.k1.gqAQUxatOt5LdMX8J8QRria-0v37HYO0o6KvL5woi6_wqgE",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "KitchenAid Artisan 5KSM175PS",
+          "nameDelta": "ECA liebesapfelrot",
+          "price": "399,99 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/5083/6/5083655/s1_produktbild_mobil/kitchenaid-artisan-5ksm175ps-eca-liebesapfelrot.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/5083655_-artisan-5ksm175ps-eca-liebesapfelrot-kitchenaid.html",
+          "userReviewsSummary": {
+            "averageRating": 4.75,
+            "totalReviewCount": 1666
+          },
+          "testReportsSummary": {
+            "grade": "2,6"
+          },
+          "totalOfferCount": 80
+        },
+        {
+          "productRef": "pr.v1.k1.CjmTLrqs_KEw8wX8pDVRPpURfYYBsafXqQTCvJbfr1O1H5g",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "KitchenAid Artisan 5KSM175PS",
+          "nameDelta": "EBK Gusseisen schwarz",
+          "price": "399,99 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/5083/6/5083675/s1_produktbild_mobil/kitchenaid-artisan-5ksm175ps-ebk-gusseisen-schwarz.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/5083675_-artisan-5ksm175ps-ebk-gusseisen-schwarz-kitchenaid.html",
+          "userReviewsSummary": {
+            "averageRating": 4.75,
+            "totalReviewCount": 1666
+          },
+          "totalOfferCount": 78
+        },
+        {
+          "productRef": "pr.v1.k1.N_y9uwJPyueV-ZXy77ZNJUVGmK25Z2qMM31NGzHOC_Btz8Y",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "KitchenAid Artisan 5KSM175PS",
+          "nameDelta": "EER empire-rot",
+          "price": "419,00 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/5653/1/5653177/s1_produktbild_mobil/kitchenaid-artisan-5ksm175ps-eer-empire-rot.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/5653177_-artisan-5ksm175ps-eer-empire-rot-kitchenaid.html",
+          "userReviewsSummary": {
+            "averageRating": 4.75,
+            "totalReviewCount": 1666
+          },
+          "totalOfferCount": 73
+        },
+        {
+          "productRef": "pr.v1.k1.CEFVc8Ve58vl_j6i6wUcB6IfHgR7Y2rTt_0LjpjLe8HEItk",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "KitchenAid Artisan 5KSM175PS",
+          "nameDelta": "EAC creme",
+          "price": "399,99 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/6087/3/6087317/s1_produktbild_mobil/kitchenaid-artisan-5ksm175ps-eac-creme.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/6087317_-artisan-5ksm175ps-eac-creme-kitchenaid.html",
+          "userReviewsSummary": {
+            "averageRating": 4.75,
+            "totalReviewCount": 1666
+          },
+          "totalOfferCount": 74
+        },
+        {
+          "productRef": "pr.v1.k1.h3WaY63oL302b2RUlj2st0btMZFIrocDT78F1UdGzij0_CM",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "KitchenAid Artisan 5KSM175PS",
+          "nameDelta": "EOB onyx-schwarz",
+          "price": "419,00 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/6087/3/6087328/s1_produktbild_mobil/kitchenaid-artisan-5ksm175ps-eob-onyx-schwarz.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/6087328_-artisan-5ksm175ps-eob-onyx-schwarz-kitchenaid.html",
+          "userReviewsSummary": {
+            "averageRating": 4.75,
+            "totalReviewCount": 1666
+          },
+          "totalOfferCount": 60
+        },
+        {
+          "productRef": "pr.v1.k1.ZILMQgrysn2ekV4NfE0rOtTF4FbmQsZy21mrSuV6jtD09lEsyw",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "KitchenAid Artisan 5KSM175PS",
+          "nameDelta": "EDR altrosa",
+          "price": "415,00 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/200190/9/200190963/s1_produktbild_mobil/kitchenaid-artisan-5ksm175ps-edr-altrosa.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/200190963_-artisan-5ksm175ps-edr-altrosa-kitchenaid.html",
+          "userReviewsSummary": {
+            "averageRating": 4.75,
+            "totalReviewCount": 1666
+          },
+          "totalOfferCount": 59,
+          "badges": {
+            "bargain": {
+              "discountRate": 11,
+              "tags": [
+                "REGULAR",
+                "SHORTTERM",
+                "BLACK_FRIDAY"
+              ]
+            }
+          }
+        },
+        {
+          "productRef": "pr.v1.k1.dns2ZvFg6LFzc8CA2uGWCWWgyLumLk9-4uWiTxrBwZPDR-FfpA",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "KitchenAid Artisan 5KSM175PS",
+          "nameDelta": "EPT pistazie + Allrounderset",
+          "price": "578,29 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/206517/9/206517950/s1_produktbild_mobil/kitchenaid-artisan-5ksm175ps-ept-pistazie-allrounderset.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/206517950_-artisan-5ksm175ps-ept-pistazie-allrounderset-kitchenaid.html",
+          "userReviewsSummary": {
+            "averageRating": 4.75,
+            "totalReviewCount": 1666
+          },
+          "totalOfferCount": 4
+        },
+        {
+          "productRef": "pr.v1.k1.kLfXsFVSTq8HNyISzmpWOXp49KcMSsXlnvjsCsS2BC-_nqM",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "KitchenAid Artisan 5KSM175PS",
+          "nameDelta": "EMS medaillon-silber",
+          "price": "429,00 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/5086/0/5086063/s1_produktbild_mobil/kitchenaid-artisan-5ksm175ps-ems-medaillon-silber.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/5086063_-artisan-5ksm175ps-ems-medaillon-silber-kitchenaid.html",
+          "userReviewsSummary": {
+            "averageRating": 4.75,
+            "totalReviewCount": 1666
+          },
+          "totalOfferCount": 63
+        },
+        {
+          "productRef": "pr.v1.k1.HpAAoudHv21IQ6qx5Vk0S5lgqzyLNynE_RCyJDJhIex-BlE",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "KitchenAid Artisan 5KSM175PS",
+          "nameDelta": "EVB samtblau",
+          "price": "415,00 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/6084/8/6084892/s1_produktbild_mobil/kitchenaid-artisan-5ksm175ps-evb-samtblau.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/6084892_-artisan-5ksm175ps-evb-samtblau-kitchenaid.html",
+          "userReviewsSummary": {
+            "averageRating": 4.75,
+            "totalReviewCount": 1666
+          },
+          "totalOfferCount": 53
+        },
+        {
+          "productRef": "pr.v1.k1.9nt5YwdplEqQzKJmAisx2OWxmzdHmjlBIqzf7OZBXv1s2uc",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "KitchenAid Artisan 5KSM175PS",
+          "nameDelta": "EFL fresh linen",
+          "price": "436,08 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/6948/8/6948866/s1_produktbild_mobil/kitchenaid-artisan-5ksm175ps-efl-fresh-linen.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/6948866_-artisan-5ksm175ps-efl-fresh-linen-kitchenaid.html",
+          "userReviewsSummary": {
+            "averageRating": 4.75,
+            "totalReviewCount": 1666
+          },
+          "totalOfferCount": 51
+        }
+      ]
+    },
+    "details": {
+      "productRef": "pr.v1.k1.gqAQUxatOt5LdMX8J8QRria-0v37HYO0o6KvL5woi6_wqgE",
+      "itemType": "PRODUCT",
+      "siteId": 1,
+      "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/5083655_-artisan-5ksm175ps-eca-liebesapfelrot-kitchenaid.html",
+      "name": "KitchenAid Artisan 5KSM175PS",
+      "nameDelta": "ECA liebesapfelrot",
+      "imageUrls": [
+        "https://cdn.idealo.com/folder/Product/5083/6/5083655/s1_produktbild_mobil/kitchenaid-artisan-5ksm175ps-eca-liebesapfelrot.jpg"
+      ],
+      "nextOffset": 3,
+      "offers": [
+        {
+          "key": "361c88429e9fffd2c76c9f49ba8d4366",
+          "price": "399,99 €",
+          "basePrice": null,
+          "shop": {
+            "shopId": "24111",
+            "merchantId": null,
+            "name": "euronics.de",
+            "merchantName": "Euronics XXL Öhringen",
+            "rating": {
+              "count": null,
+              "avg": null
+            },
+            "isMarketplace": true
+          },
+          "payments": [
+            {
+              "costCode": "PP",
+              "name": "PayPal"
+            },
+            {
+              "costCode": "CBC",
+              "name": "Kreditkarte"
+            },
+            {
+              "costCode": "APPLE_PAY",
+              "name": "Apple Pay"
+            },
+            {
+              "costCode": "CIA",
+              "name": "Vorkasse"
+            }
+          ],
+          "showPaymentDisclaimer": false,
+          "delivery": {
+            "deliveryText": "bis Sa. 28.11.2026",
+            "deliveryStatus": "SHORT",
+            "earlyDeliveryDate": null,
+            "lateDeliveryDate": "2026-11-28"
+          },
+          "freeReturnDays": null,
+          "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=361c88429e9fffd2c76c9f49ba8d4366&categoryId=3512&pos=1&price=399.99&productid=5083655&sid=24111&type=offer&media=ipc-public-mcp",
+          "minShippingCost": "6,99 €",
+          "hasAlwaysFreeShipping": false,
+          "cheapestTotalPriceOffer": true,
+          "freshness": "2026-11-26T20:03:26.897Z"
+        },
+        {
+          "key": "f9690130a13c5e645db1815b9d990b83",
+          "price": "422,22 €",
+          "basePrice": null,
+          "shop": {
+            "shopId": "313752",
+            "merchantId": null,
+            "name": "ramershoven.com",
+            "merchantName": null,
+            "rating": {
+              "count": 75,
+              "avg": 5
+            },
+            "isMarketplace": false
+          },
+          "payments": [
+            {
+              "costCode": "INV",
+              "name": "Rechnung"
+            },
+            {
+              "costCode": "PP",
+              "name": "PayPal"
+            },
+            {
+              "costCode": "CBC",
+              "name": "Kreditkarte"
+            },
+            {
+              "costCode": "CIA",
+              "name": "Vorkasse"
+            },
+            {
+              "costCode": "AMZP",
+              "name": "Amazon Pay"
+            }
+          ],
+          "showPaymentDisclaimer": false,
+          "delivery": {
+            "deliveryText": "Sa. 28.11.–Mo. 30.11.2026",
+            "deliveryStatus": "SHORT",
+            "earlyDeliveryDate": "2026-11-28",
+            "lateDeliveryDate": "2026-11-30"
+          },
+          "freeReturnDays": null,
+          "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=f9690130a13c5e645db1815b9d990b83&categoryId=3512&pos=2&price=422.22&productid=5083655&sid=313752&type=offer&media=ipc-public-mcp",
+          "minShippingCost": "1,95 €",
+          "hasAlwaysFreeShipping": false,
+          "cheapestTotalPriceOffer": false,
+          "freshness": "2026-11-26T20:03:26.898Z"
+        },
+        {
+          "key": "8b1fe99f298a51b90fb6adac263a314c",
+          "price": "423,99 €",
+          "basePrice": null,
+          "shop": {
+            "shopId": "317105",
+            "merchantId": null,
+            "name": "galaxus.de",
+            "merchantName": null,
+            "rating": {
+              "count": 2667,
+              "avg": 4.63
+            },
+            "isMarketplace": false
+          },
+          "payments": [
+            {
+              "costCode": "INV",
+              "name": "Rechnung"
+            },
+            {
+              "costCode": "PP",
+              "name": "PayPal"
+            },
+            {
+              "costCode": "SUW",
+              "name": "Sofort."
+            },
+            {
+              "costCode": "CBC",
+              "name": "Kreditkarte"
+            },
+            {
+              "costCode": "CIA",
+              "name": "Vorkasse"
+            }
+          ],
+          "showPaymentDisclaimer": false,
+          "delivery": {
+            "deliveryText": "bis Sa. 28.11.2026",
+            "deliveryStatus": "SHORT",
+            "earlyDeliveryDate": null,
+            "lateDeliveryDate": "2026-11-28"
+          },
+          "freeReturnDays": 30,
+          "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=8b1fe99f298a51b90fb6adac263a314c&categoryId=3512&pos=3&price=423.99&productid=5083655&sid=317105&type=offer&media=ipc-public-mcp",
+          "minShippingCost": "0,00 €",
+          "hasAlwaysFreeShipping": true,
+          "cheapestTotalPriceOffer": false,
+          "freshness": "2026-11-26T20:03:26.898Z"
+        }
+      ],
+      "prosCons": {
+        "pros": [
+          "Hingucker in der Küche dank Retro-Design",
+          "sehr große Auswahl an Farbvariationen",
+          "schwere und massive Konstruktion"
+        ],
+        "cons": [
+          "nicht alle Zubehörteile spülmaschinengeeignet",
+          "Spritzschutzdeckel nicht optimal konstruiert",
+          "für nur 1¬kg Teig",
+          "mangelnde Sicherheit"
+        ]
+      },
+      "testReports": {
+        "summary": {
+          "grade": "2,6",
+          "averageRating": 68.25,
+          "rating": "befriedigend",
+          "ratingCount": 4
+        },
+        "list": [
+          {
+            "providerName": "ETM Testmagazin",
+            "shortDescription": "Küchenmaschinen",
+            "summaryText": "Überzeugend sind die solide Ausstattung und der zuverlässige Betrieb des Modells. Es vermischt die Zutaten in der Schüssel recht flott. Kritik gibt es für den verbesserungswürdigen Spritzschutz. Außerdem ist die Maschine recht laut.",
+            "ratingValue": "91,60/100",
+            "publishedAt": 1564135200000,
+            "language": "de",
+            "issue": "08/2019",
+            "testedProductsCount": 2
+          },
+          {
+            "providerName": "Stiftung Warentest",
+            "shortDescription": "Küchenmaschinen",
+            "ratingValue": "2,8",
+            "publishedAt": 1542884400000,
+            "language": "de",
+            "issue": "12/2018",
+            "testedProductsCount": 12
+          },
+          {
+            "providerName": "Stiftung Warentest",
+            "shortDescription": "Küchenmaschinen mit Schwenkarm von oben",
+            "summaryText": "Die robuste KitchenAid hat neben einer 2. kleineren Schüssel kaum weiteres Zubehör im Lieferumfang. Sie verfügt über eine anständige Gebrauchsanweisung und knetet einen ordentliche Hefeteig. Allerdings sitzt dabei der Deckel nicht richtig auf der Schüssel. Am Schwenkarm musst Du aufpassen, dass Du Dir die Finger nicht einklemmst.",
+            "ratingValue": "2,8",
+            "publishedAt": 1542884400000,
+            "language": "de",
+            "issue": "12/2018",
+            "testedProductsCount": 8
+          },
+          {
+            "providerName": "Konsument",
+            "shortDescription": "Küchenmaschinen",
+            "ratingValue": "54/100",
+            "publishedAt": 1548932400000,
+            "language": "de",
+            "issue": "02/2019",
+            "testedProductsCount": 9
+          }
+        ]
+      },
+      "productSpecification": {
+        "groups": [
+          {
+            "name": "Funktionen & Eigenschaften",
+            "type": "DEFAULT",
+            "attributes": [
+              {
+                "name": "Funktionen",
+                "value": "Direktantrieb, Sanftanlauf, Planetenrührwerk, Kabelaufwicklung"
+              },
+              {
+                "name": "Füllmenge Rührschüsseln",
+                "value": "3 Liter, 4,8 Liter"
+              },
+              {
+                "name": "Schüsseleigenschaften",
+                "value": "rostfrei, mit Griff"
+              },
+              {
+                "name": "Zubereitungsmenge",
+                "value": "1 kg Teig"
+              },
+              {
+                "name": "Sicherheitseinrichtung",
+                "value": "Abschaltautomatik"
+              },
+              {
+                "name": "Zubereitungsarten",
+                "value": "Kneten, Schlagen, Rühren, Mischen, Hefeteige kneten"
+              }
+            ]
+          },
+          {
+            "name": "Austattung",
+            "type": "DEFAULT",
+            "attributes": [
+              {
+                "name": "Ausstattungen",
+                "value": "kippbarer Motorkopf, Ansatznabe, Zubehöranschluss"
+              },
+              {
+                "name": "Lieferumfang",
+                "value": "Schneebesen, 2 Rührschüsseln, Knethaken, Flachrührer, Spritzschutz, Flexi-Rührer, Patisserie-Set"
+              },
+              {
+                "name": "Bedienelemente",
+                "value": "Schiebeschalter"
+              }
+            ]
+          },
+          {
+            "name": "Farbe & Material",
+            "type": "DEFAULT",
+            "attributes": [
+              {
+                "name": "Farbe",
+                "value": "rot"
+              },
+              {
+                "name": "Gehäusematerial",
+                "value": "Aluminium"
+              },
+              {
+                "name": "Material Schüssel",
+                "value": "Edelstahl"
+              }
+            ]
+          },
+          {
+            "name": "Technische Daten",
+            "type": "DEFAULT",
+            "attributes": [
+              {
+                "name": "Leistung (W)",
+                "value": "300 Watt"
+              },
+              {
+                "name": "Geschwindigkeitsstufe",
+                "value": "10"
+              },
+              {
+                "name": "maximale Drehzahl",
+                "value": "220 U/min"
+              },
+              {
+                "name": "Kabellänge",
+                "value": "106 cm"
+              },
+              {
+                "name": "Zubehöranschluss",
+                "value": "1"
+              },
+              {
+                "name": "PS",
+                "value": "0,19 PS"
+              }
+            ]
+          },
+          {
+            "name": "Maße & Gewicht",
+            "type": "DEFAULT",
+            "attributes": [
+              {
+                "name": "Gewicht",
+                "value": "10,98 kg"
+              },
+              {
+                "name": "Breite",
+                "value": "24 cm"
+              },
+              {
+                "name": "Höhe",
+                "value": "36 cm"
+              },
+              {
+                "name": "Tiefe",
+                "value": "37 cm"
+              }
+            ]
+          },
+          {
+            "name": "",
+            "type": "IMPORTANT",
+            "attributes": [
+              {
+                "name": "Gelistet seit",
+                "value": "Juli 2016"
+              },
+              {
+                "name": "Produkttypen",
+                "value": "Knetmaschine, Multifunktions-Küchenmaschine"
+              },
+              {
+                "name": "Serie",
+                "value": "KitchenAid Artisan"
+              }
+            ]
+          },
+          {
+            "name": "",
+            "type": "OTHER",
+            "attributes": [
+              {
+                "name": "Hinweis",
+                "value": "Um Schäden am Gerät zu vermeiden sollten die Hinweise der Betriebsanleitung, bezüglich Betriebsdauer und Verarbeitungsmenge, beachtet werden."
+              }
+            ]
+          }
+        ]
+      },
+      "productOverview": [
+        "Füllmenge Rührschüssel 3 Liter",
+        "300 Watt",
+        "maximale Drehzahl 220 U/min",
+        "10,98 kg",
+        "Breite 24 cm",
+        "Höhe 36 cm",
+        "Tiefe 37 cm",
+        "Patisserie-Set",
+        "Planetenrührwerk",
+        "Sanftanlauf",
+        "Direktantrieb"
+      ],
+      "productDetailsUrl": "https://www.idealo.de/preisvergleich/OffersOfProduct/5083655_-artisan-5ksm175ps-eca-liebesapfelrot-kitchenaid.html#datasheet",
+      "priceTrend": {
+        "history": [
+          {
+            "dateTime": 1793141999999,
+            "price": 43700
+          },
+          {
+            "dateTime": 1793228399999,
+            "price": 43700
+          },
+          {
+            "dateTime": 1793314799999,
+            "price": 43700
+          },
+          {
+            "dateTime": 1793401199999,
+            "price": 43700
+          },
+          {
+            "dateTime": 1793487599999,
+            "price": 41700
+          },
+          {
+            "dateTime": 1793573999999,
+            "price": 41700
+          },
+          {
+            "dateTime": 1793660399999,
+            "price": 41700
+          },
+          {
+            "dateTime": 1793746799999,
+            "price": 42222
+          },
+          {
+            "dateTime": 1793833199999,
+            "price": 42222
+          },
+          {
+            "dateTime": 1793919599999,
+            "price": 42222
+          },
+          {
+            "dateTime": 1794005999999,
+            "price": 42222
+          },
+          {
+            "dateTime": 1794092399999,
+            "price": 42222
+          },
+          {
+            "dateTime": 1794178799999,
+            "price": 42222
+          },
+          {
+            "dateTime": 1794265199999,
+            "price": 42222
+          },
+          {
+            "dateTime": 1794351599999,
+            "price": 42222
+          },
+          {
+            "dateTime": 1794437999999,
+            "price": 42222
+          },
+          {
+            "dateTime": 1794524399999,
+            "price": 42222
+          },
+          {
+            "dateTime": 1794610799999,
+            "price": 42222
+          },
+          {
+            "dateTime": 1794697199999,
+            "price": 42222
+          },
+          {
+            "dateTime": 1794783599999,
+            "price": 42222
+          },
+          {
+            "dateTime": 1794869999999,
+            "price": 38399
+          },
+          {
+            "dateTime": 1794956399999,
+            "price": 42399
+          },
+          {
+            "dateTime": 1795042799999,
+            "price": 42399
+          },
+          {
+            "dateTime": 1795129199999,
+            "price": 43700
+          },
+          {
+            "dateTime": 1795215599999,
+            "price": 43700
+          },
+          {
+            "dateTime": 1795301999999,
+            "price": 43400
+          },
+          {
+            "dateTime": 1795388399999,
+            "price": 43400
+          },
+          {
+            "dateTime": 1795474799999,
+            "price": 43400
+          },
+          {
+            "dateTime": 1795561199999,
+            "price": 42399
+          },
+          {
+            "dateTime": 1795647599999,
+            "price": 42399
+          },
+          {
+            "dateTime": 1795723406905,
+            "price": 39999
+          }
+        ]
+      }
+    },
+    "offers": {
+      "nextOffset": 5,
+      "offers": [
+        {
+          "key": "361c88429e9fffd2c76c9f49ba8d4366",
+          "price": "399,99 €",
+          "basePrice": null,
+          "shop": {
+            "shopId": "24111",
+            "merchantId": null,
+            "name": "euronics.de",
+            "merchantName": "Euronics XXL Öhringen",
+            "rating": {
+              "count": null,
+              "avg": null
+            },
+            "isMarketplace": true
+          },
+          "payments": [
+            {
+              "costCode": "PP",
+              "name": "PayPal"
+            },
+            {
+              "costCode": "CBC",
+              "name": "Kreditkarte"
+            },
+            {
+              "costCode": "APPLE_PAY",
+              "name": "Apple Pay"
+            },
+            {
+              "costCode": "CIA",
+              "name": "Vorkasse"
+            }
+          ],
+          "showPaymentDisclaimer": false,
+          "delivery": {
+            "deliveryText": "bis Sa. 28.11.2026",
+            "deliveryStatus": "SHORT",
+            "earlyDeliveryDate": null,
+            "lateDeliveryDate": "2026-11-28"
+          },
+          "freeReturnDays": null,
+          "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=361c88429e9fffd2c76c9f49ba8d4366&categoryId=3512&pos=1&price=399.99&productid=5083655&sid=24111&type=offer&media=ipc-public-mcp",
+          "minShippingCost": "6,99 €",
+          "hasAlwaysFreeShipping": false,
+          "cheapestTotalPriceOffer": true,
+          "freshness": "2026-11-26T20:03:27.330Z"
+        },
+        {
+          "key": "f9690130a13c5e645db1815b9d990b83",
+          "price": "422,22 €",
+          "basePrice": null,
+          "shop": {
+            "shopId": "313752",
+            "merchantId": null,
+            "name": "ramershoven.com",
+            "merchantName": null,
+            "rating": {
+              "count": 75,
+              "avg": 5
+            },
+            "isMarketplace": false
+          },
+          "payments": [
+            {
+              "costCode": "INV",
+              "name": "Rechnung"
+            },
+            {
+              "costCode": "PP",
+              "name": "PayPal"
+            },
+            {
+              "costCode": "CBC",
+              "name": "Kreditkarte"
+            },
+            {
+              "costCode": "CIA",
+              "name": "Vorkasse"
+            },
+            {
+              "costCode": "AMZP",
+              "name": "Amazon Pay"
+            }
+          ],
+          "showPaymentDisclaimer": false,
+          "delivery": {
+            "deliveryText": "Sa. 28.11.–Mo. 30.11.2026",
+            "deliveryStatus": "SHORT",
+            "earlyDeliveryDate": "2026-11-28",
+            "lateDeliveryDate": "2026-11-30"
+          },
+          "freeReturnDays": null,
+          "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=f9690130a13c5e645db1815b9d990b83&categoryId=3512&pos=2&price=422.22&productid=5083655&sid=313752&type=offer&media=ipc-public-mcp",
+          "minShippingCost": "1,95 €",
+          "hasAlwaysFreeShipping": false,
+          "cheapestTotalPriceOffer": false,
+          "freshness": "2026-11-26T20:03:27.330Z"
+        },
+        {
+          "key": "8b1fe99f298a51b90fb6adac263a314c",
+          "price": "423,99 €",
+          "basePrice": null,
+          "shop": {
+            "shopId": "317105",
+            "merchantId": null,
+            "name": "galaxus.de",
+            "merchantName": null,
+            "rating": {
+              "count": 2667,
+              "avg": 4.63
+            },
+            "isMarketplace": false
+          },
+          "payments": [
+            {
+              "costCode": "INV",
+              "name": "Rechnung"
+            },
+            {
+              "costCode": "PP",
+              "name": "PayPal"
+            },
+            {
+              "costCode": "SUW",
+              "name": "Sofort."
+            },
+            {
+              "costCode": "CBC",
+              "name": "Kreditkarte"
+            },
+            {
+              "costCode": "CIA",
+              "name": "Vorkasse"
+            }
+          ],
+          "showPaymentDisclaimer": false,
+          "delivery": {
+            "deliveryText": "bis Sa. 28.11.2026",
+            "deliveryStatus": "SHORT",
+            "earlyDeliveryDate": null,
+            "lateDeliveryDate": "2026-11-28"
+          },
+          "freeReturnDays": 30,
+          "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=8b1fe99f298a51b90fb6adac263a314c&categoryId=3512&pos=3&price=423.99&productid=5083655&sid=317105&type=offer&media=ipc-public-mcp",
+          "minShippingCost": "0,00 €",
+          "hasAlwaysFreeShipping": true,
+          "cheapestTotalPriceOffer": false,
+          "freshness": "2026-11-26T20:03:27.330Z"
+        },
+        {
+          "key": "9067c7d9f6d08deeeb2ec478784f7223",
+          "price": "423,99 €",
+          "basePrice": null,
+          "shop": {
+            "shopId": "26895",
+            "merchantId": "42596624",
+            "name": "kaufland.de",
+            "merchantName": "McElec",
+            "rating": {
+              "count": null,
+              "avg": null
+            },
+            "isMarketplace": true
+          },
+          "payments": [
+            {
+              "costCode": "INV",
+              "name": "Rechnung"
+            },
+            {
+              "costCode": "PP",
+              "name": "PayPal"
+            },
+            {
+              "costCode": "DD",
+              "name": "Lastschrift"
+            },
+            {
+              "costCode": "SUW",
+              "name": "Sofort."
+            },
+            {
+              "costCode": "CBC",
+              "name": "Kreditkarte"
+            },
+            {
+              "costCode": "CIA",
+              "name": "Vorkasse"
+            }
+          ],
+          "showPaymentDisclaimer": false,
+          "delivery": {
+            "deliveryText": "Sa. 28.11.–Di. 01.12.2026",
+            "deliveryStatus": "MEDIUM",
+            "earlyDeliveryDate": "2026-11-28",
+            "lateDeliveryDate": "2026-12-01"
+          },
+          "freeReturnDays": 14,
+          "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=9067c7d9f6d08deeeb2ec478784f7223&categoryId=3512&pos=4&price=423.99&productid=5083655&sid=26895&type=offer&media=ipc-public-mcp",
+          "minShippingCost": "0,00 €",
+          "hasAlwaysFreeShipping": true,
+          "cheapestTotalPriceOffer": false,
+          "freshness": "2026-11-26T20:03:27.330Z"
+        },
+        {
+          "key": "d02c8e26410a5ec31f4737aaf225fb78",
+          "price": "423,99 €",
+          "basePrice": null,
+          "shop": {
+            "shopId": "286835",
+            "merchantId": null,
+            "name": "expert.de",
+            "merchantName": null,
+            "rating": {
+              "count": 4376,
+              "avg": 2.6
+            },
+            "isMarketplace": false
+          },
+          "payments": [
+            {
+              "costCode": "INV",
+              "name": "Rechnung"
+            },
+            {
+              "costCode": "PP",
+              "name": "PayPal"
+            },
+            {
+              "costCode": "DD",
+              "name": "Lastschrift"
+            },
+            {
+              "costCode": "SUW",
+              "name": "Sofort."
+            },
+            {
+              "costCode": "CBC",
+              "name": "Kreditkarte"
+            }
+          ],
+          "showPaymentDisclaimer": false,
+          "delivery": {
+            "deliveryText": "Sa. 28.11.–Mo. 30.11.2026",
+            "deliveryStatus": "SHORT",
+            "earlyDeliveryDate": "2026-11-28",
+            "lateDeliveryDate": "2026-11-30"
+          },
+          "freeReturnDays": 14,
+          "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=d02c8e26410a5ec31f4737aaf225fb78&categoryId=3512&pos=5&price=423.99&productid=5083655&sid=286835&type=offer&media=ipc-public-mcp",
+          "minShippingCost": "0,00 €",
+          "hasAlwaysFreeShipping": true,
+          "cheapestTotalPriceOffer": false,
+          "freshness": "2026-11-26T20:03:27.330Z"
+        }
+      ]
+    },
+    "price_history": {
+      "priceTrend": {
+        "history": [
+          {
+            "dateTime": 1793141999999,
+            "price": "437,00 €",
+            "dateTimeISO": "2026-10-27T22:59:59.999Z"
+          },
+          {
+            "dateTime": 1793228399999,
+            "price": "437,00 €",
+            "dateTimeISO": "2026-10-28T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1793314799999,
+            "price": "437,00 €",
+            "dateTimeISO": "2026-10-29T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1793401199999,
+            "price": "437,00 €",
+            "dateTimeISO": "2026-10-30T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1793487599999,
+            "price": "417,00 €",
+            "dateTimeISO": "2026-10-31T22:59:59.999Z",
+            "priceChangePercent": -4.576659038901601
+          },
+          {
+            "dateTime": 1793573999999,
+            "price": "417,00 €",
+            "dateTimeISO": "2026-11-01T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1793660399999,
+            "price": "417,00 €",
+            "dateTimeISO": "2026-11-02T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1793746799999,
+            "price": "422,22 €",
+            "dateTimeISO": "2026-11-03T22:59:59.999Z",
+            "priceChangePercent": 1.2517985611510791
+          },
+          {
+            "dateTime": 1793833199999,
+            "price": "422,22 €",
+            "dateTimeISO": "2026-11-04T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1793919599999,
+            "price": "422,22 €",
+            "dateTimeISO": "2026-11-05T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1794005999999,
+            "price": "422,22 €",
+            "dateTimeISO": "2026-11-06T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1794092399999,
+            "price": "422,22 €",
+            "dateTimeISO": "2026-11-07T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1794178799999,
+            "price": "422,22 €",
+            "dateTimeISO": "2026-11-08T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1794265199999,
+            "price": "422,22 €",
+            "dateTimeISO": "2026-11-09T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1794351599999,
+            "price": "422,22 €",
+            "dateTimeISO": "2026-11-10T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1794437999999,
+            "price": "422,22 €",
+            "dateTimeISO": "2026-11-11T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1794524399999,
+            "price": "422,22 €",
+            "dateTimeISO": "2026-11-12T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1794610799999,
+            "price": "422,22 €",
+            "dateTimeISO": "2026-11-13T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1794697199999,
+            "price": "422,22 €",
+            "dateTimeISO": "2026-11-14T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1794783599999,
+            "price": "422,22 €",
+            "dateTimeISO": "2026-11-15T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1794869999999,
+            "price": "383,99 €",
+            "dateTimeISO": "2026-11-16T22:59:59.999Z",
+            "priceChangePercent": -9.054521339585998
+          },
+          {
+            "dateTime": 1794956399999,
+            "price": "423,99 €",
+            "dateTimeISO": "2026-11-17T22:59:59.999Z",
+            "priceChangePercent": 10.416937941092216
+          },
+          {
+            "dateTime": 1795042799999,
+            "price": "423,99 €",
+            "dateTimeISO": "2026-11-18T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1795129199999,
+            "price": "437,00 €",
+            "dateTimeISO": "2026-11-19T22:59:59.999Z",
+            "priceChangePercent": 3.0684685959574516
+          },
+          {
+            "dateTime": 1795215599999,
+            "price": "437,00 €",
+            "dateTimeISO": "2026-11-20T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1795301999999,
+            "price": "434,00 €",
+            "dateTimeISO": "2026-11-21T22:59:59.999Z",
+            "priceChangePercent": -0.6864988558352403
+          },
+          {
+            "dateTime": 1795388399999,
+            "price": "434,00 €",
+            "dateTimeISO": "2026-11-22T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1795474799999,
+            "price": "434,00 €",
+            "dateTimeISO": "2026-11-23T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1795561199999,
+            "price": "423,99 €",
+            "dateTimeISO": "2026-11-24T22:59:59.999Z",
+            "priceChangePercent": -2.3064516129032255
+          },
+          {
+            "dateTime": 1795647599999,
+            "price": "423,99 €",
+            "dateTimeISO": "2026-11-25T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1795723407556,
+            "price": "399,99 €",
+            "dateTimeISO": "2026-11-26T20:03:27.556Z",
+            "priceChangePercent": -5.660510861105215
+          }
+        ],
+        "statistics": {
+          "minPrice": "383,99 €",
+          "maxPrice": "437,00 €",
+          "avgPrice": "423,99 €",
+          "currentPrice": "399,99 €",
+          "priceChangePercent": -8.469107551487415,
+          "lowestPriceDate": "2026-11-16T22:59:59.999Z",
+          "highestPriceDate": "2026-10-27T22:59:59.999Z"
+        },
+        "samplingGranularity": "daily",
+        "dataSourceConfidence": 0.95,
+        "periodDays": 29.9,
+        "totalDataPoints": 31
+      }
+    },
+    "all_cached": true
+  }
+}

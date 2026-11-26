@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CleanBreak — Fair Household Split powered by idealo MCP</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen antialiased">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-6 space-y-6">
+    <!-- Top Header -->
+    <header class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 border-b border-slate-800 pb-4">
+      <div>
+        <div class="flex items-center gap-3">
+          <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-white">CleanBreak</h1>
+          <span class="px-2.5 py-0.5 text-xs font-semibold rounded-full bg-orange-500/20 text-orange-300 border border-orange-500/40">
+            Powered by idealo MCP
+          </span>
+          <span id="dataSourceBadge" class="px-2.5 py-0.5 text-xs font-semibold rounded-full bg-slate-800 text-slate-300 border border-slate-700">
+            Loading...
+          </span>
+        </div>
+        <p id="scenarioSubtitle" class="text-sm text-slate-400 mt-1">
+          Neutral market-grounded household arbitration — who keeps what, without fighting over prices.
+        </p>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-2">
+        <button id="btnLiveIdealo" class="px-3.5 py-2 rounded-lg bg-orange-500 hover:bg-orange-400 text-slate-950 font-semibold text-sm transition">
+          Refresh via Live idealo MCP
+        </button>
+        <button id="btnResetSwaps" class="px-3.5 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 font-medium text-sm border border-slate-700 transition">
+          Reset Manual Swaps
+        </button>
+      </div>
+    </header>
+
+    <!-- Warning Banner (if offline fallback) -->
+    <div id="warningBanner" class="hidden rounded-xl bg-amber-950/60 border border-amber-500/40 px-4 py-3 text-sm text-amber-200"></div>
+
+    <!-- Strategy Tabs -->
+    <section class="flex flex-wrap items-center justify-between gap-3">
+      <div class="inline-flex rounded-xl bg-slate-900 p-1 border border-slate-800" role="tablist">
+        <button data-mode="balanced" class="mode-tab px-4 py-2 rounded-lg text-sm font-semibold bg-indigo-500 text-white">
+          Balanced (Envy-Free)
+        </button>
+        <button data-mode="min_cash" class="mode-tab px-4 py-2 rounded-lg text-sm font-semibold text-slate-400 hover:text-white">
+          Minimal Cash Transfer
+        </button>
+        <button data-mode="liquidate_contested" class="mode-tab px-4 py-2 rounded-lg text-sm font-semibold text-slate-400 hover:text-white">
+          Sell Contested Items
+        </button>
+      </div>
+      <div class="text-xs text-slate-400">
+        Tip: Click <span class="text-slate-200 font-semibold">Swap</span> or drag any item's <span class="text-slate-200 font-semibold">Depreciation</span> slider for instant what-if math.
+      </div>
+    </section>
+
+    <!-- Settlement Hero Banner -->
+    <section id="heroBanner" class="rounded-2xl bg-gradient-to-br from-slate-900 to-slate-900/70 border border-slate-800 p-5 sm:p-6 shadow-xl space-y-4">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div class="rounded-xl bg-slate-950/70 border border-slate-800 p-4">
+          <div class="text-xs uppercase tracking-wider text-slate-400" id="labelGoodsA">Alex Keeps</div>
+          <div class="text-3xl font-extrabold text-sky-400 mt-1" id="valGoodsA">€0</div>
+          <div class="text-xs text-slate-400 mt-1" id="subGoodsA">Entitled: €0 · Pts won: 0/0</div>
+        </div>
+        <div class="rounded-xl bg-slate-950/70 border border-slate-800 p-4">
+          <div class="text-xs uppercase tracking-wider text-slate-400" id="labelGoodsB">Sam Keeps</div>
+          <div class="text-3xl font-extrabold text-emerald-400 mt-1" id="valGoodsB">€0</div>
+          <div class="text-xs text-slate-400 mt-1" id="subGoodsB">Entitled: €0 · Pts won: 0/0</div>
+        </div>
+        <div class="rounded-xl bg-indigo-950/60 border border-indigo-500/40 p-4 md:col-span-2 flex flex-col justify-between">
+          <div class="flex items-center justify-between">
+            <span class="text-xs uppercase tracking-wider text-indigo-300 font-semibold">Exact Cash Equalization</span>
+            <span id="fairnessPill" class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
+              Envy-Free · 0%
+            </span>
+          </div>
+          <div id="cashTransferSummary" class="text-xl sm:text-2xl font-bold text-white mt-2">
+            Calculating...
+          </div>
+          <p id="mediatorSummary" class="text-xs sm:text-sm text-slate-300 mt-2 leading-relaxed"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contention Arbitrage ("Aha!" Black Friday Conflict Breaker) -->
+    <section id="arbitrageSection" class="hidden rounded-2xl bg-gradient-to-r from-orange-950/70 via-amber-950/50 to-slate-900 border border-orange-500/50 p-5 shadow-lg">
+      <div class="flex items-center gap-2 text-orange-300 text-xs font-bold uppercase tracking-wider mb-2">
+        <span>⚡ Conflict Breaker · idealo 30-Day Price Arbitrage</span>
+      </div>
+      <div id="arbitrageCards" class="space-y-3"></div>
+    </section>
+
+    <!-- Main Split Board (Party A | Party B | Sell) -->
+    <section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div class="space-y-3">
+        <div class="flex items-center justify-between">
+          <h2 id="colHeaderA" class="text-lg font-bold text-sky-400">Alex Keeps</h2>
+          <span id="colCountA" class="text-xs text-slate-400">0 items</span>
+        </div>
+        <div id="colA" class="space-y-3"></div>
+      </div>
+
+      <div class="space-y-3">
+        <div class="flex items-center justify-between">
+          <h2 id="colHeaderB" class="text-lg font-bold text-emerald-400">Sam Keeps</h2>
+          <span id="colCountB" class="text-xs text-slate-400">0 items</span>
+        </div>
+        <div id="colB" class="space-y-3"></div>
+      </div>
+    </section>
+
+    <!-- Sell & Split Pool (shown only when items are marked sell_split) -->
+    <section id="sellSection" class="hidden space-y-3">
+      <h2 class="text-lg font-bold text-amber-300">Sell &amp; Split Proceeds</h2>
+      <div id="colSell" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
+    </section>
+
+    <!-- Bottom Grid: Add Messy Item + Re-Equip Replacement Basket -->
+    <section class="grid grid-cols-1 lg:grid-cols-2 gap-6 pt-2">
+      <!-- Add Live Messy Item -->
+      <div class="rounded-2xl bg-slate-900 border border-slate-800 p-5 space-y-3">
+        <h3 class="text-base font-bold text-white">Add Live Item (Messy Text)</h3>
+        <p class="text-xs text-slate-400">
+          Paste a raw note (e.g., <code class="text-slate-200">PlayStation 5 Slim 2024, shared 50/50</code>). CleanBreak parses it and values it via idealo MCP.
+        </p>
+        <div class="flex gap-2">
+          <input id="messyInput" type="text" placeholder="e.g. Sony WH-1000XM5 headphones 2024, Alex paid"
+                 class="flex-1 rounded-lg bg-slate-950 border border-slate-700 px-3 py-2 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-orange-500" />
+          <button id="btnAddMessy" class="px-4 py-2 rounded-lg bg-indigo-500 hover:bg-indigo-400 text-white text-sm font-semibold transition">
+            Parse &amp; Value
+          </button>
+        </div>
+      </div>
+
+      <!-- Re-Equip Replacement Basket -->
+      <div class="rounded-2xl bg-slate-900 border border-slate-800 p-5 space-y-3">
+        <h3 class="text-base font-bold text-white">Re-Equip Replacement Basket (idealo Links)</h3>
+        <p class="text-xs text-slate-400">
+          For items a party cared about but didn't keep — direct idealo offers funded by the settlement payout.
+        </p>
+        <div id="replacementList" class="space-y-2 text-sm"></div>
+      </div>
+    </section>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

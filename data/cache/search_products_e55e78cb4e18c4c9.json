@@ -1,0 +1,560 @@
+{
+  "namespace": "search_products",
+  "request": {
+    "query": "Bosch Serie 6 Waschmaschine 8 kg",
+    "country": "DE"
+  },
+  "cached_at": 1795727013.8927581,
+  "data": {
+    "query": "Bosch Serie 6 Waschmaschine 8 kg",
+    "availableCategories": [
+      {
+        "categoryId": "1941",
+        "categoryName": "Waschmaschinen",
+        "amount": 0
+      }
+    ],
+    "availableManufacturers": [
+      {
+        "manufacturerId": "1032",
+        "manufacturerName": "Bosch",
+        "amount": 6,
+        "searchFilterId": "178563"
+      }
+    ],
+    "availableFilters": [
+      {
+        "attributeId": "15583",
+        "name": "Produkttyp",
+        "filters": [
+          {
+            "filterId": "1201412",
+            "content": "Frontlader",
+            "amount": 6
+          }
+        ]
+      },
+      {
+        "attributeId": "30448",
+        "name": "bei idealo gelistet",
+        "filters": [
+          {
+            "filterId": "105414189",
+            "content": "seit 2022",
+            "amount": 6
+          }
+        ]
+      },
+      {
+        "attributeId": "16732",
+        "name": "Serie",
+        "filters": [
+          {
+            "filterId": "2075360",
+            "content": "Bosch Serie 6",
+            "amount": 6
+          },
+          {
+            "filterId": "1212629",
+            "content": "Bosch Serie 8",
+            "amount": 1
+          },
+          {
+            "filterId": "3343942",
+            "content": "Bosch Serie 4",
+            "amount": 12
+          },
+          {
+            "filterId": "3323389",
+            "content": "Bosch Serie 2",
+            "amount": 2
+          }
+        ]
+      },
+      {
+        "attributeId": "1338",
+        "name": "Farbe",
+        "filters": [
+          {
+            "filterId": "1855609",
+            "content": "weiß",
+            "amount": 6
+          }
+        ]
+      },
+      {
+        "attributeId": "30855",
+        "name": "Energieeffizienzklasse",
+        "filters": [
+          {
+            "filterId": "101858184",
+            "content": "A",
+            "amount": 4
+          },
+          {
+            "filterId": "101858185",
+            "content": "B",
+            "amount": 1
+          },
+          {
+            "filterId": "101858186",
+            "content": "C",
+            "amount": 1
+          }
+        ]
+      },
+      {
+        "attributeId": "16152",
+        "name": "Füllmenge",
+        "filters": [
+          {
+            "filterId": "4987412",
+            "content": "9 kg",
+            "amount": 44
+          },
+          {
+            "filterId": "4987411",
+            "content": "8 kg",
+            "amount": 6
+          },
+          {
+            "filterId": "4987413",
+            "content": "10 kg",
+            "amount": 15
+          },
+          {
+            "filterId": "4987414",
+            "content": "11 kg",
+            "amount": 1
+          }
+        ]
+      },
+      {
+        "attributeId": "17917",
+        "name": "Schleuderlautstärke",
+        "filters": [
+          {
+            "filterId": "1983877",
+            "content": "bis 73 dB(A)",
+            "amount": 6
+          }
+        ]
+      },
+      {
+        "attributeId": "30848",
+        "name": "Luftschallemissionsklasse",
+        "filters": [
+          {
+            "filterId": "101880218",
+            "content": "A",
+            "amount": 6
+          }
+        ]
+      },
+      {
+        "attributeId": "29014",
+        "name": "max. Schleuderdrehzahl",
+        "filters": [
+          {
+            "filterId": "1136994",
+            "content": "1400 U/Min",
+            "amount": 5
+          },
+          {
+            "filterId": "87889",
+            "content": "1200 U/Min",
+            "amount": 1
+          }
+        ]
+      },
+      {
+        "attributeId": "19649",
+        "name": "Trommelvolumen",
+        "filters": [
+          {
+            "filterId": "106497622",
+            "content": "52 bis 58 Liter",
+            "amount": 1
+          },
+          {
+            "filterId": "105998212",
+            "content": "58 bis 64 Liter",
+            "amount": 2
+          }
+        ]
+      },
+      {
+        "attributeId": "19969",
+        "name": "Waschdauer",
+        "filters": [
+          {
+            "filterId": "106499317",
+            "content": "209 bis 219 min",
+            "amount": 3
+          },
+          {
+            "filterId": "103886573",
+            "content": "ab 240 min",
+            "amount": 2
+          }
+        ]
+      },
+      {
+        "attributeId": "29027",
+        "name": "Sicherheitseinrichtung",
+        "filters": [
+          {
+            "filterId": "1197023",
+            "content": "AquaStop",
+            "amount": 3
+          },
+          {
+            "filterId": "1207694",
+            "content": "Unwuchtkontrolle",
+            "amount": 5
+          },
+          {
+            "filterId": "1207683",
+            "content": "Schaumregulierung",
+            "amount": 6
+          },
+          {
+            "filterId": "1197024",
+            "content": "Kindersicherung",
+            "amount": 6
+          }
+        ]
+      },
+      {
+        "attributeId": "29031",
+        "name": "Anzeige",
+        "filters": [
+          {
+            "filterId": "5390536",
+            "content": "Restlaufzeit",
+            "amount": 6
+          },
+          {
+            "filterId": "7404050",
+            "content": "Schleuderdrehzahl",
+            "amount": 2
+          },
+          {
+            "filterId": "5390537",
+            "content": "Verbrauch",
+            "amount": 1
+          }
+        ]
+      },
+      {
+        "attributeId": "29028",
+        "name": "Bauart",
+        "filters": [
+          {
+            "filterId": "7327568",
+            "content": "unterbaufähig",
+            "amount": 4
+          },
+          {
+            "filterId": "758595",
+            "content": "freistehend",
+            "amount": 5
+          },
+          {
+            "filterId": "10034572",
+            "content": "unterschiebbar ab 85 cm Nischenhöhe",
+            "amount": 5
+          }
+        ]
+      },
+      {
+        "attributeId": "30128",
+        "name": "Türanschlag",
+        "filters": [
+          {
+            "filterId": "1855611",
+            "content": "links",
+            "amount": 5
+          }
+        ]
+      },
+      {
+        "attributeId": "30079",
+        "name": "Hauptmerkmale",
+        "filters": [
+          {
+            "filterId": "3857565",
+            "content": "für 3-4 Personen",
+            "amount": 6
+          },
+          {
+            "filterId": "101999634",
+            "content": "für Allergiker geeignet",
+            "amount": 2
+          }
+        ]
+      },
+      {
+        "attributeId": "25428",
+        "name": "Höhe",
+        "filters": [
+          {
+            "filterId": "7327531",
+            "content": "85 cm",
+            "amount": 5
+          },
+          {
+            "filterId": "10035978",
+            "content": "65 cm",
+            "amount": 1
+          }
+        ]
+      },
+      {
+        "attributeId": "23477",
+        "name": "Breite",
+        "filters": [
+          {
+            "filterId": "5258170",
+            "content": "60 cm",
+            "amount": 6
+          }
+        ]
+      },
+      {
+        "attributeId": "25249",
+        "name": "Tiefe",
+        "filters": [
+          {
+            "filterId": "5278904",
+            "content": "55 cm",
+            "amount": 1
+          },
+          {
+            "filterId": "5278909",
+            "content": "60 cm",
+            "amount": 4
+          },
+          {
+            "filterId": "5278914",
+            "content": "65 cm",
+            "amount": 1
+          }
+        ]
+      },
+      {
+        "attributeId": "25251",
+        "name": "Komfortfunktionen",
+        "filters": [
+          {
+            "filterId": "1207678",
+            "content": "Mengenautomatik",
+            "amount": 3
+          },
+          {
+            "filterId": "1574199",
+            "content": "Nachlegefunktion",
+            "amount": 6
+          },
+          {
+            "filterId": "1207675",
+            "content": "Knitterschutz",
+            "amount": 1
+          },
+          {
+            "filterId": "1207684",
+            "content": "wählbare Schleuderdrehzahl",
+            "amount": 3
+          },
+          {
+            "filterId": "1552797",
+            "content": "wählbare Temperatur",
+            "amount": 2
+          },
+          {
+            "filterId": "1207689",
+            "content": "Startzeitvorwahl",
+            "amount": 1
+          },
+          {
+            "filterId": "1207668",
+            "content": "Endzeitvorwahl",
+            "amount": 3
+          },
+          {
+            "filterId": "5390531",
+            "content": "Reinigungsprogramm",
+            "amount": 3
+          }
+        ]
+      },
+      {
+        "attributeId": "30085",
+        "name": "Spezialwaschprogramme",
+        "filters": [
+          {
+            "filterId": "1530520",
+            "content": "Kurzprogramm",
+            "amount": 2
+          },
+          {
+            "filterId": "1530517",
+            "content": "Allergie/Antibakteriell/Hygiene",
+            "amount": 2
+          },
+          {
+            "filterId": "1530530",
+            "content": "Sport/Outdoor/Synthetik",
+            "amount": 4
+          },
+          {
+            "filterId": "4871025",
+            "content": "Hemden/Blusen/Bügelleicht",
+            "amount": 6
+          },
+          {
+            "filterId": "1530527",
+            "content": "Bettdecken/Kopfkissen",
+            "amount": 2
+          },
+          {
+            "filterId": "1530524",
+            "content": "Kaltwäsche",
+            "amount": 2
+          },
+          {
+            "filterId": "4871023",
+            "content": "optional: extra spülen",
+            "amount": 2
+          },
+          {
+            "filterId": "7254858",
+            "content": "optional: variable Waschzeit",
+            "amount": 1
+          },
+          {
+            "filterId": "5460927",
+            "content": "Nachtwäsche/Leise Wäsche",
+            "amount": 1
+          }
+        ]
+      }
+    ],
+    "suggestedFilters": [
+      {
+        "id": "1201412",
+        "type": "SEARCH_FILTER"
+      },
+      {
+        "id": "4987412",
+        "type": "SEARCH_FILTER"
+      },
+      {
+        "id": "178563",
+        "type": "MANUFACTURER"
+      },
+      {
+        "id": "4987411",
+        "type": "SEARCH_FILTER"
+      },
+      {
+        "id": "4987413",
+        "type": "SEARCH_FILTER"
+      },
+      {
+        "id": "101858184",
+        "type": "SEARCH_FILTER"
+      },
+      {
+        "id": "4987414",
+        "type": "SEARCH_FILTER"
+      },
+      {
+        "id": "2075360",
+        "type": "SEARCH_FILTER"
+      },
+      {
+        "id": "1212629",
+        "type": "SEARCH_FILTER"
+      },
+      {
+        "id": "1136994",
+        "type": "SEARCH_FILTER"
+      }
+    ],
+    "sizeAttributes": [],
+    "results": [
+      {
+        "productRef": "pr.v1.k1.8I-MoeT9qcuYL5W3ucSCKG1DsEIEV2oK6fRtpo0VsYNY7ayoiA",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "Bosch WUU28T70",
+        "price": "549,00 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/202091/4/202091404/s1_produktbild_mobil/bosch-wuu28t70.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/202091404_-wuu28t70-bosch.html",
+        "userReviewsSummary": {
+          "averageRating": 4.54,
+          "totalReviewCount": 26
+        },
+        "testReportsSummary": {
+          "grade": "1,7"
+        },
+        "totalOfferCount": 29
+      },
+      {
+        "productRef": "pr.v1.k1.tx19K_4-0zIu8MIuzzV8OEqVPOZJuiGEr1BAI83gvf7ugTpoSg",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "Bosch WUU28T48",
+        "price": "549,00 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/202187/7/202187746/s1_produktbild_mobil/bosch-wuu28t48.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/202187746_-wuu28t48-bosch.html",
+        "userReviewsSummary": {
+          "averageRating": 4.61,
+          "totalReviewCount": 33
+        },
+        "totalOfferCount": 22
+      },
+      {
+        "productRef": "pr.v1.k1.C4tvSHXKZqzJtgsd_jByFXqAnQqMr1H-t_f-nkDIZ_jH4vWBRQ",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "Bosch WUU28TH1",
+        "price": "579,00 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/202247/2/202247221/s1_produktbild_mobil/bosch-wuu28th1.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/202247221_-wuu28th1-bosch.html",
+        "totalOfferCount": 17
+      },
+      {
+        "productRef": "pr.v1.k1.ioDrjhJiNo085EBMVMBPXQqShD4VMM1zH4ftMKFTg9keLo9nJQ",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "Bosch WUU28T18FR",
+        "price": "712,03 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/202259/6/202259609/s1_produktbild_mobil/bosch-wuu28t18fr.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/202259609_-wuu28t18fr-bosch.html",
+        "totalOfferCount": 4
+      },
+      {
+        "productRef": "pr.v1.k1.Lx2FLAge4eTwkLowaqaogN0WwGcaVfjaO3tWER_VEVauWNAmVA",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "Bosch WIW24342EU",
+        "price": "999,00 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/202239/3/202239358/s1_produktbild_mobil/bosch-wiw24342eu.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/202239358_-wiw24342eu-bosch.html",
+        "totalOfferCount": 1
+      },
+      {
+        "productRef": "pr.v1.k1.uW4idtxotBZLTLKCyJmcX9BpXwkwHBZDfTGLnBVMt_21UNDPkg",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "Bosch WUU28T63ES",
+        "price": "643,50 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/202180/5/202180585/s1_produktbild_mobil/bosch-wuu28t63es.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/202180585_-wuu28t63es-bosch.html",
+        "totalOfferCount": 2
+      }
+    ]
+  }
+}

@@ -1,0 +1,197 @@
+{
+  "namespace": "get_product_offers",
+  "request": {
+    "productRef": "pr.v1.k1.YmyrM98DdFZ0JDGIj09bgJa2yQAQUAxfEpy5hbgzGLzeHYvs5Q",
+    "country": "DE"
+  },
+  "cached_at": 1795727004.817816,
+  "data": {
+    "nextOffset": 5,
+    "offers": [
+      {
+        "key": "c84653295a789037116463266c8037fe",
+        "price": "359,00 €",
+        "basePrice": null,
+        "shop": {
+          "shopId": "310971",
+          "merchantId": null,
+          "name": "hifiklubben.de",
+          "merchantName": null,
+          "rating": {
+            "count": 809,
+            "avg": 4.74
+          },
+          "isMarketplace": false
+        },
+        "payments": [
+          {
+            "costCode": "INV",
+            "name": "Rechnung"
+          },
+          {
+            "costCode": "PP",
+            "name": "PayPal"
+          },
+          {
+            "costCode": "DD",
+            "name": "Lastschrift"
+          },
+          {
+            "costCode": "SUW",
+            "name": "Sofort."
+          },
+          {
+            "costCode": "CBC",
+            "name": "Kreditkarte"
+          },
+          {
+            "costCode": "CIA",
+            "name": "Vorkasse"
+          }
+        ],
+        "showPaymentDisclaimer": false,
+        "delivery": {
+          "deliveryText": "bis Sa. 28.11.2026",
+          "deliveryStatus": "SHORT",
+          "earlyDeliveryDate": null,
+          "lateDeliveryDate": "2026-11-28"
+        },
+        "freeReturnDays": null,
+        "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=c84653295a789037116463266c8037fe&categoryId=2021&pos=1&price=359.00&productid=202398620&sid=310971&type=offer&media=ipc-public-mcp",
+        "minShippingCost": "0,00 €",
+        "hasAlwaysFreeShipping": true,
+        "cheapestTotalPriceOffer": true,
+        "freshness": "2026-11-26T20:03:24.789Z"
+      },
+      {
+        "key": "4975eeef4f7d5c1635670c4bc2573398",
+        "price": "359,00 €",
+        "basePrice": null,
+        "shop": {
+          "shopId": "315149",
+          "merchantId": null,
+          "name": "audioforum-berlin.de",
+          "merchantName": null,
+          "rating": {
+            "count": 74,
+            "avg": 4.2
+          },
+          "isMarketplace": false
+        },
+        "payments": [
+          {
+            "costCode": "PP",
+            "name": "PayPal"
+          },
+          {
+            "costCode": "CBC",
+            "name": "Kreditkarte"
+          },
+          {
+            "costCode": "APPLE_PAY",
+            "name": "Apple Pay"
+          },
+          {
+            "costCode": "CIA",
+            "name": "Vorkasse"
+          }
+        ],
+        "showPaymentDisclaimer": false,
+        "delivery": {
+          "deliveryText": "bis Sa. 28.11.2026",
+          "deliveryStatus": "SHORT",
+          "earlyDeliveryDate": null,
+          "lateDeliveryDate": "2026-11-28"
+        },
+        "freeReturnDays": 14,
+        "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=4975eeef4f7d5c1635670c4bc2573398&categoryId=2021&pos=2&price=359.00&productid=202398620&sid=315149&type=offer&media=ipc-public-mcp",
+        "minShippingCost": "0,00 €",
+        "hasAlwaysFreeShipping": true,
+        "cheapestTotalPriceOffer": true,
+        "freshness": "2026-11-26T20:03:24.789Z"
+      },
+      {
+        "key": "281a8b6b35b9d34aeeb1fce6ea673dce",
+        "price": "359,00 €",
+        "basePrice": null,
+        "shop": {
+          "shopId": "299481",
+          "merchantId": null,
+          "name": "thomas-electronic.com",
+          "merchantName": null,
+          "rating": {
+            "count": 34,
+            "avg": 4.2
+          },
+          "isMarketplace": false
+        },
+        "payments": [
+          {
+            "costCode": "PP",
+            "name": "PayPal"
+          },
+          {
+            "costCode": "CBC",
+            "name": "Kreditkarte"
+          },
+          {
+            "costCode": "CIA",
+            "name": "Vorkasse"
+          }
+        ],
+        "showPaymentDisclaimer": false,
+        "delivery": {
+          "deliveryText": "Sa. 28.11.–Mo. 30.11.2026",
+          "deliveryStatus": "SHORT",
+          "earlyDeliveryDate": "2026-11-28",
+          "lateDeliveryDate": "2026-11-30"
+        },
+        "freeReturnDays": null,
+        "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=281a8b6b35b9d34aeeb1fce6ea673dce&categoryId=2021&pos=3&price=359.00&productid=202398620&sid=299481&type=offer&media=ipc-public-mcp",
+        "minShippingCost": "0,00 €",
+        "hasAlwaysFreeShipping": true,
+        "cheapestTotalPriceOffer": true,
+        "freshness": "2026-11-26T20:03:24.789Z"
+      },
+      {
+        "key": "b883bafe86e404b02f03dee513caee35",
+        "price": "359,00 €",
+        "basePrice": null,
+        "shop": {
+          "shopId": "335726",
+          "merchantId": null,
+          "name": "techniklieben.de",
+          "merchantName": null,
+          "rating": {
+            "count": 114,
+            "avg": 4.22
+          },
+          "isMarketplace": false
+        },
+        "payments": [
+          {
+            "costCode": "PP",
+            "name": "PayPal"
+          },
+          {
+            "costCode": "CBC",
+            "name": "Kreditkarte"
+          }
+        ],
+        "showPaymentDisclaimer": false,
+        "delivery": {
+          "deliveryText": "Sa. 28.11.–Mo. 30.11.2026",
+          "deliveryStatus": "SHORT",
+          "earlyDeliveryDate": "2026-11-28",
+          "lateDeliveryDate": "2026-11-30"
+        },
+        "freeReturnDays": 30,
+        "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=b883bafe86e404b02f03dee513caee35&categoryId=2021&pos=4&price=359.00&productid=202398620&sid=335726&type=offer&media=ipc-public-mcp",
+        "minShippingCost": "0,00 €",
+        "hasAlwaysFreeShipping": true,
+        "cheapestTotalPriceOffer": true,
+        "freshness": "2026-11-26T20:03:24.789Z"
+      }
+    ]
+  }
+}

@@ -1,0 +1,119 @@
+{
+  "namespace": "get_product_offers",
+  "request": {
+    "productRef": "pr.v1.k1.KMdjsVhybkt8ns7K90_SV7z8b15LgSTJI1TAydYYCArT7q-K5w",
+    "country": "DE"
+  },
+  "cached_at": 1795727002.999479,
+  "data": {
+    "nextOffset": -1,
+    "offers": [
+      {
+        "key": "c44c5f8810746eb2dfdea541b4e58e2e",
+        "price": "1.119,00 €",
+        "basePrice": null,
+        "shop": {
+          "shopId": "83231",
+          "merchantId": null,
+          "name": "gamingoase.de",
+          "merchantName": null,
+          "rating": {
+            "count": 2645,
+            "avg": 4.77
+          },
+          "isMarketplace": false
+        },
+        "payments": [
+          {
+            "costCode": "INV",
+            "name": "Rechnung"
+          },
+          {
+            "costCode": "PP",
+            "name": "PayPal"
+          },
+          {
+            "costCode": "DD",
+            "name": "Lastschrift"
+          },
+          {
+            "costCode": "CBC",
+            "name": "Kreditkarte"
+          },
+          {
+            "costCode": "CIA",
+            "name": "Vorkasse"
+          }
+        ],
+        "showPaymentDisclaimer": false,
+        "delivery": {
+          "deliveryText": "Sa. 28.11.–Mo. 30.11.2026",
+          "deliveryStatus": "SHORT",
+          "earlyDeliveryDate": "2026-11-28",
+          "lateDeliveryDate": "2026-11-30"
+        },
+        "freeReturnDays": null,
+        "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=c44c5f8810746eb2dfdea541b4e58e2e&categoryId=4012&pos=2&price=1119.00&productid=206224343&sid=83231&type=offer&media=ipc-public-mcp",
+        "minShippingCost": "59,90 €",
+        "hasAlwaysFreeShipping": false,
+        "cheapestTotalPriceOffer": false,
+        "freshness": "2026-11-26T20:03:22.975Z"
+      },
+      {
+        "key": "b54437730de4e9b5b372f4712a110e45",
+        "price": "1.253,99 €",
+        "basePrice": null,
+        "shop": {
+          "shopId": "26895",
+          "merchantId": "92442484",
+          "name": "kaufland.de",
+          "merchantName": "AS-Warenhandel",
+          "rating": {
+            "count": null,
+            "avg": null
+          },
+          "isMarketplace": true
+        },
+        "payments": [
+          {
+            "costCode": "INV",
+            "name": "Rechnung"
+          },
+          {
+            "costCode": "PP",
+            "name": "PayPal"
+          },
+          {
+            "costCode": "DD",
+            "name": "Lastschrift"
+          },
+          {
+            "costCode": "SUW",
+            "name": "Sofort."
+          },
+          {
+            "costCode": "CBC",
+            "name": "Kreditkarte"
+          },
+          {
+            "costCode": "CIA",
+            "name": "Vorkasse"
+          }
+        ],
+        "showPaymentDisclaimer": false,
+        "delivery": {
+          "deliveryText": "Fr. 04.12.–Di. 08.12.2026",
+          "deliveryStatus": "LONG",
+          "earlyDeliveryDate": "2026-12-04",
+          "lateDeliveryDate": "2026-12-08"
+        },
+        "freeReturnDays": 14,
+        "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=b54437730de4e9b5b372f4712a110e45&categoryId=4012&pos=3&price=1253.99&productid=206224343&sid=26895&type=offer&media=ipc-public-mcp",
+        "minShippingCost": "0,00 €",
+        "hasAlwaysFreeShipping": true,
+        "cheapestTotalPriceOffer": false,
+        "freshness": "2026-11-26T20:03:22.975Z"
+      }
+    ]
+  }
+}

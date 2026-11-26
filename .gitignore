@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+dist/
+build/
+
+# Secrets & OAuth tokens (NEVER commit!)
+.env
+.idealo_tokens.json
+*.token.json
+
+# OS / IDE
+.DS_Store
+.vscode/
+.idea/
+
+# Runtime probe dumps (keep curated data/cache/ fixtures committed only intentionally)
+data/probe_results.json

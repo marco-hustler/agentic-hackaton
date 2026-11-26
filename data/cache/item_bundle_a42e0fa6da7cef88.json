@@ -1,0 +1,1115 @@
+{
+  "namespace": "item_bundle",
+  "request": {
+    "query": "Sage The Barista Express SES875",
+    "country": "DE"
+  },
+  "cached_at": 1795726998.8227892,
+  "data": {
+    "query": "Sage The Barista Express SES875",
+    "country": "DE",
+    "product_ref": "pr.v1.k1.ME0Ql6I1fKt_yBGoRe-OgEDCDztRsrutaG8iXJUxinRGl_0",
+    "top_product": {
+      "productRef": "pr.v1.k1.ME0Ql6I1fKt_yBGoRe-OgEDCDztRsrutaG8iXJUxinRGl_0",
+      "itemType": "PRODUCT",
+      "siteId": 1,
+      "name": "Sage Barista Express SES875",
+      "nameDelta": "Edelstahl",
+      "price": "444,00 €",
+      "imageUrl": "https://cdn.idealo.com/folder/Product/6059/2/6059287/s1_produktbild_mobil/sage-barista-express-ses875-edelstahl.jpg",
+      "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/6059287_-barista-express-ses875-edelstahl-sage-appliances.html",
+      "userReviewsSummary": {
+        "averageRating": 4.23,
+        "totalReviewCount": 449
+      },
+      "testReportsSummary": {
+        "grade": "1,7"
+      },
+      "totalOfferCount": 11
+    },
+    "search": {
+      "query": "Sage The Barista Express SES875",
+      "availableCategories": [
+        {
+          "categoryId": "3487",
+          "categoryName": "Espressomaschinen",
+          "amount": 37
+        },
+        {
+          "categoryId": "25843",
+          "categoryName": "Kaffeemaschinen-Reinigung",
+          "amount": 11
+        },
+        {
+          "categoryId": "4274",
+          "categoryName": "Kaffeezubehör & Espressozubehör",
+          "amount": 12
+        },
+        {
+          "categoryId": "3488",
+          "categoryName": "Kaffeemaschinen",
+          "amount": 1
+        },
+        {
+          "categoryId": "3512",
+          "categoryName": "Küchenmaschinen",
+          "amount": 1
+        }
+      ],
+      "availableManufacturers": [
+        {
+          "manufacturerId": "129974",
+          "manufacturerName": "Sage Appliances",
+          "amount": 47
+        },
+        {
+          "manufacturerId": "109396",
+          "manufacturerName": "vhbw",
+          "amount": 8
+        },
+        {
+          "manufacturerId": "163842",
+          "manufacturerName": "Piebert",
+          "amount": 5
+        },
+        {
+          "manufacturerId": "179696",
+          "manufacturerName": "LuxusKollektion",
+          "amount": 1
+        }
+      ],
+      "availableFilters": [
+        {
+          "attributeId": "15583",
+          "name": "Produkttyp",
+          "filters": [
+            {
+              "filterId": "448777",
+              "content": "Siebträgermaschine",
+              "amount": 30
+            },
+            {
+              "filterId": "104024944",
+              "content": "Kaffeehalbautomat",
+              "amount": 26
+            },
+            {
+              "filterId": "3092598",
+              "content": "Kaffeemaschinen-Reinigungsbürste",
+              "amount": 1
+            },
+            {
+              "filterId": "943121",
+              "content": "Abschlagbehälter",
+              "amount": 3
+            },
+            {
+              "filterId": "101780310",
+              "content": "Kaffeemaschinen-Filterpatrone",
+              "amount": 9
+            },
+            {
+              "filterId": "1210870",
+              "content": "Filterträger",
+              "amount": 3
+            },
+            {
+              "filterId": "107955860",
+              "content": "Siebträger",
+              "amount": 1
+            },
+            {
+              "filterId": "1809936",
+              "content": "Ersatzdichtung",
+              "amount": 4
+            },
+            {
+              "filterId": "888765",
+              "content": "Kaffeevollautomat",
+              "amount": 8
+            },
+            {
+              "filterId": "311887",
+              "content": "Filterkaffeemaschine",
+              "amount": 1
+            },
+            {
+              "filterId": "1809939",
+              "content": "Kaffeemaschinen-Wasserbehälter",
+              "amount": 1
+            },
+            {
+              "filterId": "3092602",
+              "content": "Kaffeemaschinen-Wartungsset",
+              "amount": 1
+            },
+            {
+              "filterId": "1648332",
+              "content": "Knetmaschine",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "suggestedFilters": [],
+      "sizeAttributes": [],
+      "results": [
+        {
+          "productRef": "pr.v1.k1.ME0Ql6I1fKt_yBGoRe-OgEDCDztRsrutaG8iXJUxinRGl_0",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "Sage Barista Express SES875",
+          "nameDelta": "Edelstahl",
+          "price": "444,00 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/6059/2/6059287/s1_produktbild_mobil/sage-barista-express-ses875-edelstahl.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/6059287_-barista-express-ses875-edelstahl-sage-appliances.html",
+          "userReviewsSummary": {
+            "averageRating": 4.23,
+            "totalReviewCount": 449
+          },
+          "testReportsSummary": {
+            "grade": "1,7"
+          },
+          "totalOfferCount": 11
+        },
+        {
+          "productRef": "pr.v1.k1.9ZEk91XGAfsRQhpuEq_C3MDs-7eMloRoiq9DqdlGgpx6x_Y",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "Sage Barista Express SES875",
+          "nameDelta": "Trüffelschwarz",
+          "price": "484,99 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/6393/8/6393829/s1_produktbild_mobil/sage-barista-express-ses875-trueffelschwarz.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/6393829_-barista-express-ses875-trueffelschwarz-sage-appliances.html",
+          "userReviewsSummary": {
+            "averageRating": 4.23,
+            "totalReviewCount": 449
+          },
+          "testReportsSummary": {
+            "grade": "1,7"
+          },
+          "totalOfferCount": 5
+        },
+        {
+          "productRef": "pr.v1.k1.7rsHr2knRX_Bcmz63RcFipNPS-UceKo2c9xlBY2NDaJKYCx7sw",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "Sage Barista Express Impress",
+          "nameDelta": "Brushed Stainless Steel",
+          "price": "549,00 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/202088/5/202088539/s1_produktbild_mobil/sage-barista-express-impress-brushed-stainless-steel.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/202088539_-barista-express-impress-brushed-stainless-steel-sage-appliances.html",
+          "userReviewsSummary": {
+            "averageRating": 4.49,
+            "totalReviewCount": 218
+          },
+          "testReportsSummary": {
+            "grade": "1,0"
+          },
+          "totalOfferCount": 19
+        },
+        {
+          "productRef": "pr.v1.k1.uXYj6FC4TgvspYLgErLN3FKlpSJr3QtiQmQnvDkSeXzeMnLZJg",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "Sage Barista Express Impress",
+          "nameDelta": "black truffle",
+          "price": "568,00 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/202080/1/202080189/s1_produktbild_mobil/sage-barista-express-impress-black-truffle.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/202080189_-barista-express-impress-black-truffle-sage-appliances.html",
+          "userReviewsSummary": {
+            "averageRating": 4.49,
+            "totalReviewCount": 218
+          },
+          "totalOfferCount": 10
+        },
+        {
+          "productRef": "pr.v1.k1.yaLje8P7de6VB9bpJp6IUvN7kczTuew-TmROGvcpAx6QnhQ",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "Sage The Barista Touch",
+          "nameDelta": "Edelstahl",
+          "price": "694,99 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/6145/6/6145674/s1_produktbild_mobil/sage-the-barista-touch-gebuersteter-edelstahl.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/6145674_-the-barista-touch-edelstahl-sage-appliances.html",
+          "userReviewsSummary": {
+            "averageRating": 4.2,
+            "totalReviewCount": 214
+          },
+          "totalOfferCount": 17
+        },
+        {
+          "productRef": "pr.v1.k1.CKFu0SJDuSLJIfVJqPhbAoM5gpcxtUhuHDpivHwHt8Ti1pnCKg",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "Sage Bohnenbehälter für SES875 the Barista Express (SP0001570)",
+          "price": "41,05 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/208148/3/208148306/s1_produktbild_mobil/sage-bohnenbehaelter-fuer-ses875-the-barista-express-sp0001570.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/208148306_-bohnenbehaelter-fuer-ses875-the-barista-express-sp0001570-sage-appliances.html",
+          "totalOfferCount": 2
+        },
+        {
+          "productRef": "pr.v1.k1.EbUDwE90lb57Usyp3WhRWCYK9oMHyjXhfun5GJUR7zqRF7fEVA",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "Sage Sage SP0020039 Reinigungsset für SES875 the Barista Express Espressomaschine",
+          "price": "20,94 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/209286/9/209286977/s1_produktbild_mobil/sage-sage-sp0020039-reinigungsset-fuer-ses875-the-barista-express-espressomaschine.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/209286977_-sage-sp0020039-reinigungsset-fuer-ses875-the-barista-express-espressomaschine-sage-appliances.html",
+          "totalOfferCount": 2
+        },
+        {
+          "productRef": "pr.v1.k1.hk3gJ485JMiM3itO1mlCj2wPRBxiZiiswBXPK7orx8Pvu183IQ",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "Sage SES882 The Barista Touch Impress",
+          "nameDelta": "SES882BSS4FEU1 Edelstahlgrau",
+          "price": "894,00 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/206316/2/206316202/s1_produktbild_mobil/sage-ses882bss4feu1-the-barista-touch-impress-edelstahlgrau.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/206316202_-ses882bss4feu1-the-barista-touch-impress-edelstahlgrau-sage-appliances.html",
+          "userReviewsSummary": {
+            "averageRating": 4.5,
+            "totalReviewCount": 4
+          },
+          "totalOfferCount": 17
+        },
+        {
+          "productRef": "pr.v1.k1.7xkHNhNOsIfW10CV_de8qu0M5XcqyNt8MgbJWIEET01ryw1c2w",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "Sage Barista Express Impress",
+          "nameDelta": "Black Stainless Steel",
+          "price": "569,00 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/202125/0/202125077/s1_produktbild_mobil/sage-barista-express-impress-black-stainless-steel.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/202125077_-barista-express-impress-black-stainless-steel-sage-appliances.html",
+          "userReviewsSummary": {
+            "averageRating": 4.49,
+            "totalReviewCount": 218
+          },
+          "totalOfferCount": 9
+        },
+        {
+          "productRef": "pr.v1.k1.U9tINPWaX2dtYswhljxG3I1UI26YiyXukLG6MPhLOlIdUgo",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "Sage The Barista Pro",
+          "nameDelta": "Edelstahl",
+          "price": "557,00 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/6558/6/6558659/s1_produktbild_mobil/sage-the-barista-pro-gebuerstetes-edelstahl.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/6558659_-the-barista-pro-edelstahl-sage-appliances.html",
+          "userReviewsSummary": {
+            "averageRating": 4.22,
+            "totalReviewCount": 321
+          },
+          "totalOfferCount": 10
+        }
+      ]
+    },
+    "details": {
+      "productRef": "pr.v1.k1.ME0Ql6I1fKt_yBGoRe-OgEDCDztRsrutaG8iXJUxinRGl_0",
+      "itemType": "PRODUCT",
+      "siteId": 1,
+      "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/6059287_-barista-express-ses875-edelstahl-sage-appliances.html",
+      "name": "Sage Barista Express SES875",
+      "nameDelta": "Edelstahl",
+      "imageUrls": [
+        "https://cdn.idealo.com/folder/Product/6059/2/6059287/s1_produktbild_mobil/sage-barista-express-ses875-edelstahl.jpg"
+      ],
+      "nextOffset": 3,
+      "offers": [
+        {
+          "key": "88619909869ab401b5595ebae4b662c5",
+          "price": "444,00 €",
+          "basePrice": null,
+          "shop": {
+            "shopId": "334269",
+            "merchantId": null,
+            "name": "Maxicoffee.de",
+            "merchantName": null,
+            "rating": {
+              "count": 24,
+              "avg": 3.8
+            },
+            "isMarketplace": false
+          },
+          "payments": [
+            {
+              "costCode": "INV",
+              "name": "Rechnung"
+            },
+            {
+              "costCode": "PP",
+              "name": "PayPal"
+            },
+            {
+              "costCode": "SUW",
+              "name": "Sofort."
+            },
+            {
+              "costCode": "CBC",
+              "name": "Kreditkarte"
+            },
+            {
+              "costCode": "APPLE_PAY",
+              "name": "Apple Pay"
+            }
+          ],
+          "showPaymentDisclaimer": false,
+          "delivery": {
+            "deliveryText": "bis Di. 01.12.2026",
+            "deliveryStatus": "MEDIUM",
+            "earlyDeliveryDate": null,
+            "lateDeliveryDate": "2026-12-01"
+          },
+          "freeReturnDays": null,
+          "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=88619909869ab401b5595ebae4b662c5&categoryId=3487&pos=2&price=444.00&productid=6059287&sid=334269&type=offer&media=ipc-public-mcp",
+          "minShippingCost": "0,00 €",
+          "hasAlwaysFreeShipping": true,
+          "cheapestTotalPriceOffer": true,
+          "freshness": "2026-11-26T20:03:18.192Z"
+        },
+        {
+          "key": "13758d14038e5d5c49084a0f98b32f6c",
+          "price": "444,00 €",
+          "basePrice": null,
+          "shop": {
+            "shopId": "285519",
+            "merchantId": null,
+            "name": "mediamarkt.de",
+            "merchantName": null,
+            "rating": {
+              "count": 18591,
+              "avg": 3.84
+            },
+            "isMarketplace": false
+          },
+          "payments": [
+            {
+              "costCode": "PP",
+              "name": "PayPal"
+            },
+            {
+              "costCode": "SUW",
+              "name": "Sofort."
+            },
+            {
+              "costCode": "CBC",
+              "name": "Kreditkarte"
+            },
+            {
+              "costCode": "CIA",
+              "name": "Vorkasse"
+            },
+            {
+              "costCode": "AMZP",
+              "name": "Amazon Pay"
+            }
+          ],
+          "showPaymentDisclaimer": false,
+          "delivery": {
+            "deliveryText": "Fr. 27.11.–Sa. 28.11.2026",
+            "deliveryStatus": "SHORT",
+            "earlyDeliveryDate": "2026-11-27",
+            "lateDeliveryDate": "2026-11-28"
+          },
+          "freeReturnDays": 30,
+          "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=13758d14038e5d5c49084a0f98b32f6c&categoryId=3487&pos=3&price=444.00&productid=6059287&sid=285519&type=offer&media=ipc-public-mcp",
+          "minShippingCost": "0,00 €",
+          "hasAlwaysFreeShipping": true,
+          "cheapestTotalPriceOffer": true,
+          "freshness": "2026-11-26T20:03:18.192Z"
+        }
+      ],
+      "prosCons": {
+        "pros": [
+          "stylishes Industrialdesign",
+          "viele mitgelieferte Filter",
+          "großer Wassertank für viele Tassen Kaffee"
+        ],
+        "cons": [
+          "keine Warnmeldung bei beinah leerem Wassertank",
+          "ungenaue Einstellungsmöglichkeiten",
+          "schwergängige Milchregler"
+        ]
+      },
+      "testReports": {
+        "summary": {
+          "grade": "1,7",
+          "averageRating": 86.66666666666667,
+          "rating": "gut",
+          "ratingCount": 4
+        },
+        "list": [
+          {
+            "providerName": "F.A.Z. Kaufkompass",
+            "shortDescription": "Einzeltest Sage Barista Express",
+            "summaryText": "Im Test wurden die simple Handhabung sowie die zahlreichen Einstellungsmöglichkeiten hervorgehoben, die die Maschine ideal für Anfänger machen. Die einwandfreie Verarbeitung ist ein weiterer Pluspunkt. Allerdings gibt es Kritikpunkte: Das Mahlwerk ist nicht optimal und der Dampfdruck könnte höher sein.",
+            "ratingValue": "ohne Note",
+            "publishedAt": 1773140400000,
+            "language": "de",
+            "issue": "online",
+            "testedProductsCount": 1
+          },
+          {
+            "providerName": "ETM Testmagazin",
+            "shortDescription": "Siebträgermaschinen",
+            "summaryText": "Die Siebträgermaschine bietet Dir eine üppige Ausstattung. Auch das Milchkännchen mit Temperaturanzeige gefiel sehr gut. In puncto Leistung schließt das Modell mit einem sehr guten Ergebnis ab. Leider ist der Abstand zwischen der Siebträgerhalterung und dem Brühkopf gering.",
+            "ratingValue": "92,80/100",
+            "publishedAt": 1543575600000,
+            "language": "de",
+            "issue": "12/2018",
+            "testedProductsCount": 4
+          },
+          {
+            "providerName": "Techradar",
+            "shortDescription": "Einzeltest Sage Barista Express",
+            "ratingValue": "4,5/5",
+            "publishedAt": 1658224800000,
+            "language": "de",
+            "issue": "online",
+            "testedProductsCount": 1
+          },
+          {
+            "providerName": "ComputerBild",
+            "shortDescription": "Einzeltest Sage Barista Express SES875",
+            "summaryText": "Die Sage Barista Express SES875 punktet mit einem Wasserfilter, einer guten Ausstattung und einfacher Reinigung. Leider gibt es keine Temperaturanzeige und die Geräuschentwicklung ist etwas hoch.",
+            "ratingValue": "gut (2,1)",
+            "publishedAt": 1697709600000,
+            "language": "de",
+            "issue": "online",
+            "testedProductsCount": 1
+          }
+        ]
+      },
+      "productSpecification": {
+        "groups": [
+          {
+            "name": "Leistung & Verbrauch",
+            "type": "DEFAULT",
+            "attributes": [
+              {
+                "name": "Leistung (W)",
+                "value": "1.850 Watt"
+              },
+              {
+                "name": "Pumpendruck",
+                "value": "15 bar"
+              }
+            ]
+          },
+          {
+            "name": "Komfort & Bedienung",
+            "type": "DEFAULT",
+            "attributes": [
+              {
+                "name": "Kaffeespezialitäten",
+                "value": "Espresso, Cappuccino, Milchkaffee, Latte Macchiato"
+              },
+              {
+                "name": "geeignet für",
+                "value": "Kaffeebohnen"
+              },
+              {
+                "name": "Tassen pro Brühvorgang",
+                "value": "2"
+              },
+              {
+                "name": "Komforteigenschaften",
+                "value": "Wassertank abnehmbar"
+              },
+              {
+                "name": "Bedienelemente",
+                "value": "Drucktasten, Drehregler"
+              },
+              {
+                "name": "Display",
+                "value": "ohne Display"
+              }
+            ]
+          },
+          {
+            "name": "Ausstattung",
+            "type": "DEFAULT",
+            "attributes": [
+              {
+                "name": "Milchsystem",
+                "value": "mit Milchaufschäumdüse"
+              },
+              {
+                "name": "Füllmenge Wassertank",
+                "value": "2 l"
+              },
+              {
+                "name": "Fassungsvermögen Bohnenbehälter",
+                "value": "250 g"
+              },
+              {
+                "name": "Mahlwerk",
+                "value": "Kegelmahlwerk, Edelstahlmahlwerk"
+              },
+              {
+                "name": "Ausstattungen",
+                "value": "Manometer, Mahlwerk, Milchsystem"
+              },
+              {
+                "name": "Wasserzufuhr",
+                "value": "mit Wassertank"
+              }
+            ]
+          },
+          {
+            "name": "Technische Daten",
+            "type": "DEFAULT",
+            "attributes": [
+              {
+                "name": "Farbe",
+                "value": "silber"
+              },
+              {
+                "name": "Material",
+                "value": "Edelstahl"
+              },
+              {
+                "name": "Energieversorgung",
+                "value": "220-240 V"
+              }
+            ]
+          },
+          {
+            "name": "Maße & Gewicht",
+            "type": "DEFAULT",
+            "attributes": [
+              {
+                "name": "Höhe",
+                "value": "40 cm"
+              },
+              {
+                "name": "Breite",
+                "value": "33 cm"
+              },
+              {
+                "name": "Tiefe",
+                "value": "31 cm"
+              }
+            ]
+          },
+          {
+            "name": "",
+            "type": "IMPORTANT",
+            "attributes": [
+              {
+                "name": "Gelistet seit",
+                "value": "März 2018"
+              },
+              {
+                "name": "Produkttypen",
+                "value": "Siebträgermaschine, Kaffeehalbautomat"
+              }
+            ]
+          }
+        ]
+      },
+      "productOverview": [
+        "1.850 Watt",
+        "Pumpendruck 15 bar",
+        "geeignet für Kaffeebohnen",
+        "Füllmenge Wassertank 2 l",
+        "Kegelmahlwerk",
+        "mit Wassertank",
+        "Milchaufschäumdüse"
+      ],
+      "productDetailsUrl": "https://www.idealo.de/preisvergleich/OffersOfProduct/6059287_-barista-express-ses875-edelstahl-sage-appliances.html#datasheet",
+      "priceTrend": {
+        "history": [
+          {
+            "dateTime": 1793141999999,
+            "price": 47999
+          },
+          {
+            "dateTime": 1793228399999,
+            "price": 48800
+          },
+          {
+            "dateTime": 1793314799999,
+            "price": 46455
+          },
+          {
+            "dateTime": 1793401199999,
+            "price": 46455
+          },
+          {
+            "dateTime": 1793487599999,
+            "price": 48800
+          },
+          {
+            "dateTime": 1793573999999,
+            "price": 48800
+          },
+          {
+            "dateTime": 1793660399999,
+            "price": 48800
+          },
+          {
+            "dateTime": 1793746799999,
+            "price": 48800
+          },
+          {
+            "dateTime": 1793833199999,
+            "price": 48800
+          },
+          {
+            "dateTime": 1793919599999,
+            "price": 48500
+          },
+          {
+            "dateTime": 1794005999999,
+            "price": 48500
+          },
+          {
+            "dateTime": 1794092399999,
+            "price": 48499
+          },
+          {
+            "dateTime": 1794178799999,
+            "price": 48499
+          },
+          {
+            "dateTime": 1794265199999,
+            "price": 48499
+          },
+          {
+            "dateTime": 1794351599999,
+            "price": 48499
+          },
+          {
+            "dateTime": 1794437999999,
+            "price": 48499
+          },
+          {
+            "dateTime": 1794524399999,
+            "price": 48499
+          },
+          {
+            "dateTime": 1794610799999,
+            "price": 44400
+          },
+          {
+            "dateTime": 1794697199999,
+            "price": 44400
+          },
+          {
+            "dateTime": 1794783599999,
+            "price": 44400
+          },
+          {
+            "dateTime": 1794869999999,
+            "price": 44400
+          },
+          {
+            "dateTime": 1794956399999,
+            "price": 44400
+          },
+          {
+            "dateTime": 1795042799999,
+            "price": 44400
+          },
+          {
+            "dateTime": 1795129199999,
+            "price": 44400
+          },
+          {
+            "dateTime": 1795215599999,
+            "price": 44400
+          },
+          {
+            "dateTime": 1795301999999,
+            "price": 44400
+          },
+          {
+            "dateTime": 1795388399999,
+            "price": 44400
+          },
+          {
+            "dateTime": 1795474799999,
+            "price": 44400
+          },
+          {
+            "dateTime": 1795561199999,
+            "price": 44400
+          },
+          {
+            "dateTime": 1795647599999,
+            "price": 44400
+          },
+          {
+            "dateTime": 1795723398161,
+            "price": 44400
+          }
+        ]
+      }
+    },
+    "offers": {
+      "nextOffset": 5,
+      "offers": [
+        {
+          "key": "88619909869ab401b5595ebae4b662c5",
+          "price": "444,00 €",
+          "basePrice": null,
+          "shop": {
+            "shopId": "334269",
+            "merchantId": null,
+            "name": "Maxicoffee.de",
+            "merchantName": null,
+            "rating": {
+              "count": 24,
+              "avg": 3.8
+            },
+            "isMarketplace": false
+          },
+          "payments": [
+            {
+              "costCode": "INV",
+              "name": "Rechnung"
+            },
+            {
+              "costCode": "PP",
+              "name": "PayPal"
+            },
+            {
+              "costCode": "SUW",
+              "name": "Sofort."
+            },
+            {
+              "costCode": "CBC",
+              "name": "Kreditkarte"
+            },
+            {
+              "costCode": "APPLE_PAY",
+              "name": "Apple Pay"
+            }
+          ],
+          "showPaymentDisclaimer": false,
+          "delivery": {
+            "deliveryText": "bis Di. 01.12.2026",
+            "deliveryStatus": "MEDIUM",
+            "earlyDeliveryDate": null,
+            "lateDeliveryDate": "2026-12-01"
+          },
+          "freeReturnDays": null,
+          "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=88619909869ab401b5595ebae4b662c5&categoryId=3487&pos=2&price=444.00&productid=6059287&sid=334269&type=offer&media=ipc-public-mcp",
+          "minShippingCost": "0,00 €",
+          "hasAlwaysFreeShipping": true,
+          "cheapestTotalPriceOffer": true,
+          "freshness": "2026-11-26T20:03:18.555Z"
+        },
+        {
+          "key": "13758d14038e5d5c49084a0f98b32f6c",
+          "price": "444,00 €",
+          "basePrice": null,
+          "shop": {
+            "shopId": "285519",
+            "merchantId": null,
+            "name": "mediamarkt.de",
+            "merchantName": null,
+            "rating": {
+              "count": 18591,
+              "avg": 3.84
+            },
+            "isMarketplace": false
+          },
+          "payments": [
+            {
+              "costCode": "PP",
+              "name": "PayPal"
+            },
+            {
+              "costCode": "SUW",
+              "name": "Sofort."
+            },
+            {
+              "costCode": "CBC",
+              "name": "Kreditkarte"
+            },
+            {
+              "costCode": "CIA",
+              "name": "Vorkasse"
+            },
+            {
+              "costCode": "AMZP",
+              "name": "Amazon Pay"
+            }
+          ],
+          "showPaymentDisclaimer": false,
+          "delivery": {
+            "deliveryText": "Fr. 27.11.–Sa. 28.11.2026",
+            "deliveryStatus": "SHORT",
+            "earlyDeliveryDate": "2026-11-27",
+            "lateDeliveryDate": "2026-11-28"
+          },
+          "freeReturnDays": 30,
+          "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=13758d14038e5d5c49084a0f98b32f6c&categoryId=3487&pos=3&price=444.00&productid=6059287&sid=285519&type=offer&media=ipc-public-mcp",
+          "minShippingCost": "0,00 €",
+          "hasAlwaysFreeShipping": true,
+          "cheapestTotalPriceOffer": true,
+          "freshness": "2026-11-26T20:03:18.555Z"
+        },
+        {
+          "key": "2b20cd136041624fd2688538f632454f",
+          "price": "444,00 €",
+          "basePrice": null,
+          "shop": {
+            "shopId": "281846",
+            "merchantId": null,
+            "name": "saturn.de",
+            "merchantName": null,
+            "rating": {
+              "count": 15509,
+              "avg": 3.64
+            },
+            "isMarketplace": false
+          },
+          "payments": [
+            {
+              "costCode": "PP",
+              "name": "PayPal"
+            },
+            {
+              "costCode": "SUW",
+              "name": "Sofort."
+            },
+            {
+              "costCode": "CBC",
+              "name": "Kreditkarte"
+            },
+            {
+              "costCode": "CIA",
+              "name": "Vorkasse"
+            },
+            {
+              "costCode": "AMZP",
+              "name": "Amazon Pay"
+            }
+          ],
+          "showPaymentDisclaimer": false,
+          "delivery": {
+            "deliveryText": "bis Do. 03.12.2026",
+            "deliveryStatus": "MEDIUM",
+            "earlyDeliveryDate": null,
+            "lateDeliveryDate": "2026-12-03"
+          },
+          "freeReturnDays": 30,
+          "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=2b20cd136041624fd2688538f632454f&categoryId=3487&pos=4&price=444.00&productid=6059287&sid=281846&type=offer&media=ipc-public-mcp",
+          "minShippingCost": "0,00 €",
+          "hasAlwaysFreeShipping": true,
+          "cheapestTotalPriceOffer": true,
+          "freshness": "2026-11-26T20:03:18.555Z"
+        }
+      ]
+    },
+    "price_history": {
+      "priceTrend": {
+        "history": [
+          {
+            "dateTime": 1793141999999,
+            "price": "479,99 €",
+            "dateTimeISO": "2026-10-27T22:59:59.999Z"
+          },
+          {
+            "dateTime": 1793228399999,
+            "price": "488,00 €",
+            "dateTimeISO": "2026-10-28T22:59:59.999Z",
+            "priceChangePercent": 1.6687847663492987
+          },
+          {
+            "dateTime": 1793314799999,
+            "price": "464,55 €",
+            "dateTimeISO": "2026-10-29T22:59:59.999Z",
+            "priceChangePercent": -4.8053278688524586
+          },
+          {
+            "dateTime": 1793401199999,
+            "price": "464,55 €",
+            "dateTimeISO": "2026-10-30T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1793487599999,
+            "price": "488,00 €",
+            "dateTimeISO": "2026-10-31T22:59:59.999Z",
+            "priceChangePercent": 5.047895813152513
+          },
+          {
+            "dateTime": 1793573999999,
+            "price": "488,00 €",
+            "dateTimeISO": "2026-11-01T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1793660399999,
+            "price": "488,00 €",
+            "dateTimeISO": "2026-11-02T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1793746799999,
+            "price": "488,00 €",
+            "dateTimeISO": "2026-11-03T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1793833199999,
+            "price": "488,00 €",
+            "dateTimeISO": "2026-11-04T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1793919599999,
+            "price": "485,00 €",
+            "dateTimeISO": "2026-11-05T22:59:59.999Z",
+            "priceChangePercent": -0.6147540983606558
+          },
+          {
+            "dateTime": 1794005999999,
+            "price": "485,00 €",
+            "dateTimeISO": "2026-11-06T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1794092399999,
+            "price": "484,99 €",
+            "dateTimeISO": "2026-11-07T22:59:59.999Z",
+            "priceChangePercent": -0.002061855670103093
+          },
+          {
+            "dateTime": 1794178799999,
+            "price": "484,99 €",
+            "dateTimeISO": "2026-11-08T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1794265199999,
+            "price": "484,99 €",
+            "dateTimeISO": "2026-11-09T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1794351599999,
+            "price": "484,99 €",
+            "dateTimeISO": "2026-11-10T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1794437999999,
+            "price": "484,99 €",
+            "dateTimeISO": "2026-11-11T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1794524399999,
+            "price": "484,99 €",
+            "dateTimeISO": "2026-11-12T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1794610799999,
+            "price": "444,00 €",
+            "dateTimeISO": "2026-11-13T22:59:59.999Z",
+            "priceChangePercent": -8.451720654034103
+          },
+          {
+            "dateTime": 1794697199999,
+            "price": "444,00 €",
+            "dateTimeISO": "2026-11-14T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1794783599999,
+            "price": "444,00 €",
+            "dateTimeISO": "2026-11-15T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1794869999999,
+            "price": "444,00 €",
+            "dateTimeISO": "2026-11-16T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1794956399999,
+            "price": "444,00 €",
+            "dateTimeISO": "2026-11-17T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1795042799999,
+            "price": "444,00 €",
+            "dateTimeISO": "2026-11-18T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1795129199999,
+            "price": "444,00 €",
+            "dateTimeISO": "2026-11-19T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1795215599999,
+            "price": "444,00 €",
+            "dateTimeISO": "2026-11-20T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1795301999999,
+            "price": "444,00 €",
+            "dateTimeISO": "2026-11-21T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1795388399999,
+            "price": "444,00 €",
+            "dateTimeISO": "2026-11-22T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1795474799999,
+            "price": "444,00 €",
+            "dateTimeISO": "2026-11-23T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1795561199999,
+            "price": "444,00 €",
+            "dateTimeISO": "2026-11-24T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1795647599999,
+            "price": "444,00 €",
+            "dateTimeISO": "2026-11-25T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1795723398789,
+            "price": "444,00 €",
+            "dateTimeISO": "2026-11-26T20:03:18.789Z",
+            "priceChangePercent": 0
+          }
+        ],
+        "statistics": {
+          "minPrice": "444,00 €",
+          "maxPrice": "488,00 €",
+          "avgPrice": "465,58 €",
+          "currentPrice": "444,00 €",
+          "priceChangePercent": -7.498072876518261,
+          "lowestPriceDate": "2026-11-13T22:59:59.999Z",
+          "highestPriceDate": "2026-10-28T22:59:59.999Z"
+        },
+        "samplingGranularity": "daily",
+        "dataSourceConfidence": 0.95,
+        "periodDays": 29.9,
+        "totalDataPoints": 31
+      }
+    },
+    "all_cached": true
+  }
+}

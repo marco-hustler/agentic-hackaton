@@ -1,0 +1,687 @@
+{
+  "namespace": "get_product_details",
+  "request": {
+    "productRef": "pr.v1.k1.K_aNx8ijE2MFwWvuLosQ3EKierjRdQZtvJGziM-3xuGbsvLUdA",
+    "country": "DE"
+  },
+  "cached_at": 1795727010.0895739,
+  "data": {
+    "productRef": "pr.v1.k1.K_aNx8ijE2MFwWvuLosQ3EKierjRdQZtvJGziM-3xuGbsvLUdA",
+    "itemType": "PRODUCT",
+    "siteId": 1,
+    "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/201447343_-switch-oled-modell-weiss-nintendo.html",
+    "name": "Nintendo Switch (OLED-Modell)",
+    "nameDelta": "weiß",
+    "imageUrls": [
+      "https://cdn.idealo.com/folder/Product/201447/3/201447343/s1_produktbild_mobil/nintendo-switch-oled-modell-weiss.jpg"
+    ],
+    "nextOffset": 3,
+    "offers": [
+      {
+        "key": "61ca02a3e150db016747380984dad6a5",
+        "price": "319,00 €",
+        "basePrice": null,
+        "shop": {
+          "shopId": "321944",
+          "merchantId": null,
+          "name": "sparhandy.de/",
+          "merchantName": null,
+          "rating": {
+            "count": 685,
+            "avg": 2.6
+          },
+          "isMarketplace": false
+        },
+        "payments": [
+          {
+            "costCode": "PP",
+            "name": "PayPal"
+          },
+          {
+            "costCode": "DD",
+            "name": "Lastschrift"
+          },
+          {
+            "costCode": "CBC",
+            "name": "Kreditkarte"
+          }
+        ],
+        "showPaymentDisclaimer": false,
+        "delivery": {
+          "deliveryText": "Sa. 28.11.–Mo. 30.11.2026",
+          "deliveryStatus": "SHORT",
+          "earlyDeliveryDate": "2026-11-28",
+          "lateDeliveryDate": "2026-11-30"
+        },
+        "freeReturnDays": 14,
+        "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=61ca02a3e150db016747380984dad6a5&categoryId=3189&pos=1&price=319.00&productid=201447343&sid=321944&type=offer&media=ipc-public-mcp",
+        "minShippingCost": "6,99 €",
+        "hasAlwaysFreeShipping": false,
+        "cheapestTotalPriceOffer": false,
+        "freshness": "2026-11-26T20:03:28.879Z"
+      },
+      {
+        "key": "f9a3f367ed6db27b6714dd679022e3a6",
+        "price": "321,00 €",
+        "basePrice": null,
+        "shop": {
+          "shopId": "24111",
+          "merchantId": null,
+          "name": "euronics.de",
+          "merchantName": "Euronics XXL Otto Mölln",
+          "rating": {
+            "count": null,
+            "avg": null
+          },
+          "isMarketplace": true
+        },
+        "payments": [
+          {
+            "costCode": "PP",
+            "name": "PayPal"
+          },
+          {
+            "costCode": "CBC",
+            "name": "Kreditkarte"
+          },
+          {
+            "costCode": "APPLE_PAY",
+            "name": "Apple Pay"
+          },
+          {
+            "costCode": "CIA",
+            "name": "Vorkasse"
+          }
+        ],
+        "showPaymentDisclaimer": false,
+        "delivery": {
+          "deliveryText": "bis Sa. 28.11.2026",
+          "deliveryStatus": "SHORT",
+          "earlyDeliveryDate": null,
+          "lateDeliveryDate": "2026-11-28"
+        },
+        "freeReturnDays": null,
+        "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=f9a3f367ed6db27b6714dd679022e3a6&categoryId=3189&pos=3&price=321.00&productid=201447343&sid=24111&type=offer&media=ipc-public-mcp",
+        "minShippingCost": "4,99 €",
+        "hasAlwaysFreeShipping": false,
+        "cheapestTotalPriceOffer": false,
+        "freshness": "2026-11-26T20:03:28.879Z"
+      }
+    ],
+    "prosCons": {
+      "pros": [
+        "tolles OLED-Display",
+        "verbesserter Ständer",
+        "verbesserte Lautsprecher"
+      ],
+      "cons": [
+        "Verbesserungen gelten nur dem Handheld-Modus"
+      ]
+    },
+    "testReports": {
+      "summary": {
+        "grade": "1,8",
+        "averageRating": 83.38461538461539,
+        "rating": "gut",
+        "ratingCount": 13
+      },
+      "list": [
+        {
+          "providerName": "Expert Reviews",
+          "shortDescription": "Einzeltest Nintendo Switch OLED",
+          "summaryText": "Das große OLED-Display und der neue Kickstand kommen gut an und rechtfertigen den Aufpreis. Ansonsten gibt es aber keine Verbesserungen an der Hardware.",
+          "ratingValue": "4/5",
+          "publishedAt": 1633514400000,
+          "language": "de",
+          "issue": "online",
+          "testedProductsCount": 1
+        },
+        {
+          "providerName": "Tech Advisor",
+          "shortDescription": "Einzeltest Nintendo Switch OLED",
+          "ratingValue": "4/5",
+          "publishedAt": 1633514400000,
+          "language": "de",
+          "issue": "online",
+          "testedProductsCount": 1
+        },
+        {
+          "providerName": "tomsguide.com",
+          "shortDescription": "Einzeltest Nintendo Switch OLED",
+          "summaryText": "Die Nintendo Switch OLED verfügt über einen wunderschönen Bildschirm, einen verbesserten Kickstand und viel Speicherplatz. Es ist eine gute Kaufempfehlung für alle, die noch keine Switch haben.",
+          "ratingValue": "4/5",
+          "publishedAt": 1644404400000,
+          "language": "de",
+          "issue": "online",
+          "testedProductsCount": 1
+        },
+        {
+          "providerName": "PCMag.com",
+          "shortDescription": "Einzeltest Nintendo Switch OLED",
+          "ratingValue": "4,5/5",
+          "publishedAt": 1633514400000,
+          "language": "de",
+          "issue": "online",
+          "testedProductsCount": 1
+        },
+        {
+          "providerName": "toptechnews.de",
+          "shortDescription": "Einzeltest Nintendo Switch OLED",
+          "summaryText": "Qualität: 9/10 – Steuerung: 9/10 – Design: 9/10 – Preis-Leistung: 8,5/10 – Ausstattung: 9/10",
+          "ratingValue": "8,9/10",
+          "publishedAt": 1679742000000,
+          "language": "de",
+          "issue": "online",
+          "testedProductsCount": 1
+        },
+        {
+          "providerName": "Techradar",
+          "shortDescription": "Einzeltest Nintendo Switch OLED",
+          "summaryText": "Aufgrund des Hybrid-Designs der Konsole ist die Swtich OLED von Natur aus ein falsches Produkt: Wenn man sie nämlich andockt, verschwinden die Vorteile des prächtigen neuen 7-Zoll-Displays, des neu gestalteten Kickstandes und der verbesserten Lautsprecher. Wenn Du zum ersten Mal eine Switch kaufen willst, ist dies zweifellos das richtige Modell, aber die Verbesserungen gegenüber dem Vorgänger kommen nur den Nutzern des Handheld- und Tabletop-Modus zugute.",
+          "ratingValue": "4/5",
+          "publishedAt": 1633514400000,
+          "language": "de",
+          "issue": "online",
+          "testedProductsCount": 1
+        },
+        {
+          "providerName": "stuff.tv",
+          "shortDescription": "Einzeltest Nintendo Switch OLED",
+          "ratingValue": "4/5",
+          "publishedAt": 1633514400000,
+          "language": "de",
+          "issue": "online",
+          "testedProductsCount": 1
+        },
+        {
+          "providerName": "trustedreviews.com",
+          "shortDescription": "Einzeltest Nintendo Switch OLED",
+          "summaryText": "Die Nintendo Switch OLED ist ein fantastisches Upgrade für das mobile Spielen, da der neue Bildschirm deutlich besser aussieht als der des Standardmodells. Da es aber keine wesentliche Verbesserung für den angedockten Modus gibt, lohnt sich der Kauf nicht für diejenigen, die nur eine Heimkonsole für den Fernseher wollen.",
+          "ratingValue": "4/5",
+          "publishedAt": 1633514400000,
+          "language": "de",
+          "issue": "online",
+          "testedProductsCount": 1
+        },
+        {
+          "providerName": "theverge.com",
+          "shortDescription": "Einzeltest Nintendo Switch OLED",
+          "summaryText": "Das OLED-Display ist wunderbar, es gibt viel Speicher und auch der Kickstand kann überzeugen. Leider wurden an der Performance und den Joy-Cons nicht geändert.",
+          "ratingValue": "8/10",
+          "publishedAt": 1633514400000,
+          "language": "de",
+          "issue": "online",
+          "testedProductsCount": 1
+        },
+        {
+          "providerName": "Digital Trends",
+          "shortDescription": "Einzeltest Nintendo Switch OLED",
+          "ratingValue": "4/5",
+          "publishedAt": 1633514400000,
+          "language": "de",
+          "issue": "online",
+          "testedProductsCount": 1
+        },
+        {
+          "providerName": "ComputerBild",
+          "shortDescription": "Einzeltest Nintendo Switch OLED",
+          "summaryText": "Das OLED-Display und die kleinen Design-Änderungen sind nett und richten sich an Spieler im Handheld-Modus. Wer eher das Dock nutzt, um am Fernseher zu zocken, kann auch ruhig die herkömmliche Switch nutzen, da sie günstiger ist.",
+          "ratingValue": "gut (2,2)",
+          "publishedAt": 1651831200000,
+          "language": "de",
+          "issue": "online",
+          "testedProductsCount": 1
+        },
+        {
+          "providerName": "Pocket-lint",
+          "shortDescription": "Einzeltest Nintendo Switch OLED",
+          "ratingValue": "5/5",
+          "publishedAt": 1633514400000,
+          "language": "de",
+          "issue": "online",
+          "testedProductsCount": 1
+        },
+        {
+          "providerName": "heise bestenlisten",
+          "shortDescription": "Einzeltest Nintendo Switch OLED",
+          "summaryText": "Das neue Gehäuse, das OLED-Display und der Aufsteller kommen gut an. Die Neuerungen machen sich nur im Handheld-Modus bemerkbar. Die Ladestation hat zudem einen qualitativer Rückschritt erfahren.",
+          "ratingValue": "4,5/5",
+          "publishedAt": 1636110000000,
+          "language": "de",
+          "issue": "online",
+          "testedProductsCount": 1
+        }
+      ]
+    },
+    "productSpecification": {
+      "groups": [
+        {
+          "name": "Spieler",
+          "type": "DEFAULT",
+          "attributes": [
+            {
+              "name": "Spielerzahl max.",
+              "value": "8 Spieler"
+            }
+          ]
+        },
+        {
+          "name": "Datenspeicher",
+          "type": "DEFAULT",
+          "attributes": [
+            {
+              "name": "Speicher erweiterbar",
+              "value": "Ja"
+            },
+            {
+              "name": "Festplattentyp",
+              "value": "Flash-Speicher"
+            },
+            {
+              "name": "Speichererweiterung",
+              "value": "microSD-Karte"
+            },
+            {
+              "name": "mitgelieferter Speicher",
+              "value": "64 GB"
+            },
+            {
+              "name": "Speichermedium",
+              "value": "Module"
+            }
+          ]
+        },
+        {
+          "name": "Display",
+          "type": "DEFAULT",
+          "attributes": [
+            {
+              "name": "Displaytyp",
+              "value": "OLED"
+            },
+            {
+              "name": "Touchscreen",
+              "value": "kapazitiver, Multitouch"
+            },
+            {
+              "name": "Displayfarben",
+              "value": "16,7 Millionen"
+            },
+            {
+              "name": "Bildformat",
+              "value": "16:9"
+            },
+            {
+              "name": "Display Anzahl",
+              "value": "1"
+            },
+            {
+              "name": "Displayauflösung",
+              "value": "1280 x 720 Pixel"
+            },
+            {
+              "name": "Bildschirmdiagonale",
+              "value": "7 Zoll"
+            }
+          ]
+        },
+        {
+          "name": "Anschlüsse",
+          "type": "DEFAULT",
+          "attributes": [
+            {
+              "name": "HDMI-Ausgänge",
+              "value": "1"
+            },
+            {
+              "name": "Datenkommunikation",
+              "value": "Bluetooth, WLAN, Near Field Communication, Netzwerk"
+            },
+            {
+              "name": "WLAN-Standard",
+              "value": "IEEE 802.11 a/b/g/n/ac"
+            },
+            {
+              "name": "WLAN-Frequenzbänder",
+              "value": "2,4 GHz, 5,0 GHz"
+            },
+            {
+              "name": "digitaler Eingang",
+              "value": "USB"
+            },
+            {
+              "name": "weiterer Anschluss",
+              "value": "LAN"
+            }
+          ]
+        },
+        {
+          "name": "Leistung",
+          "type": "DEFAULT",
+          "attributes": [
+            {
+              "name": "Prozessortyp",
+              "value": "NVIDIA Tegra X1"
+            }
+          ]
+        },
+        {
+          "name": "Design",
+          "type": "DEFAULT",
+          "attributes": [
+            {
+              "name": "Farbe",
+              "value": "weiß"
+            },
+            {
+              "name": "Oberfläche",
+              "value": "matt"
+            },
+            {
+              "name": "Standgerät",
+              "value": "Ja"
+            }
+          ]
+        },
+        {
+          "name": "Controller",
+          "type": "DEFAULT",
+          "attributes": [
+            {
+              "name": "Spielsteuerungen",
+              "value": "Bewegungssteuerung, Controller"
+            },
+            {
+              "name": "Controllertyp",
+              "value": "Bluetooth-Controller"
+            },
+            {
+              "name": "Controller-Eigenschaften",
+              "value": "Lautsprecher, Lautstärkeregelung, Spieler-Identifikation, nach außen gewölbte Analog-Sticks, Mikrofon, Vibration, Headset-Anschluss via 3,5mm Klinke"
+            }
+          ]
+        },
+        {
+          "name": "Funktion",
+          "type": "DEFAULT",
+          "attributes": [
+            {
+              "name": "onlinefähig",
+              "value": "Ja"
+            },
+            {
+              "name": "Marketplace",
+              "value": "Nintendo eShop"
+            },
+            {
+              "name": "Spielfunktionen",
+              "value": "Kindersicherung, Nintendo Network"
+            },
+            {
+              "name": "kostenpflichtiges Abo möglich",
+              "value": "Ja"
+            },
+            {
+              "name": "Abo-Vorteile",
+              "value": "Gruppenchats, Guthabenaufladung über Gutscheincode, Online-Multiplayer, Spielersuche"
+            }
+          ]
+        },
+        {
+          "name": "Wiedergabe",
+          "type": "DEFAULT",
+          "attributes": [
+            {
+              "name": "Multimedia-Funktion",
+              "value": "Spielaufzeichnung"
+            },
+            {
+              "name": "Soundmodus",
+              "value": "5.1"
+            },
+            {
+              "name": "Unterstützte Auflösungen",
+              "value": "1080p Full HD"
+            }
+          ]
+        },
+        {
+          "name": "Kamera",
+          "type": "DEFAULT",
+          "attributes": [
+            {
+              "name": "Kamerafunktion",
+              "value": "Tiefensensor"
+            }
+          ]
+        },
+        {
+          "name": "Betrieb",
+          "type": "DEFAULT",
+          "attributes": [
+            {
+              "name": "Stromversorgung",
+              "value": "Akku, Netzteil"
+            },
+            {
+              "name": "eingebautes Netzteil",
+              "value": "Nein"
+            },
+            {
+              "name": "externes Netzteil",
+              "value": "Ja"
+            },
+            {
+              "name": "Akku austauschbar",
+              "value": "Nein"
+            },
+            {
+              "name": "Akkulaufzeit",
+              "value": "6 h"
+            },
+            {
+              "name": "Akku-Ladezeit",
+              "value": "3 h"
+            },
+            {
+              "name": "Akku-Kapazität",
+              "value": "4.310 mAh"
+            }
+          ]
+        },
+        {
+          "name": "Abmessungen und Lieferumfang",
+          "type": "DEFAULT",
+          "attributes": [
+            {
+              "name": "Abmessungen",
+              "value": "242 x 102 x 13,9 mm"
+            },
+            {
+              "name": "Gewicht",
+              "value": "420 g"
+            },
+            {
+              "name": "Mitgelieferte Hardware",
+              "value": "2 x Controller"
+            },
+            {
+              "name": "mitgeliefertes Spiel",
+              "value": "ohne Spiel"
+            },
+            {
+              "name": "Standfuß inklusive",
+              "value": "Ja"
+            },
+            {
+              "name": "Lieferumfang",
+              "value": "HDMI-Kabel, Netzteil"
+            }
+          ]
+        },
+        {
+          "name": "",
+          "type": "IMPORTANT",
+          "attributes": [
+            {
+              "name": "Gelistet seit",
+              "value": "Juli 2021"
+            },
+            {
+              "name": "Produkttypen",
+              "value": "Handheld, Nintendo Switch Konsole, Heimkonsole"
+            },
+            {
+              "name": "interner Speicher",
+              "value": "64 GB"
+            },
+            {
+              "name": "Veröffentlichungsjahr",
+              "value": "2021"
+            }
+          ]
+        }
+      ]
+    },
+    "productOverview": [
+      "interner Speicher 64 GB",
+      "OLED",
+      "Displayauflösung 1280 x 720 Pixel",
+      "Bildschirmdiagonale 7 Zoll",
+      "NVIDIA Tegra X1",
+      "Heimkonsole",
+      "2 Controller",
+      "WLAN",
+      "LAN"
+    ],
+    "productDetailsUrl": "https://www.idealo.de/preisvergleich/OffersOfProduct/201447343_-switch-oled-modell-weiss-nintendo.html#datasheet",
+    "priceTrend": {
+      "history": [
+        {
+          "dateTime": 1793141999999,
+          "price": 31900
+        },
+        {
+          "dateTime": 1793228399999,
+          "price": 28900
+        },
+        {
+          "dateTime": 1793314799999,
+          "price": 28900
+        },
+        {
+          "dateTime": 1793401199999,
+          "price": 28900
+        },
+        {
+          "dateTime": 1793487599999,
+          "price": 31900
+        },
+        {
+          "dateTime": 1793573999999,
+          "price": 31900
+        },
+        {
+          "dateTime": 1793660399999,
+          "price": 31900
+        },
+        {
+          "dateTime": 1793746799999,
+          "price": 31900
+        },
+        {
+          "dateTime": 1793833199999,
+          "price": 32282
+        },
+        {
+          "dateTime": 1793919599999,
+          "price": 32282
+        },
+        {
+          "dateTime": 1794005999999,
+          "price": 32282
+        },
+        {
+          "dateTime": 1794092399999,
+          "price": 32505
+        },
+        {
+          "dateTime": 1794178799999,
+          "price": 32505
+        },
+        {
+          "dateTime": 1794265199999,
+          "price": 32282
+        },
+        {
+          "dateTime": 1794351599999,
+          "price": 32282
+        },
+        {
+          "dateTime": 1794437999999,
+          "price": 32282
+        },
+        {
+          "dateTime": 1794524399999,
+          "price": 32282
+        },
+        {
+          "dateTime": 1794610799999,
+          "price": 32282
+        },
+        {
+          "dateTime": 1794697199999,
+          "price": 32282
+        },
+        {
+          "dateTime": 1794783599999,
+          "price": 32282
+        },
+        {
+          "dateTime": 1794869999999,
+          "price": 32282
+        },
+        {
+          "dateTime": 1794956399999,
+          "price": 32282
+        },
+        {
+          "dateTime": 1795042799999,
+          "price": 32282
+        },
+        {
+          "dateTime": 1795129199999,
+          "price": 31322
+        },
+        {
+          "dateTime": 1795215599999,
+          "price": 29900
+        },
+        {
+          "dateTime": 1795301999999,
+          "price": 31322
+        },
+        {
+          "dateTime": 1795388399999,
+          "price": 31322
+        },
+        {
+          "dateTime": 1795474799999,
+          "price": 31322
+        },
+        {
+          "dateTime": 1795561199999,
+          "price": 31322
+        },
+        {
+          "dateTime": 1795647599999,
+          "price": 31322
+        },
+        {
+          "dateTime": 1795723408896,
+          "price": 31900
+        }
+      ]
+    }
+  }
+}

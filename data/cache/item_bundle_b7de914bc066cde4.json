@@ -1,0 +1,1625 @@
+{
+  "namespace": "item_bundle",
+  "request": {
+    "query": "Sonos Era 300",
+    "country": "DE"
+  },
+  "cached_at": 1795727005.029155,
+  "data": {
+    "query": "Sonos Era 300",
+    "country": "DE",
+    "product_ref": "pr.v1.k1.YmyrM98DdFZ0JDGIj09bgJa2yQAQUAxfEpy5hbgzGLzeHYvs5Q",
+    "top_product": {
+      "productRef": "pr.v1.k1.YmyrM98DdFZ0JDGIj09bgJa2yQAQUAxfEpy5hbgzGLzeHYvs5Q",
+      "itemType": "PRODUCT",
+      "siteId": 1,
+      "name": "Sonos Era 300",
+      "nameDelta": "White",
+      "price": "359,00 €",
+      "imageUrl": "https://cdn.idealo.com/folder/Product/202398/6/202398620/s1_produktbild_mobil/sonos-era-300-white.jpg",
+      "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/202398620_-era-300-white-sonos.html",
+      "userReviewsSummary": {
+        "averageRating": 4.57,
+        "totalReviewCount": 788
+      },
+      "testReportsSummary": {
+        "grade": "1,6"
+      },
+      "totalOfferCount": 22,
+      "badges": {
+        "bargain": {
+          "discountRate": 11,
+          "tags": [
+            "REGULAR",
+            "SHORTTERM",
+            "BLACK_FRIDAY"
+          ]
+        }
+      }
+    },
+    "search": {
+      "query": "Sonos Era 300",
+      "availableCategories": [
+        {
+          "categoryId": "2021",
+          "categoryName": "Lautsprecher",
+          "amount": 0
+        }
+      ],
+      "availableManufacturers": [
+        {
+          "manufacturerId": "35926",
+          "manufacturerName": "Sonos",
+          "amount": 45,
+          "searchFilterId": "376117"
+        }
+      ],
+      "availableFilters": [
+        {
+          "attributeId": "15583",
+          "name": "Produkttyp",
+          "filters": [
+            {
+              "filterId": "4453600",
+              "content": "Bluetooth Lautsprecher",
+              "amount": 28
+            },
+            {
+              "filterId": "312121",
+              "content": "Subwoofer",
+              "amount": 10
+            },
+            {
+              "filterId": "8891277",
+              "content": "Smart Speaker",
+              "amount": 27
+            },
+            {
+              "filterId": "2022571",
+              "content": "WLAN Lautsprecher",
+              "amount": 36
+            },
+            {
+              "filterId": "9213288",
+              "content": "Dolby Atmos-Lautsprecher",
+              "amount": 17
+            }
+          ]
+        },
+        {
+          "attributeId": "18245",
+          "name": "Prinzip",
+          "filters": [
+            {
+              "filterId": "1363393",
+              "content": "aktiv",
+              "amount": 17
+            }
+          ]
+        },
+        {
+          "attributeId": "1333",
+          "name": "Stromversorgung",
+          "filters": [
+            {
+              "filterId": "102060976",
+              "content": "Netzbetrieb",
+              "amount": 17
+            }
+          ]
+        },
+        {
+          "attributeId": "25250",
+          "name": "Soundfunktion",
+          "filters": [
+            {
+              "filterId": "4551725",
+              "content": "Equalizer",
+              "amount": 16
+            }
+          ]
+        },
+        {
+          "attributeId": "26012",
+          "name": "verfügbarer Musikdienst",
+          "filters": [
+            {
+              "filterId": "7698578",
+              "content": "Spotify Connect",
+              "amount": 5
+            }
+          ]
+        },
+        {
+          "attributeId": "21314",
+          "name": "Schutzeigenschaft",
+          "filters": [
+            {
+              "filterId": "3151405",
+              "content": "feuchtigkeitsresistent",
+              "amount": 4
+            }
+          ]
+        },
+        {
+          "attributeId": "24544",
+          "name": "Funkübertragung",
+          "filters": [
+            {
+              "filterId": "4551722",
+              "content": "Bluetooth",
+              "amount": 18
+            },
+            {
+              "filterId": "4551760",
+              "content": "WLAN",
+              "amount": 24
+            },
+            {
+              "filterId": "4551744",
+              "content": "AirPlay 2",
+              "amount": 16
+            },
+            {
+              "filterId": "2288288",
+              "content": "AirPlay",
+              "amount": 5
+            }
+          ]
+        },
+        {
+          "attributeId": "1338",
+          "name": "Farbe",
+          "filters": [
+            {
+              "filterId": "3013100",
+              "content": "weiß",
+              "amount": 12
+            },
+            {
+              "filterId": "3013072",
+              "content": "schwarz",
+              "amount": 18
+            },
+            {
+              "filterId": "3013034",
+              "content": "beige",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "attributeId": "29310",
+          "name": "Sprachassistent",
+          "filters": [
+            {
+              "filterId": "8884304",
+              "content": "Alexa",
+              "amount": 4
+            }
+          ]
+        },
+        {
+          "attributeId": "20589",
+          "name": "Einsatzgebiet",
+          "filters": [
+            {
+              "filterId": "5404778",
+              "content": "Wohnzimmer",
+              "amount": 20
+            },
+            {
+              "filterId": "5404775",
+              "content": "Heimkino",
+              "amount": 14
+            },
+            {
+              "filterId": "4551738",
+              "content": "Multiroom",
+              "amount": 16
+            },
+            {
+              "filterId": "4453601",
+              "content": "Handy",
+              "amount": 24
+            }
+          ]
+        },
+        {
+          "attributeId": "2680",
+          "name": "Markteinführung",
+          "filters": [
+            {
+              "filterId": "104105138",
+              "content": "2023",
+              "amount": 11
+            }
+          ]
+        }
+      ],
+      "suggestedFilters": [
+        {
+          "id": "4453600",
+          "type": "SEARCH_FILTER"
+        },
+        {
+          "id": "376117",
+          "type": "MANUFACTURER"
+        },
+        {
+          "id": "312121",
+          "type": "SEARCH_FILTER"
+        },
+        {
+          "id": "1363393",
+          "type": "SEARCH_FILTER"
+        },
+        {
+          "id": "8884304",
+          "type": "SEARCH_FILTER"
+        },
+        {
+          "id": "8891277",
+          "type": "SEARCH_FILTER"
+        },
+        {
+          "id": "2022571",
+          "type": "SEARCH_FILTER"
+        },
+        {
+          "id": "9213288",
+          "type": "SEARCH_FILTER"
+        },
+        {
+          "id": "4551722",
+          "type": "SEARCH_FILTER"
+        },
+        {
+          "id": "3013100",
+          "type": "SEARCH_FILTER"
+        }
+      ],
+      "sizeAttributes": [],
+      "results": [
+        {
+          "productRef": "pr.v1.k1.YmyrM98DdFZ0JDGIj09bgJa2yQAQUAxfEpy5hbgzGLzeHYvs5Q",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "Sonos Era 300",
+          "nameDelta": "White",
+          "price": "359,00 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/202398/6/202398620/s1_produktbild_mobil/sonos-era-300-white.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/202398620_-era-300-white-sonos.html",
+          "userReviewsSummary": {
+            "averageRating": 4.57,
+            "totalReviewCount": 788
+          },
+          "testReportsSummary": {
+            "grade": "1,6"
+          },
+          "totalOfferCount": 22,
+          "badges": {
+            "bargain": {
+              "discountRate": 11,
+              "tags": [
+                "REGULAR",
+                "SHORTTERM",
+                "BLACK_FRIDAY"
+              ]
+            }
+          }
+        },
+        {
+          "productRef": "pr.v1.k1.mpQ8_5_gFNPf7h_5V_lwH-zSZM-M76MLQEcTPzywZ5HjlLlYlQ",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "Sonos Era 300",
+          "nameDelta": "Black",
+          "price": "359,00 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/202398/6/202398605/s1_produktbild_mobil/sonos-era-300-black.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/202398605_-era-300-black-sonos.html",
+          "userReviewsSummary": {
+            "averageRating": 4.57,
+            "totalReviewCount": 788
+          },
+          "testReportsSummary": {
+            "grade": "1,6"
+          },
+          "totalOfferCount": 26,
+          "badges": {
+            "bargain": {
+              "discountRate": 11,
+              "tags": [
+                "REGULAR",
+                "SHORTTERM",
+                "BLACK_FRIDAY"
+              ]
+            }
+          }
+        },
+        {
+          "productRef": "pr.v1.k1.tE5K80PY7g5u8lqYShsWyG98_2xDBLEdWuVWk-wNPH7-TpVhjQ",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "Sonos Era 300",
+          "nameDelta": "(Set 2 pieces) White",
+          "price": "748,00 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/208706/2/208706235/s1_produktbild_mobil/sonos-era-300-set-2-pieces-white.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/208706235_-era-300-set-2-pieces-white-sonos.html",
+          "userReviewsSummary": {
+            "averageRating": 4.57,
+            "totalReviewCount": 788
+          },
+          "testReportsSummary": {
+            "grade": "1,6"
+          },
+          "totalOfferCount": 2
+        },
+        {
+          "productRef": "pr.v1.k1.1F3xM1ZyXVheg-ldpgDzwkHKfIEaSiFBadjuaWC_1_v95eHVwA",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "Sonos Era 300",
+          "nameDelta": "(Set 2 pieces) Black",
+          "price": "798,00 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/208706/2/208706234/s1_produktbild_mobil/sonos-era-300-set-2-pieces-black.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/208706234_-era-300-set-2-pieces-black-sonos.html",
+          "userReviewsSummary": {
+            "averageRating": 4.57,
+            "totalReviewCount": 788
+          },
+          "testReportsSummary": {
+            "grade": "1,6"
+          },
+          "totalOfferCount": 1
+        },
+        {
+          "productRef": "pr.v1.k1.8nwYoPFlKlO2pHzuV34ijtFgwBx_DSiT8of6afbnOwcejLY6VkDIJPFuUM-P2ABnJGwUU03Xym0i_PjJ",
+          "itemType": "SINGLE_OFFER",
+          "siteId": 1,
+          "name": "Sonos Era 300 Schwarzer Lautsprecher Dolby Atmos, Bluetooth, Raumklang",
+          "price": "735,00 €",
+          "imageUrl": "https://cdn.idealo.com/offer/de/sonos-era-300-schwarzer-lautsprecher-dolby-atmos-bluetooth-raumklang-640t4808f5f3802fc07cd60ae4341e0415b988feba33014.jpg",
+          "url": "https://www.idealo.de/relocator/relocate?offerKey=8f5f3802fc07cd60ae4341e0415b988f&type=oc_offer&media=ipc-public-mcp",
+          "totalOfferCount": 1
+        },
+        {
+          "productRef": "pr.v1.k1.FCJBvus49_iIqCl3CzcbXdmqVxJ9h_5U4W9Fjg-XVoHFJIHBz3rIq6bejiKjjuuwF4d-ntAfLjNSmqou",
+          "itemType": "SINGLE_OFFER",
+          "siteId": 1,
+          "name": "Sonos Era 300 Paar-Bundle - Schwarz",
+          "price": "748,00 €",
+          "imageUrl": "https://cdn.idealo.com/offer/de/sonos-era-300-paar-bundle-schwarz-640t480aa0b136a29fe88e059401fcaada514fd7a0e2298.jpg",
+          "url": "https://www.idealo.de/relocator/relocate?offerKey=aa0b136a29fe88e059401fcaada514fd&type=oc_offer&media=ipc-public-mcp",
+          "totalOfferCount": 1
+        },
+        {
+          "productRef": "pr.v1.k1.xT2vl_zJbQoypoYZF65hqcWTilTC9VPNmotq83jnvcyi0g22fg",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "Sonos Era 100 SL",
+          "nameDelta": "schwarz Doppelpack",
+          "price": "279,00 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/214250/0/214250077/s1_produktbild_mobil/sonos-era-100-sl-schwarz-doppelpack.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/214250077_-era-100-sl-schwarz-doppelpack-sonos.html",
+          "userReviewsSummary": {
+            "averageRating": 4.78,
+            "totalReviewCount": 37
+          },
+          "testReportsSummary": {
+            "grade": "2,0"
+          },
+          "totalOfferCount": 11,
+          "badges": {
+            "bargain": {
+              "discountRate": 15,
+              "tags": [
+                "REGULAR",
+                "SHORTTERM",
+                "BLACK_FRIDAY"
+              ]
+            }
+          }
+        },
+        {
+          "productRef": "pr.v1.k1.EtlOAB1nGCDBUyqDt6D53mwwxet0yajMMkYfgic09fZrtK-HPA",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "Sonos Sub 4",
+          "price": "669,00 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/205132/6/205132689/s1_produktbild_mobil/sonos-sub-4.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/205132689_-sub-4-sonos.html",
+          "userReviewsSummary": {
+            "averageRating": 4.7,
+            "totalReviewCount": 10
+          },
+          "testReportsSummary": {
+            "grade": "1,8"
+          },
+          "totalOfferCount": 36
+        },
+        {
+          "productRef": "pr.v1.k1.YTSSphCQ0fZUuE5FzVMDad5_GZjnyl5fODpKN8rcyvS8kqeFaA",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "Sonos Sub 4",
+          "nameDelta": "Black",
+          "price": "669,00 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/205132/6/205132686/s1_produktbild_mobil/sonos-sub-4-black.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/205132686_-sub-4-black-sonos.html",
+          "userReviewsSummary": {
+            "averageRating": 4.7,
+            "totalReviewCount": 10
+          },
+          "totalOfferCount": 18,
+          "badges": {
+            "bargain": {
+              "discountRate": 18,
+              "tags": [
+                "REGULAR",
+                "SHORTTERM",
+                "BLACK_FRIDAY"
+              ]
+            }
+          }
+        },
+        {
+          "productRef": "pr.v1.k1.z-xL47EbrvuYEDFNv9EluCr3FzGx1PWrVqgrvdCC-UniD79WUw",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "Sonos Era 100 SL",
+          "nameDelta": "weiß Doppelpack",
+          "price": "279,00 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/214250/0/214250080/s1_produktbild_mobil/sonos-era-100-sl-weiss-doppelpack.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/214250080_-era-100-sl-weiss-doppelpack-sonos.html",
+          "userReviewsSummary": {
+            "averageRating": 4.78,
+            "totalReviewCount": 37
+          },
+          "testReportsSummary": {
+            "grade": "2,0"
+          },
+          "totalOfferCount": 11,
+          "badges": {
+            "bargain": {
+              "discountRate": 15,
+              "tags": [
+                "REGULAR",
+                "SHORTTERM",
+                "BLACK_FRIDAY"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "details": {
+      "productRef": "pr.v1.k1.YmyrM98DdFZ0JDGIj09bgJa2yQAQUAxfEpy5hbgzGLzeHYvs5Q",
+      "itemType": "PRODUCT",
+      "siteId": 1,
+      "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/202398620_-era-300-white-sonos.html",
+      "name": "Sonos Era 300",
+      "nameDelta": "White",
+      "imageUrls": [
+        "https://cdn.idealo.com/folder/Product/202398/6/202398620/s1_produktbild_mobil/sonos-era-300-white.jpg"
+      ],
+      "badges": {
+        "bargain": {
+          "discountRate": 11,
+          "tags": [
+            "REGULAR",
+            "SHORTTERM",
+            "BLACK_FRIDAY"
+          ]
+        }
+      },
+      "nextOffset": 3,
+      "offers": [
+        {
+          "key": "c84653295a789037116463266c8037fe",
+          "price": "359,00 €",
+          "basePrice": null,
+          "shop": {
+            "shopId": "310971",
+            "merchantId": null,
+            "name": "hifiklubben.de",
+            "merchantName": null,
+            "rating": {
+              "count": 809,
+              "avg": 4.74
+            },
+            "isMarketplace": false
+          },
+          "payments": [
+            {
+              "costCode": "INV",
+              "name": "Rechnung"
+            },
+            {
+              "costCode": "PP",
+              "name": "PayPal"
+            },
+            {
+              "costCode": "DD",
+              "name": "Lastschrift"
+            },
+            {
+              "costCode": "SUW",
+              "name": "Sofort."
+            },
+            {
+              "costCode": "CBC",
+              "name": "Kreditkarte"
+            },
+            {
+              "costCode": "CIA",
+              "name": "Vorkasse"
+            }
+          ],
+          "showPaymentDisclaimer": false,
+          "delivery": {
+            "deliveryText": "bis Sa. 28.11.2026",
+            "deliveryStatus": "SHORT",
+            "earlyDeliveryDate": null,
+            "lateDeliveryDate": "2026-11-28"
+          },
+          "freeReturnDays": null,
+          "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=c84653295a789037116463266c8037fe&categoryId=2021&pos=1&price=359.00&productid=202398620&sid=310971&type=offer&media=ipc-public-mcp",
+          "minShippingCost": "0,00 €",
+          "hasAlwaysFreeShipping": true,
+          "cheapestTotalPriceOffer": true,
+          "freshness": "2026-11-26T20:03:24.450Z"
+        },
+        {
+          "key": "4975eeef4f7d5c1635670c4bc2573398",
+          "price": "359,00 €",
+          "basePrice": null,
+          "shop": {
+            "shopId": "315149",
+            "merchantId": null,
+            "name": "audioforum-berlin.de",
+            "merchantName": null,
+            "rating": {
+              "count": 74,
+              "avg": 4.2
+            },
+            "isMarketplace": false
+          },
+          "payments": [
+            {
+              "costCode": "PP",
+              "name": "PayPal"
+            },
+            {
+              "costCode": "CBC",
+              "name": "Kreditkarte"
+            },
+            {
+              "costCode": "APPLE_PAY",
+              "name": "Apple Pay"
+            },
+            {
+              "costCode": "CIA",
+              "name": "Vorkasse"
+            }
+          ],
+          "showPaymentDisclaimer": false,
+          "delivery": {
+            "deliveryText": "bis Sa. 28.11.2026",
+            "deliveryStatus": "SHORT",
+            "earlyDeliveryDate": null,
+            "lateDeliveryDate": "2026-11-28"
+          },
+          "freeReturnDays": 14,
+          "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=4975eeef4f7d5c1635670c4bc2573398&categoryId=2021&pos=2&price=359.00&productid=202398620&sid=315149&type=offer&media=ipc-public-mcp",
+          "minShippingCost": "0,00 €",
+          "hasAlwaysFreeShipping": true,
+          "cheapestTotalPriceOffer": true,
+          "freshness": "2026-11-26T20:03:24.450Z"
+        },
+        {
+          "key": "281a8b6b35b9d34aeeb1fce6ea673dce",
+          "price": "359,00 €",
+          "basePrice": null,
+          "shop": {
+            "shopId": "299481",
+            "merchantId": null,
+            "name": "thomas-electronic.com",
+            "merchantName": null,
+            "rating": {
+              "count": 34,
+              "avg": 4.2
+            },
+            "isMarketplace": false
+          },
+          "payments": [
+            {
+              "costCode": "PP",
+              "name": "PayPal"
+            },
+            {
+              "costCode": "CBC",
+              "name": "Kreditkarte"
+            },
+            {
+              "costCode": "CIA",
+              "name": "Vorkasse"
+            }
+          ],
+          "showPaymentDisclaimer": false,
+          "delivery": {
+            "deliveryText": "Sa. 28.11.–Mo. 30.11.2026",
+            "deliveryStatus": "SHORT",
+            "earlyDeliveryDate": "2026-11-28",
+            "lateDeliveryDate": "2026-11-30"
+          },
+          "freeReturnDays": null,
+          "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=281a8b6b35b9d34aeeb1fce6ea673dce&categoryId=2021&pos=3&price=359.00&productid=202398620&sid=299481&type=offer&media=ipc-public-mcp",
+          "minShippingCost": "0,00 €",
+          "hasAlwaysFreeShipping": true,
+          "cheapestTotalPriceOffer": true,
+          "freshness": "2026-11-26T20:03:24.450Z"
+        }
+      ],
+      "prosCons": {
+        "pros": [
+          "neben HomePod einziger Lautsprecher für Spatial Audio",
+          "automatische Klangeinmessung jetzt auch für Android",
+          "warmer, weitläufiger Klang",
+          "3D-Audiowiedergabe"
+        ],
+        "cons": [
+          "teuer als Rear-Speaker im Surround-System",
+          "Analogeingang nur mit USB-C-Adapter"
+        ]
+      },
+      "testReports": {
+        "summary": {
+          "grade": "1,6",
+          "averageRating": 87.68181818181819,
+          "rating": "gut",
+          "ratingCount": 22
+        },
+        "list": [
+          {
+            "providerName": "lbtechreviews.com",
+            "shortDescription": "Einzeltest Sonos Era 300",
+            "summaryText": "Der Sonos Era 300 bietet einen kraftvollen, dynamischen Klang mit starkem Bass. Die Klangbühne ist für einen so kompakten Lautsprecher überraschend groß.",
+            "ratingValue": "5/6",
+            "publishedAt": 1681380000000,
+            "language": "de",
+            "issue": "online",
+            "testedProductsCount": 1
+          },
+          {
+            "providerName": "stuff.tv",
+            "shortDescription": "Einzeltest Sonos Era 300",
+            "summaryText": "Der Klang ist weiträumig, sauber und kraftvoll. Schön ist auch, dass es Bluetooth und Multiroom gibt. Vermisst wird der Google Assistant.",
+            "ratingValue": "5/5",
+            "publishedAt": 1679911200000,
+            "language": "de",
+            "issue": "online",
+            "testedProductsCount": 1
+          },
+          {
+            "providerName": "headphonecheck",
+            "shortDescription": "Einzeltest Sonos Era 300",
+            "summaryText": "Klang: 5/5 – Handhabung: 4,5/5 – Preis-Leistung: 4/5 – Funktionen: 5/5",
+            "ratingValue": "4,63/5",
+            "language": "de",
+            "issue": "online",
+            "testedProductsCount": 1
+          },
+          {
+            "providerName": "hifi.de",
+            "shortDescription": "Einzeltest Sonos Era 300",
+            "summaryText": "Bei Dolby Atmos und Spatial Audio kann der Speaker überzeugen. Lobenswert sind auch die Trueplay-Raumeinmessung und die verbesserte Bedienung. USB-C lässt sich leider nur per Adapter nutzen. Der Preis für das Gebotene ist relativ hoch.",
+            "ratingValue": "8,7/10",
+            "publishedAt": 1679911200000,
+            "language": "de",
+            "issue": "online",
+            "testedProductsCount": 1
+          },
+          {
+            "providerName": "What HiFi",
+            "shortDescription": "Einzeltest Sonos Era 300",
+            "summaryText": "Klang: 5/5 – Funktionen: 5/5 – Verarbeitung: 5/5",
+            "ratingValue": "5/5",
+            "publishedAt": 1680084000000,
+            "language": "de",
+            "issue": "online",
+            "testedProductsCount": 1
+          },
+          {
+            "providerName": "Tech Advisor",
+            "shortDescription": "Einzeltest Sonos Era 300",
+            "summaryText": "Der Era 300 ist ein hervorragender Lautsprecher, aber er ist nicht ohne Schwächen. Die hervorragende Klangqualität ist das wichtigste Verkaufsargument, aber die viel gepriesene Unterstützung für Spatial Audio ergibt bei einem einzelnen Lautsprecher wenig Sinn und wird zudem von der Sonos-Software eingeschränkt.",
+            "ratingValue": "4/5",
+            "publishedAt": 1682589600000,
+            "language": "de",
+            "issue": "online",
+            "testedProductsCount": 1
+          },
+          {
+            "providerName": "PCMag.com",
+            "shortDescription": "Einzeltest Sonos Era 300",
+            "summaryText": "Der Dolby Atmos-kompatible Era 300 liefert schon allein einen raumfüllenden Klang. Zusammen mit anderen Sonos-Lautsprechern bietet es ein wahrhaftiges Kinoerlebnis. Der Preis dafür ist aber hoch.",
+            "ratingValue": "4/5",
+            "publishedAt": 1679911200000,
+            "language": "de",
+            "issue": "online",
+            "testedProductsCount": 1
+          },
+          {
+            "providerName": "Pocket-lint",
+            "shortDescription": "Einzeltest Sonos Era 300",
+            "summaryText": "Der Sonos Era 300 hat ein einzigartiges Design, dass aber nicht alle lieben werden. Der Klang ist hervorragend und es gibt jede Menge Funktionen. Der Preis für das Ganze ist aber hoch.",
+            "ratingValue": "5/5",
+            "publishedAt": 1679911200000,
+            "language": "de",
+            "issue": "online",
+            "testedProductsCount": 1
+          },
+          {
+            "providerName": "Audiovision",
+            "shortDescription": "Einzeltest Sonos Era 300",
+            "summaryText": "Der Era 300 liefert eine gleichmäßige Klangfülle, könnte jedoch druckvollere Bässe bieten. Er kann per WLAN, Apple Airplay oder Bluetooth 5.0 verbunden werden und bietet vielfältige Steuerungsmöglichkeiten. Zudem ist er mit anderen Geräten des Herstellers kompatibel und unterstützt verschiedene Streaming-Dienste und Sprachassistenten.",
+            "ratingValue": "sehr gut",
+            "publishedAt": 1714125600000,
+            "language": "de",
+            "issue": "online",
+            "testedProductsCount": 1
+          },
+          {
+            "providerName": "netzwelt",
+            "shortDescription": "Einzeltest Sonos Era 300",
+            "summaryText": "Das Sonos Era 300 klingt sehr räumlich und kann ausreichend laut werden. Er besitzt zudem viele Schnittstellen. Am besten macht er sich in einem Set, doch dann wird das Ganze sehr teuer.",
+            "ratingValue": "1,7",
+            "publishedAt": 1679911200000,
+            "language": "de",
+            "issue": "online",
+            "testedProductsCount": 1
+          },
+          {
+            "providerName": "heise bestenlisten",
+            "shortDescription": "Einzeltest Sonos Era 300",
+            "summaryText": "Lobenswert sind die Klangqualität, der 3D-Sound, die Trueplay-Akustikjustage und die Konnektivität. Weniger beeindruckend ist das klobige Design. Außerdem ist der Preis hoch.",
+            "ratingValue": "5/5",
+            "publishedAt": 1682244000000,
+            "language": "de",
+            "issue": "online",
+            "testedProductsCount": 1
+          },
+          {
+            "providerName": "ComputerBild",
+            "shortDescription": "Einzeltest Sonos Era 300",
+            "summaryText": "Der Sonos Era 300 punktet mit gutem, weiträumigem Klang und kompakten Abmessungen. Es hat Zugriff auf alle wichtigen Musik-Quellen und eine automatische Klangeinmessung. Ein Manko ist die stark begrenzte Wiedergabe von High-Res.",
+            "ratingValue": "gut (1,8)",
+            "publishedAt": 1680343200000,
+            "language": "de",
+            "issue": "online",
+            "testedProductsCount": 1
+          },
+          {
+            "providerName": "digit.in",
+            "shortDescription": "Einzeltest Sonos Era 300",
+            "summaryText": "Verarbeitung und Design: 8,8/10 | Leistung: 8,4/10 | Funktionen: 7,4/10 | Preis-Leistungs-Verhältnis: 7,9/10",
+            "ratingValue": "8,2/10",
+            "publishedAt": 1718877600000,
+            "language": "de",
+            "issue": "online",
+            "testedProductsCount": 1
+          },
+          {
+            "providerName": "engadget.com",
+            "shortDescription": "Einzeltest Sonos Era 300",
+            "ratingValue": "80/100",
+            "publishedAt": 1679911200000,
+            "language": "de",
+            "issue": "online",
+            "testedProductsCount": 1
+          },
+          {
+            "providerName": "t3.com",
+            "shortDescription": "Einzeltest Sonos Era 300",
+            "summaryText": "Der ungewöhnlich geformte Sonos Era 300 bietet einen wirklich beeindruckenden, immersiven Klang, der selbst das Flaggschiff Sonos Five weit übertrifft. Der zusätzliche Sprachassistent - und die Möglichkeit, ihn zu deaktivieren - ist ein Pluspunkt, ebenso wie die Bluetooth-Verbindung. Diejenigen, die das Gerät fest verkabeln möchten, könnten den USB-C-Anschluss jedoch als etwas störend empfinden.",
+            "ratingValue": "5/5",
+            "publishedAt": 1682244000000,
+            "language": "de",
+            "issue": "online",
+            "testedProductsCount": 1
+          },
+          {
+            "providerName": "Stiftung Warentest",
+            "shortDescription": "Einzeltest Sonos Era 300",
+            "summaryText": "Die Klangqualität kann überzeugen und die Bedienung ist einfach. Allerdings ist eine vernünftige Anzeige wünschenswert. Der Stromverbrauch im Betrieb beträgt 12 W und im Standby sind es 2,1 W, was gute Werte sind.",
+            "ratingValue": "2,2",
+            "publishedAt": 1703242800000,
+            "language": "de",
+            "issue": "online",
+            "testedProductsCount": 1
+          },
+          {
+            "providerName": "TechHive",
+            "shortDescription": "Einzeltest Sonos Era 300",
+            "ratingValue": "4,6/5",
+            "publishedAt": 1679911200000,
+            "language": "de",
+            "issue": "online",
+            "testedProductsCount": 1
+          },
+          {
+            "providerName": "theverge.com",
+            "shortDescription": "Einzeltest Sonos Era 300",
+            "ratingValue": "7/10",
+            "publishedAt": 1679911200000,
+            "language": "de",
+            "issue": "online",
+            "testedProductsCount": 1
+          },
+          {
+            "providerName": "IMTEST",
+            "shortDescription": "Einzeltest Sonos Era 300",
+            "summaryText": "Der kompakte Lautsprecher liefert einen raumfüllenden Klang und lässt sich bequem per App bedienen. Wer ein Stereo-Paar haben will muss viel Geld investieren.",
+            "ratingValue": "gut (2,4)",
+            "publishedAt": 1686477600000,
+            "language": "de",
+            "issue": "online",
+            "testedProductsCount": 1
+          },
+          {
+            "providerName": "Sound & Vision",
+            "shortDescription": "Einzeltest Sonos Era 300",
+            "summaryText": "Performance: 4,5/5 - Funktionsumfang: 5/5 - Ergonomie: 5/5 - Preis-Leistung: 4,5/5",
+            "ratingValue": "keine Gesamtnote",
+            "publishedAt": 1683712800000,
+            "language": "de",
+            "issue": "online",
+            "testedProductsCount": 1
+          },
+          {
+            "providerName": "Konsument",
+            "shortDescription": "Einzeltest Sonos Era 300",
+            "summaryText": "Ton: gut, Handhabung: durchschnittlich, Energieverbrauch: durchschnittlich, Vielseitigkeit: durchschnittlich, Tragekomfort: weniger zufriedenstellend",
+            "ratingValue": "gut",
+            "publishedAt": 1724925600000,
+            "language": "de",
+            "issue": "online",
+            "testedProductsCount": 1
+          },
+          {
+            "providerName": "trustedreviews.com",
+            "shortDescription": "Einzeltest Sonos Era 300",
+            "summaryText": "Der Sonos Era 300 ist ein kabelloser Lautsprecher, der eine hervorragende Dolby-Atmos-Wiedergabe bietet. Er liefert einen klaren und ausgewogenen Klang. Der Preis ist aber recht hoch.",
+            "ratingValue": "4,5/5",
+            "publishedAt": 1679911200000,
+            "language": "de",
+            "issue": "online",
+            "testedProductsCount": 1
+          }
+        ]
+      },
+      "productSpecification": {
+        "groups": [
+          {
+            "name": "Betrieb",
+            "type": "DEFAULT",
+            "attributes": [
+              {
+                "name": "Prinzip",
+                "value": "aktiv"
+              },
+              {
+                "name": "Stromversorgung",
+                "value": "Netzbetrieb"
+              }
+            ]
+          },
+          {
+            "name": "Ausstattung",
+            "type": "DEFAULT",
+            "attributes": [
+              {
+                "name": "integrierte Geräte",
+                "value": "Mikrofon"
+              },
+              {
+                "name": "Soundfunktion",
+                "value": "Equalizer"
+              },
+              {
+                "name": "Funktionen",
+                "value": "Streaming, Freisprechfunktion"
+              },
+              {
+                "name": "Steuerung über",
+                "value": "Sensortasten"
+              },
+              {
+                "name": "Smartphone Steuerungs-App",
+                "value": "Sonos"
+              },
+              {
+                "name": "Schutzeigenschaft",
+                "value": "feuchtigkeitsresistent"
+              },
+              {
+                "name": "Steuerungseigenschaften",
+                "value": "Rufannahme, Bluetooth Pairing"
+              }
+            ]
+          },
+          {
+            "name": "Leistung",
+            "type": "DEFAULT",
+            "attributes": [
+              {
+                "name": "Verstärkertyp",
+                "value": "6 x Class D"
+              }
+            ]
+          },
+          {
+            "name": "Anschlüsse",
+            "type": "DEFAULT",
+            "attributes": [
+              {
+                "name": "analoger Eingang",
+                "value": "Line-In (3,5mm Klinke)"
+              },
+              {
+                "name": "Bluetooth-Version",
+                "value": "Bluetooth 5.0"
+              },
+              {
+                "name": "Bluetooth Codec",
+                "value": "SBC"
+              },
+              {
+                "name": "Bluetooth-Profile",
+                "value": "A2DP, HFP (Handsfree)"
+              },
+              {
+                "name": "Funkübertragungen",
+                "value": "WLAN, AirPlay 2, Bluetooth"
+              }
+            ]
+          },
+          {
+            "name": "Design",
+            "type": "DEFAULT",
+            "attributes": [
+              {
+                "name": "Gehäusefarbe",
+                "value": "weiß"
+              },
+              {
+                "name": "Farbe Lautsprecherabdeckung",
+                "value": "weiß"
+              },
+              {
+                "name": "Standfußfarbe",
+                "value": "schwarz"
+              }
+            ]
+          },
+          {
+            "name": "Bauweise",
+            "type": "DEFAULT",
+            "attributes": [
+              {
+                "name": "Anzahl Hochtöner",
+                "value": "4"
+              },
+              {
+                "name": "Anzahl Tief-/Mitteltöner",
+                "value": "2"
+              }
+            ]
+          },
+          {
+            "name": "Smart Home",
+            "type": "DEFAULT",
+            "attributes": [
+              {
+                "name": "Sprachassistent",
+                "value": "Alexa"
+              }
+            ]
+          },
+          {
+            "name": "Abmessungen und Lieferumfang",
+            "type": "DEFAULT",
+            "attributes": [
+              {
+                "name": "Gewicht",
+                "value": "4,47 kg"
+              },
+              {
+                "name": "Lieferumfang",
+                "value": "Bedienungsanleitung, Netzkabel"
+              },
+              {
+                "name": "Breite",
+                "value": "260 mm"
+              },
+              {
+                "name": "Höhe",
+                "value": "160 mm"
+              },
+              {
+                "name": "Tiefe",
+                "value": "185 mm"
+              }
+            ]
+          },
+          {
+            "name": "",
+            "type": "IMPORTANT",
+            "attributes": [
+              {
+                "name": "Gelistet seit",
+                "value": "März 2023"
+              },
+              {
+                "name": "Produkttypen",
+                "value": "WLAN Lautsprecher, Smart Speaker, Bluetooth Lautsprecher, Dolby Atmos-Lautsprecher"
+              }
+            ]
+          },
+          {
+            "name": "",
+            "type": "OTHER",
+            "attributes": [
+              {
+                "name": "Kompatibilitäten",
+                "value": "Apple iPad, Geräte mit 3,5mm Ausgang, MP3-Player, Notebook, sonstige Geräte mit Bluetooth, Tablet, Smartphone"
+              },
+              {
+                "name": "Einsatzgebiete",
+                "value": "Heimkino, Wohnzimmer, Multiroom, Handy"
+              },
+              {
+                "name": "Aufstellvarianten",
+                "value": "Regal, Standfuß"
+              },
+              {
+                "name": "Markteinführung",
+                "value": "2023"
+              }
+            ]
+          }
+        ]
+      },
+      "productOverview": [
+        "mit Freisprechfunktion",
+        "Bluetooth 5.0",
+        "Amazon Alexa",
+        "Line-In (3,5mm Klinke)"
+      ],
+      "productDetailsUrl": "https://www.idealo.de/preisvergleich/OffersOfProduct/202398620_-era-300-white-sonos.html#datasheet",
+      "priceTrend": {
+        "history": [
+          {
+            "dateTime": 1793141999999,
+            "price": 39900
+          },
+          {
+            "dateTime": 1793228399999,
+            "price": 41900
+          },
+          {
+            "dateTime": 1793314799999,
+            "price": 41900
+          },
+          {
+            "dateTime": 1793401199999,
+            "price": 41900
+          },
+          {
+            "dateTime": 1793487599999,
+            "price": 37900
+          },
+          {
+            "dateTime": 1793573999999,
+            "price": 37900
+          },
+          {
+            "dateTime": 1793660399999,
+            "price": 41900
+          },
+          {
+            "dateTime": 1793746799999,
+            "price": 41900
+          },
+          {
+            "dateTime": 1793833199999,
+            "price": 41900
+          },
+          {
+            "dateTime": 1793919599999,
+            "price": 41900
+          },
+          {
+            "dateTime": 1794005999999,
+            "price": 41900
+          },
+          {
+            "dateTime": 1794092399999,
+            "price": 41900
+          },
+          {
+            "dateTime": 1794178799999,
+            "price": 41900
+          },
+          {
+            "dateTime": 1794265199999,
+            "price": 41900
+          },
+          {
+            "dateTime": 1794351599999,
+            "price": 41900
+          },
+          {
+            "dateTime": 1794437999999,
+            "price": 41900
+          },
+          {
+            "dateTime": 1794524399999,
+            "price": 41900
+          },
+          {
+            "dateTime": 1794610799999,
+            "price": 41900
+          },
+          {
+            "dateTime": 1794697199999,
+            "price": 41900
+          },
+          {
+            "dateTime": 1794783599999,
+            "price": 40900
+          },
+          {
+            "dateTime": 1794869999999,
+            "price": 40900
+          },
+          {
+            "dateTime": 1794956399999,
+            "price": 40900
+          },
+          {
+            "dateTime": 1795042799999,
+            "price": 40900
+          },
+          {
+            "dateTime": 1795129199999,
+            "price": 40900
+          },
+          {
+            "dateTime": 1795215599999,
+            "price": 39900
+          },
+          {
+            "dateTime": 1795301999999,
+            "price": 39790
+          },
+          {
+            "dateTime": 1795388399999,
+            "price": 39790
+          },
+          {
+            "dateTime": 1795474799999,
+            "price": 39790
+          },
+          {
+            "dateTime": 1795561199999,
+            "price": 39790
+          },
+          {
+            "dateTime": 1795647599999,
+            "price": 35900
+          },
+          {
+            "dateTime": 1795723404457,
+            "price": 35900
+          }
+        ]
+      }
+    },
+    "offers": {
+      "nextOffset": 5,
+      "offers": [
+        {
+          "key": "c84653295a789037116463266c8037fe",
+          "price": "359,00 €",
+          "basePrice": null,
+          "shop": {
+            "shopId": "310971",
+            "merchantId": null,
+            "name": "hifiklubben.de",
+            "merchantName": null,
+            "rating": {
+              "count": 809,
+              "avg": 4.74
+            },
+            "isMarketplace": false
+          },
+          "payments": [
+            {
+              "costCode": "INV",
+              "name": "Rechnung"
+            },
+            {
+              "costCode": "PP",
+              "name": "PayPal"
+            },
+            {
+              "costCode": "DD",
+              "name": "Lastschrift"
+            },
+            {
+              "costCode": "SUW",
+              "name": "Sofort."
+            },
+            {
+              "costCode": "CBC",
+              "name": "Kreditkarte"
+            },
+            {
+              "costCode": "CIA",
+              "name": "Vorkasse"
+            }
+          ],
+          "showPaymentDisclaimer": false,
+          "delivery": {
+            "deliveryText": "bis Sa. 28.11.2026",
+            "deliveryStatus": "SHORT",
+            "earlyDeliveryDate": null,
+            "lateDeliveryDate": "2026-11-28"
+          },
+          "freeReturnDays": null,
+          "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=c84653295a789037116463266c8037fe&categoryId=2021&pos=1&price=359.00&productid=202398620&sid=310971&type=offer&media=ipc-public-mcp",
+          "minShippingCost": "0,00 €",
+          "hasAlwaysFreeShipping": true,
+          "cheapestTotalPriceOffer": true,
+          "freshness": "2026-11-26T20:03:24.789Z"
+        },
+        {
+          "key": "4975eeef4f7d5c1635670c4bc2573398",
+          "price": "359,00 €",
+          "basePrice": null,
+          "shop": {
+            "shopId": "315149",
+            "merchantId": null,
+            "name": "audioforum-berlin.de",
+            "merchantName": null,
+            "rating": {
+              "count": 74,
+              "avg": 4.2
+            },
+            "isMarketplace": false
+          },
+          "payments": [
+            {
+              "costCode": "PP",
+              "name": "PayPal"
+            },
+            {
+              "costCode": "CBC",
+              "name": "Kreditkarte"
+            },
+            {
+              "costCode": "APPLE_PAY",
+              "name": "Apple Pay"
+            },
+            {
+              "costCode": "CIA",
+              "name": "Vorkasse"
+            }
+          ],
+          "showPaymentDisclaimer": false,
+          "delivery": {
+            "deliveryText": "bis Sa. 28.11.2026",
+            "deliveryStatus": "SHORT",
+            "earlyDeliveryDate": null,
+            "lateDeliveryDate": "2026-11-28"
+          },
+          "freeReturnDays": 14,
+          "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=4975eeef4f7d5c1635670c4bc2573398&categoryId=2021&pos=2&price=359.00&productid=202398620&sid=315149&type=offer&media=ipc-public-mcp",
+          "minShippingCost": "0,00 €",
+          "hasAlwaysFreeShipping": true,
+          "cheapestTotalPriceOffer": true,
+          "freshness": "2026-11-26T20:03:24.789Z"
+        },
+        {
+          "key": "281a8b6b35b9d34aeeb1fce6ea673dce",
+          "price": "359,00 €",
+          "basePrice": null,
+          "shop": {
+            "shopId": "299481",
+            "merchantId": null,
+            "name": "thomas-electronic.com",
+            "merchantName": null,
+            "rating": {
+              "count": 34,
+              "avg": 4.2
+            },
+            "isMarketplace": false
+          },
+          "payments": [
+            {
+              "costCode": "PP",
+              "name": "PayPal"
+            },
+            {
+              "costCode": "CBC",
+              "name": "Kreditkarte"
+            },
+            {
+              "costCode": "CIA",
+              "name": "Vorkasse"
+            }
+          ],
+          "showPaymentDisclaimer": false,
+          "delivery": {
+            "deliveryText": "Sa. 28.11.–Mo. 30.11.2026",
+            "deliveryStatus": "SHORT",
+            "earlyDeliveryDate": "2026-11-28",
+            "lateDeliveryDate": "2026-11-30"
+          },
+          "freeReturnDays": null,
+          "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=281a8b6b35b9d34aeeb1fce6ea673dce&categoryId=2021&pos=3&price=359.00&productid=202398620&sid=299481&type=offer&media=ipc-public-mcp",
+          "minShippingCost": "0,00 €",
+          "hasAlwaysFreeShipping": true,
+          "cheapestTotalPriceOffer": true,
+          "freshness": "2026-11-26T20:03:24.789Z"
+        },
+        {
+          "key": "b883bafe86e404b02f03dee513caee35",
+          "price": "359,00 €",
+          "basePrice": null,
+          "shop": {
+            "shopId": "335726",
+            "merchantId": null,
+            "name": "techniklieben.de",
+            "merchantName": null,
+            "rating": {
+              "count": 114,
+              "avg": 4.22
+            },
+            "isMarketplace": false
+          },
+          "payments": [
+            {
+              "costCode": "PP",
+              "name": "PayPal"
+            },
+            {
+              "costCode": "CBC",
+              "name": "Kreditkarte"
+            }
+          ],
+          "showPaymentDisclaimer": false,
+          "delivery": {
+            "deliveryText": "Sa. 28.11.–Mo. 30.11.2026",
+            "deliveryStatus": "SHORT",
+            "earlyDeliveryDate": "2026-11-28",
+            "lateDeliveryDate": "2026-11-30"
+          },
+          "freeReturnDays": 30,
+          "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=b883bafe86e404b02f03dee513caee35&categoryId=2021&pos=4&price=359.00&productid=202398620&sid=335726&type=offer&media=ipc-public-mcp",
+          "minShippingCost": "0,00 €",
+          "hasAlwaysFreeShipping": true,
+          "cheapestTotalPriceOffer": true,
+          "freshness": "2026-11-26T20:03:24.789Z"
+        }
+      ]
+    },
+    "price_history": {
+      "priceTrend": {
+        "history": [
+          {
+            "dateTime": 1793141999999,
+            "price": "399,00 €",
+            "dateTimeISO": "2026-10-27T22:59:59.999Z"
+          },
+          {
+            "dateTime": 1793228399999,
+            "price": "419,00 €",
+            "dateTimeISO": "2026-10-28T22:59:59.999Z",
+            "priceChangePercent": 5.012531328320802
+          },
+          {
+            "dateTime": 1793314799999,
+            "price": "419,00 €",
+            "dateTimeISO": "2026-10-29T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1793401199999,
+            "price": "419,00 €",
+            "dateTimeISO": "2026-10-30T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1793487599999,
+            "price": "379,00 €",
+            "dateTimeISO": "2026-10-31T22:59:59.999Z",
+            "priceChangePercent": -9.54653937947494
+          },
+          {
+            "dateTime": 1793573999999,
+            "price": "379,00 €",
+            "dateTimeISO": "2026-11-01T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1793660399999,
+            "price": "419,00 €",
+            "dateTimeISO": "2026-11-02T22:59:59.999Z",
+            "priceChangePercent": 10.554089709762533
+          },
+          {
+            "dateTime": 1793746799999,
+            "price": "419,00 €",
+            "dateTimeISO": "2026-11-03T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1793833199999,
+            "price": "419,00 €",
+            "dateTimeISO": "2026-11-04T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1793919599999,
+            "price": "419,00 €",
+            "dateTimeISO": "2026-11-05T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1794005999999,
+            "price": "419,00 €",
+            "dateTimeISO": "2026-11-06T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1794092399999,
+            "price": "419,00 €",
+            "dateTimeISO": "2026-11-07T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1794178799999,
+            "price": "419,00 €",
+            "dateTimeISO": "2026-11-08T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1794265199999,
+            "price": "419,00 €",
+            "dateTimeISO": "2026-11-09T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1794351599999,
+            "price": "419,00 €",
+            "dateTimeISO": "2026-11-10T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1794437999999,
+            "price": "419,00 €",
+            "dateTimeISO": "2026-11-11T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1794524399999,
+            "price": "419,00 €",
+            "dateTimeISO": "2026-11-12T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1794610799999,
+            "price": "419,00 €",
+            "dateTimeISO": "2026-11-13T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1794697199999,
+            "price": "419,00 €",
+            "dateTimeISO": "2026-11-14T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1794783599999,
+            "price": "409,00 €",
+            "dateTimeISO": "2026-11-15T22:59:59.999Z",
+            "priceChangePercent": -2.386634844868735
+          },
+          {
+            "dateTime": 1794869999999,
+            "price": "409,00 €",
+            "dateTimeISO": "2026-11-16T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1794956399999,
+            "price": "409,00 €",
+            "dateTimeISO": "2026-11-17T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1795042799999,
+            "price": "409,00 €",
+            "dateTimeISO": "2026-11-18T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1795129199999,
+            "price": "409,00 €",
+            "dateTimeISO": "2026-11-19T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1795215599999,
+            "price": "399,00 €",
+            "dateTimeISO": "2026-11-20T22:59:59.999Z",
+            "priceChangePercent": -2.444987775061125
+          },
+          {
+            "dateTime": 1795301999999,
+            "price": "397,90 €",
+            "dateTimeISO": "2026-11-21T22:59:59.999Z",
+            "priceChangePercent": -0.2756892230576441
+          },
+          {
+            "dateTime": 1795388399999,
+            "price": "397,90 €",
+            "dateTimeISO": "2026-11-22T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1795474799999,
+            "price": "397,90 €",
+            "dateTimeISO": "2026-11-23T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1795561199999,
+            "price": "397,90 €",
+            "dateTimeISO": "2026-11-24T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1795647599999,
+            "price": "359,00 €",
+            "dateTimeISO": "2026-11-25T22:59:59.999Z",
+            "priceChangePercent": -9.77632570997738
+          },
+          {
+            "dateTime": 1795723404999,
+            "price": "359,00 €",
+            "dateTimeISO": "2026-11-26T20:03:24.999Z",
+            "priceChangePercent": 0
+          }
+        ],
+        "statistics": {
+          "minPrice": "359,00 €",
+          "maxPrice": "419,00 €",
+          "avgPrice": "406,92 €",
+          "currentPrice": "359,00 €",
+          "priceChangePercent": -10.025062656641603,
+          "lowestPriceDate": "2026-11-25T22:59:59.999Z",
+          "highestPriceDate": "2026-10-28T22:59:59.999Z"
+        },
+        "samplingGranularity": "daily",
+        "dataSourceConfidence": 0.95,
+        "periodDays": 29.9,
+        "totalDataPoints": 31
+      }
+    },
+    "all_cached": true
+  }
+}

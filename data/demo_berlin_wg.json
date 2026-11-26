@@ -1,0 +1,99 @@
+{
+  "scenario_name": "Neukölln WG Split — Alex & Sam",
+  "party_a_name": "Alex",
+  "party_b_name": "Sam",
+  "country": "DE",
+  "items": [
+    {
+      "id": "espresso",
+      "name": "Sage Barista Express Espresso Machine",
+      "search_query": "Sage The Barista Express SES875",
+      "category": "Kitchen",
+      "purchase_year": 2023,
+      "condition": "good",
+      "ownership": "shared",
+      "party_a_points": 25,
+      "party_b_points": 25,
+      "willing_to_sell": true,
+      "notes": "Both use it every morning — high contention."
+    },
+    {
+      "id": "speaker",
+      "name": "Sonos Era 300 Smart Speaker",
+      "search_query": "Sonos Era 300",
+      "category": "Audio",
+      "purchase_year": 2024,
+      "condition": "like_new",
+      "ownership": "shared",
+      "party_a_points": 20,
+      "party_b_points": 20,
+      "willing_to_sell": true,
+      "notes": "Living room music centerpiece — both want to keep it."
+    },
+    {
+      "id": "tv",
+      "name": "LG OLED 55\" TV",
+      "search_query": "LG OLED55C4",
+      "category": "Entertainment",
+      "purchase_year": 2023,
+      "condition": "good",
+      "ownership": "shared",
+      "party_a_points": 20,
+      "party_b_points": 25,
+      "willing_to_sell": true,
+      "notes": "Split 50/50 when moving into the flat."
+    },
+    {
+      "id": "vacuum",
+      "name": "Dyson V15 Detect Vacuum",
+      "search_query": "Dyson V15 Detect Absolute",
+      "category": "Home Appliances",
+      "purchase_year": 2024,
+      "condition": "like_new",
+      "ownership": "party_a",
+      "party_a_points": 15,
+      "party_b_points": 8,
+      "willing_to_sell": false,
+      "notes": "Alex bought it last year; both used it."
+    },
+    {
+      "id": "mixer",
+      "name": "KitchenAid Artisan Stand Mixer",
+      "search_query": "KitchenAid Artisan 5KSM175PS",
+      "category": "Kitchen",
+      "purchase_year": 2022,
+      "condition": "good",
+      "ownership": "party_b",
+      "party_a_points": 5,
+      "party_b_points": 15,
+      "willing_to_sell": false,
+      "notes": "Sam's baking mixer."
+    },
+    {
+      "id": "switch",
+      "name": "Nintendo Switch OLED",
+      "search_query": "Nintendo Switch OLED",
+      "category": "Entertainment",
+      "purchase_year": 2023,
+      "condition": "good",
+      "ownership": "shared",
+      "party_a_points": 10,
+      "party_b_points": 4,
+      "willing_to_sell": true,
+      "notes": "Mario Kart evenings."
+    },
+    {
+      "id": "washer",
+      "name": "Old Bosch Serie 6 Washing Machine (2019, discontinued)",
+      "search_query": "Bosch Serie 6 Waschmaschine 8 kg",
+      "category": "Home Appliances",
+      "purchase_year": 2019,
+      "condition": "fair",
+      "ownership": "shared",
+      "party_a_points": 5,
+      "party_b_points": 3,
+      "willing_to_sell": true,
+      "notes": "Exact 2019 model discontinued — priced via closest idealo category substitute."
+    }
+  ]
+}

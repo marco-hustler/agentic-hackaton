@@ -1,0 +1,286 @@
+{
+  "namespace": "search_products",
+  "request": {
+    "query": "Sage The Barista Express SES875",
+    "country": "DE"
+  },
+  "cached_at": 1795726997.918313,
+  "data": {
+    "query": "Sage The Barista Express SES875",
+    "availableCategories": [
+      {
+        "categoryId": "3487",
+        "categoryName": "Espressomaschinen",
+        "amount": 37
+      },
+      {
+        "categoryId": "25843",
+        "categoryName": "Kaffeemaschinen-Reinigung",
+        "amount": 11
+      },
+      {
+        "categoryId": "4274",
+        "categoryName": "Kaffeezubehör & Espressozubehör",
+        "amount": 12
+      },
+      {
+        "categoryId": "3488",
+        "categoryName": "Kaffeemaschinen",
+        "amount": 1
+      },
+      {
+        "categoryId": "3512",
+        "categoryName": "Küchenmaschinen",
+        "amount": 1
+      }
+    ],
+    "availableManufacturers": [
+      {
+        "manufacturerId": "129974",
+        "manufacturerName": "Sage Appliances",
+        "amount": 47
+      },
+      {
+        "manufacturerId": "109396",
+        "manufacturerName": "vhbw",
+        "amount": 8
+      },
+      {
+        "manufacturerId": "163842",
+        "manufacturerName": "Piebert",
+        "amount": 5
+      },
+      {
+        "manufacturerId": "179696",
+        "manufacturerName": "LuxusKollektion",
+        "amount": 1
+      }
+    ],
+    "availableFilters": [
+      {
+        "attributeId": "15583",
+        "name": "Produkttyp",
+        "filters": [
+          {
+            "filterId": "448777",
+            "content": "Siebträgermaschine",
+            "amount": 30
+          },
+          {
+            "filterId": "104024944",
+            "content": "Kaffeehalbautomat",
+            "amount": 26
+          },
+          {
+            "filterId": "3092598",
+            "content": "Kaffeemaschinen-Reinigungsbürste",
+            "amount": 1
+          },
+          {
+            "filterId": "943121",
+            "content": "Abschlagbehälter",
+            "amount": 3
+          },
+          {
+            "filterId": "101780310",
+            "content": "Kaffeemaschinen-Filterpatrone",
+            "amount": 9
+          },
+          {
+            "filterId": "1210870",
+            "content": "Filterträger",
+            "amount": 3
+          },
+          {
+            "filterId": "107955860",
+            "content": "Siebträger",
+            "amount": 1
+          },
+          {
+            "filterId": "1809936",
+            "content": "Ersatzdichtung",
+            "amount": 4
+          },
+          {
+            "filterId": "888765",
+            "content": "Kaffeevollautomat",
+            "amount": 8
+          },
+          {
+            "filterId": "311887",
+            "content": "Filterkaffeemaschine",
+            "amount": 1
+          },
+          {
+            "filterId": "1809939",
+            "content": "Kaffeemaschinen-Wasserbehälter",
+            "amount": 1
+          },
+          {
+            "filterId": "3092602",
+            "content": "Kaffeemaschinen-Wartungsset",
+            "amount": 1
+          },
+          {
+            "filterId": "1648332",
+            "content": "Knetmaschine",
+            "amount": 1
+          }
+        ]
+      }
+    ],
+    "suggestedFilters": [],
+    "sizeAttributes": [],
+    "results": [
+      {
+        "productRef": "pr.v1.k1.ME0Ql6I1fKt_yBGoRe-OgEDCDztRsrutaG8iXJUxinRGl_0",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "Sage Barista Express SES875",
+        "nameDelta": "Edelstahl",
+        "price": "444,00 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/6059/2/6059287/s1_produktbild_mobil/sage-barista-express-ses875-edelstahl.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/6059287_-barista-express-ses875-edelstahl-sage-appliances.html",
+        "userReviewsSummary": {
+          "averageRating": 4.23,
+          "totalReviewCount": 449
+        },
+        "testReportsSummary": {
+          "grade": "1,7"
+        },
+        "totalOfferCount": 11
+      },
+      {
+        "productRef": "pr.v1.k1.9ZEk91XGAfsRQhpuEq_C3MDs-7eMloRoiq9DqdlGgpx6x_Y",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "Sage Barista Express SES875",
+        "nameDelta": "Trüffelschwarz",
+        "price": "484,99 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/6393/8/6393829/s1_produktbild_mobil/sage-barista-express-ses875-trueffelschwarz.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/6393829_-barista-express-ses875-trueffelschwarz-sage-appliances.html",
+        "userReviewsSummary": {
+          "averageRating": 4.23,
+          "totalReviewCount": 449
+        },
+        "testReportsSummary": {
+          "grade": "1,7"
+        },
+        "totalOfferCount": 5
+      },
+      {
+        "productRef": "pr.v1.k1.7rsHr2knRX_Bcmz63RcFipNPS-UceKo2c9xlBY2NDaJKYCx7sw",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "Sage Barista Express Impress",
+        "nameDelta": "Brushed Stainless Steel",
+        "price": "549,00 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/202088/5/202088539/s1_produktbild_mobil/sage-barista-express-impress-brushed-stainless-steel.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/202088539_-barista-express-impress-brushed-stainless-steel-sage-appliances.html",
+        "userReviewsSummary": {
+          "averageRating": 4.49,
+          "totalReviewCount": 218
+        },
+        "testReportsSummary": {
+          "grade": "1,0"
+        },
+        "totalOfferCount": 19
+      },
+      {
+        "productRef": "pr.v1.k1.uXYj6FC4TgvspYLgErLN3FKlpSJr3QtiQmQnvDkSeXzeMnLZJg",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "Sage Barista Express Impress",
+        "nameDelta": "black truffle",
+        "price": "568,00 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/202080/1/202080189/s1_produktbild_mobil/sage-barista-express-impress-black-truffle.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/202080189_-barista-express-impress-black-truffle-sage-appliances.html",
+        "userReviewsSummary": {
+          "averageRating": 4.49,
+          "totalReviewCount": 218
+        },
+        "totalOfferCount": 10
+      },
+      {
+        "productRef": "pr.v1.k1.yaLje8P7de6VB9bpJp6IUvN7kczTuew-TmROGvcpAx6QnhQ",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "Sage The Barista Touch",
+        "nameDelta": "Edelstahl",
+        "price": "694,99 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/6145/6/6145674/s1_produktbild_mobil/sage-the-barista-touch-gebuersteter-edelstahl.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/6145674_-the-barista-touch-edelstahl-sage-appliances.html",
+        "userReviewsSummary": {
+          "averageRating": 4.2,
+          "totalReviewCount": 214
+        },
+        "totalOfferCount": 17
+      },
+      {
+        "productRef": "pr.v1.k1.CKFu0SJDuSLJIfVJqPhbAoM5gpcxtUhuHDpivHwHt8Ti1pnCKg",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "Sage Bohnenbehälter für SES875 the Barista Express (SP0001570)",
+        "price": "41,05 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/208148/3/208148306/s1_produktbild_mobil/sage-bohnenbehaelter-fuer-ses875-the-barista-express-sp0001570.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/208148306_-bohnenbehaelter-fuer-ses875-the-barista-express-sp0001570-sage-appliances.html",
+        "totalOfferCount": 2
+      },
+      {
+        "productRef": "pr.v1.k1.EbUDwE90lb57Usyp3WhRWCYK9oMHyjXhfun5GJUR7zqRF7fEVA",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "Sage Sage SP0020039 Reinigungsset für SES875 the Barista Express Espressomaschine",
+        "price": "20,94 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/209286/9/209286977/s1_produktbild_mobil/sage-sage-sp0020039-reinigungsset-fuer-ses875-the-barista-express-espressomaschine.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/209286977_-sage-sp0020039-reinigungsset-fuer-ses875-the-barista-express-espressomaschine-sage-appliances.html",
+        "totalOfferCount": 2
+      },
+      {
+        "productRef": "pr.v1.k1.hk3gJ485JMiM3itO1mlCj2wPRBxiZiiswBXPK7orx8Pvu183IQ",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "Sage SES882 The Barista Touch Impress",
+        "nameDelta": "SES882BSS4FEU1 Edelstahlgrau",
+        "price": "894,00 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/206316/2/206316202/s1_produktbild_mobil/sage-ses882bss4feu1-the-barista-touch-impress-edelstahlgrau.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/206316202_-ses882bss4feu1-the-barista-touch-impress-edelstahlgrau-sage-appliances.html",
+        "userReviewsSummary": {
+          "averageRating": 4.5,
+          "totalReviewCount": 4
+        },
+        "totalOfferCount": 17
+      },
+      {
+        "productRef": "pr.v1.k1.7xkHNhNOsIfW10CV_de8qu0M5XcqyNt8MgbJWIEET01ryw1c2w",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "Sage Barista Express Impress",
+        "nameDelta": "Black Stainless Steel",
+        "price": "569,00 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/202125/0/202125077/s1_produktbild_mobil/sage-barista-express-impress-black-stainless-steel.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/202125077_-barista-express-impress-black-stainless-steel-sage-appliances.html",
+        "userReviewsSummary": {
+          "averageRating": 4.49,
+          "totalReviewCount": 218
+        },
+        "totalOfferCount": 9
+      },
+      {
+        "productRef": "pr.v1.k1.U9tINPWaX2dtYswhljxG3I1UI26YiyXukLG6MPhLOlIdUgo",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "Sage The Barista Pro",
+        "nameDelta": "Edelstahl",
+        "price": "557,00 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/6558/6/6558659/s1_produktbild_mobil/sage-the-barista-pro-gebuerstetes-edelstahl.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/6558659_-the-barista-pro-edelstahl-sage-appliances.html",
+        "userReviewsSummary": {
+          "averageRating": 4.22,
+          "totalReviewCount": 321
+        },
+        "totalOfferCount": 10
+      }
+    ]
+  }
+}

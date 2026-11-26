@@ -1,0 +1,268 @@
+{
+  "namespace": "get_product_offers",
+  "request": {
+    "productRef": "pr.v1.k1.gqAQUxatOt5LdMX8J8QRria-0v37HYO0o6KvL5woi6_wqgE",
+    "country": "DE"
+  },
+  "cached_at": 1795727007.3823712,
+  "data": {
+    "nextOffset": 5,
+    "offers": [
+      {
+        "key": "361c88429e9fffd2c76c9f49ba8d4366",
+        "price": "399,99 €",
+        "basePrice": null,
+        "shop": {
+          "shopId": "24111",
+          "merchantId": null,
+          "name": "euronics.de",
+          "merchantName": "Euronics XXL Öhringen",
+          "rating": {
+            "count": null,
+            "avg": null
+          },
+          "isMarketplace": true
+        },
+        "payments": [
+          {
+            "costCode": "PP",
+            "name": "PayPal"
+          },
+          {
+            "costCode": "CBC",
+            "name": "Kreditkarte"
+          },
+          {
+            "costCode": "APPLE_PAY",
+            "name": "Apple Pay"
+          },
+          {
+            "costCode": "CIA",
+            "name": "Vorkasse"
+          }
+        ],
+        "showPaymentDisclaimer": false,
+        "delivery": {
+          "deliveryText": "bis Sa. 28.11.2026",
+          "deliveryStatus": "SHORT",
+          "earlyDeliveryDate": null,
+          "lateDeliveryDate": "2026-11-28"
+        },
+        "freeReturnDays": null,
+        "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=361c88429e9fffd2c76c9f49ba8d4366&categoryId=3512&pos=1&price=399.99&productid=5083655&sid=24111&type=offer&media=ipc-public-mcp",
+        "minShippingCost": "6,99 €",
+        "hasAlwaysFreeShipping": false,
+        "cheapestTotalPriceOffer": true,
+        "freshness": "2026-11-26T20:03:27.330Z"
+      },
+      {
+        "key": "f9690130a13c5e645db1815b9d990b83",
+        "price": "422,22 €",
+        "basePrice": null,
+        "shop": {
+          "shopId": "313752",
+          "merchantId": null,
+          "name": "ramershoven.com",
+          "merchantName": null,
+          "rating": {
+            "count": 75,
+            "avg": 5
+          },
+          "isMarketplace": false
+        },
+        "payments": [
+          {
+            "costCode": "INV",
+            "name": "Rechnung"
+          },
+          {
+            "costCode": "PP",
+            "name": "PayPal"
+          },
+          {
+            "costCode": "CBC",
+            "name": "Kreditkarte"
+          },
+          {
+            "costCode": "CIA",
+            "name": "Vorkasse"
+          },
+          {
+            "costCode": "AMZP",
+            "name": "Amazon Pay"
+          }
+        ],
+        "showPaymentDisclaimer": false,
+        "delivery": {
+          "deliveryText": "Sa. 28.11.–Mo. 30.11.2026",
+          "deliveryStatus": "SHORT",
+          "earlyDeliveryDate": "2026-11-28",
+          "lateDeliveryDate": "2026-11-30"
+        },
+        "freeReturnDays": null,
+        "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=f9690130a13c5e645db1815b9d990b83&categoryId=3512&pos=2&price=422.22&productid=5083655&sid=313752&type=offer&media=ipc-public-mcp",
+        "minShippingCost": "1,95 €",
+        "hasAlwaysFreeShipping": false,
+        "cheapestTotalPriceOffer": false,
+        "freshness": "2026-11-26T20:03:27.330Z"
+      },
+      {
+        "key": "8b1fe99f298a51b90fb6adac263a314c",
+        "price": "423,99 €",
+        "basePrice": null,
+        "shop": {
+          "shopId": "317105",
+          "merchantId": null,
+          "name": "galaxus.de",
+          "merchantName": null,
+          "rating": {
+            "count": 2667,
+            "avg": 4.63
+          },
+          "isMarketplace": false
+        },
+        "payments": [
+          {
+            "costCode": "INV",
+            "name": "Rechnung"
+          },
+          {
+            "costCode": "PP",
+            "name": "PayPal"
+          },
+          {
+            "costCode": "SUW",
+            "name": "Sofort."
+          },
+          {
+            "costCode": "CBC",
+            "name": "Kreditkarte"
+          },
+          {
+            "costCode": "CIA",
+            "name": "Vorkasse"
+          }
+        ],
+        "showPaymentDisclaimer": false,
+        "delivery": {
+          "deliveryText": "bis Sa. 28.11.2026",
+          "deliveryStatus": "SHORT",
+          "earlyDeliveryDate": null,
+          "lateDeliveryDate": "2026-11-28"
+        },
+        "freeReturnDays": 30,
+        "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=8b1fe99f298a51b90fb6adac263a314c&categoryId=3512&pos=3&price=423.99&productid=5083655&sid=317105&type=offer&media=ipc-public-mcp",
+        "minShippingCost": "0,00 €",
+        "hasAlwaysFreeShipping": true,
+        "cheapestTotalPriceOffer": false,
+        "freshness": "2026-11-26T20:03:27.330Z"
+      },
+      {
+        "key": "9067c7d9f6d08deeeb2ec478784f7223",
+        "price": "423,99 €",
+        "basePrice": null,
+        "shop": {
+          "shopId": "26895",
+          "merchantId": "42596624",
+          "name": "kaufland.de",
+          "merchantName": "McElec",
+          "rating": {
+            "count": null,
+            "avg": null
+          },
+          "isMarketplace": true
+        },
+        "payments": [
+          {
+            "costCode": "INV",
+            "name": "Rechnung"
+          },
+          {
+            "costCode": "PP",
+            "name": "PayPal"
+          },
+          {
+            "costCode": "DD",
+            "name": "Lastschrift"
+          },
+          {
+            "costCode": "SUW",
+            "name": "Sofort."
+          },
+          {
+            "costCode": "CBC",
+            "name": "Kreditkarte"
+          },
+          {
+            "costCode": "CIA",
+            "name": "Vorkasse"
+          }
+        ],
+        "showPaymentDisclaimer": false,
+        "delivery": {
+          "deliveryText": "Sa. 28.11.–Di. 01.12.2026",
+          "deliveryStatus": "MEDIUM",
+          "earlyDeliveryDate": "2026-11-28",
+          "lateDeliveryDate": "2026-12-01"
+        },
+        "freeReturnDays": 14,
+        "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=9067c7d9f6d08deeeb2ec478784f7223&categoryId=3512&pos=4&price=423.99&productid=5083655&sid=26895&type=offer&media=ipc-public-mcp",
+        "minShippingCost": "0,00 €",
+        "hasAlwaysFreeShipping": true,
+        "cheapestTotalPriceOffer": false,
+        "freshness": "2026-11-26T20:03:27.330Z"
+      },
+      {
+        "key": "d02c8e26410a5ec31f4737aaf225fb78",
+        "price": "423,99 €",
+        "basePrice": null,
+        "shop": {
+          "shopId": "286835",
+          "merchantId": null,
+          "name": "expert.de",
+          "merchantName": null,
+          "rating": {
+            "count": 4376,
+            "avg": 2.6
+          },
+          "isMarketplace": false
+        },
+        "payments": [
+          {
+            "costCode": "INV",
+            "name": "Rechnung"
+          },
+          {
+            "costCode": "PP",
+            "name": "PayPal"
+          },
+          {
+            "costCode": "DD",
+            "name": "Lastschrift"
+          },
+          {
+            "costCode": "SUW",
+            "name": "Sofort."
+          },
+          {
+            "costCode": "CBC",
+            "name": "Kreditkarte"
+          }
+        ],
+        "showPaymentDisclaimer": false,
+        "delivery": {
+          "deliveryText": "Sa. 28.11.–Mo. 30.11.2026",
+          "deliveryStatus": "SHORT",
+          "earlyDeliveryDate": "2026-11-28",
+          "lateDeliveryDate": "2026-11-30"
+        },
+        "freeReturnDays": 14,
+        "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=d02c8e26410a5ec31f4737aaf225fb78&categoryId=3512&pos=5&price=423.99&productid=5083655&sid=286835&type=offer&media=ipc-public-mcp",
+        "minShippingCost": "0,00 €",
+        "hasAlwaysFreeShipping": true,
+        "cheapestTotalPriceOffer": false,
+        "freshness": "2026-11-26T20:03:27.330Z"
+      }
+    ]
+  }
+}

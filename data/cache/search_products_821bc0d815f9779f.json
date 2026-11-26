@@ -1,0 +1,251 @@
+{
+  "namespace": "search_products",
+  "request": {
+    "query": "LG OLED55C4",
+    "country": "DE"
+  },
+  "cached_at": 1795727002.226912,
+  "data": {
+    "query": "LG OLED55C4",
+    "availableCategories": [
+      {
+        "categoryId": "4012",
+        "categoryName": "Fernseher",
+        "amount": 15
+      },
+      {
+        "categoryId": "14742",
+        "categoryName": "TV-Halterungen",
+        "amount": 1
+      }
+    ],
+    "availableManufacturers": [
+      {
+        "manufacturerId": "3140",
+        "manufacturerName": "LG Electronics",
+        "amount": 16
+      }
+    ],
+    "availableFilters": [
+      {
+        "attributeId": "15583",
+        "name": "Produkttyp",
+        "filters": [
+          {
+            "filterId": "1921183",
+            "content": "4K-Fernseher",
+            "amount": 15
+          },
+          {
+            "filterId": "100709227",
+            "content": "TV-Wandhalterung",
+            "amount": 1
+          }
+        ]
+      }
+    ],
+    "suggestedFilters": [],
+    "sizeAttributes": [],
+    "results": [
+      {
+        "productRef": "pr.v1.k1.KMdjsVhybkt8ns7K90_SV7z8b15LgSTJI1TAydYYCArT7q-K5w",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "LG OLED C54LA",
+        "nameDelta": "OLED55C54LA",
+        "price": "1.119,00 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/206224/3/206224343/s1_produktbild_mobil/lg-oled55c54la.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/206224343_-oled55c54la-lg-electronics.html",
+        "userReviewsSummary": {
+          "averageRating": 4.65,
+          "totalReviewCount": 20
+        },
+        "testReportsSummary": {
+          "grade": "2,0"
+        },
+        "totalOfferCount": 4
+      },
+      {
+        "productRef": "pr.v1.k1.7iLt_o-tuhyrVnwu0twOk21XKEGGkIfM71iyJbXUWoF8a8k66A",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "LG OLEDC68LA",
+        "nameDelta": "OLED55C68LA (55 Zoll)",
+        "price": "1.019,00 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/210101/6/210101698/s1_produktbild_mobil/lg-oled55c68la-55-zoll.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/210101698_-oled55c68la-55-zoll-lg-electronics.html",
+        "totalOfferCount": 25,
+        "badges": {
+          "bargain": {
+            "discountRate": 11,
+            "tags": [
+              "REGULAR"
+            ]
+          }
+        }
+      },
+      {
+        "productRef": "pr.v1.k1.zwiEldc6rrCUcUUNrnSGQkOmgYypjxGbGLHBSwl_v8vG-uYBqQ",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "LG OLED evo AI C6 2026",
+        "nameDelta": "OLED55C66LB",
+        "price": "1.149,00 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/210652/0/210652007/s1_produktbild_mobil/lg-oled55c66lb.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/210652007_-oled55c66lb-lg-electronics.html",
+        "totalOfferCount": 3,
+        "badges": {
+          "bargain": {
+            "discountRate": 21,
+            "tags": [
+              "REGULAR",
+              "SHORTTERM",
+              "BLACK_FRIDAY"
+            ]
+          }
+        }
+      },
+      {
+        "productRef": "pr.v1.k1.VPgSt1cvrn0d2052aJGrXcf-7Xy5aCwFV-TPBtN4oQQAPJR77A",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "LG OLEDC6ELB",
+        "nameDelta": "OLED55C6ELB (55 Zoll)",
+        "price": "1.074,00 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/210697/8/210697866/s1_produktbild_mobil/lg-oled55c6elb-55-zoll.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/210697866_-oled55c6elb-55-zoll-lg-electronics.html",
+        "userReviewsSummary": {
+          "averageRating": 4.83,
+          "totalReviewCount": 23
+        },
+        "testReportsSummary": {
+          "grade": "1,6"
+        },
+        "totalOfferCount": 12,
+        "badges": {
+          "bargain": {
+            "discountRate": 12,
+            "tags": [
+              "REGULAR"
+            ]
+          }
+        }
+      },
+      {
+        "productRef": "pr.v1.k1.NJz3cC29dEIE7-mIF8pNHEMqPMc6p87YSJHauftM2bhO4uiaXw",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "LG OLEDC67LA",
+        "nameDelta": "OLED55C67LA (55 Zoll)",
+        "price": "1.099,00 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/211919/9/211919966/s1_produktbild_mobil/lg-oled55c67la-55-zoll.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/211919966_-oled55c67la-55-zoll-lg-electronics.html",
+        "testReportsSummary": {
+          "grade": "1,3"
+        },
+        "totalOfferCount": 6,
+        "badges": {
+          "bargain": {
+            "discountRate": 12,
+            "tags": [
+              "REGULAR"
+            ]
+          }
+        }
+      },
+      {
+        "productRef": "pr.v1.k1.f5vITyqX8_lonHJ1lUKIDv6Y2ZrXbMrkdFp11unuhHXdu_bHKw",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "LG OLED C58LA",
+        "nameDelta": "OLED55C58LA (55 Zoll)",
+        "price": "1.299,00 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/206044/5/206044575/s1_produktbild_mobil/lg-oled55c58la-55-zoll.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/206044575_-oled55c58la-55-zoll-lg-electronics.html",
+        "userReviewsSummary": {
+          "averageRating": 4,
+          "totalReviewCount": 24
+        },
+        "testReportsSummary": {
+          "grade": "1,5"
+        },
+        "totalOfferCount": 3
+      },
+      {
+        "productRef": "pr.v1.k1.lN99N8pau1_M8RdOtBA7dLrYmmL9R_4w7ok2B576rFk_mlggXA",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "LG OLED-C64LA",
+        "nameDelta": "OLED55C64LA",
+        "price": "1.079,00 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/211456/0/211456082/s1_produktbild_mobil/lg-oled55c64la.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/211456082_-oled55c64la-lg-electronics.html",
+        "totalOfferCount": 8,
+        "badges": {
+          "bargain": {
+            "discountRate": 14,
+            "tags": [
+              "REGULAR",
+              "SHORTTERM",
+              "BLACK_FRIDAY"
+            ]
+          }
+        }
+      },
+      {
+        "productRef": "pr.v1.k1.LDQSNkcvZF1Y9zydY3A_HOecqb9nh2M-DzGf6E86Wk9xTXbsxA",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "LG OLED C5ELB",
+        "nameDelta": "OLED55C5ELB (55 Zoll)",
+        "price": "1.318,69 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/206257/6/206257604/s1_produktbild_mobil/lg-oled55c5elb-55-zoll.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/206257604_-oled55c5elb-55-zoll-lg-electronics.html",
+        "userReviewsSummary": {
+          "averageRating": 5,
+          "totalReviewCount": 1
+        },
+        "testReportsSummary": {
+          "grade": "1,7"
+        },
+        "totalOfferCount": 1
+      },
+      {
+        "productRef": "pr.v1.k1.v9xayIxgFw5JvLlXI4HTmU6D0gXbbvZS7Tgu-CVBD3W4b4PbrQ",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "LG OLED G48LW",
+        "nameDelta": "OLED55G48LW (55 Zoll)",
+        "price": "1.199,00 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/204008/5/204008510/s1_produktbild_mobil/lg-oled55g48lw-55-zoll.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/204008510_-oled55g48lw-55-zoll-lg-electronics.html",
+        "userReviewsSummary": {
+          "averageRating": 5,
+          "totalReviewCount": 1
+        },
+        "testReportsSummary": {
+          "grade": "1,6"
+        },
+        "totalOfferCount": 2
+      },
+      {
+        "productRef": "pr.v1.k1.K3N5xfdJrJn-7UXAZAKmtpVAqEIO5CYbmvpmdbFPEy0WIgpT5g",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "LG OLED-C56LB",
+        "nameDelta": "OLED55C56LB",
+        "price": "2.399,00 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/206705/3/206705317/s1_produktbild_mobil/lg-oled55c56lb.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/206705317_-oled55c56lb-lg-electronics.html",
+        "userReviewsSummary": {
+          "averageRating": 5,
+          "totalReviewCount": 3
+        },
+        "testReportsSummary": {
+          "grade": "1,8"
+        },
+        "totalOfferCount": 1
+      }
+    ]
+  }
+}

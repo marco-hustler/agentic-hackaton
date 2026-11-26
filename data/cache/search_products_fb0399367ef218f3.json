@@ -1,0 +1,464 @@
+{
+  "namespace": "search_products",
+  "request": {
+    "query": "Sonos Era 300",
+    "country": "DE"
+  },
+  "cached_at": 1795727004.232661,
+  "data": {
+    "query": "Sonos Era 300",
+    "availableCategories": [
+      {
+        "categoryId": "2021",
+        "categoryName": "Lautsprecher",
+        "amount": 0
+      }
+    ],
+    "availableManufacturers": [
+      {
+        "manufacturerId": "35926",
+        "manufacturerName": "Sonos",
+        "amount": 45,
+        "searchFilterId": "376117"
+      }
+    ],
+    "availableFilters": [
+      {
+        "attributeId": "15583",
+        "name": "Produkttyp",
+        "filters": [
+          {
+            "filterId": "4453600",
+            "content": "Bluetooth Lautsprecher",
+            "amount": 28
+          },
+          {
+            "filterId": "312121",
+            "content": "Subwoofer",
+            "amount": 10
+          },
+          {
+            "filterId": "8891277",
+            "content": "Smart Speaker",
+            "amount": 27
+          },
+          {
+            "filterId": "2022571",
+            "content": "WLAN Lautsprecher",
+            "amount": 36
+          },
+          {
+            "filterId": "9213288",
+            "content": "Dolby Atmos-Lautsprecher",
+            "amount": 17
+          }
+        ]
+      },
+      {
+        "attributeId": "18245",
+        "name": "Prinzip",
+        "filters": [
+          {
+            "filterId": "1363393",
+            "content": "aktiv",
+            "amount": 17
+          }
+        ]
+      },
+      {
+        "attributeId": "1333",
+        "name": "Stromversorgung",
+        "filters": [
+          {
+            "filterId": "102060976",
+            "content": "Netzbetrieb",
+            "amount": 17
+          }
+        ]
+      },
+      {
+        "attributeId": "25250",
+        "name": "Soundfunktion",
+        "filters": [
+          {
+            "filterId": "4551725",
+            "content": "Equalizer",
+            "amount": 16
+          }
+        ]
+      },
+      {
+        "attributeId": "26012",
+        "name": "verfügbarer Musikdienst",
+        "filters": [
+          {
+            "filterId": "7698578",
+            "content": "Spotify Connect",
+            "amount": 5
+          }
+        ]
+      },
+      {
+        "attributeId": "21314",
+        "name": "Schutzeigenschaft",
+        "filters": [
+          {
+            "filterId": "3151405",
+            "content": "feuchtigkeitsresistent",
+            "amount": 4
+          }
+        ]
+      },
+      {
+        "attributeId": "24544",
+        "name": "Funkübertragung",
+        "filters": [
+          {
+            "filterId": "4551722",
+            "content": "Bluetooth",
+            "amount": 18
+          },
+          {
+            "filterId": "4551760",
+            "content": "WLAN",
+            "amount": 24
+          },
+          {
+            "filterId": "4551744",
+            "content": "AirPlay 2",
+            "amount": 16
+          },
+          {
+            "filterId": "2288288",
+            "content": "AirPlay",
+            "amount": 5
+          }
+        ]
+      },
+      {
+        "attributeId": "1338",
+        "name": "Farbe",
+        "filters": [
+          {
+            "filterId": "3013100",
+            "content": "weiß",
+            "amount": 12
+          },
+          {
+            "filterId": "3013072",
+            "content": "schwarz",
+            "amount": 18
+          },
+          {
+            "filterId": "3013034",
+            "content": "beige",
+            "amount": 1
+          }
+        ]
+      },
+      {
+        "attributeId": "29310",
+        "name": "Sprachassistent",
+        "filters": [
+          {
+            "filterId": "8884304",
+            "content": "Alexa",
+            "amount": 4
+          }
+        ]
+      },
+      {
+        "attributeId": "20589",
+        "name": "Einsatzgebiet",
+        "filters": [
+          {
+            "filterId": "5404778",
+            "content": "Wohnzimmer",
+            "amount": 20
+          },
+          {
+            "filterId": "5404775",
+            "content": "Heimkino",
+            "amount": 14
+          },
+          {
+            "filterId": "4551738",
+            "content": "Multiroom",
+            "amount": 16
+          },
+          {
+            "filterId": "4453601",
+            "content": "Handy",
+            "amount": 24
+          }
+        ]
+      },
+      {
+        "attributeId": "2680",
+        "name": "Markteinführung",
+        "filters": [
+          {
+            "filterId": "104105138",
+            "content": "2023",
+            "amount": 11
+          }
+        ]
+      }
+    ],
+    "suggestedFilters": [
+      {
+        "id": "4453600",
+        "type": "SEARCH_FILTER"
+      },
+      {
+        "id": "376117",
+        "type": "MANUFACTURER"
+      },
+      {
+        "id": "312121",
+        "type": "SEARCH_FILTER"
+      },
+      {
+        "id": "1363393",
+        "type": "SEARCH_FILTER"
+      },
+      {
+        "id": "8884304",
+        "type": "SEARCH_FILTER"
+      },
+      {
+        "id": "8891277",
+        "type": "SEARCH_FILTER"
+      },
+      {
+        "id": "2022571",
+        "type": "SEARCH_FILTER"
+      },
+      {
+        "id": "9213288",
+        "type": "SEARCH_FILTER"
+      },
+      {
+        "id": "4551722",
+        "type": "SEARCH_FILTER"
+      },
+      {
+        "id": "3013100",
+        "type": "SEARCH_FILTER"
+      }
+    ],
+    "sizeAttributes": [],
+    "results": [
+      {
+        "productRef": "pr.v1.k1.YmyrM98DdFZ0JDGIj09bgJa2yQAQUAxfEpy5hbgzGLzeHYvs5Q",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "Sonos Era 300",
+        "nameDelta": "White",
+        "price": "359,00 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/202398/6/202398620/s1_produktbild_mobil/sonos-era-300-white.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/202398620_-era-300-white-sonos.html",
+        "userReviewsSummary": {
+          "averageRating": 4.57,
+          "totalReviewCount": 788
+        },
+        "testReportsSummary": {
+          "grade": "1,6"
+        },
+        "totalOfferCount": 22,
+        "badges": {
+          "bargain": {
+            "discountRate": 11,
+            "tags": [
+              "REGULAR",
+              "SHORTTERM",
+              "BLACK_FRIDAY"
+            ]
+          }
+        }
+      },
+      {
+        "productRef": "pr.v1.k1.mpQ8_5_gFNPf7h_5V_lwH-zSZM-M76MLQEcTPzywZ5HjlLlYlQ",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "Sonos Era 300",
+        "nameDelta": "Black",
+        "price": "359,00 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/202398/6/202398605/s1_produktbild_mobil/sonos-era-300-black.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/202398605_-era-300-black-sonos.html",
+        "userReviewsSummary": {
+          "averageRating": 4.57,
+          "totalReviewCount": 788
+        },
+        "testReportsSummary": {
+          "grade": "1,6"
+        },
+        "totalOfferCount": 26,
+        "badges": {
+          "bargain": {
+            "discountRate": 11,
+            "tags": [
+              "REGULAR",
+              "SHORTTERM",
+              "BLACK_FRIDAY"
+            ]
+          }
+        }
+      },
+      {
+        "productRef": "pr.v1.k1.tE5K80PY7g5u8lqYShsWyG98_2xDBLEdWuVWk-wNPH7-TpVhjQ",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "Sonos Era 300",
+        "nameDelta": "(Set 2 pieces) White",
+        "price": "748,00 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/208706/2/208706235/s1_produktbild_mobil/sonos-era-300-set-2-pieces-white.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/208706235_-era-300-set-2-pieces-white-sonos.html",
+        "userReviewsSummary": {
+          "averageRating": 4.57,
+          "totalReviewCount": 788
+        },
+        "testReportsSummary": {
+          "grade": "1,6"
+        },
+        "totalOfferCount": 2
+      },
+      {
+        "productRef": "pr.v1.k1.1F3xM1ZyXVheg-ldpgDzwkHKfIEaSiFBadjuaWC_1_v95eHVwA",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "Sonos Era 300",
+        "nameDelta": "(Set 2 pieces) Black",
+        "price": "798,00 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/208706/2/208706234/s1_produktbild_mobil/sonos-era-300-set-2-pieces-black.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/208706234_-era-300-set-2-pieces-black-sonos.html",
+        "userReviewsSummary": {
+          "averageRating": 4.57,
+          "totalReviewCount": 788
+        },
+        "testReportsSummary": {
+          "grade": "1,6"
+        },
+        "totalOfferCount": 1
+      },
+      {
+        "productRef": "pr.v1.k1.8nwYoPFlKlO2pHzuV34ijtFgwBx_DSiT8of6afbnOwcejLY6VkDIJPFuUM-P2ABnJGwUU03Xym0i_PjJ",
+        "itemType": "SINGLE_OFFER",
+        "siteId": 1,
+        "name": "Sonos Era 300 Schwarzer Lautsprecher Dolby Atmos, Bluetooth, Raumklang",
+        "price": "735,00 €",
+        "imageUrl": "https://cdn.idealo.com/offer/de/sonos-era-300-schwarzer-lautsprecher-dolby-atmos-bluetooth-raumklang-640t4808f5f3802fc07cd60ae4341e0415b988feba33014.jpg",
+        "url": "https://www.idealo.de/relocator/relocate?offerKey=8f5f3802fc07cd60ae4341e0415b988f&type=oc_offer&media=ipc-public-mcp",
+        "totalOfferCount": 1
+      },
+      {
+        "productRef": "pr.v1.k1.FCJBvus49_iIqCl3CzcbXdmqVxJ9h_5U4W9Fjg-XVoHFJIHBz3rIq6bejiKjjuuwF4d-ntAfLjNSmqou",
+        "itemType": "SINGLE_OFFER",
+        "siteId": 1,
+        "name": "Sonos Era 300 Paar-Bundle - Schwarz",
+        "price": "748,00 €",
+        "imageUrl": "https://cdn.idealo.com/offer/de/sonos-era-300-paar-bundle-schwarz-640t480aa0b136a29fe88e059401fcaada514fd7a0e2298.jpg",
+        "url": "https://www.idealo.de/relocator/relocate?offerKey=aa0b136a29fe88e059401fcaada514fd&type=oc_offer&media=ipc-public-mcp",
+        "totalOfferCount": 1
+      },
+      {
+        "productRef": "pr.v1.k1.xT2vl_zJbQoypoYZF65hqcWTilTC9VPNmotq83jnvcyi0g22fg",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "Sonos Era 100 SL",
+        "nameDelta": "schwarz Doppelpack",
+        "price": "279,00 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/214250/0/214250077/s1_produktbild_mobil/sonos-era-100-sl-schwarz-doppelpack.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/214250077_-era-100-sl-schwarz-doppelpack-sonos.html",
+        "userReviewsSummary": {
+          "averageRating": 4.78,
+          "totalReviewCount": 37
+        },
+        "testReportsSummary": {
+          "grade": "2,0"
+        },
+        "totalOfferCount": 11,
+        "badges": {
+          "bargain": {
+            "discountRate": 15,
+            "tags": [
+              "REGULAR",
+              "SHORTTERM",
+              "BLACK_FRIDAY"
+            ]
+          }
+        }
+      },
+      {
+        "productRef": "pr.v1.k1.EtlOAB1nGCDBUyqDt6D53mwwxet0yajMMkYfgic09fZrtK-HPA",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "Sonos Sub 4",
+        "price": "669,00 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/205132/6/205132689/s1_produktbild_mobil/sonos-sub-4.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/205132689_-sub-4-sonos.html",
+        "userReviewsSummary": {
+          "averageRating": 4.7,
+          "totalReviewCount": 10
+        },
+        "testReportsSummary": {
+          "grade": "1,8"
+        },
+        "totalOfferCount": 36
+      },
+      {
+        "productRef": "pr.v1.k1.YTSSphCQ0fZUuE5FzVMDad5_GZjnyl5fODpKN8rcyvS8kqeFaA",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "Sonos Sub 4",
+        "nameDelta": "Black",
+        "price": "669,00 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/205132/6/205132686/s1_produktbild_mobil/sonos-sub-4-black.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/205132686_-sub-4-black-sonos.html",
+        "userReviewsSummary": {
+          "averageRating": 4.7,
+          "totalReviewCount": 10
+        },
+        "totalOfferCount": 18,
+        "badges": {
+          "bargain": {
+            "discountRate": 18,
+            "tags": [
+              "REGULAR",
+              "SHORTTERM",
+              "BLACK_FRIDAY"
+            ]
+          }
+        }
+      },
+      {
+        "productRef": "pr.v1.k1.z-xL47EbrvuYEDFNv9EluCr3FzGx1PWrVqgrvdCC-UniD79WUw",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "Sonos Era 100 SL",
+        "nameDelta": "weiß Doppelpack",
+        "price": "279,00 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/214250/0/214250080/s1_produktbild_mobil/sonos-era-100-sl-weiss-doppelpack.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/214250080_-era-100-sl-weiss-doppelpack-sonos.html",
+        "userReviewsSummary": {
+          "averageRating": 4.78,
+          "totalReviewCount": 37
+        },
+        "testReportsSummary": {
+          "grade": "2,0"
+        },
+        "totalOfferCount": 11,
+        "badges": {
+          "bargain": {
+            "discountRate": 15,
+            "tags": [
+              "REGULAR",
+              "SHORTTERM",
+              "BLACK_FRIDAY"
+            ]
+          }
+        }
+      }
+    ]
+  }
+}

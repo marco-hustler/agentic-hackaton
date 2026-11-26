@@ -1,0 +1,1560 @@
+{
+  "namespace": "item_bundle",
+  "request": {
+    "query": "Dyson V15 Detect Absolute",
+    "country": "DE"
+  },
+  "cached_at": 1795727000.800776,
+  "data": {
+    "query": "Dyson V15 Detect Absolute",
+    "country": "DE",
+    "product_ref": "pr.v1.k1.d6KGWt7AJMhcdj4Xam6clTy0otBknWl0iEAs1kOcksFx3J4xdg",
+    "top_product": {
+      "productRef": "pr.v1.k1.d6KGWt7AJMhcdj4Xam6clTy0otBknWl0iEAs1kOcksFx3J4xdg",
+      "itemType": "PRODUCT",
+      "siteId": 1,
+      "name": "Dyson V15 Detect Absolute (2026)",
+      "price": "479,00 €",
+      "imageUrl": "https://cdn.idealo.com/folder/Product/212246/3/212246371/s1_produktbild_mobil/dyson-v15-detect-absolute-2026.jpg",
+      "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/212246371_-v15-detect-absolute-2026-dyson.html",
+      "userReviewsSummary": {
+        "averageRating": 4.82,
+        "totalReviewCount": 11
+      },
+      "totalOfferCount": 35,
+      "badges": {
+        "bargain": {
+          "discountRate": 12,
+          "tags": [
+            "REGULAR"
+          ]
+        }
+      }
+    },
+    "search": {
+      "query": "Dyson V15 Detect Absolute",
+      "availableCategories": [
+        {
+          "categoryId": "33153",
+          "categoryName": "Akku-Staubsauger",
+          "amount": 0
+        }
+      ],
+      "availableManufacturers": [
+        {
+          "manufacturerId": "1100",
+          "manufacturerName": "Dyson",
+          "amount": 28,
+          "searchFilterId": "107494045"
+        }
+      ],
+      "availableFilters": [
+        {
+          "attributeId": "15583",
+          "name": "Produkttyp",
+          "filters": [
+            {
+              "filterId": "107480222",
+              "content": "Stielstaubsauger",
+              "amount": 20
+            },
+            {
+              "filterId": "107480219",
+              "content": "2 in 1 Staubsauger",
+              "amount": 5
+            },
+            {
+              "filterId": "107480224",
+              "content": "Zyklonstaubsauger",
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "attributeId": "16732",
+          "name": "Serie",
+          "filters": [
+            {
+              "filterId": "107480241",
+              "content": "Dyson V8",
+              "amount": 3
+            },
+            {
+              "filterId": "107480237",
+              "content": "Dyson V12",
+              "amount": 5
+            },
+            {
+              "filterId": "107480238",
+              "content": "Dyson V15",
+              "amount": 12
+            },
+            {
+              "filterId": "107480235",
+              "content": "Dyson V10",
+              "amount": 3
+            },
+            {
+              "filterId": "107963924",
+              "content": "Dyson V6",
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "attributeId": "15664",
+          "name": "geeignet für",
+          "filters": [
+            {
+              "filterId": "107480263",
+              "content": "Tierbesitzer",
+              "amount": 11
+            },
+            {
+              "filterId": "107480256",
+              "content": "Hartboden",
+              "amount": 27
+            },
+            {
+              "filterId": "107480262",
+              "content": "Teppichboden",
+              "amount": 27
+            },
+            {
+              "filterId": "107480254",
+              "content": "Allergiker",
+              "amount": 11
+            },
+            {
+              "filterId": "107480260",
+              "content": "Parkett",
+              "amount": 8
+            },
+            {
+              "filterId": "107480259",
+              "content": "Möbel",
+              "amount": 5
+            },
+            {
+              "filterId": "107480261",
+              "content": "Ritzen",
+              "amount": 3
+            },
+            {
+              "filterId": "107480258",
+              "content": "Matratzen",
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "attributeId": "1338",
+          "name": "Farbe",
+          "filters": [
+            {
+              "filterId": "107480270",
+              "content": "kupfer",
+              "amount": 1
+            },
+            {
+              "filterId": "107480272",
+              "content": "orange",
+              "amount": 2
+            },
+            {
+              "filterId": "107480267",
+              "content": "gold",
+              "amount": 1
+            },
+            {
+              "filterId": "107480268",
+              "content": "grau",
+              "amount": 17
+            },
+            {
+              "filterId": "107480276",
+              "content": "silber",
+              "amount": 3
+            },
+            {
+              "filterId": "107480271",
+              "content": "lila",
+              "amount": 3
+            },
+            {
+              "filterId": "107480266",
+              "content": "gelb",
+              "amount": 7
+            }
+          ]
+        },
+        {
+          "attributeId": "30714",
+          "name": "Staubsauger Reinigungsmethode",
+          "filters": [
+            {
+              "filterId": "107679211",
+              "content": "Saugen",
+              "amount": 27
+            },
+            {
+              "filterId": "107679212",
+              "content": "Wischen",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "attributeId": "26207",
+          "name": "Akkuspannung",
+          "filters": [
+            {
+              "filterId": "107480303",
+              "content": "25,2 V",
+              "amount": 2
+            },
+            {
+              "filterId": "107480296",
+              "content": "21,6 V",
+              "amount": 1
+            },
+            {
+              "filterId": "107480311",
+              "content": "29,4 V",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "attributeId": "29013",
+          "name": "Betriebszeit",
+          "filters": [
+            {
+              "filterId": "107781212",
+              "content": "50 bis 65 Min.",
+              "amount": 21
+            },
+            {
+              "filterId": "107781213",
+              "content": "ab 65 Min.",
+              "amount": 1
+            },
+            {
+              "filterId": "107781211",
+              "content": "40 bis 50 Min.",
+              "amount": 5
+            }
+          ]
+        },
+        {
+          "attributeId": "17411",
+          "name": "Ladezeit",
+          "filters": [
+            {
+              "filterId": "107678562",
+              "content": "4 h",
+              "amount": 5
+            },
+            {
+              "filterId": "107678560",
+              "content": "3,5 h",
+              "amount": 7
+            },
+            {
+              "filterId": "107678564",
+              "content": "5 h",
+              "amount": 2
+            },
+            {
+              "filterId": "107678563",
+              "content": "4,5 h",
+              "amount": 12
+            }
+          ]
+        },
+        {
+          "attributeId": "17088",
+          "name": "Behältervolumen",
+          "filters": [
+            {
+              "filterId": "107511768",
+              "content": "0,7 bis 0,85 Liter",
+              "amount": 15
+            },
+            {
+              "filterId": "107480348",
+              "content": "0,5 bis 0,55 Liter",
+              "amount": 1
+            },
+            {
+              "filterId": "107480349",
+              "content": "0,55 bis 0,7 Liter",
+              "amount": 5
+            },
+            {
+              "filterId": "107480347",
+              "content": "bis 0,5 Liter",
+              "amount": 6
+            }
+          ]
+        },
+        {
+          "attributeId": "16820",
+          "name": "Filtersystem",
+          "filters": [
+            {
+              "filterId": "107491587",
+              "content": "HEPA-Filter",
+              "amount": 16
+            },
+            {
+              "filterId": "107491585",
+              "content": "Abluftfilter",
+              "amount": 10
+            },
+            {
+              "filterId": "107491586",
+              "content": "EPA-Filter",
+              "amount": 1
+            },
+            {
+              "filterId": "107491589",
+              "content": "Mehrfachfilter",
+              "amount": 4
+            },
+            {
+              "filterId": "107491591",
+              "content": "Vormotorfilter",
+              "amount": 2
+            },
+            {
+              "filterId": "107491590",
+              "content": "Mikrofilter",
+              "amount": 4
+            }
+          ]
+        },
+        {
+          "attributeId": "24840",
+          "name": "Saugtechnologie",
+          "filters": [
+            {
+              "filterId": "107480352",
+              "content": "beutellos",
+              "amount": 27
+            },
+            {
+              "filterId": "107679907",
+              "content": "Zyklon",
+              "amount": 7
+            }
+          ]
+        },
+        {
+          "attributeId": "20333",
+          "name": "Anzahl Akkus",
+          "filters": [
+            {
+              "filterId": "107480373",
+              "content": "mit 1 Akku",
+              "amount": 27
+            }
+          ]
+        },
+        {
+          "attributeId": "8806",
+          "name": "Ausstattung",
+          "filters": [
+            {
+              "filterId": "107488540",
+              "content": "mit LED-Licht",
+              "amount": 3
+            },
+            {
+              "filterId": "107488536",
+              "content": "Ladestation",
+              "amount": 5
+            },
+            {
+              "filterId": "107488548",
+              "content": "Wandhalterung",
+              "amount": 25
+            },
+            {
+              "filterId": "107678104",
+              "content": "Bürste mit Entwirrungsfunktion",
+              "amount": 10
+            },
+            {
+              "filterId": "107488549",
+              "content": "waschbarer Filter",
+              "amount": 14
+            },
+            {
+              "filterId": "107488539",
+              "content": "mit abnehmbaren Handstück",
+              "amount": 7
+            },
+            {
+              "filterId": "107488545",
+              "content": "Teleskoprohr",
+              "amount": 4
+            },
+            {
+              "filterId": "107488528",
+              "content": "durchsichtiger Behälter",
+              "amount": 1
+            },
+            {
+              "filterId": "107488535",
+              "content": "integriertes Zubehörfach",
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "attributeId": "19051",
+          "name": "Funktionen",
+          "filters": [
+            {
+              "filterId": "107488531",
+              "content": "elektronische Saugkraftregulierung",
+              "amount": 5
+            }
+          ]
+        },
+        {
+          "attributeId": "25132",
+          "name": "enthaltene Düse",
+          "filters": [
+            {
+              "filterId": "107687190",
+              "content": "Bodendüse",
+              "amount": 24
+            },
+            {
+              "filterId": "107687195",
+              "content": "Fugendüse",
+              "amount": 24
+            },
+            {
+              "filterId": "107687208",
+              "content": "Tierhaardüse",
+              "amount": 9
+            },
+            {
+              "filterId": "107687193",
+              "content": "Elektrobürste",
+              "amount": 10
+            },
+            {
+              "filterId": "107687203",
+              "content": "Polsterdüse",
+              "amount": 6
+            },
+            {
+              "filterId": "107687196",
+              "content": "Hartbodendüse",
+              "amount": 1
+            },
+            {
+              "filterId": "107687201",
+              "content": "Möbeldüse",
+              "amount": 1
+            },
+            {
+              "filterId": "107687197",
+              "content": "Kombidüse",
+              "amount": 18
+            },
+            {
+              "filterId": "107687209",
+              "content": "Turbodüse",
+              "amount": 12
+            },
+            {
+              "filterId": "107687207",
+              "content": "Staubpinsel",
+              "amount": 4
+            },
+            {
+              "filterId": "107687202",
+              "content": "Parkettdüse",
+              "amount": 4
+            }
+          ]
+        },
+        {
+          "attributeId": "18435",
+          "name": "Gesamtgewicht",
+          "filters": [
+            {
+              "filterId": "107685202",
+              "content": "2,5 bis 3,5 kg",
+              "amount": 20
+            },
+            {
+              "filterId": "107685201",
+              "content": "2 bis 2,5 kg",
+              "amount": 6
+            },
+            {
+              "filterId": "107480372",
+              "content": "ab 3,5 kg",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "suggestedFilters": [
+        {
+          "id": "107494045",
+          "type": "MANUFACTURER"
+        },
+        {
+          "id": "107480222",
+          "type": "SEARCH_FILTER"
+        },
+        {
+          "id": "107480219",
+          "type": "SEARCH_FILTER"
+        },
+        {
+          "id": "107480241",
+          "type": "SEARCH_FILTER"
+        },
+        {
+          "id": "107480237",
+          "type": "SEARCH_FILTER"
+        },
+        {
+          "id": "107480238",
+          "type": "SEARCH_FILTER"
+        },
+        {
+          "id": "107480235",
+          "type": "SEARCH_FILTER"
+        },
+        {
+          "id": "107781212",
+          "type": "SEARCH_FILTER"
+        },
+        {
+          "id": "107781213",
+          "type": "SEARCH_FILTER"
+        },
+        {
+          "id": "107491587",
+          "type": "SEARCH_FILTER"
+        }
+      ],
+      "sizeAttributes": [],
+      "results": [
+        {
+          "productRef": "pr.v1.k1.d6KGWt7AJMhcdj4Xam6clTy0otBknWl0iEAs1kOcksFx3J4xdg",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "Dyson V15 Detect Absolute (2026)",
+          "price": "479,00 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/212246/3/212246371/s1_produktbild_mobil/dyson-v15-detect-absolute-2026.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/212246371_-v15-detect-absolute-2026-dyson.html",
+          "userReviewsSummary": {
+            "averageRating": 4.82,
+            "totalReviewCount": 11
+          },
+          "totalOfferCount": 35,
+          "badges": {
+            "bargain": {
+              "discountRate": 12,
+              "tags": [
+                "REGULAR"
+              ]
+            }
+          }
+        },
+        {
+          "productRef": "pr.v1.k1.vUzqgwPwEG9Sty_BIgj0xOJBA_KL01GedvNehUX-b7DvIig-pA",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "Dyson V15 Detect Absolute (2023)",
+          "price": "549,00 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/202681/2/202681273/s1_produktbild_mobil/dyson-v15-detect-absolute-2023.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/202681273_-v15-detect-absolute-2023-dyson.html",
+          "userReviewsSummary": {
+            "averageRating": 4.46,
+            "totalReviewCount": 257
+          },
+          "testReportsSummary": {
+            "grade": "1,4"
+          },
+          "totalOfferCount": 22
+        },
+        {
+          "productRef": "pr.v1.k1.JMnbxcRaWrLl9dexF_eZfbo3uUyTyauSGd7fFzbvV8Q_1E7qfg",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "Dyson V12 Detect Slim Absolute (2026)",
+          "price": "366,00 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/211849/5/211849574/s1_produktbild_mobil/dyson-v12-detect-slim-absolute-2026.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/211849574_-v12-detect-slim-absolute-2026-dyson.html",
+          "userReviewsSummary": {
+            "averageRating": 4.67,
+            "totalReviewCount": 24
+          },
+          "totalOfferCount": 30,
+          "badges": {
+            "bargain": {
+              "discountRate": 13,
+              "tags": [
+                "REGULAR"
+              ]
+            }
+          }
+        },
+        {
+          "productRef": "pr.v1.k1.qk2qpAJLbkVxwgv1-2GX1b7WYxvSjqe7IpEbmzZJkIA6pHnUhg",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "Dyson V15 Detect Absolute (2021)",
+          "price": "709,30 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/201372/4/201372412/s1_produktbild_mobil/dyson-v15-detect-absolute-2021.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/201372412_-v15-detect-absolute-2021-dyson.html",
+          "userReviewsSummary": {
+            "averageRating": 4.56,
+            "totalReviewCount": 144
+          },
+          "testReportsSummary": {
+            "grade": "1,7"
+          },
+          "totalOfferCount": 3,
+          "badges": {
+            "bargain": {
+              "discountRate": 12,
+              "tags": [
+                "REGULAR",
+                "SHORTTERM",
+                "BLACK_FRIDAY"
+              ]
+            }
+          }
+        },
+        {
+          "productRef": "pr.v1.k1.Io6pamtY9uV9BPiMn8vuVXcpUvuQaziSFQ075kWa9EB2YpmJfQ",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "Dyson V15 Detect Extra (2022)",
+          "price": "588,56 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/202245/3/202245381/s1_produktbild_mobil/dyson-v15-detect-extra-2022.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/202245381_-v15-detect-extra-2022-dyson.html",
+          "totalOfferCount": 2
+        },
+        {
+          "productRef": "pr.v1.k1.3GTpH0Vz6mboQcuuTM3dENCBWnYcud-fgEAFPydBH-BXY2z72A",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "Dyson V15 Detect Absolute (2023) 447000-01",
+          "price": "785,70 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/203292/5/203292523/s1_produktbild_mobil/dyson-v15-detect-absolute-2023-447000-01.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/203292523_-v15-detect-absolute-2023-447000-01-dyson.html",
+          "userReviewsSummary": {
+            "averageRating": 4.49,
+            "totalReviewCount": 126
+          },
+          "totalOfferCount": 2
+        },
+        {
+          "productRef": "pr.v1.k1.D-6lqVNyiR5VRII-V51Xmy4gyVd1RU1UOjx9REgub5EXfFpzRg",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "Dyson V15 Detect Absolute (2022)",
+          "price": "789,99 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/202007/6/202007611/s1_produktbild_mobil/dyson-v15-detect-absolute-2022.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/202007611_-v15-detect-absolute-2022-dyson.html",
+          "userReviewsSummary": {
+            "averageRating": 4.67,
+            "totalReviewCount": 385
+          },
+          "testReportsSummary": {
+            "grade": "2,1"
+          },
+          "totalOfferCount": 3,
+          "badges": {
+            "bargain": {
+              "discountRate": 11,
+              "tags": [
+                "REGULAR",
+                "SHORTTERM",
+                "BLACK_FRIDAY"
+              ]
+            }
+          }
+        },
+        {
+          "productRef": "pr.v1.k1.OIjsbus2jGXDwf02MrT6I5yQZTZAF26cEDKZEag1hWdDVQ2Log",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "Dyson V15 Detect Fluffy",
+          "price": "647,90 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/203290/7/203290734/s1_produktbild_mobil/dyson-v15-detect-fluffy-2023.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/203290734_-v15-detect-fluffy-dyson.html",
+          "userReviewsSummary": {
+            "averageRating": 4.69,
+            "totalReviewCount": 133
+          },
+          "totalOfferCount": 4
+        },
+        {
+          "productRef": "pr.v1.k1.NS8u-Nfu3O7-x3N_5P01IuqPwkAYv7k4Cu5-xfkph0qZzzh7KQ",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "Dyson V15 Detect grau ( 2022)",
+          "price": "539,00 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/202188/0/202188045/s1_produktbild_mobil/dyson-v15-detect-grau-2022.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/202188045_-v15-detect-grau-2022-dyson.html",
+          "userReviewsSummary": {
+            "averageRating": 4.57,
+            "totalReviewCount": 570
+          },
+          "totalOfferCount": 2
+        },
+        {
+          "productRef": "pr.v1.k1.D7cLq7eKZdO5Hm5FGA2TPh2ec6BCGLTY4LZ-Q-WoKJp1TaRGAw",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "Dyson V12 Detect Slim Absolute (2022)",
+          "price": "699,00 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/202007/6/202007608/s1_produktbild_mobil/dyson-v12-detect-slim-absolute-2022.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/202007608_-v12-detect-slim-absolute-2022-dyson.html",
+          "userReviewsSummary": {
+            "averageRating": 4.39,
+            "totalReviewCount": 18
+          },
+          "testReportsSummary": {
+            "grade": "1,5"
+          },
+          "totalOfferCount": 3
+        }
+      ]
+    },
+    "details": {
+      "productRef": "pr.v1.k1.d6KGWt7AJMhcdj4Xam6clTy0otBknWl0iEAs1kOcksFx3J4xdg",
+      "itemType": "PRODUCT",
+      "siteId": 1,
+      "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/212246371_-v15-detect-absolute-2026-dyson.html",
+      "name": "Dyson V15 Detect Absolute (2026)",
+      "imageUrls": [
+        "https://cdn.idealo.com/folder/Product/212246/3/212246371/s1_produktbild_mobil/dyson-v15-detect-absolute-2026.jpg"
+      ],
+      "badges": {
+        "bargain": {
+          "discountRate": 12,
+          "tags": [
+            "REGULAR"
+          ]
+        }
+      },
+      "nextOffset": 3,
+      "offers": [
+        {
+          "key": "8d907fd8497d541235c52d4793df16e2",
+          "price": "479,00 €",
+          "basePrice": null,
+          "shop": {
+            "shopId": "322253",
+            "merchantId": null,
+            "name": "coolblue.de",
+            "merchantName": null,
+            "rating": {
+              "count": 9867,
+              "avg": 4.64
+            },
+            "isMarketplace": false
+          },
+          "payments": [
+            {
+              "costCode": "INV",
+              "name": "Rechnung"
+            },
+            {
+              "costCode": "PP",
+              "name": "PayPal"
+            },
+            {
+              "costCode": "SUW",
+              "name": "Sofort."
+            },
+            {
+              "costCode": "CBC",
+              "name": "Kreditkarte"
+            },
+            {
+              "costCode": "CIA",
+              "name": "Vorkasse"
+            }
+          ],
+          "showPaymentDisclaimer": false,
+          "delivery": {
+            "deliveryText": "bis Fr. 27.11.2026",
+            "deliveryStatus": "SHORT",
+            "earlyDeliveryDate": null,
+            "lateDeliveryDate": "2026-11-27"
+          },
+          "freeReturnDays": 30,
+          "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=8d907fd8497d541235c52d4793df16e2&categoryId=33153&pos=2&price=479.00&productid=212246371&sid=322253&type=offer&media=ipc-public-mcp",
+          "minShippingCost": "0,00 €",
+          "hasAlwaysFreeShipping": true,
+          "cheapestTotalPriceOffer": true,
+          "freshness": "2026-11-26T20:03:20.097Z"
+        },
+        {
+          "key": "210965b9315e08129b9b84f67cfa0f4f",
+          "price": "479,00 €",
+          "basePrice": null,
+          "shop": {
+            "shopId": "317062",
+            "merchantId": null,
+            "name": "shop.dyson.de",
+            "merchantName": null,
+            "rating": {
+              "count": 600,
+              "avg": 3.75
+            },
+            "isMarketplace": false
+          },
+          "payments": [
+            {
+              "costCode": "INV",
+              "name": "Rechnung"
+            },
+            {
+              "costCode": "PP",
+              "name": "PayPal"
+            },
+            {
+              "costCode": "SUW",
+              "name": "Sofort."
+            },
+            {
+              "costCode": "CBC",
+              "name": "Kreditkarte"
+            }
+          ],
+          "showPaymentDisclaimer": false,
+          "delivery": {
+            "deliveryText": "bis Sa. 28.11.2026",
+            "deliveryStatus": "SHORT",
+            "earlyDeliveryDate": null,
+            "lateDeliveryDate": "2026-11-28"
+          },
+          "freeReturnDays": 30,
+          "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=210965b9315e08129b9b84f67cfa0f4f&categoryId=33153&pos=3&price=479.00&productid=212246371&sid=317062&type=offer&media=ipc-public-mcp",
+          "minShippingCost": "0,00 €",
+          "hasAlwaysFreeShipping": true,
+          "cheapestTotalPriceOffer": true,
+          "freshness": "2026-11-26T20:03:20.097Z"
+        }
+      ],
+      "prosCons": {
+        "pros": [
+          "sehr gute Staubaufnahme auf Hartböden und Teppichen",
+          "Laser-Düse macht Staub auf Hartböden sichtbar",
+          "automatische Anpassung der Saugleistung durch Sensoren",
+          "austauschbarer Akku"
+        ],
+        "cons": [
+          "sehr kurze Akkulaufzeit bei maximaler Leistung",
+          "hohe Lautstärke im Betrieb",
+          "relativ schwer in der Handhabung"
+        ]
+      },
+      "testReports": {
+        "summary": {
+          "ratingCount": 0
+        },
+        "list": []
+      },
+      "expertReview": {
+        "autogenerated": true,
+        "created": "2026-08-10T06:28:21",
+        "rating": 0,
+        "text": "<p>Der Dyson V15 Detect Absolute (2026) überzeugt mit 240 AW Saugkraft und bis zu 60 Minuten Betriebszeit für gründliche Reinigung.</p>\n<h2>Dyson V15 Detect Absolute (2026)</h2>\n<ul>\n<li>240 AW Saugkraft</li>\n<li>60 Minuten Betriebszeit</li>\n<li>EPA-Filter System</li>\n</ul>\n<h2>Leistungsstarke Reinigung ohne Kabel</h2>\n<p>Der Akku-Staubsauger arbeitet mit einer Saugkraft von 240 AW und ermöglicht eine gründliche Reinigung verschiedener Oberflächen. Das beutellose System mit EPA-Filter sorgt für eine effektive Staubfiltration und eignet sich besonders für Allergiker:innen. Der 0,75 Liter Staubbehälter bietet ausreichend Volumen für größere Reinigungsarbeiten.</p>\n<h2>Komfortable Bedienung und Mobilität</h2>\n<p>Mit einem Gesamtgewicht von 3,1 kg liegt das Gerät angenehm in der Hand und ermöglicht flexibles Arbeiten. Das LCD-Display informiert über wichtige Betriebsdaten und die verbleibende Laufzeit. Die mitgelieferte Wandhalterung sorgt für platzsparende Aufbewahrung und gleichzeitiges Laden des Lithium-Ionen-Akkus.</p>\n<h2>Ausdauernder Akkubetrieb</h2>\n<p>Der leistungsstarke Akku ermöglicht eine Betriebszeit von bis zu 60 Minuten und deckt damit auch größere Wohnbereiche ab. Nach vollständiger Entladung ist das Gerät in 4,5 Stunden wieder einsatzbereit. Die Stromversorgung erfolgt ausschließlich über den integrierten Akku, was maximale Bewegungsfreiheit beim Saugen gewährleistet.</p>"
+      },
+      "productSpecification": {
+        "groups": [
+          {
+            "name": "Effizienz & Nachhaltigkeit",
+            "type": "DEFAULT",
+            "attributes": [
+              {
+                "name": "Saugkraft",
+                "value": "240 AW"
+              },
+              {
+                "name": "Betriebszeit",
+                "value": "60 Min."
+              },
+              {
+                "name": "Ladezeit",
+                "value": "4,5 h"
+              }
+            ]
+          },
+          {
+            "name": "Filtersystem",
+            "type": "DEFAULT",
+            "attributes": [
+              {
+                "name": "Behältervolumen",
+                "value": "0,75 Liter"
+              },
+              {
+                "name": "Filtersysteme",
+                "value": "EPA-Filter, HEPA-Filter"
+              },
+              {
+                "name": "Filterklasse",
+                "value": "L"
+              },
+              {
+                "name": "Saugtechnologie",
+                "value": "beutellos"
+              },
+              {
+                "name": "gefilterte Partikel",
+                "value": "Feinstaub"
+              }
+            ]
+          },
+          {
+            "name": "Komfort & Sicherheit",
+            "type": "DEFAULT",
+            "attributes": [
+              {
+                "name": "Anzahl Akkus",
+                "value": "mit 1 Akku"
+              },
+              {
+                "name": "Ausstattung",
+                "value": "Wandhalterung, waschbarer Filter, mit LED-Licht"
+              },
+              {
+                "name": "Funktionen",
+                "value": "Öko-Betrieb, langanhaltende Saugkraft, Turbofunktion"
+              },
+              {
+                "name": "Anzeige",
+                "value": "LCD-Display"
+              },
+              {
+                "name": "enthaltene Düsen",
+                "value": "Elektrobürste, Fugendüse, Turbodüse, Bodendüse"
+              },
+              {
+                "name": "Lieferumfang",
+                "value": "Licht, Netzteil, Fugendüse, Wandhalterung"
+              }
+            ]
+          },
+          {
+            "name": "Technische Daten",
+            "type": "DEFAULT",
+            "attributes": [
+              {
+                "name": "Akkuarten",
+                "value": "Lithium-Ionen, NiMH"
+              },
+              {
+                "name": "Stromversorgung",
+                "value": "Akkubetrieb, Batterien"
+              },
+              {
+                "name": "Gesamtgewicht",
+                "value": "3,1 kg"
+              }
+            ]
+          },
+          {
+            "name": "",
+            "type": "IMPORTANT",
+            "attributes": [
+              {
+                "name": "Gelistet seit",
+                "value": "Juli 2026"
+              },
+              {
+                "name": "Produkttyp",
+                "value": "Stielstaubsauger"
+              },
+              {
+                "name": "Serie",
+                "value": "Dyson V15"
+              },
+              {
+                "name": "geeignet für",
+                "value": "Hartboden, Teppichboden, Möbel, Allergiker, Parkett"
+              },
+              {
+                "name": "Farben",
+                "value": "grau, gelb, silber"
+              },
+              {
+                "name": "Staubsauger Reinigungsmethode",
+                "value": "Saugen"
+              }
+            ]
+          }
+        ]
+      },
+      "productOverview": [
+        "grau",
+        "Saugen",
+        "Saugkraft 240 AW",
+        "Betriebszeit 60 Min.",
+        "Ladezeit 4,5 h",
+        "Behältervolumen 0,75 Liter",
+        "beutellos",
+        "mit 1 Akku",
+        "Lithium-Ionen",
+        "Gesamtgewicht 3,1 kg",
+        "HEPA-Filter",
+        "mit LED-Licht",
+        "Allergiker geeignet"
+      ],
+      "productDetailsUrl": "https://www.idealo.de/preisvergleich/OffersOfProduct/212246371_-v15-detect-absolute-2026-dyson.html#datasheet",
+      "priceTrend": {
+        "history": [
+          {
+            "dateTime": 1793141999999,
+            "price": 53900
+          },
+          {
+            "dateTime": 1793228399999,
+            "price": 53900
+          },
+          {
+            "dateTime": 1793314799999,
+            "price": 53900
+          },
+          {
+            "dateTime": 1793401199999,
+            "price": 52299
+          },
+          {
+            "dateTime": 1793487599999,
+            "price": 52299
+          },
+          {
+            "dateTime": 1793573999999,
+            "price": 52299
+          },
+          {
+            "dateTime": 1793660399999,
+            "price": 53900
+          },
+          {
+            "dateTime": 1793746799999,
+            "price": 49900
+          },
+          {
+            "dateTime": 1793833199999,
+            "price": 49900
+          },
+          {
+            "dateTime": 1793919599999,
+            "price": 48899
+          },
+          {
+            "dateTime": 1794005999999,
+            "price": 48899
+          },
+          {
+            "dateTime": 1794092399999,
+            "price": 48899
+          },
+          {
+            "dateTime": 1794178799999,
+            "price": 48899
+          },
+          {
+            "dateTime": 1794265199999,
+            "price": 49900
+          },
+          {
+            "dateTime": 1794351599999,
+            "price": 49900
+          },
+          {
+            "dateTime": 1794437999999,
+            "price": 49900
+          },
+          {
+            "dateTime": 1794524399999,
+            "price": 49900
+          },
+          {
+            "dateTime": 1794610799999,
+            "price": 48800
+          },
+          {
+            "dateTime": 1794697199999,
+            "price": 48800
+          },
+          {
+            "dateTime": 1794783599999,
+            "price": 48800
+          },
+          {
+            "dateTime": 1794869999999,
+            "price": 47900
+          },
+          {
+            "dateTime": 1794956399999,
+            "price": 46900
+          },
+          {
+            "dateTime": 1795042799999,
+            "price": 46900
+          },
+          {
+            "dateTime": 1795129199999,
+            "price": 47499
+          },
+          {
+            "dateTime": 1795215599999,
+            "price": 47499
+          },
+          {
+            "dateTime": 1795301999999,
+            "price": 47499
+          },
+          {
+            "dateTime": 1795388399999,
+            "price": 47900
+          },
+          {
+            "dateTime": 1795474799999,
+            "price": 47900
+          },
+          {
+            "dateTime": 1795561199999,
+            "price": 45900
+          },
+          {
+            "dateTime": 1795647599999,
+            "price": 45900
+          },
+          {
+            "dateTime": 1795723400094,
+            "price": 47900
+          }
+        ]
+      }
+    },
+    "offers": {
+      "nextOffset": 5,
+      "offers": [
+        {
+          "key": "8d907fd8497d541235c52d4793df16e2",
+          "price": "479,00 €",
+          "basePrice": null,
+          "shop": {
+            "shopId": "322253",
+            "merchantId": null,
+            "name": "coolblue.de",
+            "merchantName": null,
+            "rating": {
+              "count": 9867,
+              "avg": 4.64
+            },
+            "isMarketplace": false
+          },
+          "payments": [
+            {
+              "costCode": "INV",
+              "name": "Rechnung"
+            },
+            {
+              "costCode": "PP",
+              "name": "PayPal"
+            },
+            {
+              "costCode": "SUW",
+              "name": "Sofort."
+            },
+            {
+              "costCode": "CBC",
+              "name": "Kreditkarte"
+            },
+            {
+              "costCode": "CIA",
+              "name": "Vorkasse"
+            }
+          ],
+          "showPaymentDisclaimer": false,
+          "delivery": {
+            "deliveryText": "bis Fr. 27.11.2026",
+            "deliveryStatus": "SHORT",
+            "earlyDeliveryDate": null,
+            "lateDeliveryDate": "2026-11-27"
+          },
+          "freeReturnDays": 30,
+          "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=8d907fd8497d541235c52d4793df16e2&categoryId=33153&pos=2&price=479.00&productid=212246371&sid=322253&type=offer&media=ipc-public-mcp",
+          "minShippingCost": "0,00 €",
+          "hasAlwaysFreeShipping": true,
+          "cheapestTotalPriceOffer": true,
+          "freshness": "2026-11-26T20:03:20.429Z"
+        },
+        {
+          "key": "210965b9315e08129b9b84f67cfa0f4f",
+          "price": "479,00 €",
+          "basePrice": null,
+          "shop": {
+            "shopId": "317062",
+            "merchantId": null,
+            "name": "shop.dyson.de",
+            "merchantName": null,
+            "rating": {
+              "count": 600,
+              "avg": 3.75
+            },
+            "isMarketplace": false
+          },
+          "payments": [
+            {
+              "costCode": "INV",
+              "name": "Rechnung"
+            },
+            {
+              "costCode": "PP",
+              "name": "PayPal"
+            },
+            {
+              "costCode": "SUW",
+              "name": "Sofort."
+            },
+            {
+              "costCode": "CBC",
+              "name": "Kreditkarte"
+            }
+          ],
+          "showPaymentDisclaimer": false,
+          "delivery": {
+            "deliveryText": "bis Sa. 28.11.2026",
+            "deliveryStatus": "SHORT",
+            "earlyDeliveryDate": null,
+            "lateDeliveryDate": "2026-11-28"
+          },
+          "freeReturnDays": 30,
+          "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=210965b9315e08129b9b84f67cfa0f4f&categoryId=33153&pos=3&price=479.00&productid=212246371&sid=317062&type=offer&media=ipc-public-mcp",
+          "minShippingCost": "0,00 €",
+          "hasAlwaysFreeShipping": true,
+          "cheapestTotalPriceOffer": true,
+          "freshness": "2026-11-26T20:03:20.429Z"
+        },
+        {
+          "key": "d6c989d287e363249c17ea00a2dbf07c",
+          "price": "479,00 €",
+          "basePrice": null,
+          "shop": {
+            "shopId": "10401",
+            "merchantId": null,
+            "name": "berlet.de",
+            "merchantName": null,
+            "rating": {
+              "count": 3119,
+              "avg": 4.77
+            },
+            "isMarketplace": false
+          },
+          "payments": [
+            {
+              "costCode": "PP",
+              "name": "PayPal"
+            },
+            {
+              "costCode": "SUW",
+              "name": "Sofort."
+            },
+            {
+              "costCode": "CBC",
+              "name": "Kreditkarte"
+            },
+            {
+              "costCode": "CIA",
+              "name": "Vorkasse"
+            },
+            {
+              "costCode": "AMZP",
+              "name": "Amazon Pay"
+            }
+          ],
+          "showPaymentDisclaimer": false,
+          "delivery": {
+            "deliveryText": "Sa. 28.11.–Mo. 30.11.2026",
+            "deliveryStatus": "SHORT",
+            "earlyDeliveryDate": "2026-11-28",
+            "lateDeliveryDate": "2026-11-30"
+          },
+          "freeReturnDays": null,
+          "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=d6c989d287e363249c17ea00a2dbf07c&categoryId=33153&pos=4&price=479.00&productid=212246371&sid=10401&type=offer&media=ipc-public-mcp",
+          "minShippingCost": "0,00 €",
+          "hasAlwaysFreeShipping": true,
+          "cheapestTotalPriceOffer": true,
+          "freshness": "2026-11-26T20:03:20.429Z"
+        },
+        {
+          "key": "daf15240961d77857fd964483713b13b",
+          "price": "479,00 €",
+          "basePrice": null,
+          "shop": {
+            "shopId": "24111",
+            "merchantId": null,
+            "name": "euronics.de",
+            "merchantName": "Euronics Berlet",
+            "rating": {
+              "count": null,
+              "avg": null
+            },
+            "isMarketplace": true
+          },
+          "payments": [
+            {
+              "costCode": "PP",
+              "name": "PayPal"
+            },
+            {
+              "costCode": "CBC",
+              "name": "Kreditkarte"
+            },
+            {
+              "costCode": "APPLE_PAY",
+              "name": "Apple Pay"
+            },
+            {
+              "costCode": "CIA",
+              "name": "Vorkasse"
+            }
+          ],
+          "showPaymentDisclaimer": false,
+          "delivery": {
+            "deliveryText": "bis Sa. 28.11.2026",
+            "deliveryStatus": "SHORT",
+            "earlyDeliveryDate": null,
+            "lateDeliveryDate": "2026-11-28"
+          },
+          "freeReturnDays": null,
+          "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=daf15240961d77857fd964483713b13b&categoryId=33153&pos=5&price=479.00&productid=212246371&sid=24111&type=offer&media=ipc-public-mcp",
+          "minShippingCost": "0,00 €",
+          "hasAlwaysFreeShipping": true,
+          "cheapestTotalPriceOffer": true,
+          "freshness": "2026-11-26T20:03:20.429Z"
+        }
+      ]
+    },
+    "price_history": {
+      "priceTrend": {
+        "history": [
+          {
+            "dateTime": 1793141999999,
+            "price": "539,00 €",
+            "dateTimeISO": "2026-10-27T22:59:59.999Z"
+          },
+          {
+            "dateTime": 1793228399999,
+            "price": "539,00 €",
+            "dateTimeISO": "2026-10-28T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1793314799999,
+            "price": "539,00 €",
+            "dateTimeISO": "2026-10-29T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1793401199999,
+            "price": "522,99 €",
+            "dateTimeISO": "2026-10-30T22:59:59.999Z",
+            "priceChangePercent": -2.9703153988868274
+          },
+          {
+            "dateTime": 1793487599999,
+            "price": "522,99 €",
+            "dateTimeISO": "2026-10-31T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1793573999999,
+            "price": "522,99 €",
+            "dateTimeISO": "2026-11-01T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1793660399999,
+            "price": "539,00 €",
+            "dateTimeISO": "2026-11-02T22:59:59.999Z",
+            "priceChangePercent": 3.061244000841316
+          },
+          {
+            "dateTime": 1793746799999,
+            "price": "499,00 €",
+            "dateTimeISO": "2026-11-03T22:59:59.999Z",
+            "priceChangePercent": -7.421150278293136
+          },
+          {
+            "dateTime": 1793833199999,
+            "price": "499,00 €",
+            "dateTimeISO": "2026-11-04T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1793919599999,
+            "price": "488,99 €",
+            "dateTimeISO": "2026-11-05T22:59:59.999Z",
+            "priceChangePercent": -2.006012024048096
+          },
+          {
+            "dateTime": 1794005999999,
+            "price": "488,99 €",
+            "dateTimeISO": "2026-11-06T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1794092399999,
+            "price": "488,99 €",
+            "dateTimeISO": "2026-11-07T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1794178799999,
+            "price": "488,99 €",
+            "dateTimeISO": "2026-11-08T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1794265199999,
+            "price": "499,00 €",
+            "dateTimeISO": "2026-11-09T22:59:59.999Z",
+            "priceChangePercent": 2.047076627333892
+          },
+          {
+            "dateTime": 1794351599999,
+            "price": "499,00 €",
+            "dateTimeISO": "2026-11-10T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1794437999999,
+            "price": "499,00 €",
+            "dateTimeISO": "2026-11-11T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1794524399999,
+            "price": "499,00 €",
+            "dateTimeISO": "2026-11-12T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1794610799999,
+            "price": "488,00 €",
+            "dateTimeISO": "2026-11-13T22:59:59.999Z",
+            "priceChangePercent": -2.2044088176352705
+          },
+          {
+            "dateTime": 1794697199999,
+            "price": "488,00 €",
+            "dateTimeISO": "2026-11-14T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1794783599999,
+            "price": "488,00 €",
+            "dateTimeISO": "2026-11-15T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1794869999999,
+            "price": "479,00 €",
+            "dateTimeISO": "2026-11-16T22:59:59.999Z",
+            "priceChangePercent": -1.8442622950819672
+          },
+          {
+            "dateTime": 1794956399999,
+            "price": "469,00 €",
+            "dateTimeISO": "2026-11-17T22:59:59.999Z",
+            "priceChangePercent": -2.0876826722338206
+          },
+          {
+            "dateTime": 1795042799999,
+            "price": "469,00 €",
+            "dateTimeISO": "2026-11-18T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1795129199999,
+            "price": "474,99 €",
+            "dateTimeISO": "2026-11-19T22:59:59.999Z",
+            "priceChangePercent": 1.2771855010660982
+          },
+          {
+            "dateTime": 1795215599999,
+            "price": "474,99 €",
+            "dateTimeISO": "2026-11-20T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1795301999999,
+            "price": "474,99 €",
+            "dateTimeISO": "2026-11-21T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1795388399999,
+            "price": "479,00 €",
+            "dateTimeISO": "2026-11-22T22:59:59.999Z",
+            "priceChangePercent": 0.8442282995431483
+          },
+          {
+            "dateTime": 1795474799999,
+            "price": "479,00 €",
+            "dateTimeISO": "2026-11-23T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1795561199999,
+            "price": "459,00 €",
+            "dateTimeISO": "2026-11-24T22:59:59.999Z",
+            "priceChangePercent": -4.175365344467641
+          },
+          {
+            "dateTime": 1795647599999,
+            "price": "459,00 €",
+            "dateTimeISO": "2026-11-25T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1795723400773,
+            "price": "479,00 €",
+            "dateTimeISO": "2026-11-26T20:03:20.773Z",
+            "priceChangePercent": 4.357298474945534
+          }
+        ],
+        "statistics": {
+          "minPrice": "459,00 €",
+          "maxPrice": "539,00 €",
+          "avgPrice": "494,71 €",
+          "currentPrice": "479,00 €",
+          "priceChangePercent": -11.131725417439704,
+          "lowestPriceDate": "2026-11-24T22:59:59.999Z",
+          "highestPriceDate": "2026-10-27T22:59:59.999Z"
+        },
+        "samplingGranularity": "daily",
+        "dataSourceConfidence": 0.95,
+        "periodDays": 29.9,
+        "totalDataPoints": 31
+      }
+    },
+    "all_cached": true
+  }
+}

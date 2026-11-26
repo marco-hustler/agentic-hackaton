@@ -1,0 +1,166 @@
+{
+  "namespace": "get_product_offers",
+  "request": {
+    "productRef": "pr.v1.k1.ME0Ql6I1fKt_yBGoRe-OgEDCDztRsrutaG8iXJUxinRGl_0",
+    "country": "DE"
+  },
+  "cached_at": 1795726998.60723,
+  "data": {
+    "nextOffset": 5,
+    "offers": [
+      {
+        "key": "88619909869ab401b5595ebae4b662c5",
+        "price": "444,00 €",
+        "basePrice": null,
+        "shop": {
+          "shopId": "334269",
+          "merchantId": null,
+          "name": "Maxicoffee.de",
+          "merchantName": null,
+          "rating": {
+            "count": 24,
+            "avg": 3.8
+          },
+          "isMarketplace": false
+        },
+        "payments": [
+          {
+            "costCode": "INV",
+            "name": "Rechnung"
+          },
+          {
+            "costCode": "PP",
+            "name": "PayPal"
+          },
+          {
+            "costCode": "SUW",
+            "name": "Sofort."
+          },
+          {
+            "costCode": "CBC",
+            "name": "Kreditkarte"
+          },
+          {
+            "costCode": "APPLE_PAY",
+            "name": "Apple Pay"
+          }
+        ],
+        "showPaymentDisclaimer": false,
+        "delivery": {
+          "deliveryText": "bis Di. 01.12.2026",
+          "deliveryStatus": "MEDIUM",
+          "earlyDeliveryDate": null,
+          "lateDeliveryDate": "2026-12-01"
+        },
+        "freeReturnDays": null,
+        "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=88619909869ab401b5595ebae4b662c5&categoryId=3487&pos=2&price=444.00&productid=6059287&sid=334269&type=offer&media=ipc-public-mcp",
+        "minShippingCost": "0,00 €",
+        "hasAlwaysFreeShipping": true,
+        "cheapestTotalPriceOffer": true,
+        "freshness": "2026-11-26T20:03:18.555Z"
+      },
+      {
+        "key": "13758d14038e5d5c49084a0f98b32f6c",
+        "price": "444,00 €",
+        "basePrice": null,
+        "shop": {
+          "shopId": "285519",
+          "merchantId": null,
+          "name": "mediamarkt.de",
+          "merchantName": null,
+          "rating": {
+            "count": 18591,
+            "avg": 3.84
+          },
+          "isMarketplace": false
+        },
+        "payments": [
+          {
+            "costCode": "PP",
+            "name": "PayPal"
+          },
+          {
+            "costCode": "SUW",
+            "name": "Sofort."
+          },
+          {
+            "costCode": "CBC",
+            "name": "Kreditkarte"
+          },
+          {
+            "costCode": "CIA",
+            "name": "Vorkasse"
+          },
+          {
+            "costCode": "AMZP",
+            "name": "Amazon Pay"
+          }
+        ],
+        "showPaymentDisclaimer": false,
+        "delivery": {
+          "deliveryText": "Fr. 27.11.–Sa. 28.11.2026",
+          "deliveryStatus": "SHORT",
+          "earlyDeliveryDate": "2026-11-27",
+          "lateDeliveryDate": "2026-11-28"
+        },
+        "freeReturnDays": 30,
+        "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=13758d14038e5d5c49084a0f98b32f6c&categoryId=3487&pos=3&price=444.00&productid=6059287&sid=285519&type=offer&media=ipc-public-mcp",
+        "minShippingCost": "0,00 €",
+        "hasAlwaysFreeShipping": true,
+        "cheapestTotalPriceOffer": true,
+        "freshness": "2026-11-26T20:03:18.555Z"
+      },
+      {
+        "key": "2b20cd136041624fd2688538f632454f",
+        "price": "444,00 €",
+        "basePrice": null,
+        "shop": {
+          "shopId": "281846",
+          "merchantId": null,
+          "name": "saturn.de",
+          "merchantName": null,
+          "rating": {
+            "count": 15509,
+            "avg": 3.64
+          },
+          "isMarketplace": false
+        },
+        "payments": [
+          {
+            "costCode": "PP",
+            "name": "PayPal"
+          },
+          {
+            "costCode": "SUW",
+            "name": "Sofort."
+          },
+          {
+            "costCode": "CBC",
+            "name": "Kreditkarte"
+          },
+          {
+            "costCode": "CIA",
+            "name": "Vorkasse"
+          },
+          {
+            "costCode": "AMZP",
+            "name": "Amazon Pay"
+          }
+        ],
+        "showPaymentDisclaimer": false,
+        "delivery": {
+          "deliveryText": "bis Do. 03.12.2026",
+          "deliveryStatus": "MEDIUM",
+          "earlyDeliveryDate": null,
+          "lateDeliveryDate": "2026-12-03"
+        },
+        "freeReturnDays": 30,
+        "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=2b20cd136041624fd2688538f632454f&categoryId=3487&pos=4&price=444.00&productid=6059287&sid=281846&type=offer&media=ipc-public-mcp",
+        "minShippingCost": "0,00 €",
+        "hasAlwaysFreeShipping": true,
+        "cheapestTotalPriceOffer": true,
+        "freshness": "2026-11-26T20:03:18.555Z"
+      }
+    ]
+  }
+}
