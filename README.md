@@ -15,29 +15,34 @@ Built for **Agentic Hackathon: From Research to Commerce** (Berlin, 27 Nov 2026)
 
 ---
 
-## Quickstart
+## Quickstart (2 minutes, works out of the box)
 
-> Requires **Python 3.11+** (on macOS use `/opt/homebrew/bin/python3`; `/usr/bin/python3` is 3.9).
+> Requires **Python 3.11+**. On macOS, if `python3 --version` is 3.9, use `/opt/homebrew/bin/python3` instead.
 
 ```bash
-/opt/homebrew/bin/python3 -m venv .venv
-source .venv/bin/activate
+git checkout it-1
+python3 -m venv .venv          # or: /opt/homebrew/bin/python3 -m venv .venv
+source .venv/bin/activate      # Windows: .venv\Scripts\activate
 pip install -e ".[dev]"
-cp .env.example .env
+cp .env.example .env           # optional — works even without API keys
 
-# Run unit tests (works offline, zero API keys needed)
+# 1. Run unit tests (offline, zero API keys needed)
 pytest
 
-# Probe idealo MCP (opens browser for OAuth login on first run)
-python scripts/probe_idealo_mcp.py --list-tools
-python scripts/probe_idealo_mcp.py --probe-demo
-
-# Start the web app + API
+# 2. Start the web app + API immediately (uses real cached idealo DE data in data/cache/)
 uvicorn cleanbreak.api.app:app --reload --port 8000
 # Open http://localhost:8000
 ```
 
-To enable any LLM provider (Gemini, OpenAI, Claude, Nebius, etc.), install the optional `llm` extra (`pip install -e ".[llm,dev]"`) and set `LLM_MODEL` + API key in `.env`. Without an LLM key, CleanBreak automatically uses deterministic fallback parsing/explanations so the demo never breaks.
+### Optional: Refresh Live idealo MCP Data (OAuth)
+Real responses for all 7 demo items are already cached in `data/cache/`. Only run this if you want to query idealo live yourself:
+```bash
+python scripts/probe_idealo_mcp.py --list-tools   # opens browser for idealo OAuth
+python scripts/probe_idealo_mcp.py --probe-demo   # refreshes data/cache/
+```
+
+### Optional: Enable Any LLM Provider
+To enable Gemini, OpenAI, Claude, or Nebius, install `pip install -e ".[llm,dev]"` and set `LLM_MODEL` + your API key in `.env`. Without an LLM key, CleanBreak falls back to deterministic parsing/explanations so the demo never breaks.
 
 ---
 

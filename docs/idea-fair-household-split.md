@@ -63,24 +63,24 @@ idealo gives today's **Replacement Value** (new). CleanBreak explicitly applies 
 Built for a **3-person async team** targeting a rock-solid demo by **17:00 Friday** (feature freeze **18:30**, submit **19:30**).
 
 ### P0 — Must-Have Core *(Wins the challenge on its own · target: 17:00)*
-- [ ] **Preloaded realistic Berlin WG/couple scenario** (6–7 branded items + 1 discontinued model) with editable ownership (`Shared 50/50`, `Paid by A`, `Paid by B`) and **100-point priority budgets** per party (prevents rating everything 10/10).
-- [ ] **Live idealo MCP valuation pipeline** with local JSON disk cache (respects 500 calls/day limit and guarantees zero-crash pitch fallback, with a visible `Live MCP` / `Cached` badge).
-- [ ] **Transparent Fair Value**: Trusted Market Price × editable Depreciation factor.
-- [ ] **Exact Deterministic Fairness Solver**: evaluates all A/B/Sell assignments, maximizes joint care points while balancing euro equity, and computes the exact **Cash Equalization (€)** transfer.
-- [ ] **Signature "Aha!" — Contention Arbitrage Card**: detects when both parties put high care points on an item that is at a real **30-day / Black Friday low** on idealo → recommends *"A keeps used, B takes buyout & buys new today"* with direct merchant link.
-- [ ] **Projector-ready Split Board UI**: Party A vs. Party B vs. Buy-New/Sell columns, big settlement banner, and expandable **idealo Evidence Drawer** per item.
+- [ ] **Preloaded realistic Berlin WG/couple scenario** (6–7 branded items + 1 discontinued model) with editable ownership (`Shared 50/50`, `Paid by A`, `Paid by B`) and **100-point priority budgets** per party (prevents rating everything 10/10). *(Status: initial JSON scenario + 100-pt data exist, but ownership & 100-pt budgets are not editable in the UI yet.)*
+- [ ] **Live idealo MCP valuation pipeline** with local JSON disk cache (respects 500 calls/day limit and guarantees zero-crash pitch fallback, with a visible `Live MCP` / `Cached` badge). *(Status: working initial pass probed & cached for the 7 demo items; needs error-handling polish & live browser test.)*
+- [ ] **Transparent Fair Value**: Trusted Market Price × editable Depreciation factor. *(Status: basic math & slider wired; curve/copy not yet stress-tested with users.)*
+- [ ] **Exact Deterministic Fairness Solver**: evaluates all A/B/Sell assignments, maximizes joint care points while balancing euro equity, and computes the exact **Cash Equalization (€)** transfer. *(Status: core optimizer + unit tests passing; edge cases & large-list UX still unverified.)*
+- [ ] **Signature "Aha!" — Contention Arbitrage Card**: detects when both parties put high care points on an item that is at a real **30-day / Black Friday low** on idealo → recommends *"A keeps used, B takes buyout & buys new today"* with direct merchant link. *(Status: first version triggers on Sonos Era 300; copy & visual punch need pitch polish.)*
+- [ ] **Projector-ready Split Board UI**: Party A vs. Party B vs. Buy-New/Sell columns, big settlement banner, and expandable **idealo Evidence Drawer** per item. *(Status: rough single-page scaffold built; not yet tested visually in a browser or on a projector.)*
 
 ### P1 — High-Impact Polish *(Makes the live demo shine · target: 17:00–18:30)*
-- [ ] **Interactive "What-If" Controls**: click to swap any item between A and B or drag a depreciation slider → totals & cash transfer recalculate instantly (0 extra MCP calls).
-- [ ] **3 Split Strategy Tabs**: *Balanced (Max Happiness)* · *Min Cash Transfer* · *Sell Contested Items*.
-- [ ] **Live Messy-Text Input (LLM-agnostic)**: paste a raw sentence (*"PS5 Slim from 2024, split 50/50"*) → LLM parses + live idealo MCP prices it on the fly.
-- [ ] **Re-Equip Replacement Basket**: shows the moving-out party direct idealo replacement links funded by their settlement payout.
-- [ ] **Neutral Mediator Summary (LLM-agnostic)**: 3-sentence calm rationale grounded in the exact idealo numbers.
+- [ ] **Interactive "What-If" Controls**: click to swap any item between A and B or drag a depreciation slider → totals & cash transfer recalculate instantly (0 extra MCP calls). *(Status: basic swap & slider handlers written; needs real browser QA and smoother UX.)*
+- [ ] **3 Split Strategy Tabs**: *Balanced (Max Happiness)* · *Min Cash Transfer* · *Sell Contested Items*. *(Status: implemented in solver & UI tabs; `Sell Contested` UX needs review.)*
+- [ ] **Live Messy-Text Input (LLM-agnostic)**: paste a raw sentence (*"PS5 Slim from 2024, split 50/50"*) → LLM parses + live idealo MCP prices it on the fly. *(Status: endpoint & regex fallback exist; real LLM provider not wired/tested yet, and newly added items can't be edited in UI.)*
+- [ ] **Re-Equip Replacement Basket**: shows the moving-out party direct idealo replacement links funded by their settlement payout. *(Status: basic list rendered from solver output; styling & link verification still rough.)*
+- [ ] **Neutral Mediator Summary (LLM-agnostic)**: 3-sentence calm rationale grounded in the exact idealo numbers. *(Status: deterministic template works; real LLM summary not wired/tested yet.)*
 
 ### P2 — Stretch *(Only if ahead of schedule after 18:00; skip freely)*
-- [ ] Category-balance weighting penalty.
-- [ ] Printable / exportable Markdown settlement receipt.
-- [ ] Norma (Quality Clouds) add-on (`DEFENCE.md` + 2-author PR workflow).
+- [ ] Category-balance weighting penalty. *(Status: not started.)*
+- [ ] Printable / exportable Markdown settlement receipt. *(Status: not started.)*
+- [ ] Norma (Quality Clouds) add-on (`DEFENCE.md` + 2-author PR workflow). *(Status: not started.)*
 
 ---
 
