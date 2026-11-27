@@ -34,11 +34,20 @@ uvicorn cleanbreak.api.app:app --reload --port 8000
 # Open http://localhost:8000
 ```
 
-### Optional: Refresh Live idealo MCP Data (OAuth)
-Real responses for all 7 demo items are already cached in `data/cache/`. Only run this if you want to query idealo live yourself:
+### idealo call budget — live calls are OFF by default
+The Trial tier allows **500 calls/day and 3 calls/sec**, shared by everyone using the same login. The app never calls idealo unless you opt in:
+
+- Default: the app, tests and UI run entirely on the cached responses in `data/cache/` (0 calls).
+- For a deliberate real test, set `IDEALO_LIVE_ENABLED=true` in `.env` and restart. Only items that are not cached yet are looked up (max 10 per click, ~4 calls each). Already-cached items never cost a call, and "not found" answers are remembered.
+- Every call is counted in `data/idealo_budget.json`, with a hard stop at 450/day (`IDEALO_DAILY_CALL_CAP`). The UI shows how many calls are left (`GET /api/idealo/status`).
+- Only one person should turn live mode on at a time. Commit new `data/cache/` files after a live test so teammates reuse them.
+
+### Optional: Log in / refresh idealo data from the command line (OAuth)
+Real responses for all 7 demo items are already cached in `data/cache/`. The server never opens a login itself — log in here:
 ```bash
-python scripts/probe_idealo_mcp.py --list-tools   # opens browser for idealo OAuth
-python scripts/probe_idealo_mcp.py --probe-demo   # refreshes data/cache/
+python scripts/probe_idealo_mcp.py --list-tools   # opens browser for idealo OAuth (~2 calls)
+python scripts/probe_idealo_mcp.py --probe-demo   # uses the cache; 0 calls if already cached
+python scripts/probe_idealo_mcp.py --probe-demo --refresh   # re-fetches everything (~30 calls!)
 ```
 
 ### Optional: Enable Any LLM Provider
