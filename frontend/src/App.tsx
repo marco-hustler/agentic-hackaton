@@ -5,6 +5,8 @@ import { CreateProcessWizard } from './overlays/CreateProcessWizard'
 import { OnboardingModal } from './overlays/OnboardingModal'
 import type { ProcessSummary } from './types/process'
 import { WorldCanvas } from './world/WorldCanvas'
+import { STATUS_META } from './world/palette'
+import { WorldLegend } from './chrome/WorldLegend'
 
 const ONBOARDING_KEY = 'cleanbreak.onboarding.seen'
 
@@ -59,7 +61,7 @@ export default function App() {
   }
 
   return (
-    <div className="relative h-full min-h-screen overflow-hidden bg-page text-ink">
+    <div className="relative h-full min-h-screen overflow-hidden bg-canvas text-ink">
       {/* Layer: world (always under) */}
       <WorldCanvas
         processes={processes}
@@ -68,26 +70,31 @@ export default function App() {
       />
 
       {/* Layer: chrome above world */}
-      <AppHeader apiOk={apiOk} />
+      <AppHeader apiOk={apiOk} processCount={processes.length} onCreateProcess={openWizard} />
+      <WorldLegend />
 
       {/* Inside-house stub overlay — detail UI comes next */}
       {activeProcess && (
-        <div className="absolute inset-0 z-30 flex items-end justify-center p-4 sm:p-8 pointer-events-none">
-          <div className="pointer-events-auto w-full max-w-lg rounded-2xl bg-card border border-line p-5 shadow-lg">
+        <div className="pointer-events-none absolute inset-0 z-30 flex items-end justify-center p-4 sm:p-8">
+          <div className="panel pointer-events-auto w-full max-w-lg p-5">
             <div className="flex items-start justify-between gap-3">
               <div>
-                <p className="text-xs font-mono text-muted">Inside the house</p>
-                <h2 className="text-lg font-medium text-ink">{activeProcess.title}</h2>
-                <p className="mt-1 text-sm text-ink2">
-                  Inventory & separation views land here next. Backend split API stays at{' '}
-                  <code className="font-mono text-xs">/api/*</code>.
+                <p className="label-sm text-muted">Inside the house</p>
+                <h2 className="mt-1 text-xl font-bold tracking-tight text-petrol">{activeProcess.title}</h2>
+                <div className="mt-2 flex flex-wrap gap-2">
+                  <span className={`pill ${STATUS_META[activeProcess.status].pill}`}>
+                    {STATUS_META[activeProcess.status].label}
+                  </span>
+                  <span className="pill pill-neutral">
+                    {1 + activeProcess.participantEmails.length} people
+                  </span>
+                </div>
+                <p className="mt-3 text-sm text-ink2">
+                  Inventory and split views land here next. The backend split API stays at{' '}
+                  <code className="text-xs font-semibold">/api/*</code>.
                 </p>
               </div>
-              <button
-                type="button"
-                onClick={() => setActiveProcessId(null)}
-                className="h-8 px-3 rounded-lg border border-line bg-raised text-sm font-medium text-ink hover:bg-card"
-              >
+              <button type="button" onClick={() => setActiveProcessId(null)} className="btn btn-ghost h-9 shrink-0">
                 Back to world
               </button>
             </div>

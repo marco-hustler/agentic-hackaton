@@ -43,7 +43,7 @@ Obiettivo: mondo **davvero 3D** (WebGL), chrome UI in DOM sopra. Niente fake-iso
 **Ordine di build frontend**
 
 1. [x] Scaffold Vite React TS + Tailwind (+ legacy UI)
-2. [ ] Diorama 3D quartiere (R3F) + case + `+`
+2. [x] Diorama 3D quartiere (R3F) + case + `+` (landing isometrica, design `DESIGN.md`)
 3. Modale onboarding + wizard (già stub DOM)
 4. Dentro casa: stanze 3D + inventario / lista overlay
 5. Collegare FastAPI e dati reali / solver
