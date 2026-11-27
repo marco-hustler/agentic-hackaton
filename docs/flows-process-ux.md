@@ -273,20 +273,40 @@ Transizioni minime MVP: `draft` → `collecting` → `resolved`.
 
 ---
 
-## 10. Prossimi passi implementativi
+## 10. Stack UI (minimo, ship veloce)
 
-1. Canvas Mondo (terreno/città) + layer UI sopra
-2. Empty world con `+` enorme
-3. Modale onboarding primo accesso
-4. Wizard creazione (modale) → spawn casa nel mondo
-5. Entrata in casa: diorama stanze + chrome sopra
-6. Inventario come overlay
-7. Separazione diorama (hover + modale dettaglio oggetto)
-8. Modale “Vista lista” + export Excel
+Allineato a `docs/stack.md`. Nessuna libreria di animazione / state manager / game engine.
+
+| Pezzo | Tech |
+|---|---|
+| App | Vite + React + TypeScript |
+| Stile | Tailwind CSS |
+| API | `fetch` → FastAPI |
+| State | `useState` / `useContext` |
+| Mondo | React + CSS isometrico (case = processi) |
+| Overlay | Modali HTML/Tailwind |
+| Export | SheetJS (`xlsx`) quando serve la lista |
+
+Mondo sempre sotto; header / sidebar / modali sempre sopra (`z-index`).
 
 ---
 
-## 11. Note aperte (da chiudere in implementazione)
+## 11. Prossimi passi implementativi
+
+1. Scaffold Vite React TS + Tailwind in `frontend/`
+2. Canvas Mondo (terra/città) + layer UI sopra
+3. Empty world con `+` enorme
+4. Modale onboarding primo accesso
+5. Wizard creazione (modale) → spawn casa nel mondo
+6. Entrata in casa: diorama stanze + chrome sopra
+7. Inventario come overlay
+8. Separazione diorama (hover + modale dettaglio oggetto)
+9. Modale “Vista lista” + export Excel
+10. Collegare FastAPI / solver / idealo
+
+---
+
+## 12. Note aperte (da chiudere in implementazione)
 
 - Estetica mondo: terra stilizzata vs quartiere urbano vs isola
 - Quante case max in vista / scroll del mondo
