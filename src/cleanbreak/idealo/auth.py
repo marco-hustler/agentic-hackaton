@@ -99,6 +99,52 @@ def _stored_tokens(raw: object) -> OAuthToken | None:
     return tok
 
 
+def token_endpoint() -> str:
+    """idealo's OAuth token endpoint (from /.well-known/oauth-authorization-server).
+
+    The MCP SDK guesses `<server>/token` when it has no metadata, which idealo answers with 403,
+    so refreshes are done here against the real endpoint.
+    """
+    return os.getenv("IDEALO_TOKEN_URL", "https://mcp.idealo.com/oauth2/token")
+
+
+async def refresh_login(data: dict) -> dict | None:
+    """Exchange the saved refresh token for a new access token. Costs no MCP tool call.
+
+    Returns the updated login (client_info + tokens) or None if idealo refused it.
+    """
+    import httpx
+
+    tokens = data.get("tokens") or {}
+    client_id = (data.get("client_info") or {}).get("client_id")
+    refresh = tokens.get("refresh_token")
+    if not client_id or not refresh:
+        return None
+    try:
+        async with httpx.AsyncClient(timeout=10.0) as http:
+            res = await http.post(
+                token_endpoint(),
+                data={"grant_type": "refresh_token", "refresh_token": refresh, "client_id": client_id},
+                headers={"Content-Type": "application/x-www-form-urlencoded"},
+            )
+    except httpx.HTTPError:
+        return None
+    if res.status_code != 200:
+        return None
+    fresh = res.json()
+    new_tokens = {
+        **tokens,
+        "access_token": fresh.get("access_token"),
+        "token_type": fresh.get("token_type", tokens.get("token_type", "Bearer")),
+        "expires_in": fresh.get("expires_in", tokens.get("expires_in")),
+        # RFC 6749: a refresh response may omit the refresh token when it is not rotated.
+        "refresh_token": fresh.get("refresh_token") or refresh,
+    }
+    if not new_tokens["access_token"]:
+        return None
+    return {**data, "tokens": new_tokens}
+
+
 # ---- server login stored in Postgres (Vercel) -------------------------------------------------
 
 DB_TOKEN_KEY = "idealo_oauth"
@@ -186,7 +232,15 @@ class FileTokenStorage(TokenStorage):
             pass
 
     async def get_tokens(self) -> OAuthToken | None:
-        return _stored_tokens(self._read().get("tokens"))
+        data = self._read()
+        raw = data.get("tokens")
+        access = raw.get("access_token") if isinstance(raw, dict) else None
+        if isinstance(access, str) and _is_jwt_expired(access) and raw.get("refresh_token"):
+            refreshed = await refresh_login(data)
+            if refreshed is not None:
+                self._write(refreshed)
+                raw = refreshed["tokens"]
+        return _stored_tokens(raw)
 
     async def set_tokens(self, tokens: OAuthToken) -> None:
         data = self._read()
