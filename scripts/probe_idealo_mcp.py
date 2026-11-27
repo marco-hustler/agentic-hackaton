@@ -41,14 +41,16 @@ async def run_probe(args: argparse.Namespace) -> None:
     )
 
     async with client.connect():
-        tools = await client.list_tools()
-        TOOLS_OUT.write_text(json.dumps(tools, indent=2, ensure_ascii=False), encoding="utf-8")
         print(f"\nConnected to {client.server_url}!")
-        print(f"Discovered {len(tools)} tools (saved full schema -> {TOOLS_OUT.relative_to(REPO_ROOT)}):")
-        for t in tools:
-            schema = t.get("input_schema") or t.get("inputSchema") or {}
-            props = list(schema.get("properties", {}).keys())
-            print(f"  - {t['name']}({', '.join(props)})")
+        if args.list_tools:
+            # connect() already listed tool names; fetching full schemas costs one more call.
+            tools = await client.list_tools()
+            TOOLS_OUT.write_text(json.dumps(tools, indent=2, ensure_ascii=False), encoding="utf-8")
+            print(f"Discovered {len(tools)} tools (saved full schema -> {TOOLS_OUT.relative_to(REPO_ROOT)}):")
+            for t in tools:
+                schema = t.get("input_schema") or t.get("inputSchema") or {}
+                props = list(schema.get("properties", {}).keys())
+                print(f"  - {t['name']}({', '.join(props)})")
 
         if args.list_tools and not args.probe_demo and not args.query:
             return
@@ -70,7 +72,7 @@ async def run_probe(args: argparse.Namespace) -> None:
 
         for item, q in queries:
             bundle = await client.probe_item_raw(q, country=args.country, force_refresh=args.refresh)
-            status, val = await client.value_item(item, force_refresh=False)
+            status, val = client.value_from_bundle(item, bundle)
             raw_results.append(
                 {"item_id": item.id, "query": q, "bundle": bundle, "valuation": val.model_dump() if val else None}
             )

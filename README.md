@@ -45,8 +45,8 @@ The Trial tier allows **500 calls/day and 3 calls/sec**, shared by everyone usin
 ### Optional: Log in / refresh idealo data from the command line (OAuth)
 Real responses for all 7 demo items are already cached in `data/cache/`. The server never opens a login itself — log in here:
 ```bash
-python scripts/probe_idealo_mcp.py --list-tools   # opens browser for idealo OAuth (~2 calls)
-python scripts/probe_idealo_mcp.py --probe-demo   # uses the cache; 0 calls if already cached
+python scripts/probe_idealo_mcp.py --list-tools   # opens browser for idealo OAuth (~3 calls)
+python scripts/probe_idealo_mcp.py --probe-demo   # ~2 calls to connect; cached items cost 0 more
 python scripts/probe_idealo_mcp.py --probe-demo --refresh   # re-fetches everything (~30 calls!)
 ```
 

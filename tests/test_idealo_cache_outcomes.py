@@ -148,3 +148,20 @@ def test_tokens_present(tmp_path):
     assert not tokens_present(f)
     f.write_text(json.dumps({"tokens": {"access_token": "abc", "token_type": "Bearer"}}))
     assert tokens_present(f)
+
+
+def test_first_tool_error_stops_further_calls_for_that_item(tmp_path):
+    session = _Session(
+        {
+            "search_products": _Result({"results": [{"productRef": "p1", "name": "Thing"}]}),
+            "get_product_details": RuntimeError("429"),
+            "get_product_offers": _Result({"offers": []}),
+            "get_product_price_history": _Result({}),
+        }
+    )
+    client, budget = _client(tmp_path, session)
+    client._tool_names = set(session.responses)
+    bundle = asyncio.run(client.probe_item_raw("Thing"))
+    assert bundle["outcome"] == "error"
+    assert session.calls == ["search_products", "get_product_details"]
+    assert budget.snapshot()["used"] == 2

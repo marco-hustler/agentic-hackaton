@@ -219,6 +219,8 @@ class IdealoMCPClient:
                     offers_data = data
                 else:
                     history_data = data
+                if outcome == "error":
+                    break  # the item becomes a placeholder anyway; don't spend more calls on it
 
         bundle = {
             "query": query,
@@ -259,6 +261,11 @@ class IdealoMCPClient:
     ) -> tuple[LookupStatus, ItemValuation | None]:
         query = (item.search_query or item.name).strip()
         bundle = await self.probe_item_raw(query, country=self.country, force_refresh=force_refresh)
+        return self.value_from_bundle(item, bundle)
+
+    def value_from_bundle(
+        self, item: HouseholdItemInput, bundle: dict[str, Any]
+    ) -> tuple[LookupStatus, ItemValuation | None]:
         source: DataSourceType = "idealo_cached" if bundle.get("all_cached") else "idealo_live"
         return _status_and_valuation(item, bundle, data_source=source)
 

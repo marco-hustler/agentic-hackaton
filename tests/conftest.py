@@ -10,6 +10,8 @@ def _isolate_idealo(tmp_path, monkeypatch):
     monkeypatch.setenv("IDEALO_LIVE_ENABLED", "false")
     monkeypatch.setenv("IDEALO_BUDGET_FILE", str(tmp_path / "idealo_budget.json"))
     monkeypatch.setenv("IDEALO_TOKEN_FILE", str(tmp_path / "no_tokens.json"))
+    for var in ("LLM_MODEL", "LLM_API_KEY", "LLM_API_BASE", "OPENAI_API_KEY", "GEMINI_API_KEY", "ANTHROPIC_API_KEY"):
+        monkeypatch.delenv(var, raising=False)
     from cleanbreak.idealo import budget
 
     budget.reset_registry()

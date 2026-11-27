@@ -161,10 +161,11 @@ async function updateDepreciation(itemId, newFactor) {
 
 async function addMessyItem() {
   const input = document.getElementById("messyInput");
+  const btn = document.getElementById("btnAddMessy");
+  if (btn.disabled) return; // Enter while a Parse & Value is running must not start a second one
   const raw = input.value.trim();
   if (!raw) return;
 
-  const btn = document.getElementById("btnAddMessy");
   btn.disabled = true;
   btn.textContent = "Working...";
   try {
