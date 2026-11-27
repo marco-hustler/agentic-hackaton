@@ -206,7 +206,8 @@ def _summarize_notes(valuations: list[ItemValuation]) -> str | None:
         return None
     parts = ", ".join(f"{n} × {note}" for note, n in counts.items())
     total = sum(counts.values())
-    return f"{total} item{'s' if total != 1 else ''} use placeholder prices ({parts})."
+    noun = "item uses" if total == 1 else "items use"
+    return f"{total} {noun} placeholder prices ({parts})."
 
 
 async def _value_items(

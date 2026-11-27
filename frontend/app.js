@@ -6,14 +6,35 @@ const state = {
   mode: "balanced",
   valuedItems: [],
   split: null,
+  idealo: null, // { live_enabled, logged_in, used, cap, remaining }
+  splitVersion: 0,
 };
+
+// Single fetch helper: on any failure show the error and return null, leaving state untouched.
+async function api(path, body) {
+  const opts = body === undefined
+    ? {}
+    : { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) };
+  try {
+    const res = await fetch(path, opts);
+    if (!res.ok) {
+      const detail = (await res.text()).slice(0, 200);
+      setWarning(`Request to ${path} failed (${res.status}). ${detail}`);
+      return null;
+    }
+    return await res.json();
+  } catch (err) {
+    setWarning(`Server unreachable (${path}): ${err.message}`);
+    return null;
+  }
+}
 
 const eur = (n) => `€${Number(n || 0).toLocaleString("de-DE", { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
 const eur2 = (n) => `€${Number(n || 0).toLocaleString("de-DE", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 
 async function loadDemo() {
-  const res = await fetch(`/api/demo?mode=${state.mode}`);
-  const data = await res.json();
+  const data = await api(`/api/demo?mode=${state.mode}`);
+  if (!data) return;
   state.scenarioName = data.scenario_name;
   state.partyA = data.party_a_name;
   state.partyB = data.party_b_name;
@@ -22,21 +43,75 @@ async function loadDemo() {
   state.split = data.split;
   setWarning(data.warning);
   render();
+  fetchSummaryInBackground();
 }
 
+async function loadIdealoStatus() {
+  const data = await api("/api/idealo/status");
+  if (data) {
+    state.idealo = data;
+    renderLiveStatus();
+  }
+}
+
+function updateBudget(budget) {
+  if (budget && state.idealo) {
+    Object.assign(state.idealo, budget);
+    renderLiveStatus();
+  }
+}
+
+function renderLiveStatus() {
+  const el = document.getElementById("liveStatus");
+  const btn = document.getElementById("btnLiveIdealo");
+  const s = state.idealo;
+  if (!s) {
+    btn.disabled = false; // status unknown: let the server decide
+    return;
+  }
+  if (!s.live_enabled) {
+    el.textContent = "Live idealo: off (cached data only)";
+  } else if (!s.logged_in) {
+    el.textContent = "Live idealo: on · login missing";
+  } else {
+    el.textContent = `Live idealo: on · ${s.remaining} calls left today`;
+  }
+  btn.disabled = !s.live_enabled;
+}
+
+// Returns true when a new split was rendered.
 async function resolveSplit() {
-  const res = await fetch("/api/solve", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      party_a_name: state.partyA,
-      party_b_name: state.partyB,
-      mode: state.mode,
-      valued_items: state.valuedItems,
-    }),
+  const data = await api("/api/solve", {
+    party_a_name: state.partyA,
+    party_b_name: state.partyB,
+    mode: state.mode,
+    valued_items: state.valuedItems,
   });
-  state.split = await res.json();
+  if (!data) return false;
+  state.split = data;
   render();
+  fetchSummaryInBackground();
+  return true;
+}
+
+// Optional LLM polish: never blocks the UI; a stale or failed response is ignored silently.
+async function fetchSummaryInBackground() {
+  const version = ++state.splitVersion;
+  try {
+    const res = await fetch("/api/summary", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(state.split),
+    });
+    if (!res.ok) return;
+    const { summary } = await res.json();
+    if (version === state.splitVersion && summary) {
+      state.split.mediator_summary = summary;
+      document.getElementById("mediatorSummary").textContent = summary;
+    }
+  } catch (_) {
+    /* optional enhancement — ignore */
+  }
 }
 
 async function refreshViaLiveIdealo() {
@@ -45,38 +120,37 @@ async function refreshViaLiveIdealo() {
   btn.textContent = "Querying idealo MCP...";
   try {
     const items = state.valuedItems.map((vi) => vi.item);
-    const res = await fetch("/api/value", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ items, country: state.country, mode: "live_or_cache" }),
-    });
-    const data = await res.json();
+    const data = await api("/api/value", { items, country: state.country, mode: "live_or_cache" });
+    if (!data) return;
+    updateBudget(data.budget);
     state.valuedItems = items.map((item, i) => ({ item, valuation: data.valuations[i] }));
     setWarning(data.warning);
     await resolveSplit();
   } finally {
-    btn.disabled = false;
     btn.textContent = "Refresh via Live idealo MCP";
+    renderLiveStatus();
   }
 }
 
 async function swapItem(itemId, targetAction) {
   const entry = state.valuedItems.find((vi) => vi.item.id === itemId);
   if (!entry) return;
+  const previous = entry.item.forced_action;
   entry.item.forced_action = targetAction;
-  await resolveSplit();
+  if (!(await resolveSplit())) entry.item.forced_action = previous;
 }
 
 async function updateDepreciation(itemId, newFactor) {
   const entry = state.valuedItems.find((vi) => vi.item.id === itemId);
   if (!entry) return;
-  entry.item.depreciation_override = Number(newFactor);
-  const res = await fetch("/api/reapply-depreciation", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ item: entry.item, valuation: entry.valuation }),
-  });
-  entry.valuation = await res.json();
+  const item = { ...entry.item, depreciation_override: Number(newFactor) };
+  const valuation = await api("/api/reapply-depreciation", { item, valuation: entry.valuation });
+  if (!valuation) {
+    render(); // snap the slider back to the last good value
+    return;
+  }
+  entry.item = item;
+  entry.valuation = valuation;
   await resolveSplit();
 }
 
@@ -89,20 +163,12 @@ async function addMessyItem() {
   btn.disabled = true;
   btn.textContent = "Working...";
   try {
-    const parseRes = await fetch("/api/parse", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ raw_text: raw, party_a_name: state.partyA, party_b_name: state.partyB }),
-    });
-    const parsed = await parseRes.json();
-    if (!parsed.items || !parsed.items.length) return;
+    const parsed = await api("/api/parse", { raw_text: raw, party_a_name: state.partyA, party_b_name: state.partyB });
+    if (!parsed || !parsed.items || !parsed.items.length) return;
 
-    const valRes = await fetch("/api/value", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ items: parsed.items, country: state.country, mode: "live_or_cache" }),
-    });
-    const valData = await valRes.json();
+    const valData = await api("/api/value", { items: parsed.items, country: state.country, mode: "live_or_cache" });
+    if (!valData) return;
+    updateBudget(valData.budget);
     setWarning(valData.warning);
     parsed.items.forEach((item, idx) => {
       state.valuedItems.push({ item, valuation: valData.valuations[idx] });
@@ -128,7 +194,12 @@ function setWarning(msg) {
 function renderDataSourceBadge() {
   const sources = new Set(state.valuedItems.map((vi) => vi.valuation.data_source));
   const badge = document.getElementById("dataSourceBadge");
-  if (sources.has("idealo_live")) {
+  const placeholders = state.valuedItems.filter((vi) => vi.valuation.data_source === "demo_fallback").length;
+  const idealo = state.valuedItems.length - placeholders;
+  if (placeholders && idealo) {
+    badge.textContent = `Mixed: ${idealo} idealo · ${placeholders} placeholder`;
+    badge.className = "px-2.5 py-0.5 text-xs font-semibold rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/40";
+  } else if (sources.has("idealo_live")) {
     badge.textContent = "Live idealo MCP";
     badge.className = "px-2.5 py-0.5 text-xs font-semibold rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/40";
   } else if (sources.has("idealo_cached")) {
@@ -201,6 +272,11 @@ function buildItemCard(assigned, vi) {
       </div>
       <div class="text-right shrink-0">
         <div class="text-xl font-extrabold text-white">${eur(valuation.fair_value_eur)}</div>
+        ${
+          valuation.data_source === "demo_fallback"
+            ? `<div class="mt-0.5 inline-block px-1.5 py-0.5 rounded text-[11px] font-semibold bg-amber-500/20 text-amber-300 border border-amber-500/40">Placeholder${valuation.source_note ? ` · ${valuation.source_note}` : ""}</div>`
+            : ""
+        }
         <div class="text-[11px] text-slate-400">New: ${eur(valuation.trusted_market_price_eur)} (${Math.round(valuation.depreciation_factor * 100)}%)</div>
       </div>
     </div>
@@ -396,4 +472,5 @@ document.getElementById("messyInput").addEventListener("keydown", (e) => {
   if (e.key === "Enter") addMessyItem();
 });
 
+loadIdealoStatus();
 loadDemo();
