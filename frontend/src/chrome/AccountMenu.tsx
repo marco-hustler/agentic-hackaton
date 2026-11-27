@@ -1,4 +1,5 @@
 import { useEffect, useId, useRef, useState, type FormEvent } from 'react'
+import { getIdealoStatus, getLlmStatus } from '../api/client'
 import {
   clearIdealoCredentials,
   clearLlmCredentials,
@@ -54,14 +55,46 @@ export function AccountMenu({ account, onSignOut, onIdealoChange }: AccountMenuP
   const [idealoOpen, setIdealoOpen] = useState(false)
   const [aiKeysOpen, setAiKeysOpen] = useState(false)
   const [idealoReady, setIdealoReady] = useState(() => idealoConfiguredInSession())
+  const [idealoSource, setIdealoSource] = useState<'file' | 'session' | null>(null)
   const [aiReady, setAiReady] = useState(() => llmConfiguredInSession())
+  const [aiSource, setAiSource] = useState<'env' | 'session' | null>(null)
   const menuRef = useRef<HTMLDivElement>(null)
   const menuId = useId()
 
-  function setIdealo(ready: boolean) {
-    setIdealoReady(ready)
-    onIdealoChange?.(ready)
+  function refreshIdealoStatus() {
+    getIdealoStatus()
+      .then((s) => {
+        const ready = Boolean(s.logged_in)
+        setIdealoReady(ready)
+        setIdealoSource(s.source ?? null)
+        onIdealoChange?.(ready)
+      })
+      .catch(() => {
+        const ready = idealoConfiguredInSession()
+        setIdealoReady(ready)
+        setIdealoSource(ready ? 'session' : null)
+        onIdealoChange?.(ready)
+      })
   }
+
+  function refreshLlmStatus() {
+    getLlmStatus()
+      .then((s) => {
+        setAiReady(Boolean(s.configured))
+        setAiSource(s.source ?? null)
+      })
+      .catch(() => {
+        const ready = llmConfiguredInSession()
+        setAiReady(ready)
+        setAiSource(ready ? 'session' : null)
+      })
+  }
+
+  useEffect(() => {
+    refreshIdealoStatus()
+    refreshLlmStatus()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   useEffect(() => {
     if (!menuOpen) return
@@ -113,7 +146,11 @@ export function AccountMenu({ account, onSignOut, onIdealoChange }: AccountMenuP
           >
             <IdealoIcon className="h-4 w-4 text-sky" />
             <span className="min-w-0 flex-1">Authenticate with Idealo</span>
-            {idealoReady && <span className="text-[10px] font-extrabold uppercase tracking-wide text-sage">On</span>}
+            {idealoReady && (
+              <span className="text-[10px] font-extrabold uppercase tracking-wide text-sage">
+                {idealoSource === 'file' ? 'Server' : 'On'}
+              </span>
+            )}
           </button>
           <button
             type="button"
@@ -126,7 +163,11 @@ export function AccountMenu({ account, onSignOut, onIdealoChange }: AccountMenuP
           >
             <KeyIcon className="h-4 w-4 text-amber" />
             <span className="min-w-0 flex-1">Configure AI keys</span>
-            {aiReady && <span className="text-[10px] font-extrabold uppercase tracking-wide text-sage">On</span>}
+            {aiReady && (
+              <span className="text-[10px] font-extrabold uppercase tracking-wide text-sage">
+                {aiSource === 'env' ? 'Env' : 'On'}
+              </span>
+            )}
           </button>
           <div className="my-1 border-t border-line" />
           <button
@@ -146,16 +187,18 @@ export function AccountMenu({ account, onSignOut, onIdealoChange }: AccountMenuP
 
       {idealoOpen && (
         <IdealoAuthModal
+          serverActive={idealoSource === 'file'}
           onClose={() => setIdealoOpen(false)}
-          onSaved={() => setIdealo(true)}
-          onCleared={() => setIdealo(false)}
+          onSaved={refreshIdealoStatus}
+          onCleared={refreshIdealoStatus}
         />
       )}
       {aiKeysOpen && (
         <AiKeysModal
+          serverActive={aiSource === 'env'}
           onClose={() => setAiKeysOpen(false)}
-          onSaved={() => setAiReady(true)}
-          onCleared={() => setAiReady(false)}
+          onSaved={refreshLlmStatus}
+          onCleared={refreshLlmStatus}
         />
       )}
     </div>
@@ -163,10 +206,12 @@ export function AccountMenu({ account, onSignOut, onIdealoChange }: AccountMenuP
 }
 
 function IdealoAuthModal({
+  serverActive,
   onClose,
   onSaved,
   onCleared,
 }: {
+  serverActive: boolean
   onClose: () => void
   onSaved: () => void
   onCleared: () => void
@@ -225,7 +270,9 @@ function IdealoAuthModal({
             Authenticate with Idealo
           </h2>
           <p className="mt-1 text-sm text-ink2">
-            Open the Idealo auth tab, then paste the returned code here. It stays in this browser session only — server env on Vercel is unchanged.
+            {serverActive
+              ? 'Active via server .idealo_tokens.json. Paste a token below only as a fallback when no server token is present.'
+              : 'No server .idealo_tokens.json is active. Open Idealo auth and paste your access token here for this browser session.'}
           </p>
         </div>
 
@@ -274,10 +321,12 @@ function IdealoAuthModal({
 }
 
 function AiKeysModal({
+  serverActive,
   onClose,
   onSaved,
   onCleared,
 }: {
+  serverActive: boolean
   onClose: () => void
   onSaved: () => void
   onCleared: () => void
@@ -335,7 +384,9 @@ function AiKeysModal({
             Configure AI keys
           </h2>
           <p className="mt-1 text-sm text-ink2">
-            Stored in this browser session. Server env on Vercel remains the fallback when these are empty.
+            {serverActive
+              ? 'Active via server .env. Browser session keys below are only used as a fallback when server .env is unset.'
+              : 'No server .env LLM keys are set. Enter a model and API key below for this browser session.'}
           </p>
         </div>
 

@@ -285,7 +285,9 @@ def build_oauth_provider(
         response_types=["code"],
     )
     storage: TokenStorage
-    if access_token and access_token.strip():
+    if tokens_present(token_file):
+        storage = FileTokenStorage(token_file)
+    elif access_token and access_token.strip():
         storage = MemoryTokenStorage(access_token.strip())
     else:
         storage = FileTokenStorage(token_file)

@@ -369,22 +369,26 @@ def _session_idealo_token(request: Request | None) -> str | None:
 @app.get("/api/idealo/status")
 async def idealo_status(request: Request) -> dict:
     """Live-mode flag, login presence and today's call budget. Never touches the network."""
+    file_logged_in = tokens_present(default_token_path())
     session_token = _session_idealo_token(request)
+    source = "file" if file_logged_in else ("session" if session_token else None)
     return {
         "live_enabled": live_enabled(),
-        "logged_in": bool(session_token) or tokens_present(default_token_path()),
+        "logged_in": file_logged_in or bool(session_token),
+        "source": source,
         **get_budget().snapshot(),
     }
 
 
 @app.get("/api/llm/status")
 async def llm_status(request: Request) -> dict:
-    """Whether an LLM provider is configured (session headers or server env)."""
-    cfg = LLMConfig.resolve(_header_map(request))
+    """Whether an LLM provider is configured (server env primary, session headers fallback)."""
+    cfg, source = LLMConfig.resolve_with_source(_header_map(request))
     return {
         "configured": cfg.is_configured,
         "model": cfg.model if cfg.is_configured else None,
         "models": cfg.models if cfg.is_configured else [],
+        "source": source,
     }
 
 

@@ -56,11 +56,25 @@ class LLMConfig:
 
     @classmethod
     def resolve(cls, headers: dict[str, str] | None = None) -> "LLMConfig":
-        """Prefer per-request session headers; fall back to server env (e.g. Vercel)."""
+        """Prefer server .env config; fall back to browser-session headers when env is unset."""
+        from_env = cls.from_env()
+        if from_env.is_configured:
+            return from_env
         from_session = cls.from_headers(headers)
         if from_session is not None:
             return from_session
-        return cls.from_env()
+        return from_env
+
+    @classmethod
+    def resolve_with_source(cls, headers: dict[str, str] | None = None) -> tuple["LLMConfig", str | None]:
+        """Return (config, 'env' | 'session' | None) with server env taking precedence."""
+        from_env = cls.from_env()
+        if from_env.is_configured:
+            return from_env, "env"
+        from_session = cls.from_headers(headers)
+        if from_session is not None:
+            return from_session, "session"
+        return from_env, None
 
     @property
     def models(self) -> list[str]:

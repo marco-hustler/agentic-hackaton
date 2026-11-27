@@ -2,7 +2,7 @@ import type { DemoScenario, HouseholdItem, ItemValuation, SplitMode, SplitResult
 
 /** Thin fetch helper for the FastAPI backend (proxied in Vite dev). */
 
-import { credentialHeaders, llmConfiguredInSession, loadLlmCredentials } from '../auth/credentials'
+import { credentialHeaders } from '../auth/credentials'
 import type {
   AccountInfo,
   ProcessCreatePayload,
@@ -118,20 +118,24 @@ export function reapplyDepreciation(item: HouseholdItem, valuation: ItemValuatio
   })
 }
 
-export type IdealoStatus = { live_enabled: boolean; logged_in: boolean; used?: number; cap?: number; remaining?: number }
+export type IdealoStatus = {
+  live_enabled: boolean
+  logged_in: boolean
+  source?: 'file' | 'session' | null
+  used?: number
+  cap?: number
+  remaining?: number
+}
 
 /** Live flag + today's budget. Reads local state only. */
 export function getIdealoStatus() {
   return api<IdealoStatus>('/api/idealo/status')
 }
 
-export type LlmStatus = { configured: boolean; model?: string | null }
+export type LlmStatus = { configured: boolean; model?: string | null; source?: 'env' | 'session' | null }
 
-/** Whether AI object creation can run (session keys or server env). */
-export async function getLlmStatus(): Promise<LlmStatus> {
-  if (llmConfiguredInSession()) {
-    return { configured: true, model: loadLlmCredentials().model || null }
-  }
+/** Whether AI object creation can run (server .env primary, browser session fallback). */
+export function getLlmStatus(): Promise<LlmStatus> {
   return api<LlmStatus>('/api/llm/status')
 }
 

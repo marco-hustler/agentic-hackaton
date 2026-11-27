@@ -185,11 +185,16 @@ def test_estimated_price_used_when_idealo_not_cached() -> None:
 
 def test_llm_status_and_fallback_price_parsing(monkeypatch) -> None:
     client = TestClient(app)
-    assert client.get("/api/llm/status").json() == {"configured": False, "model": None, "models": []}
+    assert client.get("/api/llm/status").json() == {"configured": False, "model": None, "models": [], "source": None}
     monkeypatch.setenv("LLM_MODEL", "gemini/gemini-3.5-flash-lite,gemini/gemini-3.1-flash-lite")
     monkeypatch.setenv("GEMINI_API_KEY", "test-key")
-    status = client.get("/api/llm/status").json()
+    status = client.get(
+        "/api/llm/status",
+        headers={"X-LLM-Model": "openai/gpt-4o-mini", "X-LLM-Api-Key": "session-key"},
+    ).json()
     assert status["configured"] is True
+    # Server .env takes precedence over browser-session headers.
+    assert status["source"] == "env"
     assert status["models"] == ["gemini/gemini-3.5-flash-lite", "gemini/gemini-3.1-flash-lite"]
 
     from cleanbreak.llm.client import AgnosticLLMClient, LLMConfig

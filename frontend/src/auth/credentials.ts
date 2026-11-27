@@ -1,4 +1,4 @@
-/** Browser-session overrides for LLM + idealo (env on the server stays the fallback). */
+/** Browser-session fallback credentials for LLM + idealo (used only when server .env / .idealo_tokens.json are unset). */
 
 const LLM_KEY = 'dividealo.creds.llm'
 const IDEALO_KEY = 'dividealo.creds.idealo'
@@ -115,7 +115,7 @@ export function clearAllCredentials() {
   clearIdealoCredentials()
 }
 
-/** Headers the API client attaches so the server prefers session creds over env. */
+/** Headers the API client attaches as fallback when server env / token file are not set. */
 export function credentialHeaders(): Record<string, string> {
   const headers: Record<string, string> = {}
   const llm = loadLlmCredentials()

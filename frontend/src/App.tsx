@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { listProcesses, updateProcess } from './api/client'
+import { getIdealoStatus, listProcesses, updateProcess } from './api/client'
 import { idealoConfiguredInSession } from './auth/credentials'
 import { LoginPage } from './auth/LoginPage'
 import { clearSession, loadSession } from './auth/session'
@@ -78,6 +78,22 @@ export default function App() {
   const [collaboratorsSaving, setCollaboratorsSaving] = useState(false)
   const [collaboratorsError, setCollaboratorsError] = useState<string | null>(null)
   const frameRef = useRef<HTMLDivElement>(null)
+
+  // Check server .idealo_tokens.json first; browser session token is the fallback.
+  useEffect(() => {
+    if (!account) return
+    let cancelled = false
+    getIdealoStatus()
+      .then((status) => {
+        if (!cancelled) setIdealoReady(Boolean(status.logged_in))
+      })
+      .catch(() => {
+        if (!cancelled) setIdealoReady(idealoConfiguredInSession())
+      })
+    return () => {
+      cancelled = true
+    }
+  }, [account])
 
   // Processes are stored server-side per account (demo sign-in).
   useEffect(() => {

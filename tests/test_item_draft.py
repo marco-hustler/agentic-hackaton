@@ -195,11 +195,19 @@ def test_llm_status_accepts_session_headers(monkeypatch: pytest.MonkeyPatch) -> 
 
 
 def test_idealo_status_accepts_session_token(monkeypatch: pytest.MonkeyPatch, tmp_path) -> None:
-    monkeypatch.setenv("IDEALO_TOKEN_FILE", str(tmp_path / "no_tokens.json"))
+    token_file = tmp_path / "no_tokens.json"
+    monkeypatch.setenv("IDEALO_TOKEN_FILE", str(token_file))
     client = TestClient(app)
     assert client.get("/api/idealo/status").json()["logged_in"] is False
-    with_token = client.get("/api/idealo/status", headers={"X-Idealo-Access-Token": "session-token"})
-    assert with_token.json()["logged_in"] is True
+    with_token = client.get("/api/idealo/status", headers={"X-Idealo-Access-Token": "session-token"}).json()
+    assert with_token["logged_in"] is True
+    assert with_token["source"] == "session"
+
+    # Once a valid server token file exists, it takes precedence over the session header.
+    token_file.write_text('{"tokens": {"access_token": "file-token"}}', encoding="utf-8")
+    with_file = client.get("/api/idealo/status", headers={"X-Idealo-Access-Token": "session-token"}).json()
+    assert with_file["logged_in"] is True
+    assert with_file["source"] == "file"
 
 
 def test_draft_welcome_message_is_conversational() -> None:
