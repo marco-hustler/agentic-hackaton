@@ -21,7 +21,10 @@ class DiskCache:
 
     def __init__(self, cache_dir: str | Path = "data/cache", ttl_seconds: int | None = None) -> None:
         self.cache_dir = resolve_repo_path(cache_dir)
-        self.cache_dir.mkdir(parents=True, exist_ok=True)
+        try:
+            self.cache_dir.mkdir(parents=True, exist_ok=True)
+        except OSError:
+            pass  # read-only deploy (Vercel): the committed cache is still readable
         # 0 = never expire (default: cached idealo answers are kept for the whole event).
         self.ttl_seconds = (
             ttl_seconds if ttl_seconds is not None else int(os.getenv("IDEALO_CACHE_TTL_SECONDS", "0"))
@@ -63,5 +66,8 @@ class DiskCache:
         }
         if expires_in is not None:
             record["expires_at"] = now + expires_in
-        path.write_text(json.dumps(record, indent=2, ensure_ascii=False), encoding="utf-8")
+        try:
+            path.write_text(json.dumps(record, indent=2, ensure_ascii=False), encoding="utf-8")
+        except OSError:
+            pass  # read-only filesystem (Vercel): serve the live answer without caching it
         return path
