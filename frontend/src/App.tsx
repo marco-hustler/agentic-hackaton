@@ -4,9 +4,10 @@ import { AppHeader } from './chrome/AppHeader'
 import { WorldLegend } from './chrome/WorldLegend'
 import { BalanceCard } from './house/BalanceCard'
 import { formatEur, pct } from './house/format'
-import { HouseNav } from './house/HouseNav'
+import { HouseNav, type HouseTab } from './house/HouseNav'
 import { InventoryPanel } from './house/InventoryPanel'
 import { ItemDetail } from './house/ItemDetail'
+import { SplitPanel } from './house/SplitPanel'
 import { useHouseInventory } from './house/useHouseInventory'
 import { CreateProcessWizard } from './overlays/CreateProcessWizard'
 import { OnboardingModal } from './overlays/OnboardingModal'
@@ -41,8 +42,8 @@ export default function App() {
   const [focusId, setFocusId] = useState<string | null>(null)
   const [spinRequest, setSpinRequest] = useState(0)
   const [detailId, setDetailId] = useState<string | null>(null)
-  /** Card expanded in the list; kept when coming back from the detail. */
-  const [listId, setListId] = useState<string | null>(null)
+  /** Right-hand view inside a house. Item details live under Split. */
+  const [tab, setTab] = useState<HouseTab>('inventory')
   const frameRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -62,7 +63,6 @@ export default function App() {
         setMode('world')
         setFocusId(null)
       } else if (mode === 'house' && detailId) {
-        setListId(detailId)
         setDetailId(null)
       } else if (mode === 'house') {
         setMode('world')
@@ -101,7 +101,7 @@ export default function App() {
 
   function backToWorld() {
     setDetailId(null)
-    setListId(null)
+    setTab('inventory')
     setMode('world')
     setFocusId(null)
   }
@@ -161,7 +161,16 @@ export default function App() {
       {/* Layer: chrome */}
       {inside && focusProcess ? (
         <>
-          <HouseNav processTitle={focusProcess.title} balance={balance} onBackToWorld={backToWorld} />
+          <HouseNav
+            processTitle={focusProcess.title}
+            balance={balance}
+            tab={tab}
+            onTab={(t) => {
+              setDetailId(null)
+              setTab(t)
+            }}
+            onBackToWorld={backToWorld}
+          />
           <div className="house-balance pop-in">
             <BalanceCard split={demo?.split ?? null} names={names} />
           </div>
@@ -173,21 +182,26 @@ export default function App() {
                 assignment={demo?.split.assignments.find((a) => a.item_id === detailVi.item.id)}
                 names={names}
                 solving={inventory.solving}
-                onBack={() => {
-                  setListId(detailVi.item.id)
-                  setDetailId(null)
-                }}
+                onBack={() => setDetailId(null)}
                 onUpdate={(patch) => inventory.updateItem(detailVi.item.id, patch)}
+              />
+            ) : tab === 'split' ? (
+              <SplitPanel
+                scenario={demo}
+                error={demoError}
+                names={names}
+                solving={inventory.solving}
+                onSetMode={inventory.setMode}
+                onOpenItem={setDetailId}
               />
             ) : (
               <InventoryPanel
-                processTitle={focusProcess.title}
                 demo={demo}
                 error={demoError}
-                names={names}
-                openId={listId}
-                onOpenChange={setListId}
-                onOpenItem={setDetailId}
+                onOpenItem={(id) => {
+                  setTab('split')
+                  setDetailId(id)
+                }}
               />
             )}
           </div>

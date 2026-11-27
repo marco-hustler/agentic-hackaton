@@ -134,7 +134,7 @@ export function ItemDetail({ vi, assignment, names, solving, onBack, onUpdate }:
     <section className="panel pop-in flex h-full flex-col overflow-hidden" style={{ background: '#ffffff' }} aria-label={`Item: ${item.name}`}>
       <div className="flex items-center gap-2 px-5 pt-4">
         <button type="button" onClick={onBack} className="btn btn-ghost h-8 px-2.5 text-xs">
-          ← Inventory
+          ← Split
         </button>
         {solving && (
           <span className="pill pill-neutral ml-auto">

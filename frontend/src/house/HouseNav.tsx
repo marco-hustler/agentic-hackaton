@@ -1,8 +1,12 @@
 import { LogoMark } from '../chrome/LogoMark'
 
+export type HouseTab = 'inventory' | 'split'
+
 type HouseNavProps = {
   processTitle: string
   balance: [number, number] | null
+  tab: HouseTab
+  onTab: (tab: HouseTab) => void
   onBackToWorld: () => void
 }
 
@@ -14,7 +18,7 @@ const TABS = [
 ] as const
 
 /** Top bar inside a house: breadcrumb, view tabs and the live balance. */
-export function HouseNav({ processTitle, balance, onBackToWorld }: HouseNavProps) {
+export function HouseNav({ processTitle, balance, tab, onTab, onBackToWorld }: HouseNavProps) {
   return (
     <header className="absolute inset-x-0 top-0 z-40 flex h-16 items-center gap-3 border-b border-line bg-canvas/90 px-4 backdrop-blur sm:px-6">
       <button type="button" onClick={onBackToWorld} className="flex items-center gap-2" title="Back to the world">
@@ -31,15 +35,18 @@ export function HouseNav({ processTitle, balance, onBackToWorld }: HouseNavProps
 
       <nav aria-label="House views" className="mx-auto flex items-center gap-1">
         {TABS.map((t) => {
-          const active = t.id === 'inventory'
-          const soon = t.id === 'split' || t.id === 'export'
+          const active = t.id === tab
+          const soon = t.id === 'export'
           return (
             <button
               key={t.id}
               type="button"
               disabled={soon}
               title={soon ? 'Coming next' : undefined}
-              onClick={t.id === 'world' ? onBackToWorld : undefined}
+              onClick={() => {
+                if (t.id === 'world') onBackToWorld()
+                else if (t.id === 'inventory' || t.id === 'split') onTab(t.id)
+              }}
               aria-current={active ? 'page' : undefined}
               className={`rounded-xl px-3 py-2 text-sm font-bold transition ${
                 active

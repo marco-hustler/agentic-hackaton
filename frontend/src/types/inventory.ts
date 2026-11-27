@@ -78,10 +78,27 @@ export type ValuedItem = { item: HouseholdItem; valuation: ItemValuation }
 
 export type Assignment = {
   item_id: string
+  item_name: string
   action: AssignmentAction
   fair_value_eur: number
+  trusted_market_price_eur: number
+  party_a_points: number
+  party_b_points: number
   is_contested: boolean
   rationale: string
+  buy_new_url: string | null
+  buy_new_price_eur: number | null
+  buy_new_savings_note: string | null
+}
+
+export type ReplacementSuggestion = {
+  for_party: 'party_a' | 'party_b'
+  item_name: string
+  matched_title: string
+  replacement_price_eur: number
+  is_deal: boolean
+  deal_headline: string | null
+  offer_url: string | null
 }
 
 export type SplitResult = {
@@ -92,11 +109,20 @@ export type SplitResult = {
   total_fair_value_eur: number
   party_a_received_goods_eur: number
   party_b_received_goods_eur: number
+  party_a_entitled_eur: number
+  party_b_entitled_eur: number
   sell_pool_eur: number
   cash_transfer_a_to_b_eur: number
   cash_transfer_summary: string
+  party_a_points_won: number
+  party_a_points_total: number
+  party_b_points_won: number
+  party_b_points_total: number
   fairness_score_pct: number
   is_envy_free: boolean
+  arbitrage_highlights: Assignment[]
+  replacement_basket: ReplacementSuggestion[]
+  mediator_summary: string
 }
 
 export type DemoScenario = {
@@ -106,18 +132,4 @@ export type DemoScenario = {
   valued_items: ValuedItem[]
   split: SplitResult
   warning: string | null
-}
-
-/** Which room (participant index) an item ends up in; null = sold and split. */
-export function roomForAction(action: AssignmentAction): number | null {
-  switch (action) {
-    case 'party_a':
-    case 'keep_a_buy_new_b':
-      return 0
-    case 'party_b':
-    case 'keep_b_buy_new_a':
-      return 1
-    case 'sell_split':
-      return null
-  }
 }
