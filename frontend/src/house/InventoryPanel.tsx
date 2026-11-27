@@ -3,10 +3,22 @@ import { catalogItem, searchCatalog, type CatalogHit } from '../api/client'
 import type { DemoScenario, ValuedItem } from '../types/inventory'
 import { categoryColor } from '../world/palette'
 import { formatEur } from './format'
+import { HouseToolbar } from './HouseToolbar'
+import type { HouseTab } from './HouseViewSwitch'
 
 type InventoryPanelProps = {
+  processTitle: string
   demo: DemoScenario | null
   error: string | null
+  filter: string
+  addingOpen: boolean
+  onAddingOpenChange: (open: boolean) => void
+  tab: HouseTab
+  onTab: (tab: HouseTab) => void
+  onBackToWorld: () => void
+  inventoryCount?: number | null
+  onInventoryFilter: (value: string) => void
+  onAddObject: () => void
   /** Open an item's details (they live in the Split view). */
   onOpenItem: (id: string) => void
   onAdd: (vi: ValuedItem) => void
@@ -17,28 +29,97 @@ const SEARCH_DEBOUNCE_MS = 200
 
 type Found = { query: string; hits: CatalogHit[]; error: string | null }
 
-/**
- * Search first: one field looks through the house and the idealo catalog.
- * Items already in the house and products found on idealo are both cards.
- */
-export function InventoryPanel({ demo, error, onOpenItem, onAdd, onRemove }: InventoryPanelProps) {
-  const [query, setQuery] = useState('')
-  const [found, setFound] = useState<Found | null>(null)
-  const [adding, setAdding] = useState<string | null>(null)
-  const [addError, setAddError] = useState<string | null>(null)
-
+/** House inventory: title notch + toolbar + cards in one white shell. */
+export function InventoryPanel({
+  processTitle,
+  demo,
+  error,
+  filter,
+  addingOpen,
+  onAddingOpenChange,
+  tab,
+  onTab,
+  onBackToWorld,
+  inventoryCount,
+  onInventoryFilter,
+  onAddObject,
+  onOpenItem,
+  onAdd,
+  onRemove,
+}: InventoryPanelProps) {
   const items = useMemo(() => demo?.valued_items ?? [], [demo])
-  const total = items.reduce((sum, vi) => sum + vi.valuation.fair_value_eur, 0)
-  const q = query.trim().toLowerCase()
+  const q = filter.trim().toLowerCase()
   const owned = q
     ? items.filter((vi) =>
         `${vi.item.name} ${vi.item.category} ${vi.valuation.matched_title}`.toLowerCase().includes(q),
       )
     : items
-  const ownedRefs = useMemo(() => new Set(items.map((vi) => vi.valuation.product_ref).filter(Boolean)), [items])
+
+  return (
+    <section className="inventory-page inventory-page-unified" aria-label="Inventory">
+      <div className="inventory-shell inventory-shell-notched">
+        <h1 className="inventory-title-notch" title={processTitle}>
+          {processTitle}
+        </h1>
+        <div className="inventory-shell-inner">
+          <div className="inventory-shell-top">
+            <HouseToolbar
+              variant="embedded"
+              tab={tab}
+              onTab={onTab}
+              onBackToWorld={onBackToWorld}
+              inventoryCount={inventoryCount}
+              inventoryFilter={filter}
+              onInventoryFilter={onInventoryFilter}
+              onAddObject={onAddObject}
+            />
+          </div>
+
+          <div className="inventory-shell-body">
+            {error && <p className="mb-4 rounded-xl bg-[#ffdad6] p-3 text-sm text-[#93000a]">Could not load the inventory: {error}</p>}
+
+            {demo && owned.length === 0 && (
+              <Empty>{q ? 'Nothing in this house matches.' : 'No items yet. Add an object from idealo.'}</Empty>
+            )}
+            <ul className="columns-1 gap-5 sm:columns-2 lg:columns-3 2xl:columns-4">
+              {!demo && !error && <SkeletonCards n={6} />}
+              {owned.map((vi) => (
+                <OwnedCard key={vi.item.id} vi={vi} onOpen={() => onOpenItem(vi.item.id)} onRemove={() => onRemove(vi.item.id)} />
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      {addingOpen && (
+        <AddObjectModal
+          ownedRefs={new Set(items.map((vi) => vi.valuation.product_ref).filter(Boolean))}
+          onClose={() => onAddingOpenChange(false)}
+          onAdd={onAdd}
+        />
+      )}
+    </section>
+  )
+}
+
+type AddObjectModalProps = {
+  ownedRefs: Set<string>
+  onClose: () => void
+  onAdd: (vi: ValuedItem) => void
+}
+
+function AddObjectModal({ ownedRefs, onClose, onAdd }: AddObjectModalProps) {
+  const [query, setQuery] = useState('')
+  const [found, setFound] = useState<Found | null>(null)
+  const [adding, setAdding] = useState<string | null>(null)
+  const [addError, setAddError] = useState<string | null>(null)
+  const q = query.trim().toLowerCase()
 
   useEffect(() => {
-    if (q.length < 2) return
+    if (q.length < 2) {
+      setFound(null)
+      return
+    }
     const ctrl = new AbortController()
     const timer = setTimeout(() => {
       searchCatalog(q, ctrl.signal)
@@ -53,6 +134,14 @@ export function InventoryPanel({ demo, error, onOpenItem, onAdd, onRemove }: Inv
     }
   }, [q])
 
+  useEffect(() => {
+    function onKey(e: KeyboardEvent) {
+      if (e.key === 'Escape') onClose()
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [onClose])
+
   const searching = q.length >= 2
   const results = searching && found?.query === q ? found : null
 
@@ -61,6 +150,7 @@ export function InventoryPanel({ demo, error, onOpenItem, onAdd, onRemove }: Inv
     setAddError(null)
     try {
       onAdd(await catalogItem(hit))
+      onClose()
     } catch (e) {
       setAddError(e instanceof Error ? e.message : String(e))
     } finally {
@@ -69,87 +159,65 @@ export function InventoryPanel({ demo, error, onOpenItem, onAdd, onRemove }: Inv
   }
 
   return (
-    <section className="inventory-page" aria-label="Inventory">
-      <div className="mx-auto w-full max-w-6xl">
-        <label className="pop-in sticky top-0 z-10 -mx-2 block bg-canvas/90 px-2 py-2 backdrop-blur">
-          <span className="sr-only">Search items and idealo products</span>
-          <svg viewBox="0 0 20 20" className="pointer-events-none absolute left-7 top-1/2 h-5 w-5 -translate-y-1/2 text-muted" aria-hidden>
-            <circle cx="9" cy="9" r="6" fill="none" stroke="currentColor" strokeWidth="2" />
-            <path d="M13.5 13.5 18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-          </svg>
-          <input
-            autoFocus
-            type="search"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search your items or find a product on idealo…"
-            className="field h-16 w-full rounded-2xl pl-14 pr-5 text-lg shadow-[0_12px_28px_-14px_rgba(15,23,42,0.3)]"
-          />
-        </label>
-        <p className="mt-2 px-1 text-sm text-muted">
-          {demo ? `${items.length} items in this house · ${formatEur(total)}` : 'Loading the house…'}
-        </p>
+    <div className="fixed inset-0 z-50 flex items-end justify-center sm:items-center" role="dialog" aria-modal="true" aria-label="Add object">
+      <button type="button" aria-label="Close" className="absolute inset-0 bg-midnight/40 backdrop-blur-sm" onClick={onClose} />
+      <div className="pop-in relative z-10 flex max-h-[88vh] w-full max-w-3xl flex-col overflow-hidden rounded-t-3xl border border-line bg-canvas shadow-[0_24px_60px_-16px_rgba(15,23,42,0.45)] sm:rounded-3xl">
+        <div className="flex items-start justify-between gap-3 border-b border-line px-5 py-4">
+          <div>
+            <h3 className="text-lg font-extrabold text-petrol">Add object</h3>
+            <p className="mt-0.5 text-sm text-muted">Search idealo and add a valued item to this house.</p>
+          </div>
+          <button type="button" className="btn btn-ghost h-9 w-9 rounded-full px-0" onClick={onClose} aria-label="Close">
+            ✕
+          </button>
+        </div>
 
-        {error && <p className="mt-4 rounded-xl bg-[#ffdad6] p-3 text-sm text-[#93000a]">Could not load the inventory: {error}</p>}
-        {addError && <p className="mt-4 rounded-xl bg-[#ffdad6] p-3 text-sm text-[#93000a]">Could not add the item: {addError}</p>}
+        <div className="border-b border-line px-5 py-3">
+          <label className="relative block">
+            <span className="sr-only">Search idealo</span>
+            <svg viewBox="0 0 20 20" className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted" aria-hidden>
+              <circle cx="9" cy="9" r="6" fill="none" stroke="currentColor" strokeWidth="2" />
+              <path d="M13.5 13.5 18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+            </svg>
+            <input
+              autoFocus
+              type="search"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Search a product on idealo…"
+              className="field h-12 w-full rounded-xl pl-10 pr-3"
+            />
+          </label>
+          {addError && <p className="mt-2 text-sm text-error">Could not add the item: {addError}</p>}
+        </div>
 
-        {searching && (
-          <Section
-            title="Found on idealo"
-            count={results?.hits.length}
-            empty={
-              results?.error ? (
-                <Empty>idealo search failed: {results.error}</Empty>
-              ) : results && results.hits.length === 0 ? (
-                <Empty>No idealo products for “{query.trim()}”. Offline, only products from earlier idealo searches are available.</Empty>
-              ) : null
-            }
-          >
-            {!results && <SkeletonCards n={4} />}
-            {results?.hits.map((hit) => (
-              <FoundCard
-                key={hit.product_ref}
-                hit={hit}
-                inHouse={ownedRefs.has(hit.product_ref)}
-                adding={adding === hit.product_ref}
-                onAdd={() => add(hit)}
-              />
-            ))}
-          </Section>
-        )}
-
-        <Section
-          title="In this house"
-          count={demo ? owned.length : undefined}
-          empty={
-            demo && owned.length === 0 ? (
-              <Empty>{q ? 'Nothing in this house matches.' : 'No items yet. Search above to add one from idealo.'}</Empty>
-            ) : null
-          }
-        >
-          {!demo && !error && <SkeletonCards n={6} />}
-          {owned.map((vi) => (
-            <OwnedCard key={vi.item.id} vi={vi} onOpen={() => onOpenItem(vi.item.id)} onRemove={() => onRemove(vi.item.id)} />
-          ))}
-        </Section>
+        <div className="overflow-y-auto px-5 py-4">
+          {!searching && <Empty>Type at least 2 characters to search the idealo catalog.</Empty>}
+          {searching && !results && (
+            <ul className="columns-1 gap-4 sm:columns-2">
+              <SkeletonCards n={3} />
+            </ul>
+          )}
+          {results?.error && <Empty>idealo search failed: {results.error}</Empty>}
+          {results && results.hits.length === 0 && !results.error && (
+            <Empty>No idealo products for “{query.trim()}”. Offline, only products from earlier idealo searches are available.</Empty>
+          )}
+          {results && results.hits.length > 0 && (
+            <ul className="columns-1 gap-4 sm:columns-2">
+              {results.hits.map((hit) => (
+                <FoundCard
+                  key={hit.product_ref}
+                  hit={hit}
+                  inHouse={ownedRefs.has(hit.product_ref)}
+                  adding={adding === hit.product_ref}
+                  onAdd={() => add(hit)}
+                />
+              ))}
+            </ul>
+          )}
+        </div>
       </div>
-    </section>
-  )
-}
-
-type SectionProps = { title: string; count?: number; empty?: React.ReactNode; children: React.ReactNode }
-
-/** Masonry: CSS columns, cards keep their photo's natural height. */
-function Section({ title, count, empty, children }: SectionProps) {
-  return (
-    <section className="mt-8">
-      <h2 className="mb-3 flex items-baseline gap-2 px-1 text-xl font-extrabold tracking-tight text-petrol">
-        {title}
-        {count !== undefined && <span className="text-sm font-bold text-muted">{count}</span>}
-      </h2>
-      {empty}
-      <ul className="columns-1 gap-5 sm:columns-2 lg:columns-3 2xl:columns-4">{children}</ul>
-    </section>
+    </div>
   )
 }
 
@@ -224,13 +292,8 @@ function FoundCard({ hit, inHouse, adding, onAdd }: { hit: CatalogHit; inHouse: 
           <span className="text-2xl font-extrabold text-petrol">{formatEur(hit.price_eur)}</span>
           {hit.offer_count > 0 && <span className="text-xs text-muted">{hit.offer_count} {hit.offer_count === 1 ? 'offer' : 'offers'}</span>}
         </span>
-        <button
-          type="button"
-          onClick={onAdd}
-          disabled={inHouse || adding}
-          className="btn btn-primary mt-3 h-11 w-full"
-        >
-          {inHouse ? 'In the house ✓' : adding ? 'Adding…' : '+ Add to house'}
+        <button type="button" onClick={onAdd} disabled={inHouse || adding} className="btn btn-primary mt-3 h-11 w-full">
+          {inHouse ? 'In the house ✓' : adding ? 'Valuing…' : '+ Add to house'}
         </button>
       </span>
     </li>

@@ -46,6 +46,8 @@ const errText = (e: unknown) => (e instanceof Error ? e.message : String(e))
 export type HouseInventory = {
   /** Same shape as /api/demo so the views read it unchanged. */
   scenario: DemoScenario | null
+  /** Inventoried objects, available as soon as the house inventory has loaded. */
+  itemCount: number | null
   error: string | null
   solving: boolean
   saving: boolean
@@ -261,6 +263,7 @@ export function useHouseInventory(processId: string | null, names: [string, stri
 
   return {
     scenario,
+    itemCount: entry ? entry.valuedItems.length : null,
     error: loadError,
     solving,
     saving,

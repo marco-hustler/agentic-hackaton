@@ -5,7 +5,7 @@ import { clearSession, loadSession } from './auth/session'
 import { AppHeader } from './chrome/AppHeader'
 import { ProcessList } from './chrome/ProcessList'
 import type { ProcessView } from './chrome/ViewSwitch'
-import { pct } from './house/format'
+import { ExportPanel } from './house/ExportPanel'
 import { HouseNav, type HouseTab } from './house/HouseNav'
 import { InventoryPanel } from './house/InventoryPanel'
 import { ItemDetail } from './house/ItemDetail'
@@ -49,6 +49,8 @@ export default function App() {
   const [detailId, setDetailId] = useState<string | null>(null)
   /** Right-hand view inside a house. Item details live under Split. */
   const [tab, setTab] = useState<HouseTab>('inventory')
+  const [inventoryFilter, setInventoryFilter] = useState('')
+  const [addingObject, setAddingObject] = useState(false)
   const frameRef = useRef<HTMLDivElement>(null)
 
   // Processes are stored server-side per account (demo sign-in).
@@ -98,12 +100,6 @@ export default function App() {
 
   const focusRooms = useMemo(() => (focusProcess ? buildRooms(focusProcess) : null), [focusProcess])
 
-  const balance = useMemo<[number, number] | null>(() => {
-    if (!demo) return null
-    const a = pct(demo.split.party_a_received_goods_eur, demo.split.party_a_received_goods_eur + demo.split.party_b_received_goods_eur)
-    return [a, 100 - a]
-  }, [demo])
-
   function openWizard() {
     setShowOnboarding(false)
     markOnboardingSeen()
@@ -113,6 +109,8 @@ export default function App() {
   function backToWorld() {
     setDetailId(null)
     setTab('inventory')
+    setInventoryFilter('')
+    setAddingObject(false)
     setMode('world')
     setFocusId(null)
   }
@@ -180,14 +178,19 @@ export default function App() {
         <>
           <HouseNav
             processTitle={focusProcess.title}
-            balance={balance}
+            account={account}
             tab={tab}
-            saving={demo ? inventory.saving : null}
             onTab={(t) => {
               setDetailId(null)
+              setAddingObject(false)
               setTab(t)
             }}
             onBackToWorld={backToWorld}
+            onSignOut={signOut}
+            inventoryFilter={inventoryFilter}
+            onInventoryFilter={setInventoryFilter}
+            onAddObject={() => setAddingObject(true)}
+            inventoryCount={inventory.itemCount}
           />
           {tab === 'split' ? (
             <>
@@ -215,10 +218,35 @@ export default function App() {
                 </>
               )}
             </>
-          ) : (
-            <InventoryPanel
+          ) : tab === 'export' ? (
+            <ExportPanel
+              title={focusProcess.title}
               demo={demo}
               error={demoError}
+              names={names}
+              onOpenItem={(id) => {
+                setTab('split')
+                setDetailId(id)
+              }}
+            />
+          ) : (
+            <InventoryPanel
+              processTitle={focusProcess.title}
+              demo={demo}
+              error={demoError}
+              filter={inventoryFilter}
+              addingOpen={addingObject}
+              onAddingOpenChange={setAddingObject}
+              tab={tab}
+              onTab={(t) => {
+                setDetailId(null)
+                setAddingObject(false)
+                setTab(t)
+              }}
+              onBackToWorld={backToWorld}
+              inventoryCount={inventory.itemCount}
+              onInventoryFilter={setInventoryFilter}
+              onAddObject={() => setAddingObject(true)}
               onAdd={inventory.addItem}
               onRemove={inventory.removeItem}
               onOpenItem={(id) => {

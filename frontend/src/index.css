@@ -29,6 +29,13 @@
   --shadow-terracotta: 0 12px 32px -6px rgba(224, 90, 71, 0.24);
   --shadow-slate: 0 12px 28px -6px rgba(15, 23, 42, 0.2);
   --ring: 0 0 0 3px rgba(224, 90, 71, 0.2);
+  /* Logo/title/account + back/switch chrome inside a house */
+  --house-chrome: 148px;
+  /*
+   * Inventory: logo + title-notch + account share one top band.
+   * Compact = chrome padding-top + notch/logo panel height (see .inventory-title-notch).
+   */
+  --house-chrome-compact: 96px;
 }
 
 @theme {
@@ -299,34 +306,259 @@ body {
 }
 /* Inside a house the diorama only shows on Split; elsewhere the frame folds away under the nav. */
 .world-frame[data-mode="house"] {
-  top: 64px;
+  top: var(--house-chrome);
   left: 12px;
   right: 12px;
-  bottom: calc(100% - 64px);
+  bottom: calc(100% - var(--house-chrome));
   border-radius: 1rem;
   box-shadow:
     inset 0 0 0 1px rgba(0, 0, 0, 0.05),
     0 2px 0 rgba(0, 0, 0, 0.06);
 }
 
-/* ---- Inventory: full page, search first, cards ---- */
+/* ---- Inventory / export pages under the house chrome ---- */
 .inventory-page {
   position: absolute;
   z-index: 30;
-  inset: 64px 0 0 0;
-  overflow-y: auto;
-  padding: 24px 16px 48px;
-  background: var(--canvas);
+  inset: var(--house-chrome) 0 0 0;
+  overflow: hidden;
+  padding: 8px 12px 12px;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+}
+/*
+ * Inventory fills from the viewport top so the title notch can sit on the
+ * same band as logo + account (HouseNav compact chrome).
+ */
+.inventory-page-unified {
+  inset: 0 0 0 0;
+  /* Match HouseNav pt-4 / sm:pt-5 so the notch top lines up with logo + account */
+  padding: 16px 12px 12px;
+}
+@media (min-width: 640px) {
+  .inventory-page-unified {
+    padding-top: 20px;
+  }
 }
 @media (min-width: 1024px) {
   .inventory-page {
-    padding: 40px 32px 64px;
+    padding: 12px 24px 20px;
+  }
+  .inventory-page-unified {
+    padding: 20px 24px 20px;
+  }
+}
+
+.world-frame[data-mode="house"][data-tab="inventory"] {
+  top: var(--house-chrome-compact);
+  bottom: calc(100% - var(--house-chrome-compact));
+}
+
+/* Pure white content box (same language as the logo panel, solid #fff). */
+.inventory-shell {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 1.25rem;
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+/*
+ * Notched shell: title tab top-aligned with logo/account, taller than those
+ * panels, fused into the white shell — air under logo/account, solid join.
+ */
+.inventory-shell-notched {
+  position: relative;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  overflow: visible;
+  /* Notch height − 2px overlap so the shell starts under the tab */
+  padding-top: calc(4.5rem - 2px);
+}
+@media (min-width: 640px) {
+  .inventory-shell-notched {
+    padding-top: calc(4.75rem - 2px);
+  }
+}
+
+.inventory-title-notch {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  z-index: 3;
+  transform: translateX(-50%);
+  max-width: min(42vw, 22rem);
+  /* Taller than logo/account (~3.6rem) → gap under those panels */
+  height: 4.5rem;
+  padding: 0.7rem 1.25rem 1.2rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  color: var(--petrol);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-bottom: none;
+  border-radius: 1rem 1rem 0 0;
+  box-shadow:
+    0 -2px 8px -2px rgba(30, 41, 59, 0.06),
+    -4px 0 12px -6px rgba(30, 41, 59, 0.08),
+    4px 0 12px -6px rgba(30, 41, 59, 0.08);
+}
+/* Cover the shell's top border under the tab */
+.inventory-title-notch::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -4px;
+  height: 8px;
+  background: #ffffff;
+  pointer-events: none;
+}
+@media (min-width: 640px) {
+  .inventory-title-notch {
+    height: 4.75rem;
+    padding: 0.8rem 1.5rem 1.35rem;
+    font-size: 1.2rem;
+    max-width: min(40vw, 24rem);
+  }
+}
+
+.inventory-shell-inner {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 1.25rem;
+  /* Side + bottom only — no top shadow under the fused title notch */
+  box-shadow:
+    -8px 14px 28px -16px rgba(30, 41, 59, 0.12),
+    8px 14px 28px -16px rgba(30, 41, 59, 0.12),
+    0 18px 36px -18px rgba(30, 41, 59, 0.14);
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+.inventory-shell-top {
+  flex-shrink: 0;
+  padding: 14px 16px 12px;
+  border-bottom: 1px solid var(--line);
+}
+@media (min-width: 1024px) {
+  .inventory-shell-top {
+    padding: 16px 24px 14px;
+  }
+}
+
+/* Legacy centered title (export / older layouts). */
+.inventory-process-title {
+  margin: 0 0 14px;
+  text-align: center;
+  font-size: 1.125rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--petrol);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+@media (min-width: 640px) {
+  .inventory-process-title {
+    font-size: 1.25rem;
+  }
+}
+
+/* Equal side tracks so the switch stays at true horizontal center
+   even when back (narrow) and search/Add (wide) differ in width. */
+.inventory-toolbar {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 8px 12px;
+}
+@media (max-width: 639px) {
+  .inventory-toolbar {
+    grid-template-rows: auto auto;
+  }
+  .inventory-toolbar-tools {
+    grid-column: 1 / -1;
+  }
+}
+
+.inventory-toolbar-back {
+  display: flex;
+  align-items: center;
+  justify-self: start;
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+}
+
+.inventory-toolbar-switch {
+  grid-column: 2;
+  justify-self: center;
+  min-width: 0;
+}
+
+.inventory-toolbar-tools {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-self: end;
+}
+
+.inventory-title-insert {
+  flex-shrink: 0;
+  margin: 12px 12px 0;
+  padding: 10px 16px;
+  border-radius: 0.875rem;
+  background: var(--surface-low);
+  border: 1px solid var(--line);
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.inventory-shell-body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 16px 16px 28px;
+  border-radius: 0 0 1.25rem 1.25rem;
+  background: #ffffff;
+}
+@media (min-width: 1024px) {
+  .inventory-title-insert {
+    margin: 16px 16px 0;
+    padding: 12px 20px;
+  }
+  .inventory-shell-body {
+    padding: 20px 24px 40px;
   }
 }
 
 /* ---- Split: meter on top, house in the middle, one box per person on the sides ---- */
 :root {
-  --split-top: 76px;
+  --split-top: var(--house-chrome);
   --meter-h: 118px;
   --side-w: clamp(300px, 26vw, 420px);
 }
@@ -366,9 +598,6 @@ body {
   max-height: 70vh;
 }
 @media (min-width: 1024px) {
-  :root {
-    --split-top: 84px;
-  }
   .world-frame[data-mode="house"][data-tab="split"] {
     left: calc(24px + var(--side-w) + 24px);
     right: calc(24px + var(--side-w) + 24px);
