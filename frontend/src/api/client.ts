@@ -118,7 +118,7 @@ export function reapplyDepreciation(item: HouseholdItem, valuation: ItemValuatio
   })
 }
 
-export type IdealoStatus = { live_enabled: boolean; logged_in: boolean; used?: number; limit?: number }
+export type IdealoStatus = { live_enabled: boolean; logged_in: boolean; used?: number; cap?: number; remaining?: number }
 
 /** Live flag + today's budget. Reads local state only. */
 export function getIdealoStatus() {
@@ -213,13 +213,15 @@ export type CatalogHit = {
   category: string
 }
 
-export function searchCatalog(q: string, signal?: AbortSignal) {
-  return api<CatalogHit[]>(`/api/catalog/search?q=${encodeURIComponent(q)}`, { signal })
+export function searchCatalog(q: string, options?: { live?: boolean; signal?: AbortSignal }) {
+  const params = new URLSearchParams({ q })
+  if (options?.live) params.set('live', 'true')
+  return api<CatalogHit[]>(`/api/catalog/search?${params.toString()}`, { signal: options?.signal })
 }
 
-/** A new house item valued at the hit's cached idealo price. */
+/** A new house item valued from idealo (full offers + 30d history when cached or live MCP is on). */
 export function catalogItem(hit: CatalogHit) {
-  return api<ValuedItem>('/api/catalog/item', { method: 'POST', body: JSON.stringify(hit) })
+  return api<ValuedItem>('/api/catalog/item?enrich=true', { method: 'POST', body: JSON.stringify(hit) })
 }
 
 export type ItemDraft = {

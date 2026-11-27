@@ -318,20 +318,22 @@ def build_demo_fallback_valuations(items: list[HouseholdItemInput]) -> list[Item
                 )
             )
         else:
+            est = item.estimated_price_eur if (item.estimated_price_eur and item.estimated_price_eur > 0) else 250.0
+            shop_label = "User Estimate" if item.estimated_price_eur else "Demo Reference Shop"
             results.append(
                 build_valuation(
                     item,
                     matched_title=item.name,
                     offers=[
                         IdealoOffer(
-                            shop_name="Demo Reference Shop",
-                            price_eur=250.0,
+                            shop_name=shop_label,
+                            price_eur=est,
                             shipping_eur=0.0,
-                            total_eur=250.0,
+                            total_eur=est,
                             shop_rating=4.5,
                         )
                     ],
-                    fallback_price_eur=250.0,
+                    fallback_price_eur=est,
                     data_source="demo_fallback",
                 )
             )

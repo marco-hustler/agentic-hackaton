@@ -138,3 +138,18 @@ def test_agent_picks_an_envy_free_split_when_one_exists():
     if any(o["is_envy_free"] for o in others):
         assert r["is_envy_free"]
     assert r["fairness_score_pct"] >= max(o["fairness_score_pct"] for o in others if o["is_envy_free"] == r["is_envy_free"])
+
+
+def test_you_grammar_and_manual_lock_copy() -> None:
+    items = _sample_items()
+    items[1].forced_action = "party_a"
+    vals = build_demo_fallback_valuations(items)
+    valued = [ValuedItem(item=i, valuation=v) for i, v in zip(items, vals)]
+
+    res = solve_split(SplitRequest(party_a_name="You", party_b_name="Sam", mode="balanced", valued_items=valued))
+    assert "You pays" not in res.cash_transfer_summary
+    assert "You puts" not in " ".join(a.buy_new_savings_note or "" for a in res.assignments)
+    locked = next(a for a in res.assignments if a.item_id == "vacuum")
+    assert "Locked manually" in locked.rationale
+    assert "Swap" not in locked.rationale
+    assert "€" in res.mediator_summary

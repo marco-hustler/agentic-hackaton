@@ -20,6 +20,7 @@ from cleanbreak.idealo.auth import default_token_path, find_exception, is_login_
 from cleanbreak.idealo.budget import BudgetExhausted, get_budget
 from cleanbreak.idealo.catalog import (
     CatalogHit,
+    hits_from_search_payload,
     load_catalog,
     search_catalog,
     valued_item_from_hit,
@@ -72,6 +73,8 @@ app.add_middleware(
     allow_origins=[
         "http://localhost:5173",
         "http://127.0.0.1:5173",
+        "http://localhost:5179",
+        "http://127.0.0.1:5179",
     ],
     allow_credentials=True,
     allow_methods=["*"],
@@ -127,6 +130,7 @@ async def index() -> FileResponse:
 
 @app.get("/favicon.svg", include_in_schema=False)
 @app.get("/icons.svg", include_in_schema=False)
+@app.get("/idealo-logo.png", include_in_schema=False)
 async def vite_public_file(request: Request) -> FileResponse:
     """Vite puts a few assets next to index.html (not under /assets)."""
     name = request.url.path.lstrip("/")
@@ -173,16 +177,23 @@ async def get_process(process_id: str) -> ProcessSummary:
 
 @app.patch("/api/processes/{process_id}", response_model=ProcessSummary)
 async def patch_process(process_id: str, payload: ProcessStatusUpdate) -> ProcessSummary:
-    if payload.status is None and payload.participant_emails is None:
+    if payload.status is None and payload.title is None and payload.participant_emails is None:
         raise HTTPException(status_code=422, detail="Nothing to update")
     updated = get_process_store().update_process(
         process_id,
         status=payload.status,
+        title=payload.title,
         participant_emails=payload.participant_emails,
     )
     if updated is None:
         raise HTTPException(status_code=404, detail="Process not found")
     return updated
+
+
+@app.delete("/api/processes/{process_id}", status_code=204)
+async def delete_process(process_id: str) -> None:
+    if not get_process_store().delete_process(process_id):
+        raise HTTPException(status_code=404, detail="Process not found")
 
 
 async def _demo_valued_items(raw: dict | None = None) -> tuple[list[ValuedItem], str | None]:
@@ -208,10 +219,10 @@ async def get_process_inventory(process_id: str) -> ProcessInventory:
         return saved
     if demo_seed_enabled():
         valued, _ = await _demo_valued_items()
-        seeded = store.save_inventory(process_id, ProcessInventory(valued_items=valued))
+        seeded = store.save_inventory(process_id, ProcessInventory(valued_items=valued), advance_draft=False)
         assert seeded is not None
         return seeded
-    seeded = store.save_inventory(process_id, ProcessInventory(valued_items=[]))
+    seeded = store.save_inventory(process_id, ProcessInventory(valued_items=[]), advance_draft=False)
     assert seeded is not None
     return seeded
 
@@ -219,7 +230,7 @@ async def get_process_inventory(process_id: str) -> ProcessInventory:
 @app.put("/api/processes/{process_id}/inventory", response_model=ProcessInventory)
 async def put_process_inventory(process_id: str, payload: ProcessInventory) -> ProcessInventory:
     """Save a house's items (edits, locks, priorities, depreciation) and solver mode."""
-    saved = get_process_store().save_inventory(process_id, payload)
+    saved = get_process_store().save_inventory(process_id, payload, advance_draft=True)
     if saved is None:
         raise HTTPException(status_code=404, detail="Process not found")
     return saved
@@ -262,15 +273,86 @@ async def value_items_endpoint(req: ValueRequest, request: Request) -> ValueResp
 
 
 @app.get("/api/catalog/search", response_model=list[CatalogHit])
-async def catalog_search(q: str = "", limit: int = 24) -> list[CatalogHit]:
-    """Search products from cached idealo searches (0 MCP calls)."""
-    return search_catalog(q, load_catalog(), limit=max(1, min(limit, 60)))
+async def catalog_search(
+    request: Request,
+    q: str = "",
+    limit: int = 24,
+    live: bool = False,
+    country: str = "DE",
+) -> list[CatalogHit]:
+    """Search cached idealo products (0 MCP calls), or query idealo MCP live when `live=true`."""
+    query = q.strip()
+    capped = max(1, min(limit, 60))
+    if not query:
+        return []
+
+    if not live:
+        return search_catalog(query, load_catalog(), limit=capped)
+
+    if not live_enabled():
+        raise HTTPException(
+            status_code=503,
+            detail="Live idealo MCP search is off (set IDEALO_LIVE_ENABLED=true in .env).",
+        )
+    session_tok = _session_idealo_token(request)
+    client = _make_client(country, access_token=session_tok) if session_tok else _make_client(country)
+    if not client.has_login():
+        raise HTTPException(
+            status_code=503,
+            detail="idealo MCP login required — sign in via Account → Authenticate with Idealo, or run probe_idealo_mcp.py --list-tools.",
+        )
+    if client.budget.remaining() < CONNECT_COST + 1:
+        raise HTTPException(status_code=503, detail="Daily idealo MCP call budget reached.")
+
+    mkt = country.upper()
+    deadline = float(os.getenv("IDEALO_LIVE_DEADLINE_SECONDS", "20"))
+
+    async def _run_live_search() -> list[CatalogHit]:
+        async with client.connect():
+            tool_name = client._resolve_tool("search_products")
+            search_data, _ = await client.call_tool_cached(tool_name, {"query": query, "country": mkt})
+            if not isinstance(search_data, dict):
+                return []
+            return hits_from_search_payload(search_data)[:capped]
+
+    try:
+        return await asyncio.wait_for(_run_live_search(), timeout=deadline)
+    except TimeoutError:
+        raise HTTPException(status_code=504, detail="idealo MCP search timed out.")
+    except Exception as exc:
+        if find_exception(exc, BudgetExhausted) is not None:
+            raise HTTPException(status_code=503, detail="Daily idealo MCP call budget reached.")
+        if is_login_required(exc):
+            raise HTTPException(
+                status_code=503,
+                detail="idealo MCP session expired — sign in via Account → Authenticate with Idealo, or run probe_idealo_mcp.py --list-tools.",
+            )
+        raise HTTPException(status_code=502, detail=f"idealo MCP search failed: {exc}")
 
 
 @app.post("/api/catalog/item", response_model=ValuedItem)
-async def catalog_item(hit: CatalogHit) -> ValuedItem:
-    """A new house item for a catalog hit, valued at its cached idealo price (0 MCP calls)."""
-    return valued_item_from_hit(hit)
+async def catalog_item(
+    hit: CatalogHit,
+    request: Request,
+    enrich: bool = False,
+    country: str = "DE",
+) -> ValuedItem:
+    """Create a house item from a catalog hit; when `enrich=true`, pull full offers/30d history from idealo (cache -> live)."""
+    base = valued_item_from_hit(hit)
+    if not enrich:
+        return base
+    valuations, _, _ = await _value_items(
+        [base.item],
+        country=country,
+        mode="live_or_cache",
+        access_token=_session_idealo_token(request),
+    )
+    if valuations and valuations[0].data_source in ("idealo_live", "idealo_cached"):
+        val = valuations[0]
+        if not val.image_url and hit.image_url:
+            val = val.model_copy(update={"image_url": hit.image_url})
+        return ValuedItem(item=base.item, valuation=val)
+    return base
 
 
 def _header_map(request: Request) -> dict[str, str]:
@@ -302,6 +384,7 @@ async def llm_status(request: Request) -> dict:
     return {
         "configured": cfg.is_configured,
         "model": cfg.model if cfg.is_configured else None,
+        "models": cfg.models if cfg.is_configured else [],
     }
 
 
@@ -476,7 +559,7 @@ async def _value_items(
     if mode == "fallback":
         return [placeholder(i, "offline demo fallback") for i in items], "Showing sample prices. idealo was not asked.", get_budget().snapshot()
 
-    client = _make_client(country, access_token=access_token)
+    client = _make_client(country, access_token=access_token) if access_token else _make_client(country)
     results: list[ItemValuation | None] = [None] * len(items)
     pending: list[int] = []
     for idx, item in enumerate(items):

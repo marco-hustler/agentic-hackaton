@@ -1,8 +1,13 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import {
+  catalogItem,
   createManualItem,
   draftItemTurn,
+  getIdealoStatus,
   getLlmStatus,
+  searchCatalog,
+  type CatalogHit,
+  type IdealoStatus,
   type ItemDraft,
   type ItemDraftMessage,
 } from '../api/client'
@@ -104,14 +109,21 @@ export function InventoryPanel({
         </div>
       </div>
 
-      {addingOpen && <AddObjectModal onClose={() => onAddingOpenChange(false)} onAdd={onAdd} />}
+      {addingOpen && (
+        <AddObjectModal
+          ownedRefs={new Set(items.map((vi) => vi.valuation.product_ref).filter((r): r is string => !!r))}
+          onClose={() => onAddingOpenChange(false)}
+          onAdd={onAdd}
+        />
+      )}
     </section>
   )
 }
 
-type CreateMode = 'static' | 'ai'
+type CreateMode = 'idealo' | 'ai' | 'static'
 
 type AddObjectModalProps = {
+  ownedRefs?: Set<string>
   onClose: () => void
   onAdd: (vi: ValuedItem) => void
   onValuingChange?: (valuing: boolean) => void
@@ -127,8 +139,8 @@ const CONDITIONS: { value: Condition; label: string }[] = [
 const THIS_YEAR = new Date().getFullYear()
 const YEARS = Array.from({ length: 30 }, (_, i) => THIS_YEAR - i)
 
-function AddObjectModal({ onClose, onAdd }: Omit<AddObjectModalProps, 'onValuingChange'>) {
-  const [mode, setMode] = useState<CreateMode>('static')
+function AddObjectModal({ ownedRefs, onClose, onAdd }: Omit<AddObjectModalProps, 'onValuingChange'>) {
+  const [mode, setMode] = useState<CreateMode>('idealo')
   const [valuing, setValuing] = useState(false)
   const [aiAvailable, setAiAvailable] = useState<boolean | null>(null)
 
@@ -167,7 +179,7 @@ function AddObjectModal({ onClose, onAdd }: Omit<AddObjectModalProps, 'onValuing
       />
       <div
         className={`pop-in relative z-10 flex w-full flex-col overflow-hidden rounded-t-3xl border border-line bg-canvas shadow-[0_24px_60px_-16px_rgba(15,23,42,0.45)] sm:rounded-3xl ${
-          mode === 'ai' ? 'max-h-[92vh] max-w-lg sm:h-[min(720px,92vh)]' : 'max-h-[88vh] max-w-xl'
+          mode === 'ai' ? 'max-h-[92vh] max-w-lg sm:h-[min(720px,92vh)]' : 'max-h-[88vh] max-w-2xl'
         }`}
       >
         {valuing && <IdealoLoadingOverlay />}
@@ -175,7 +187,11 @@ function AddObjectModal({ onClose, onAdd }: Omit<AddObjectModalProps, 'onValuing
           <div>
             <h3 className="text-lg font-extrabold text-petrol">Add object</h3>
             <p className="mt-0.5 text-sm text-muted">
-              {mode === 'ai' ? 'Chat with AI to draft the object, then we price it on idealo.' : 'Fill the form — we look it up on idealo on save.'}
+              {mode === 'idealo'
+                ? 'Search idealo MCP directly (cached or live) to price and add an object.'
+                : mode === 'ai'
+                  ? 'Chat with AI to draft the object, then we price it on idealo.'
+                  : 'Fill the form — we look it up on idealo on save.'}
             </p>
           </div>
           <button type="button" className="btn btn-ghost h-9 w-9 rounded-full px-0" onClick={onClose} disabled={valuing} aria-label="Close">
@@ -187,12 +203,12 @@ function AddObjectModal({ onClose, onAdd }: Omit<AddObjectModalProps, 'onValuing
           <div className="view-switch inline-flex w-full items-center gap-1 p-1" role="group" aria-label="Creation mode">
             <button
               type="button"
-              className={`view-switch-option min-w-0 flex-1 ${mode === 'static' ? 'view-switch-option-active' : ''}`}
-              aria-pressed={mode === 'static'}
+              className={`view-switch-option min-w-0 flex-1 ${mode === 'idealo' ? 'view-switch-option-active' : ''}`}
+              aria-pressed={mode === 'idealo'}
               disabled={valuing}
-              onClick={() => setMode('static')}
+              onClick={() => setMode('idealo')}
             >
-              Manual
+              idealo MCP
             </button>
             <button
               type="button"
@@ -202,22 +218,261 @@ function AddObjectModal({ onClose, onAdd }: Omit<AddObjectModalProps, 'onValuing
               title={aiDisabled ? 'Configure AI keys from the account menu to enable AI creation' : 'Describe the object in chat'}
               onClick={() => !aiDisabled && setMode('ai')}
             >
-              AI
+              AI chat
+            </button>
+            <button
+              type="button"
+              className={`view-switch-option min-w-0 flex-1 ${mode === 'static' ? 'view-switch-option-active' : ''}`}
+              aria-pressed={mode === 'static'}
+              disabled={valuing}
+              onClick={() => setMode('static')}
+            >
+              Manual
             </button>
           </div>
           {aiDisabled && aiAvailable === false && (
-            <p className="mt-2 text-xs text-muted">AI needs LLM keys — open Account → Configure AI keys, or use Manual.</p>
+            <p className="mt-2 text-xs text-muted">AI needs LLM keys — open Account → Configure AI keys, or use idealo MCP / Manual.</p>
           )}
         </div>
 
         <div className={`min-h-0 flex-1 ${mode === 'ai' ? 'flex flex-col overflow-hidden' : 'overflow-y-auto'}`}>
-          {mode === 'static' ? (
-            <StaticCreateForm onClose={onClose} onAdd={onAdd} onValuingChange={setValuing} />
-          ) : (
+          {mode === 'idealo' ? (
+            <IdealoSearchTab ownedRefs={ownedRefs ?? new Set()} onClose={onClose} onAdd={onAdd} onValuingChange={setValuing} />
+          ) : mode === 'ai' ? (
             <AiCreateChat onClose={onClose} onAdd={onAdd} onValuingChange={setValuing} />
+          ) : (
+            <StaticCreateForm onClose={onClose} onAdd={onAdd} onValuingChange={setValuing} />
           )}
         </div>
       </div>
+    </div>
+  )
+}
+
+const QUICK_SEARCHES = ['Dyson', 'Sonos', 'LG OLED', 'Bosch', 'KitchenAid', 'Nintendo']
+
+function extractApiDetail(e: unknown): string {
+  const raw = e instanceof Error ? e.message : String(e)
+  try {
+    const parsed = JSON.parse(raw) as { detail?: string }
+    if (typeof parsed.detail === 'string') return parsed.detail
+  } catch {
+    /* plain text */
+  }
+  return raw
+}
+
+function IdealoSearchTab({
+  ownedRefs,
+  onClose,
+  onAdd,
+  onValuingChange,
+}: {
+  ownedRefs: Set<string>
+  onClose: () => void
+  onAdd: (vi: ValuedItem) => void
+  onValuingChange?: (valuing: boolean) => void
+}) {
+  const [query, setQuery] = useState('')
+  const [status, setStatus] = useState<IdealoStatus | null>(null)
+  const [found, setFound] = useState<{ query: string; hits: CatalogHit[]; source: 'cache' | 'live' } | null>(null)
+  const [liveBusy, setLiveBusy] = useState(false)
+  const [searchError, setSearchError] = useState<string | null>(null)
+  const [addingRef, setAddingRef] = useState<string | null>(null)
+  const [addError, setAddError] = useState<string | null>(null)
+
+  useEffect(() => {
+    getIdealoStatus().then(setStatus).catch(() => undefined)
+  }, [])
+
+  const q = query.trim()
+
+  useEffect(() => {
+    if (q.length < 2) return
+    const ctrl = new AbortController()
+    const timer = setTimeout(() => {
+      searchCatalog(q, { signal: ctrl.signal })
+        .then((res) => {
+          setSearchError(null)
+          setFound({ query: q, hits: res, source: 'cache' })
+        })
+        .catch((e: unknown) => {
+          if (!ctrl.signal.aborted) setSearchError(extractApiDetail(e))
+        })
+    }, 180)
+    return () => {
+      clearTimeout(timer)
+      ctrl.abort()
+    }
+  }, [q])
+
+  const activeResult = q.length >= 2 && found?.query === q ? found : null
+  const hits = activeResult?.hits ?? []
+  const source = activeResult?.source ?? null
+  const loading = q.length >= 2 && !activeResult && !searchError
+
+  function updateQuery(next: string) {
+    setQuery(next)
+    setSearchError(null)
+    if (next.trim().length < 2) setFound(null)
+  }
+
+  async function searchLive() {
+    if (q.length < 2 || liveBusy) return
+    setLiveBusy(true)
+    setSearchError(null)
+    try {
+      const res = await searchCatalog(q, { live: true })
+      setFound({ query: q, hits: res, source: 'live' })
+      getIdealoStatus().then(setStatus).catch(() => undefined)
+    } catch (e) {
+      setSearchError(extractApiDetail(e))
+    } finally {
+      setLiveBusy(false)
+    }
+  }
+
+  async function addHit(hit: CatalogHit) {
+    setAddingRef(hit.product_ref)
+    setAddError(null)
+    onValuingChange?.(true)
+    try {
+      const vi = await holdIdealoMoment(() => catalogItem(hit))
+      onAdd(vi)
+      onClose()
+    } catch (e) {
+      setAddError(extractApiDetail(e))
+    } finally {
+      setAddingRef(null)
+      onValuingChange?.(false)
+    }
+  }
+
+  const liveReady = Boolean(status?.live_enabled && status?.logged_in)
+
+  return (
+    <div className="flex flex-col gap-3 px-5 py-4">
+      <div className="flex flex-wrap items-center justify-between gap-2 text-xs">
+        <span className={`pill ${liveReady ? 'pill-live' : 'pill-neutral'}`}>
+          {liveReady ? 'idealo MCP live ready' : status?.live_enabled ? 'idealo login needed' : 'idealo cache mode'}
+        </span>
+        {status?.remaining != null && status?.cap != null && (
+          <span className="text-muted">
+            MCP budget: {status.remaining}/{status.cap} left today
+          </span>
+        )}
+      </div>
+
+      <form
+        className="flex gap-2"
+        onSubmit={(e) => {
+          e.preventDefault()
+          void searchLive()
+        }}
+      >
+        <label className="relative flex-1">
+          <span className="sr-only">Search idealo</span>
+          <svg viewBox="0 0 20 20" className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted" aria-hidden>
+            <circle cx="9" cy="9" r="6" fill="none" stroke="currentColor" strokeWidth="2" />
+            <path d="M13.5 13.5 18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+          </svg>
+          <input
+            autoFocus
+            type="search"
+            value={query}
+            onChange={(e) => updateQuery(e.target.value)}
+            placeholder="Search idealo (e.g. PlayStation 5, Dyson, Sonos)…"
+            className="field h-11 w-full pl-10 pr-3"
+          />
+        </label>
+        <button
+          type="submit"
+          disabled={q.length < 2 || liveBusy}
+          title={liveReady ? 'Query idealo MCP live for any product' : 'Query idealo MCP live (requires IDEALO_LIVE_ENABLED=true + OAuth login)'}
+          className="btn btn-agent h-11 shrink-0 px-3.5 text-xs"
+        >
+          {liveBusy ? 'Searching…' : 'Live MCP'}
+        </button>
+      </form>
+
+      {q.length < 2 && (
+        <div className="flex flex-wrap items-center gap-1.5">
+          <span className="text-xs text-muted">Instant cached:</span>
+          {QUICK_SEARCHES.map((term) => (
+            <button
+              key={term}
+              type="button"
+              onClick={() => updateQuery(term)}
+              className="rounded-full border border-line bg-surface px-2.5 py-1 text-xs font-semibold text-petrol transition hover:bg-surface-low"
+            >
+              {term}
+            </button>
+          ))}
+        </div>
+      )}
+
+      {searchError && <p className="rounded-xl bg-[#ffdad6] px-3 py-2 text-xs text-[#93000a]">{searchError}</p>}
+      {addError && <p className="rounded-xl bg-[#ffdad6] px-3 py-2 text-xs text-[#93000a]">{addError}</p>}
+
+      {q.length < 2 && (
+        <Empty>Type a product name for instant cached idealo results, or press Enter / Live MCP to query idealo.de live.</Empty>
+      )}
+      {q.length >= 2 && (loading || liveBusy) && hits.length === 0 && (
+        <p className="py-6 text-center text-sm text-muted">{liveBusy ? 'Querying idealo MCP live…' : 'Searching cached idealo catalog…'}</p>
+      )}
+      {q.length >= 2 && !loading && !liveBusy && hits.length === 0 && !searchError && (
+        <Empty>
+          No cached idealo match for “{q}”.{' '}
+          <button type="button" onClick={() => void searchLive()} className="font-bold text-petrol underline">
+            Search live on idealo MCP
+          </button>
+        </Empty>
+      )}
+
+      {hits.length > 0 && (
+        <>
+          <p className="text-xs text-muted">
+            {hits.length} {hits.length === 1 ? 'product' : 'products'} from{' '}
+            <strong className="text-petrol">{source === 'live' ? 'idealo MCP live' : 'idealo cache'}</strong>
+          </p>
+          <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+            {hits.map((hit) => {
+              const inHouse = ownedRefs.has(hit.product_ref)
+              const busy = addingRef === hit.product_ref
+              return (
+                <li
+                  key={hit.product_ref}
+                  className="flex flex-col overflow-hidden rounded-2xl border border-line bg-surface shadow-[0_1px_0_rgba(0,0,0,0.04)]"
+                >
+                  <div className="flex h-32 items-center justify-center bg-white p-3">
+                    {hit.image_url ? (
+                      <img src={hit.image_url} alt="" loading="lazy" className="h-full w-full object-contain" />
+                    ) : (
+                      <span className="h-8 w-8 rounded-lg" style={{ background: categoryColor(hit.category) }} />
+                    )}
+                  </div>
+                  <div className="flex flex-1 flex-col gap-1 border-t border-line p-3">
+                    <p className="line-clamp-2 text-sm font-bold text-ink">{hit.name}</p>
+                    {hit.variant && <p className="truncate text-xs text-muted">{hit.variant}</p>}
+                    <div className="mt-1 flex items-baseline justify-between gap-2">
+                      <span className="text-lg font-extrabold text-petrol">{formatEur(hit.price_eur)}</span>
+                      {hit.offer_count > 0 && <span className="text-[11px] text-muted">{hit.offer_count} offers</span>}
+                    </div>
+                    <button
+                      type="button"
+                      disabled={inHouse || busy}
+                      onClick={() => void addHit(hit)}
+                      className="btn btn-primary mt-2 h-9 w-full text-xs"
+                    >
+                      {inHouse ? 'In the house ✓' : busy ? 'Valuing…' : '+ Add to house'}
+                    </button>
+                  </div>
+                </li>
+              )
+            })}
+          </ul>
+        </>
+      )}
     </div>
   )
 }

@@ -47,9 +47,10 @@ class ProcessSummary(BaseModel):
 
 
 class ProcessStatusUpdate(BaseModel):
-    """Partial update for a process (status and/or collaborators)."""
+    """Partial update for a process (status, title, and/or collaborators)."""
 
     status: ProcessStatus | None = None
+    title: str | None = None
     participant_emails: list[str] | None = None
 
 
@@ -82,6 +83,11 @@ class HouseholdItemInput(BaseModel):
     forced_action: AssignmentAction | None = Field(
         default=None,
         description="Optional manual lock from interactive 'What-If' swap in the UI.",
+    )
+    estimated_price_eur: float | None = Field(
+        default=None,
+        ge=0.0,
+        description="Optional user/parsed new-price estimate used only if idealo has no match.",
     )
     notes: str = ""
 

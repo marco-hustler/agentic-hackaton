@@ -1,0 +1,514 @@
+{
+  "namespace": "get_product_details",
+  "request": {
+    "productRef": "pr.v1.k1.ZICDqPUZXOKMD_86OqZjqpajPRZ4fGSwXrUKh-8qT0r756ybjQ",
+    "country": "DE"
+  },
+  "cached_at": 1795803201.626322,
+  "data": {
+    "productRef": "pr.v1.k1.ZICDqPUZXOKMD_86OqZjqpajPRZ4fGSwXrUKh-8qT0r756ybjQ",
+    "itemType": "PRODUCT",
+    "siteId": 1,
+    "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/203721237_-playstation-5-slim-ps5-slim-standard-edition-sony.html",
+    "name": "Sony PlayStation 5 Slim (PS5 Slim)",
+    "nameDelta": "Standard Edition",
+    "imageUrls": [
+      "https://cdn.idealo.com/folder/Product/203721/2/203721237/s1_produktbild_mobil/sony-playstation-5-slim-ps5-slim-standard-edition.jpg"
+    ],
+    "nextOffset": 3,
+    "offers": [
+      {
+        "key": "5c6bcca37a89a464624c714c87989942",
+        "price": "1.099,00 €",
+        "basePrice": null,
+        "shop": {
+          "shopId": "26895",
+          "merchantId": "95594954",
+          "name": "kaufland.de",
+          "merchantName": "Zeya-GmbH",
+          "rating": {
+            "count": null,
+            "avg": null
+          },
+          "isMarketplace": true
+        },
+        "payments": [
+          {
+            "costCode": "INV",
+            "name": "Rechnung"
+          },
+          {
+            "costCode": "PP",
+            "name": "PayPal"
+          },
+          {
+            "costCode": "DD",
+            "name": "Lastschrift"
+          },
+          {
+            "costCode": "SUW",
+            "name": "Sofort."
+          },
+          {
+            "costCode": "CBC",
+            "name": "Kreditkarte"
+          },
+          {
+            "costCode": "CIA",
+            "name": "Vorkasse"
+          }
+        ],
+        "showPaymentDisclaimer": false,
+        "delivery": {
+          "deliveryText": "bis Mo. 30.11.2026",
+          "deliveryStatus": "SHORT",
+          "earlyDeliveryDate": null,
+          "lateDeliveryDate": "2026-11-30"
+        },
+        "freeReturnDays": 14,
+        "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=5c6bcca37a89a464624c714c87989942&categoryId=3189&pos=2&price=1099.00&productid=203721237&sid=26895&type=offer&media=ipc-public-mcp",
+        "minShippingCost": "0,00 €",
+        "hasAlwaysFreeShipping": true,
+        "cheapestTotalPriceOffer": false,
+        "freshness": "2026-11-27T17:13:21.500Z"
+      },
+      {
+        "key": "450a545d39c849f5658ec8d70588c7c0",
+        "price": "1.099,00 €",
+        "basePrice": null,
+        "shop": {
+          "shopId": "24111",
+          "merchantId": null,
+          "name": "euronics.de",
+          "merchantName": "Euronics XXL Johann + Wittmer",
+          "rating": {
+            "count": null,
+            "avg": null
+          },
+          "isMarketplace": true
+        },
+        "payments": [
+          {
+            "costCode": "PP",
+            "name": "PayPal"
+          },
+          {
+            "costCode": "CBC",
+            "name": "Kreditkarte"
+          },
+          {
+            "costCode": "APPLE_PAY",
+            "name": "Apple Pay"
+          },
+          {
+            "costCode": "CIA",
+            "name": "Vorkasse"
+          }
+        ],
+        "showPaymentDisclaimer": false,
+        "delivery": {
+          "deliveryText": "bis Di. 01.12.2026",
+          "deliveryStatus": "SHORT",
+          "earlyDeliveryDate": null,
+          "lateDeliveryDate": "2026-12-01"
+        },
+        "freeReturnDays": null,
+        "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=450a545d39c849f5658ec8d70588c7c0&categoryId=3189&pos=3&price=1099.00&productid=203721237&sid=24111&type=offer&media=ipc-public-mcp",
+        "minShippingCost": "6,99 €",
+        "hasAlwaysFreeShipping": false,
+        "cheapestTotalPriceOffer": false,
+        "freshness": "2026-11-27T17:13:21.500Z"
+      }
+    ],
+    "prosCons": {
+      "pros": [
+        "reduzierte Größe",
+        "1 TB integrierter Speicher",
+        "2 USB-C-Anschlüsse"
+      ],
+      "cons": [
+        "ungewöhnliche Design-Entscheidungen",
+        "kein vertikaler Ständer enthalten",
+        "Internet für die Einrichtung erforderlich"
+      ]
+    },
+    "testReports": {
+      "summary": {
+        "grade": "1,9",
+        "averageRating": 82,
+        "rating": "gut",
+        "ratingCount": 2
+      },
+      "list": [
+        {
+          "providerName": "IMTEST",
+          "shortDescription": "Einzeltest PlayStation 5 Slim",
+          "summaryText": "Bis auf den kleineren Formfaktor bietet die Slim-Version keinen signifikanten Vorteil gegenüber der ursprünglichen Variante. Sie enttäuscht mit erhöhtem Energieverbrauch, Wärme- und Geräuschentwicklung. Zudem fehlt der Standfuß im Lieferumfang und der Preis ist unverhältnismäßig hoch. Dennoch bleibt die PS5 eine ausgezeichnete Konsole mit hervorragender Spieleleistung, einem guten Controller und einer großen Auswahl an Spielen.",
+          "ratingValue": "gut (1,9)",
+          "publishedAt": 1701082800000,
+          "language": "de",
+          "issue": "online",
+          "testedProductsCount": 1
+        },
+        {
+          "providerName": "ComputerBild",
+          "shortDescription": "Einzeltest Sony PlayStation 5 Slim",
+          "summaryText": "Sony hat die PlayStation 5 Slim verbessert, indem sie kompakter ist und eine größere SSD hat. Allerdings verbraucht sie mehr Strom, wird etwas wärmer und die Lüfter sind lauter. Ein Wechsel von der normalen PS5 zur Slim ist nicht empfehlenswert, aber für Neukäufer ist die Slim eine gute Wahl.",
+          "ratingValue": "gut (1,9)",
+          "publishedAt": 1726653600000,
+          "language": "de",
+          "issue": "online",
+          "testedProductsCount": 1
+        }
+      ]
+    },
+    "productSpecification": {
+      "groups": [
+        {
+          "name": "Datenspeicher",
+          "type": "DEFAULT",
+          "attributes": [
+            {
+              "name": "Speicher erweiterbar",
+              "value": "Ja"
+            },
+            {
+              "name": "Festplattentypen",
+              "value": "SSD, M.2 SSD (2280)"
+            },
+            {
+              "name": "mitgelieferter Speicher",
+              "value": "1.000 GB"
+            },
+            {
+              "name": "Speichermedium",
+              "value": "Ultra HD-Blu-ray"
+            }
+          ]
+        },
+        {
+          "name": "Anschlüsse",
+          "type": "DEFAULT",
+          "attributes": [
+            {
+              "name": "HDMI-Ausgänge",
+              "value": "1"
+            },
+            {
+              "name": "Datenkommunikation",
+              "value": "Netzwerk, WLAN"
+            },
+            {
+              "name": "WLAN-Standard",
+              "value": "IEEE 802.11 a/b/g/n/ac/ax"
+            },
+            {
+              "name": "Anzahl USB 2.0 Anschlüsse",
+              "value": "2"
+            },
+            {
+              "name": "LAN-Standard",
+              "value": "Gigabit Ethernet (10/100/1000 Mbit/s)"
+            },
+            {
+              "name": "digitaler Ausgang",
+              "value": "HDMI"
+            },
+            {
+              "name": "weiterer Anschluss",
+              "value": "1 x USB Type C"
+            }
+          ]
+        },
+        {
+          "name": "Leistung",
+          "type": "DEFAULT",
+          "attributes": [
+            {
+              "name": "Prozessortyp",
+              "value": "AMD Ryzen „Zen 2“"
+            },
+            {
+              "name": "Taktfrequenz",
+              "value": "3.500 MHz"
+            },
+            {
+              "name": "Prozessorkerne",
+              "value": "8"
+            },
+            {
+              "name": "Prozessorarchitektur",
+              "value": "64-Bit"
+            },
+            {
+              "name": "Arbeitsspeicher (RAM)",
+              "value": "16.384 MB"
+            },
+            {
+              "name": "RAM-Typ",
+              "value": "GDDR6"
+            },
+            {
+              "name": "Grafikchipsatz",
+              "value": "AMD Radeon RDNA 2"
+            }
+          ]
+        },
+        {
+          "name": "Design",
+          "type": "DEFAULT",
+          "attributes": [
+            {
+              "name": "Farbe",
+              "value": "weiß"
+            },
+            {
+              "name": "Zweite Farbe",
+              "value": "schwarz"
+            },
+            {
+              "name": "Oberfläche",
+              "value": "matt"
+            },
+            {
+              "name": "Standgerät",
+              "value": "Ja"
+            }
+          ]
+        },
+        {
+          "name": "Controller",
+          "type": "DEFAULT",
+          "attributes": [
+            {
+              "name": "Spielsteuerung",
+              "value": "Controller"
+            },
+            {
+              "name": "Controllertyp",
+              "value": "kabelloser Controller"
+            },
+            {
+              "name": "Controller-Eigenschaften",
+              "value": "Beschleunigungssensor, PlayStation-Layout, Lagesensor (Gyrosensor), Headset-Anschluss via 3,5mm Klinke, Mikrofon, Vibration"
+            },
+            {
+              "name": "Bedienelemente",
+              "value": "2 Analog-Sticks, 4 Schultertasten, 4 Aktionstasten, Select-Taste, Steuerkreuz"
+            }
+          ]
+        },
+        {
+          "name": "Wiedergabe",
+          "type": "DEFAULT",
+          "attributes": [
+            {
+              "name": "Multimedia-Funktionen",
+              "value": "Blu-ray-Wiedergabe, High Dynamic Range (HDR)"
+            },
+            {
+              "name": "Soundmodus",
+              "value": "Tempest 3D Audio Tech"
+            },
+            {
+              "name": "Unterstützte Auflösungen",
+              "value": "4K, 8K"
+            }
+          ]
+        },
+        {
+          "name": "Abmessungen und Lieferumfang",
+          "type": "DEFAULT",
+          "attributes": [
+            {
+              "name": "Abmessungen",
+              "value": "358 × 96 × 216 mm"
+            },
+            {
+              "name": "Gewicht",
+              "value": "3.200 g"
+            },
+            {
+              "name": "Mitgelieferte Hardware",
+              "value": "1 x Controller"
+            }
+          ]
+        },
+        {
+          "name": "",
+          "type": "IMPORTANT",
+          "attributes": [
+            {
+              "name": "Gelistet seit",
+              "value": "Januar 2024"
+            },
+            {
+              "name": "Produkttypen",
+              "value": "PS5 Konsole, Heimkonsole"
+            },
+            {
+              "name": "interner Speicher",
+              "value": "1.000 GB"
+            },
+            {
+              "name": "Veröffentlichungsjahr",
+              "value": "2023"
+            }
+          ]
+        },
+        {
+          "name": "",
+          "type": "OTHER",
+          "attributes": [
+            {
+              "name": "Plattform",
+              "value": "PlayStation 5 (PS5)"
+            },
+            {
+              "name": "Serie",
+              "value": "Sony PlayStation"
+            }
+          ]
+        }
+      ]
+    },
+    "productOverview": [
+      "interner Speicher 1.000 GB",
+      "AMD Ryzen „Zen 2“",
+      "8 Prozessorkerne",
+      "Arbeitsspeicher (RAM) 16.384 MB",
+      "RAM-Typ GDDR6",
+      "HDMI",
+      "WLAN"
+    ],
+    "productDetailsUrl": "https://www.idealo.de/preisvergleich/OffersOfProduct/203721237_-playstation-5-slim-ps5-slim-standard-edition-sony.html#datasheet",
+    "priceTrend": {
+      "history": [
+        {
+          "dateTime": 1793228399999,
+          "price": 62300
+        },
+        {
+          "dateTime": 1793314799999,
+          "price": 64999
+        },
+        {
+          "dateTime": 1793401199999,
+          "price": 64375
+        },
+        {
+          "dateTime": 1793487599999,
+          "price": 64999
+        },
+        {
+          "dateTime": 1793573999999,
+          "price": 64999
+        },
+        {
+          "dateTime": 1793660399999,
+          "price": 64375
+        },
+        {
+          "dateTime": 1793746799999,
+          "price": 64999
+        },
+        {
+          "dateTime": 1793833199999,
+          "price": 64999
+        },
+        {
+          "dateTime": 1793919599999,
+          "price": 64999
+        },
+        {
+          "dateTime": 1794005999999,
+          "price": 61303
+        },
+        {
+          "dateTime": 1794092399999,
+          "price": 64999
+        },
+        {
+          "dateTime": 1794178799999,
+          "price": 64999
+        },
+        {
+          "dateTime": 1794265199999,
+          "price": 64999
+        },
+        {
+          "dateTime": 1794351599999,
+          "price": 64999
+        },
+        {
+          "dateTime": 1794437999999,
+          "price": 67900
+        },
+        {
+          "dateTime": 1794524399999,
+          "price": 67900
+        },
+        {
+          "dateTime": 1794610799999,
+          "price": 67900
+        },
+        {
+          "dateTime": 1794697199999,
+          "price": 71899
+        },
+        {
+          "dateTime": 1794783599999,
+          "price": 72900
+        },
+        {
+          "dateTime": 1794869999999,
+          "price": 71290
+        },
+        {
+          "dateTime": 1794956399999,
+          "price": 66900
+        },
+        {
+          "dateTime": 1795042799999,
+          "price": 66900
+        },
+        {
+          "dateTime": 1795129199999,
+          "price": 66300
+        },
+        {
+          "dateTime": 1795215599999,
+          "price": 66900
+        },
+        {
+          "dateTime": 1795301999999,
+          "price": 59288
+        },
+        {
+          "dateTime": 1795388399999,
+          "price": 83900
+        },
+        {
+          "dateTime": 1795474799999,
+          "price": 66900
+        },
+        {
+          "dateTime": 1795561199999,
+          "price": 76900
+        },
+        {
+          "dateTime": 1795647599999,
+          "price": 76900
+        },
+        {
+          "dateTime": 1795733999999,
+          "price": 88400
+        },
+        {
+          "dateTime": 1795799601463,
+          "price": 102999
+        }
+      ]
+    }
+  }
+}

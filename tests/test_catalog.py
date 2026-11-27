@@ -35,3 +35,30 @@ def test_add_hit_returns_valued_item_at_search_price():
     assert v["trusted_market_price_eur"] == hit["price_eur"]
     assert v["data_source"] == "idealo_cached"
     assert 0 < v["fair_value_eur"] <= hit["price_eur"]
+    if hit["offer_count"] > 6:
+        assert v["scarcity_level"] == "abundant"
+
+
+def test_live_catalog_search_respects_live_flag():
+    res = client.get("/api/catalog/search", params={"q": "playstation 5", "live": "true"})
+    assert res.status_code == 503
+    assert "IDEALO_LIVE_ENABLED" in res.json()["detail"]
+
+
+def test_manual_item_enriches_from_idealo_cache_when_matched():
+    res = client.post(
+        "/api/items/manual",
+        json={
+            "name": "Sonos Era 300",
+            "price_eur": 300,
+            "purchase_year": 2024,
+            "condition": "like_new",
+            "importance": 8,
+            "category": "Audio",
+        },
+    )
+    assert res.status_code == 200
+    val = res.json()["valuation"]
+    assert val["data_source"] == "idealo_cached"
+    assert val["offer_count"] > 10
+    assert val["is_buy_new_deal"] is True

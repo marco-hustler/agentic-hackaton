@@ -1,0 +1,217 @@
+{
+  "namespace": "get_product_offers",
+  "request": {
+    "productRef": "pr.v1.k1.GYYadil3XBjROa8w6tvfF4ErKpqaZyV9dLnT08TJHNIR1dUa0Q",
+    "country": "DE"
+  },
+  "cached_at": 1795803614.761457,
+  "data": {
+    "nextOffset": 5,
+    "offers": [
+      {
+        "key": "c67148eae52155a923af3b64db8060ae",
+        "price": "379,00 €",
+        "basePrice": null,
+        "shop": {
+          "shopId": "285519",
+          "merchantId": null,
+          "name": "mediamarkt.de",
+          "merchantName": null,
+          "rating": {
+            "count": 18594,
+            "avg": 3.85
+          },
+          "isMarketplace": false
+        },
+        "payments": [
+          {
+            "costCode": "PP",
+            "name": "PayPal"
+          },
+          {
+            "costCode": "SUW",
+            "name": "Sofort."
+          },
+          {
+            "costCode": "CBC",
+            "name": "Kreditkarte"
+          },
+          {
+            "costCode": "CIA",
+            "name": "Vorkasse"
+          },
+          {
+            "costCode": "AMZP",
+            "name": "Amazon Pay"
+          }
+        ],
+        "showPaymentDisclaimer": false,
+        "delivery": {
+          "deliveryText": "bis Di. 01.12.2026",
+          "deliveryStatus": "SHORT",
+          "earlyDeliveryDate": null,
+          "lateDeliveryDate": "2026-12-01"
+        },
+        "freeReturnDays": 30,
+        "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=c67148eae52155a923af3b64db8060ae&categoryId=19116&pos=1&price=379.00&productid=209770546&sid=285519&type=offer&media=ipc-public-mcp",
+        "minShippingCost": "0,00 €",
+        "hasAlwaysFreeShipping": true,
+        "cheapestTotalPriceOffer": true,
+        "freshness": "2026-11-27T17:20:14.714Z"
+      },
+      {
+        "key": "41eca7b7792dee991dda17a010ed5f2e",
+        "price": "387,90 €",
+        "basePrice": null,
+        "shop": {
+          "shopId": "335764",
+          "merchantId": null,
+          "name": "joybuy.de",
+          "merchantName": null,
+          "rating": {
+            "count": 171,
+            "avg": 2.32
+          },
+          "isMarketplace": false
+        },
+        "payments": [
+          {
+            "costCode": "PP",
+            "name": "PayPal"
+          },
+          {
+            "costCode": "SUW",
+            "name": "Sofort."
+          },
+          {
+            "costCode": "CBC",
+            "name": "Kreditkarte"
+          }
+        ],
+        "showPaymentDisclaimer": false,
+        "delivery": {
+          "deliveryText": "bis Mo. 30.11.2026",
+          "deliveryStatus": "SHORT",
+          "earlyDeliveryDate": null,
+          "lateDeliveryDate": "2026-11-30"
+        },
+        "freeReturnDays": 30,
+        "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=41eca7b7792dee991dda17a010ed5f2e&categoryId=19116&pos=3&price=387.90&productid=209770546&sid=335764&type=offer&media=ipc-public-mcp",
+        "minShippingCost": "0,00 €",
+        "hasAlwaysFreeShipping": true,
+        "cheapestTotalPriceOffer": false,
+        "freshness": "2026-11-27T17:20:14.715Z"
+      },
+      {
+        "key": "16e06902b8512ee2d6b8dfb89ff45e94",
+        "price": "389,93 €",
+        "basePrice": null,
+        "shop": {
+          "shopId": "295945",
+          "merchantId": null,
+          "name": "buyzoxs.de",
+          "merchantName": null,
+          "rating": {
+            "count": 1005,
+            "avg": 4.56
+          },
+          "isMarketplace": false
+        },
+        "payments": [
+          {
+            "costCode": "PP",
+            "name": "PayPal"
+          },
+          {
+            "costCode": "SUW",
+            "name": "Sofort."
+          },
+          {
+            "costCode": "CBC",
+            "name": "Kreditkarte"
+          },
+          {
+            "costCode": "APPLE_PAY",
+            "name": "Apple Pay"
+          },
+          {
+            "costCode": "CIA",
+            "name": "Vorkasse"
+          }
+        ],
+        "showPaymentDisclaimer": false,
+        "delivery": {
+          "deliveryText": "bis Di. 01.12.2026",
+          "deliveryStatus": "SHORT",
+          "earlyDeliveryDate": null,
+          "lateDeliveryDate": "2026-12-01"
+        },
+        "freeReturnDays": null,
+        "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=16e06902b8512ee2d6b8dfb89ff45e94&categoryId=19116&pos=4&price=389.93&productid=209770546&sid=295945&type=offer&media=ipc-public-mcp",
+        "minShippingCost": "0,00 €",
+        "hasAlwaysFreeShipping": true,
+        "cheapestTotalPriceOffer": false,
+        "freshness": "2026-11-27T17:20:14.715Z"
+      },
+      {
+        "key": "d4622db9015590b6ceb2f60dc1dd9f5b",
+        "price": "395,00 €",
+        "basePrice": null,
+        "shop": {
+          "shopId": "1140",
+          "merchantId": null,
+          "name": "computeruniverse.net",
+          "merchantName": null,
+          "rating": {
+            "count": 29704,
+            "avg": 3.78
+          },
+          "isMarketplace": false
+        },
+        "payments": [
+          {
+            "costCode": "INV",
+            "name": "Rechnung"
+          },
+          {
+            "costCode": "PP",
+            "name": "PayPal"
+          },
+          {
+            "costCode": "SUW",
+            "name": "Sofort."
+          },
+          {
+            "costCode": "CBC",
+            "name": "Kreditkarte"
+          },
+          {
+            "costCode": "APPLE_PAY",
+            "name": "Apple Pay"
+          },
+          {
+            "costCode": "CIA",
+            "name": "Vorkasse"
+          },
+          {
+            "costCode": "AMZP",
+            "name": "Amazon Pay"
+          }
+        ],
+        "showPaymentDisclaimer": false,
+        "delivery": {
+          "deliveryText": "Mo. 07.12.–Di. 15.12.2026",
+          "deliveryStatus": "LONG",
+          "earlyDeliveryDate": "2026-12-07",
+          "lateDeliveryDate": "2026-12-15"
+        },
+        "freeReturnDays": 30,
+        "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=d4622db9015590b6ceb2f60dc1dd9f5b&categoryId=19116&pos=5&price=395.00&productid=209770546&sid=1140&type=offer&media=ipc-public-mcp",
+        "minShippingCost": "6,99 €",
+        "hasAlwaysFreeShipping": false,
+        "cheapestTotalPriceOffer": false,
+        "freshness": "2026-11-27T17:20:14.715Z"
+      }
+    ]
+  }
+}

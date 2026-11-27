@@ -3,10 +3,12 @@
 from __future__ import annotations
 
 import asyncio
+import base64
 import http.server
 import json
 import os
 import threading
+import time
 import webbrowser
 from pathlib import Path
 from typing import TypeVar
@@ -45,14 +47,37 @@ def default_token_path() -> Path:
     return resolve_repo_path(os.getenv("IDEALO_TOKEN_FILE", ".idealo_tokens.json"))
 
 
+def _is_jwt_expired(token: str, *, leeway_seconds: int = 30) -> bool:
+    """Return True only if `token` is a valid JWT whose `exp` timestamp has passed.
+
+    idealo's API Gateway answers expired Bearer tokens with HTTP 403 (explicit deny)
+    instead of 401, which prevents the MCP SDK from triggering OAuth re-login.
+    """
+    parts = token.split(".")
+    if len(parts) != 3:
+        return False
+    try:
+        padded = parts[1] + "=" * (-len(parts[1]) % 4)
+        payload = json.loads(base64.urlsafe_b64decode(padded))
+        exp = payload.get("exp")
+        return isinstance(exp, (int, float)) and time.time() >= (exp - leeway_seconds)
+    except Exception:
+        return False
+
+
 def tokens_present(token_file: str | Path) -> bool:
-    """Cheap, offline check that a previous `--list-tools` login saved an access token."""
+    """Cheap, offline check that a previous `--list-tools` login saved a live access token."""
     try:
         raw = json.loads(Path(token_file).read_text(encoding="utf-8"))
     except (OSError, ValueError):
         return False
     tokens = raw.get("tokens") if isinstance(raw, dict) else None
-    return isinstance(tokens, dict) and bool(tokens.get("access_token"))
+    if not isinstance(tokens, dict):
+        return False
+    access_token = tokens.get("access_token")
+    if not isinstance(access_token, str) or not access_token:
+        return False
+    return not _is_jwt_expired(access_token)
 
 
 async def _refuse_interactive_login(authorization_url: str) -> None:
@@ -109,7 +134,12 @@ class FileTokenStorage(TokenStorage):
 
     async def get_tokens(self) -> OAuthToken | None:
         raw = self._read().get("tokens")
-        return OAuthToken.model_validate(raw) if raw else None
+        if not raw:
+            return None
+        tok = OAuthToken.model_validate(raw)
+        if tok.access_token and _is_jwt_expired(tok.access_token):
+            return None
+        return tok
 
     async def set_tokens(self, tokens: OAuthToken) -> None:
         data = self._read()

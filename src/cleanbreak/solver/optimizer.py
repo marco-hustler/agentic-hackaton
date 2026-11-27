@@ -225,6 +225,18 @@ def _solve_exact_or_greedy(
     return tuple(current)
 
 
+def _is_you(name: str) -> bool:
+    return name.strip().lower() == "you"
+
+
+def _puts_possessive(name: str) -> tuple[str, str]:
+    return ("put", "your") if _is_you(name) else ("puts", "their")
+
+
+def _pays_verb(name: str) -> str:
+    return "pay" if _is_you(name) else "pays"
+
+
 def _build_item_rationale(
     vi: ValuedItem,
     action: AssignmentAction,
@@ -241,8 +253,9 @@ def _build_item_rationale(
         buy_url = val.best_buy_new_url
         buy_price = val.lowest_offer_eur
         extra = max(0.0, round(buy_price - val.fair_value_eur * (1.0 - item.effective_party_a_share()), 2))
+        put_verb, poss = _puts_possessive(party_b_name)
         savings_note = (
-            f"{party_b_name} puts their €{val.fair_value_eur * (1.0 - item.effective_party_a_share()):,.0f} "
+            f"{party_b_name} {put_verb} {poss} €{val.fair_value_eur * (1.0 - item.effective_party_a_share()):,.0f} "
             f"share toward a new one at €{buy_price:,.0f}, adding €{extra:,.0f}. "
             f"That is {val.deal_discount_pct:.0f}% under the 30-day average."
         )
@@ -252,8 +265,9 @@ def _build_item_rationale(
         buy_url = val.best_buy_new_url
         buy_price = val.lowest_offer_eur
         extra = max(0.0, round(buy_price - val.fair_value_eur * item.effective_party_a_share(), 2))
+        put_verb, poss = _puts_possessive(party_a_name)
         savings_note = (
-            f"{party_a_name} puts their €{val.fair_value_eur * item.effective_party_a_share():,.0f} "
+            f"{party_a_name} {put_verb} {poss} €{val.fair_value_eur * item.effective_party_a_share():,.0f} "
             f"share toward a new one at €{buy_price:,.0f}, adding €{extra:,.0f}. "
             f"That is {val.deal_discount_pct:.0f}% under the 30-day average."
         )
@@ -262,7 +276,7 @@ def _build_item_rationale(
     elif action == "sell_split":
         rationale = "The money is split by who paid."
     elif item.forced_action is not None:
-        rationale = "Moved here with Swap, so the points no longer decide this item."
+        rationale = "Locked manually, so points no longer decide this item."
     else:
         rationale = ""
 
@@ -393,9 +407,9 @@ def solve_split(request: SplitRequest) -> SplitResult:
     if abs(cash_a_to_b) < 1.0:
         cash_summary = f"Even split. No payment between {party_a} and {party_b}."
     elif cash_a_to_b > 0:
-        cash_summary = f"{party_a} pays {party_b} €{cash_a_to_b:,.2f}."
+        cash_summary = f"{party_a} {_pays_verb(party_a)} {party_b} €{cash_a_to_b:,.2f}."
     else:
-        cash_summary = f"{party_b} pays {party_a} €{abs(cash_a_to_b):,.2f}."
+        cash_summary = f"{party_b} {_pays_verb(party_b)} {party_a} €{abs(cash_a_to_b):,.2f}."
 
     frac_a = pts_a_won / max(1, pts_a_total)
     frac_b = pts_b_won / max(1, pts_b_total)
@@ -403,7 +417,14 @@ def solve_split(request: SplitRequest) -> SplitResult:
     is_envy_free = frac_a >= 0.50 and frac_b >= 0.50
     fairness_score_pct = round(min(100.0, ((frac_a + frac_b) / 2.0) * 100.0), 1)
 
-    mediator_summary = DETERMINISTIC_SUMMARY
+    deal_note = ""
+    if arbitrage_highlights:
+        deal_names = ", ".join(a.item_name for a in arbitrage_highlights)
+        deal_note = f" Buy-new idealo deal flagged on {deal_names}."
+    mediator_summary = (
+        f"Total fair value is €{total_fair:,.0f} ({fairness_score_pct:.0f}% wish satisfaction). "
+        f"{cash_summary}{deal_note} {DETERMINISTIC_SUMMARY}"
+    )
 
     return SplitResult(
         mode=request.mode,
