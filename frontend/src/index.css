@@ -324,32 +324,81 @@ body {
   }
 }
 
-/* ---- Split board: wide diorama on top, card columns below, dock at the bottom ---- */
-.world-frame[data-mode="house"][data-tab="split"] {
-  top: 76px;
-  bottom: calc(100% - 76px - 32vh);
+/* ---- Split: meter on top, house in the middle, one box per person on the sides ---- */
+:root {
+  --split-top: 76px;
+  --meter-h: 118px;
+  --side-w: clamp(300px, 26vw, 420px);
 }
-.split-board {
+.world-frame[data-mode="house"][data-tab="split"] {
+  top: calc(var(--split-top) + var(--meter-h) + 12px);
+  bottom: calc(100% - var(--split-top) - var(--meter-h) - 12px - 30vh);
+}
+.split-meter {
   position: absolute;
   z-index: 30;
-  top: calc(76px + 32vh + 12px);
+  top: var(--split-top);
   left: 12px;
   right: 12px;
-  bottom: 0;
-  overflow-y: auto;
-  padding-bottom: 220px;
+  height: var(--meter-h);
+  padding: 14px 18px;
 }
-.split-dock {
+/* Small screens: the boxes stack under the house and scroll together. */
+.split-sides {
   position: absolute;
-  z-index: 35;
+  z-index: 30;
+  top: calc(var(--split-top) + var(--meter-h) + 24px + 30vh);
+  bottom: 0;
   left: 12px;
   right: 12px;
-  bottom: 12px;
-  padding: 12px 16px;
-  border-radius: 1rem;
-  background: rgba(255, 255, 255, 0.94);
-  backdrop-filter: blur(16px);
-  box-shadow: 0 -2px 0 rgba(0, 0, 0, 0.03), 0 18px 40px -12px rgba(15, 23, 42, 0.28);
+  overflow-y: auto;
+  padding-bottom: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.split-side {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.split-side .panel {
+  max-height: 70vh;
+}
+@media (min-width: 1024px) {
+  :root {
+    --split-top: 84px;
+  }
+  .world-frame[data-mode="house"][data-tab="split"] {
+    left: calc(24px + var(--side-w) + 24px);
+    right: calc(24px + var(--side-w) + 24px);
+    top: calc(var(--split-top) + var(--meter-h) + 16px);
+    bottom: 24px;
+  }
+  .split-meter {
+    left: calc(24px + var(--side-w) + 24px);
+    right: calc(24px + var(--side-w) + 24px);
+  }
+  .split-sides {
+    display: contents;
+  }
+  .split-side {
+    position: absolute;
+    z-index: 30;
+    top: var(--split-top);
+    bottom: 24px;
+    width: var(--side-w);
+  }
+  .split-side .panel {
+    flex: 0 1 auto;
+    max-height: none;
+  }
+  .split-side-left {
+    left: 24px;
+  }
+  .split-side-right {
+    right: 24px;
+  }
 }
 .item-modal {
   position: fixed;
@@ -365,25 +414,6 @@ body {
   pointer-events: auto;
   width: min(980px, 100%);
   max-height: min(88vh, 900px);
-}
-@media (min-width: 1024px) {
-  .world-frame[data-mode="house"][data-tab="split"] {
-    left: 24px;
-    right: 24px;
-    top: 80px;
-    bottom: calc(100% - 80px - 34vh);
-  }
-  .split-board {
-    top: calc(80px + 34vh + 16px);
-    left: 24px;
-    right: 24px;
-    padding-bottom: 120px;
-  }
-  .split-dock {
-    left: 24px;
-    right: 24px;
-    bottom: 16px;
-  }
 }
 
 @keyframes pulse-dot {

@@ -124,6 +124,7 @@ export type SplitResult = {
   arbitrage_highlights: Assignment[]
   replacement_basket: ReplacementSuggestion[]
   mediator_summary: string
+  agent_note?: string | null
 }
 
 export type DemoScenario = {

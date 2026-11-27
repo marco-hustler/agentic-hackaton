@@ -85,6 +85,11 @@ export function solveSplit(body: {
   return api<SplitResult>('/api/solve', { method: 'POST', body: JSON.stringify(body) })
 }
 
+/** The split agent: tries every strategy and proposes the fairest (deterministic, no LLM). */
+export function agentSplit(body: { party_a_name: string; party_b_name: string; valued_items: ValuedItem[] }) {
+  return api<SplitResult>('/api/solve/agent', { method: 'POST', body: JSON.stringify(body) })
+}
+
 /** Recompute depreciation + fair value after a condition/year edit (0 MCP calls). */
 export function reapplyDepreciation(item: HouseholdItem, valuation: ItemValuation) {
   return api<ItemValuation>('/api/reapply-depreciation', {

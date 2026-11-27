@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { getProcessInventory, reapplyDepreciation, saveProcessInventory, solveSplit } from '../api/client'
+import { agentSplit, getProcessInventory, reapplyDepreciation, saveProcessInventory } from '../api/client'
 import type {
   AssignmentAction,
   DemoScenario,
@@ -17,7 +17,7 @@ import type {
  * - Leave the house or close the page: any pending save is flushed.
  *
  * Nothing here calls idealo: depreciation is recomputed server-side from the
- * stored valuation and the solver is deterministic.
+ * stored valuation, and the split agent (deterministic) picks the strategy.
  */
 
 type Entry = {
@@ -99,7 +99,7 @@ export function useHouseInventory(processId: string | null, names: [string, stri
     const { valuedItems, mode, version } = entry
     const timer = setTimeout(
       () => {
-        solveSplit({ party_a_name: names[0], party_b_name: names[1], mode, valued_items: valuedItems })
+        agentSplit({ party_a_name: names[0], party_b_name: names[1], valued_items: valuedItems })
           .then((split) => {
             setSolveError(null)
             setByProcess((prev) => {

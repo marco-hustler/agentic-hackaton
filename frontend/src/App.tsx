@@ -195,10 +195,9 @@ export default function App() {
                 scenario={demo}
                 error={demoError}
                 names={names}
+                people={participantNames(focusProcess)}
                 solving={inventory.solving}
-                onSetMode={inventory.setMode}
                 onOpenItem={setDetailId}
-                onForce={inventory.forceAction}
               />
               {detailVi && (
                 <>

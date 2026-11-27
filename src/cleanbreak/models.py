@@ -232,6 +232,8 @@ class SplitResult(BaseModel):
     arbitrage_highlights: list[AssignedItemResult] = Field(default_factory=list)
     replacement_basket: list[ReplacementSuggestion] = Field(default_factory=list)
     mediator_summary: str = ""
+    # Set when the split agent chose the mode: why this proposal won.
+    agent_note: str | None = None
 
 
 class ProcessInventory(BaseModel):

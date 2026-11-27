@@ -433,3 +433,30 @@ def solve_split(request: SplitRequest) -> SplitResult:
 # Used directly or as the fallback when no LLM is set. The UI shows the totals, the payment
 # and the contested item, so the summary adds only where the values come from.
 DETERMINISTIC_SUMMARY = "Values come from idealo offers by well rated shops, minus age and condition."
+
+
+AGENT_MODES: tuple[SplitMode, ...] = ("balanced", "min_cash", "liquidate_contested")
+MODE_LABELS: dict[str, str] = {
+    "balanced": "closest to 50/50",
+    "min_cash": "least cash changing hands",
+    "liquidate_contested": "selling what both want",
+}
+
+
+def _agent_rank(r: SplitResult) -> tuple:
+    # Envy-free first, then wishes met, then less cash, then fewer things sold.
+    return (not r.is_envy_free, -r.fairness_score_pct, abs(r.cash_transfer_a_to_b_eur), r.sell_pool_eur)
+
+
+def agent_split(req: SplitRequest) -> SplitResult:
+    """The split agent: try every strategy with the deterministic solver and propose the fairest."""
+    results = [solve_split(req.model_copy(update={"mode": m})) for m in AGENT_MODES]
+    best = min(results, key=_agent_rank)
+    others = [r for r in results if r is not best]
+    note = f"I compared {len(results)} ways to split and chose {MODE_LABELS[best.mode]}: " + (
+        "nobody would rather have the other's share" if best.is_envy_free else "the most wishes met"
+    ) + f", {round(best.fairness_score_pct)}% fairness."
+    if others:
+        runner = min(others, key=_agent_rank)
+        note += f" Next best was {MODE_LABELS[runner.mode]} at {round(runner.fairness_score_pct)}%."
+    return best.model_copy(update={"agent_note": note})

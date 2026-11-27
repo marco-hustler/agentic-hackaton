@@ -120,3 +120,21 @@ def test_least_cash_counts_the_buyers_top_up() -> None:
     res = solve_split(SplitRequest(mode="min_cash", valued_items=valued))
     espresso = next(a for a in res.assignments if a.item_id == "espresso")
     assert espresso.action in ("party_a", "party_b")
+
+
+def test_agent_picks_an_envy_free_split_when_one_exists():
+    from fastapi.testclient import TestClient
+
+    from cleanbreak.api.app import app
+
+    c = TestClient(app)
+    items = c.get("/api/demo").json()["valued_items"]
+    r = c.post("/api/solve/agent", json={"party_a_name": "You", "party_b_name": "Marco", "valued_items": items}).json()
+    assert r["agent_note"] and r["mode"] in {"balanced", "min_cash", "liquidate_contested"}
+    others = [
+        c.post("/api/solve", json={"party_a_name": "You", "party_b_name": "Marco", "mode": m, "valued_items": items}).json()
+        for m in ("balanced", "min_cash", "liquidate_contested")
+    ]
+    if any(o["is_envy_free"] for o in others):
+        assert r["is_envy_free"]
+    assert r["fairness_score_pct"] >= max(o["fairness_score_pct"] for o in others if o["is_envy_free"] == r["is_envy_free"])

@@ -36,7 +36,7 @@ from cleanbreak.models import (
     ValuedItem,
 )
 from cleanbreak.paths import REPO_ROOT
-from cleanbreak.solver.optimizer import solve_split
+from cleanbreak.solver.optimizer import agent_split, solve_split
 from cleanbreak.valuation.engine import build_demo_fallback_valuations, compute_depreciation
 
 load_dotenv()
@@ -277,6 +277,12 @@ async def reapply_depreciation(req: RevalueSingleRequest) -> ItemValuation:
 async def solve_endpoint(req: SplitRequest) -> SplitResult:
     """Deterministic solver only — interactive actions never wait on an LLM."""
     return solve_split(req)
+
+
+@app.post("/api/solve/agent", response_model=SplitResult)
+async def solve_agent_endpoint(req: SplitRequest) -> SplitResult:
+    """The split agent picks the strategy (the request's mode is ignored)."""
+    return agent_split(req)
 
 
 @app.post("/api/summary")

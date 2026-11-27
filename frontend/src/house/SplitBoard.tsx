@@ -1,25 +1,24 @@
 import { useState } from 'react'
-import type { Assignment, AssignmentAction, DemoScenario, SplitMode, ValuedItem } from '../types/inventory'
+import type { Assignment, AssignmentAction, DemoScenario, ValuedItem } from '../types/inventory'
 import { participantColor } from '../world/rooms'
 import { formatEur, pct, verb } from './format'
 
 type SplitBoardProps = {
   scenario: DemoScenario | null
   error: string | null
+  /** The two people the solver splits between. */
   names: [string, string]
+  /** Everyone in the process; people beyond the first two get an empty box for now. */
+  people: string[]
   solving: boolean
-  onSetMode: (mode: SplitMode) => void
   onOpenItem: (id: string) => void
-  onForce: (id: string, action: AssignmentAction | null) => void
 }
 
-const MODES: { value: SplitMode; label: string; hint: string }[] = [
-  { value: 'balanced', label: 'Balanced', hint: 'Closest to a 50/50 value split' },
-  { value: 'min_cash', label: 'Less cash', hint: 'Fewer euros changing hands' },
-  { value: 'liquidate_contested', label: 'Sell contested', hint: 'Sell what both want and split the money' },
-]
-
-const SIDE_TINT = ['bg-[#ffdad4] text-[#8a1c10]', 'bg-[#d1fae5] text-[#065f46]'] as const
+const MODE_LABEL: Record<string, string> = {
+  balanced: 'Closest to 50/50',
+  min_cash: 'Least cash',
+  liquidate_contested: 'Sell what both want',
+}
 
 function sideOf(action: AssignmentAction): 0 | 1 | null {
   if (action === 'party_a' || action === 'keep_a_buy_new_b') return 0
@@ -27,112 +26,79 @@ function sideOf(action: AssignmentAction): 0 | 1 | null {
   return null
 }
 
-function Photo({ vi, className }: { vi: ValuedItem; className: string }) {
+function Thumb({ vi }: { vi: ValuedItem }) {
   return (
-    <span className={`flex items-center justify-center overflow-hidden bg-white ${className}`} aria-hidden>
+    <span className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-line bg-white" aria-hidden>
       {vi.valuation.image_url ? (
-        <img src={vi.valuation.image_url} alt="" loading="lazy" className="h-full w-full object-contain p-2" />
+        <img src={vi.valuation.image_url} alt="" loading="lazy" className="h-full w-full object-contain p-1" />
       ) : (
-        <span className="h-6 w-6 rounded-md bg-clay" />
+        <span className="h-4 w-4 rounded-md bg-clay" />
       )}
     </span>
   )
 }
 
-/** Minimal tile: photo, name, price. A lock dot when the user pinned it. */
-function ItemCard({ vi, a, onOpen }: { vi: ValuedItem; a: Assignment; onOpen: () => void }) {
+/** One item row in a person's box: photo, name, value. */
+function ItemRow({ vi, a, note, onOpen }: { vi: ValuedItem; a: Assignment; note?: string; onOpen: () => void }) {
   return (
     <li>
       <button
         type="button"
         onClick={onOpen}
-        className="group relative flex h-full w-full flex-col overflow-hidden rounded-2xl border border-line bg-surface text-left shadow-[0_1px_0_rgba(0,0,0,0.04)] transition hover:-translate-y-0.5 hover:shadow-[0_12px_24px_-10px_rgba(15,23,42,0.25)] active:scale-[0.98]"
+        className="flex w-full items-center gap-3 rounded-2xl px-2 py-2 text-left transition hover:bg-surface-low active:scale-[0.99]"
       >
-        <Photo vi={vi} className="aspect-[16/10] w-full border-b border-line" />
-        {vi.item.forced_action && (
-          <span className="absolute right-2 top-2 rounded-full bg-midnight px-2 py-0.5 text-[10px] font-bold text-white">Locked</span>
-        )}
-        <span className="flex flex-1 flex-col justify-between gap-1 p-2.5">
-          <span className="line-clamp-2 text-sm font-bold leading-snug text-ink">{vi.item.name}</span>
-          <span className="text-base font-extrabold text-petrol">{formatEur(a.fair_value_eur)}</span>
+        <Thumb vi={vi} />
+        <span className="min-w-0 flex-1">
+          <span className="block truncate text-sm font-bold text-ink">{vi.item.name}</span>
+          {note && <span className="block truncate text-xs text-muted">{note}</span>}
         </span>
+        <span className="shrink-0 font-extrabold text-petrol">{formatEur(a.fair_value_eur)}</span>
       </button>
     </li>
   )
 }
 
-/** Contested tile: same card, plus one-tap decisions. */
-function ContestedCard({
-  vi,
-  a,
-  names,
-  onOpen,
-  onForce,
-}: {
-  vi: ValuedItem
-  a: Assignment
-  names: [string, string]
-  onOpen: () => void
-  onForce: (action: AssignmentAction | null) => void
-}) {
-  const side = sideOf(a.action)
-  const forced = vi.item.forced_action ?? null
-  const choices: { action: AssignmentAction; label: string; cls: string }[] = [
-    { action: 'party_a', label: names[0], cls: SIDE_TINT[0] },
-    { action: 'party_b', label: names[1], cls: SIDE_TINT[1] },
-    { action: 'sell_split', label: 'Sell', cls: 'bg-clay text-petrol' },
-  ]
+type BoxProps = {
+  name: string
+  color: string
+  total?: number
+  share?: number
+  approved: boolean
+  onApprove?: () => void
+  children: React.ReactNode
+}
+
+/** A person's box: name, approve tick, their items, their total. */
+function PersonBox({ name, color, total, share, approved, onApprove, children }: BoxProps) {
   return (
-    <li className="overflow-hidden rounded-2xl border border-[#fecaca] bg-surface shadow-[0_8px_20px_-12px_rgba(186,26,26,0.35)]">
-      <button type="button" onClick={onOpen} className="block w-full text-left">
-        <Photo vi={vi} className="aspect-[16/10] w-full border-b border-line" />
-        <span className="block p-2.5 pb-1.5">
-          <span className="line-clamp-2 text-sm font-bold leading-snug text-ink">{vi.item.name}</span>
-          <span className="mt-1 flex items-center justify-between gap-2">
-            <span className="text-base font-extrabold text-petrol">{formatEur(a.fair_value_eur)}</span>
-            <span className="truncate text-[11px] font-bold text-muted">
-              → {side === null ? 'sold' : names[side]}
-            </span>
-          </span>
-        </span>
-      </button>
-      <div className="grid grid-cols-3 gap-1 p-2 pt-0">
-        {choices.map((c) => (
+    <section className="panel pop-in flex min-h-0 flex-col overflow-hidden" style={{ background: '#ffffff' }} aria-label={name}>
+      <header className="flex items-center gap-3 border-b border-line px-4 py-3">
+        <span className="h-3.5 w-3.5 shrink-0 rounded-full" style={{ background: color }} aria-hidden />
+        <h3 className="min-w-0 flex-1 truncate text-lg font-extrabold tracking-tight text-petrol">{name}</h3>
+        {onApprove && (
           <button
-            key={c.action}
             type="button"
-            onClick={() => onForce(forced === c.action ? null : c.action)}
-            aria-pressed={forced === c.action}
-            className={`truncate rounded-lg px-1.5 py-1.5 text-[11px] font-bold transition ${c.cls} ${
-              forced === c.action ? 'ring-2 ring-petrol' : 'opacity-80 hover:opacity-100'
+            onClick={onApprove}
+            aria-pressed={approved}
+            title={approved ? `${name} approved this split` : `Approve as ${name}`}
+            className={`flex h-9 items-center gap-1.5 rounded-full px-3 text-sm font-bold transition active:scale-95 ${
+              approved ? 'bg-sage text-white' : 'border border-line text-ink2 hover:border-sage hover:text-sage'
             }`}
           >
-            {c.label}
+            ✓ <span>{approved ? 'Approved' : 'Approve'}</span>
           </button>
-        ))}
-      </div>
-    </li>
-  )
-}
-
-function ColumnHeader({ name, color, count, total, share }: { name: string; color: string; count: number; total: number; share: number }) {
-  return (
-    <div className="flex items-center justify-between gap-3 rounded-2xl bg-surface-low px-4 py-3">
-      <div className="flex min-w-0 items-center gap-2.5">
-        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl font-extrabold text-white" style={{ background: color }}>
-          {name.slice(0, 1).toUpperCase()}
-        </span>
-        <div className="min-w-0">
-          <p className="truncate font-extrabold tracking-tight text-petrol">{name}</p>
-          <p className="text-xs text-muted">
-            {count} {count === 1 ? 'item' : 'items'} · {share}%
-          </p>
-        </div>
-      </div>
-      <span className="shrink-0 text-xl font-extrabold tracking-tight" style={{ color }}>
-        {formatEur(total)}
-      </span>
-    </div>
+        )}
+      </header>
+      <div className="min-h-0 flex-1 overflow-y-auto p-2">{children}</div>
+      {total !== undefined && (
+        <footer className="flex items-baseline justify-between border-t border-line px-4 py-3">
+          <span className="text-sm text-muted">{share}% of the value</span>
+          <span className="text-xl font-extrabold tracking-tight" style={{ color }}>
+            {formatEur(total)}
+          </span>
+        </footer>
+      )}
+    </section>
   )
 }
 
@@ -161,7 +127,8 @@ function DetailsModal({ scenario, names, onClose }: { scenario: DemoScenario; na
             Close
           </button>
         </div>
-        <p className="mt-1 text-sm text-ink2">Prices come from idealo offers by well-rated shops, minus age and condition.</p>
+        {s.agent_note && <p className="mt-2 rounded-2xl bg-midnight px-4 py-3 text-sm text-white">{s.agent_note}</p>}
+        <p className="mt-2 text-sm text-ink2">Prices come from idealo offers by well-rated shops, minus age and condition.</p>
         <dl className="mt-4 divide-y divide-line rounded-2xl bg-surface-low px-4 text-sm">
           {rows.map(([k, v, cls]) => (
             <div key={k} className="flex justify-between gap-3 py-2.5">
@@ -223,139 +190,137 @@ function DetailsModal({ scenario, names, onClose }: { scenario: DemoScenario; na
 }
 
 /**
- * The split board: one column per person, contested items in the middle with
- * one-tap decisions, and a dock with the balance, the cash transfer and the mode.
+ * The split page: the agent's proposal. Meter on top, the house in the middle
+ * (the 3D frame), one box per person on the sides. People approve with a tick.
  */
-export function SplitBoard({ scenario, error, names, solving, onSetMode, onOpenItem, onForce }: SplitBoardProps) {
+export function SplitBoard({ scenario, error, names, people, solving, onOpenItem }: SplitBoardProps) {
   const [showDetails, setShowDetails] = useState(false)
+  /** Who approved which proposal; a new proposal needs new approvals. */
+  const [approvals, setApprovals] = useState<Record<string, string>>({})
 
   if (!scenario) {
-    return <div className="split-board flex items-center justify-center text-sm text-muted">{error ? `Could not load the split: ${error}` : 'Loading the split…'}</div>
+    return (
+      <div className="split-meter panel flex items-center justify-center text-sm text-muted" style={{ background: '#ffffff' }}>
+        {error ? `Could not load the split: ${error}` : 'The agent is preparing a split…'}
+      </div>
+    )
   }
 
   const split = scenario.split
   const byId = new Map(scenario.valued_items.map((vi) => [vi.item.id, vi]))
-  const cols: Assignment[][] = [[], []]
-  const middle: Assignment[] = []
-  const owned = [0, 0]
+  const mine: Assignment[][] = [[], []]
+  const sold: Assignment[] = []
   for (const a of split.assignments) {
     const side = sideOf(a.action)
-    if (side !== null) owned[side] += 1
-    if (a.is_contested || side === null) middle.push(a)
-    else cols[side].push(a)
+    if (side === null) sold.push(a)
+    else mine[side].push(a)
   }
   const goods = [split.party_a_received_goods_eur, split.party_b_received_goods_eur]
   const aPct = pct(goods[0], goods[0] + goods[1])
   const shares = [aPct, 100 - aPct]
-  const gap = Math.abs(goods[0] - goods[1])
   const cash = split.cash_transfer_a_to_b_eur
   const payer = cash >= 0 ? names[0] : names[1]
   const payee = cash >= 0 ? names[1] : names[0]
-  const color = [participantColor(0), participantColor(1)]
+  const proposal = `${split.assignments.map((a) => `${a.item_id}:${a.action}`).join(',')}|${Math.round(cash)}`
+  const isApproved = (name: string) => approvals[name] === proposal
+  const approvedCount = names.filter(isApproved).length
+  const toggle = (name: string) =>
+    setApprovals((prev) => ({ ...prev, [name]: prev[name] === proposal ? '' : proposal }))
 
-  const card = (a: Assignment, contested: boolean) => {
-    const vi = byId.get(a.item_id)
-    if (!vi) return null
-    return contested ? (
-      <ContestedCard key={a.item_id} vi={vi} a={a} names={names} onOpen={() => onOpenItem(a.item_id)} onForce={(act) => onForce(a.item_id, act)} />
-    ) : (
-      <ItemCard key={a.item_id} vi={vi} a={a} onOpen={() => onOpenItem(a.item_id)} />
-    )
+  const note = (a: Assignment, side: 0 | 1) => {
+    if (a.action === 'keep_a_buy_new_b' || a.action === 'keep_b_buy_new_a') {
+      return `${names[1 - side]} ${verb(names[1 - side], 'buys', 'buy')} a new one on idealo`
+    }
+    return a.is_contested ? 'Both wanted it' : undefined
   }
+
+  const row = (a: Assignment, n?: string) => {
+    const vi = byId.get(a.item_id)
+    return vi ? <ItemRow key={a.item_id} vi={vi} a={a} note={n} onOpen={() => onOpenItem(a.item_id)} /> : null
+  }
+
+  const box = (name: string, i: number) =>
+    i < 2 ? (
+      <PersonBox
+        key={name}
+        name={name}
+        color={participantColor(i)}
+        total={goods[i]}
+        share={shares[i]}
+        approved={isApproved(name)}
+        onApprove={() => toggle(name)}
+      >
+        {mine[i].length ? (
+          <ul>{mine[i].map((a) => row(a, note(a, i as 0 | 1)))}</ul>
+        ) : (
+          <p className="p-4 text-center text-sm text-muted">Nothing for {name} in this proposal</p>
+        )}
+      </PersonBox>
+    ) : (
+      <PersonBox key={name} name={name} color={participantColor(i)} approved={false}>
+        <p className="p-4 text-center text-sm text-muted">The agent splits between two people for now.</p>
+      </PersonBox>
+    )
+
+  // Boxes alternate sides: 1st left, 2nd right, 3rd left…
+  const all = people.length >= 2 ? people : names
+  const left = all.map(box).filter((_, i) => i % 2 === 0)
+  const right = all.map(box).filter((_, i) => i % 2 === 1)
+  const soldBox = sold.length > 0 && (
+    <PersonBox key="sold" name="Sold and split" color="#64748b" approved={false}>
+      <ul>{sold.map((a) => row(a, 'Sold, money split by share'))}</ul>
+    </PersonBox>
+  )
 
   return (
     <>
-      <div className="split-board">
-        <div className="grid grid-cols-1 gap-4 lg:grid-cols-12">
-          {[0, 1].map((side) => (
-            <section key={side} className={`flex flex-col gap-3 lg:col-span-4 ${side === 1 ? 'lg:order-3' : 'lg:order-1'}`} aria-label={names[side]}>
-              <ColumnHeader name={names[side]} color={color[side]} count={owned[side]} total={goods[side]} share={shares[side]} />
-              {cols[side].length > 0 ? (
-                <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-2">{cols[side].map((a) => card(a, false))}</ul>
-              ) : (
-                <p className="rounded-2xl border border-dashed border-line p-4 text-center text-sm text-muted">Nothing uncontested yet</p>
-              )}
-            </section>
-          ))}
-
-          <section className="flex flex-col gap-3 lg:order-2 lg:col-span-4" aria-label="Contested">
-            <div className="rounded-2xl bg-[#ffdad6]/50 px-3 py-3 text-center">
-              <p className="text-sm font-extrabold tracking-tight text-[#93000a]">Contested</p>
-              <p className="text-xs text-ink2">
-                {middle.length} · {formatEur(middle.reduce((s, a) => s + a.fair_value_eur, 0))}
-              </p>
-            </div>
-            <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-2">{middle.map((a) => card(a, true))}</ul>
-            {middle.length === 0 && <p className="text-center text-xs text-muted">Nothing contested</p>}
-          </section>
+      {/* Meter */}
+      <div className="split-meter panel pop-in" style={{ background: '#ffffff' }}>
+        <div className="flex items-center justify-between gap-2 text-sm font-bold text-ink">
+          <span className="flex items-center gap-1.5">
+            <span className="h-2.5 w-2.5 rounded-full" style={{ background: participantColor(0) }} />
+            {names[0]} <span className="font-extrabold text-terracotta">{shares[0]}%</span>
+          </span>
+          <span className={`pill ${approvedCount === 2 ? 'pill-settled' : 'pill-draft'}`}>
+            {solving ? 'Agent re-balancing…' : approvedCount === 2 ? 'Agreed ✓' : `${approvedCount}/2 approved`}
+          </span>
+          <span className="flex items-center gap-1.5">
+            <span className="font-extrabold text-sage">{shares[1]}%</span> {names[1]}
+            <span className="h-2.5 w-2.5 rounded-full" style={{ background: participantColor(1) }} />
+          </span>
+        </div>
+        <div className="relative mt-2 flex h-3 overflow-hidden rounded-full bg-clay">
+          <div className="bg-terracotta transition-all duration-500" style={{ width: `${shares[0]}%` }} />
+          <div className="flex-1 bg-sage" />
+          <span className="absolute inset-y-0 left-1/2 w-1 -translate-x-1/2 bg-white shadow" aria-hidden />
+        </div>
+        <div className="mt-2.5 flex items-center gap-2 text-sm">
+          <span className="rounded-full bg-midnight px-2.5 py-0.5 text-xs font-bold text-white">Agent</span>
+          <span className="min-w-0 flex-1 truncate text-ink2">
+            {MODE_LABEL[split.mode] ?? split.mode} ·{' '}
+            {Math.abs(cash) < 1 ? (
+              'no cash to pay'
+            ) : (
+              <>
+                <b className="text-petrol">{payer}</b> {verb(payer, 'pays', 'pay')} <b className="text-petrol">{payee}</b>{' '}
+                <b className="text-terracotta">{formatEur(Math.abs(cash))}</b>
+              </>
+            )}
+          </span>
+          <button type="button" onClick={() => setShowDetails(true)} className="btn btn-ghost h-8 shrink-0 px-3 text-xs">
+            Why?
+          </button>
         </div>
       </div>
 
-      {/* Dock */}
-      <div className="split-dock pop-in-late">
-        <div className="flex flex-col gap-3 xl:flex-row xl:items-center">
-          <div className="min-w-0 flex-1">
-            <div className="flex items-center justify-between gap-2 text-sm">
-              <span className="flex items-center gap-1.5 font-bold text-ink">
-                <span className="h-2.5 w-2.5 rounded-full" style={{ background: color[0] }} />
-                {names[0]} <span className="font-extrabold text-terracotta">{shares[0]}%</span>
-              </span>
-              <span className={`pill ${gap < 50 ? 'pill-settled' : 'pill-draft'}`}>
-                {solving ? 'Re-balancing…' : `Gap ${formatEur(gap)}`}
-              </span>
-              <span className="flex items-center gap-1.5 font-bold text-ink">
-                <span className="font-extrabold text-sage">{shares[1]}%</span> {names[1]}
-                <span className="h-2.5 w-2.5 rounded-full" style={{ background: color[1] }} />
-              </span>
-            </div>
-            <div className="relative mt-1.5 flex h-2.5 overflow-hidden rounded-full bg-clay">
-              <div className="bg-terracotta transition-all duration-500" style={{ width: `${shares[0]}%` }} />
-              <div className="flex-1 bg-sage" />
-              <span className="absolute inset-y-0 left-1/2 w-1 -translate-x-1/2 bg-white shadow" aria-hidden />
-            </div>
-          </div>
-
-          <div className="flex items-center gap-2.5 rounded-xl bg-surface-low px-3 py-2">
-            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-midnight text-sm font-extrabold text-white" aria-hidden>
-              €
-            </span>
-            <span className="text-sm">
-              <span className="label-sm block text-muted">Cash to even out</span>
-              {Math.abs(cash) < 1 ? (
-                <span className="font-bold text-petrol">Nothing to pay</span>
-              ) : (
-                <span className="text-petrol">
-                  <b>{payer}</b> {verb(payer, 'pays', 'pay')} <b>{payee}</b> <b className="text-terracotta">{formatEur(Math.abs(cash))}</b>
-                </span>
-              )}
-            </span>
-          </div>
-
-          <div className="flex items-center gap-2">
-            <div className="grid grid-cols-3 gap-1 rounded-xl bg-clay/60 p-1" role="radiogroup" aria-label="Split mode">
-              {MODES.map((m) => {
-                const active = split.mode === m.value
-                return (
-                  <button
-                    key={m.value}
-                    type="button"
-                    role="radio"
-                    aria-checked={active}
-                    title={m.hint}
-                    onClick={() => onSetMode(m.value)}
-                    className={`whitespace-nowrap rounded-lg px-2.5 py-1.5 text-xs font-bold transition ${
-                      active ? 'bg-white text-petrol shadow-sm' : 'text-ink2 hover:bg-white/50'
-                    }`}
-                  >
-                    {m.label}
-                  </button>
-                )
-              })}
-            </div>
-            <button type="button" onClick={() => setShowDetails(true)} className="btn btn-primary h-10 whitespace-nowrap px-4 text-sm">
-              How it's calculated
-            </button>
-          </div>
+      <div className="split-sides">
+        <div className="split-side split-side-left">
+          {left}
+          {right.length < left.length && soldBox}
+        </div>
+        <div className="split-side split-side-right">
+          {right}
+          {right.length >= left.length && soldBox}
         </div>
       </div>
 
