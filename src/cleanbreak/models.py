@@ -244,4 +244,6 @@ class ProcessInventory(BaseModel):
 
     mode: SplitMode = "balanced"
     valued_items: list[ValuedItem] = Field(default_factory=list)
+    # Items included in the last "Split" (null = never split: everything waits in the middle).
+    split_ids: list[str] | None = None
     updated_at: str | None = None

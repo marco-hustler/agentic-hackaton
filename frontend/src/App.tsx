@@ -197,6 +197,8 @@ export default function App() {
                 names={names}
                 people={participantNames(focusProcess)}
                 solving={inventory.solving}
+                unsplit={inventory.unsplit}
+                onSplit={inventory.splitAll}
                 onOpenItem={setDetailId}
               />
               {detailVi && (

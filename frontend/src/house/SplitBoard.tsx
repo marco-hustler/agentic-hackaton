@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import type { Assignment, AssignmentAction, DemoScenario, ValuedItem } from '../types/inventory'
 import { participantColor } from '../world/rooms'
 import { formatEur, pct, verb } from './format'
@@ -11,8 +11,17 @@ type SplitBoardProps = {
   /** Everyone in the process; people beyond the first two get an empty box for now. */
   people: string[]
   solving: boolean
+  /** Items waiting in the middle for the next Split. */
+  unsplit: ValuedItem[]
+  onSplit: () => void
   onOpenItem: (id: string) => void
 }
+
+type Phase = 'idle' | 'spinning' | 'flying'
+/** Cards keep spinning at least this long, even if the agent answers sooner. */
+const SPIN_MIN_MS = 1100
+const FLY_MS = 950
+const FLY_STAGGER_MS = 140
 
 const MODE_LABEL: Record<string, string> = {
   balanced: 'Closest to 50/50',
@@ -41,7 +50,7 @@ function Thumb({ vi }: { vi: ValuedItem }) {
 /** One item row in a person's box: photo, name, value. */
 function ItemRow({ vi, a, note, onOpen }: { vi: ValuedItem; a: Assignment; note?: string; onOpen: () => void }) {
   return (
-    <li>
+    <li className="pop-in">
       <button
         type="button"
         onClick={onOpen}
@@ -59,6 +68,8 @@ function ItemRow({ vi, a, note, onOpen }: { vi: ValuedItem; a: Assignment; note?
 }
 
 type BoxProps = {
+  /** Where flying cards land: "0", "1" or "sold". */
+  dropKey?: string
   name: string
   color: string
   total?: number
@@ -69,9 +80,14 @@ type BoxProps = {
 }
 
 /** A person's box: name, approve tick, their items, their total. */
-function PersonBox({ name, color, total, share, approved, onApprove, children }: BoxProps) {
+function PersonBox({ dropKey, name, color, total, share, approved, onApprove, children }: BoxProps) {
   return (
-    <section className="panel pop-in flex min-h-0 flex-col overflow-hidden" style={{ background: '#ffffff' }} aria-label={name}>
+    <section
+      data-split-box={dropKey}
+      className="panel pop-in flex min-h-0 flex-col overflow-hidden"
+      style={{ background: '#ffffff' }}
+      aria-label={name}
+    >
       <header className="flex items-center gap-3 border-b border-line px-4 py-3">
         <span className="h-3.5 w-3.5 shrink-0 rounded-full" style={{ background: color }} aria-hidden />
         <h3 className="min-w-0 flex-1 truncate text-lg font-extrabold tracking-tight text-petrol">{name}</h3>
@@ -189,14 +205,176 @@ function DetailsModal({ scenario, names, onClose }: { scenario: DemoScenario; na
   )
 }
 
+/** A small card in the middle pile: photo, name, value. */
+function PileCard({ vi, spinning, index, count, cardRef, onOpen }: {
+  vi: ValuedItem
+  spinning: boolean
+  index: number
+  count: number
+  cardRef: (el: HTMLElement | null) => void
+  onOpen: () => void
+}) {
+  // Fanned like a hand of cards: a small tilt and a lift towards the middle.
+  const PER_ROW = 10
+  const rowStart = index - (index % PER_ROW)
+  const mid = (Math.min(count - rowStart, PER_ROW) - 1) / 2
+  const k = (index % PER_ROW) - mid
+  return (
+    <li className="pile-slot" style={{ rotate: `${k * 4}deg`, translate: `0 ${Math.abs(k) * 5}px`, zIndex: 10 - Math.abs(Math.round(k)) }}>
+      <button
+        ref={cardRef}
+        type="button"
+        onClick={onOpen}
+        disabled={spinning}
+        style={spinning ? { animationDelay: `${(index % 5) * -110}ms` } : undefined}
+        className={`pile-card flex w-24 flex-col overflow-hidden rounded-2xl border border-line bg-surface text-left shadow-[0_10px_24px_-12px_rgba(15,23,42,0.35)] transition hover:-translate-y-2 xl:w-28 ${
+          spinning ? 'card-spin' : 'pop-in'
+        }`}
+      >
+        <span className="relative flex aspect-square w-full items-center justify-center bg-white">
+          {vi.valuation.image_url ? (
+            <img src={vi.valuation.image_url} alt="" className="absolute inset-0 h-full w-full object-contain p-2" />
+          ) : (
+            <span className="h-6 w-6 rounded-md bg-clay" />
+          )}
+        </span>
+        <span className="border-t border-line px-2 py-1.5">
+          <span className="block truncate text-xs font-bold text-ink">{vi.item.name}</span>
+          <span className="block text-sm font-extrabold text-petrol">{formatEur(vi.valuation.fair_value_eur)}</span>
+        </span>
+      </button>
+    </li>
+  )
+}
+
+const reducedMotion = () => {
+  try {
+    return window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  } catch {
+    return false
+  }
+}
+
+/** Fly a copy of `el` into `target`, spinning; resolves when it lands. */
+function flyCard(el: HTMLElement, target: Element, delay: number, clones: Set<HTMLElement>): Promise<void> {
+  const from = el.getBoundingClientRect()
+  const to = target.getBoundingClientRect()
+  const clone = el.cloneNode(true) as HTMLElement
+  clone.classList.remove('card-spin', 'pop-in')
+  Object.assign(clone.style, {
+    position: 'fixed',
+    left: `${from.left}px`,
+    top: `${from.top}px`,
+    width: `${from.width}px`,
+    height: `${from.height}px`,
+    margin: '0',
+    zIndex: '60',
+    pointerEvents: 'none',
+    animation: 'none',
+  })
+  document.body.appendChild(clone)
+  clones.add(clone)
+  const dx = to.left + to.width / 2 - (from.left + from.width / 2)
+  const dy = to.top + Math.min(to.height / 2, 180) - (from.top + from.height / 2)
+  const tilt = dx > 0 ? 14 : -14
+  const anim = clone.animate(
+    [
+      { transform: 'perspective(900px) translate(0, 0) rotateY(0deg) rotateZ(0deg) scale(1)', opacity: 1 },
+      { transform: `perspective(900px) translate(0, -36px) rotateY(180deg) rotateZ(${-tilt / 2}deg) scale(1.18)`, opacity: 1, offset: 0.18 },
+      {
+        transform: `perspective(900px) translate(${dx * 0.45}px, ${dy * 0.45 - 150}px) rotateY(720deg) rotateZ(${tilt}deg) scale(1.3)`,
+        opacity: 1,
+        offset: 0.55,
+      },
+      { transform: `perspective(900px) translate(${dx}px, ${dy}px) rotateY(1080deg) rotateZ(0deg) scale(0.28)`, opacity: 0.1 },
+    ],
+    { duration: FLY_MS, delay, easing: 'cubic-bezier(0.45, 0, 0.2, 1)', fill: 'both' },
+  )
+  el.style.visibility = 'hidden'
+  return anim.finished
+    .catch(() => undefined)
+    .then(() => {
+      clone.remove()
+      clones.delete(clone)
+      target.animate(
+        [{ transform: 'scale(1)' }, { transform: 'scale(1.035)' }, { transform: 'scale(1)' }],
+        { duration: 360, easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)' },
+      )
+    })
+}
+
 /**
- * The split page: the agent's proposal. Meter on top, the house in the middle
- * (the 3D frame), one box per person on the sides. People approve with a tick.
+ * The split page. New items wait in a pile in the middle; Split asks the agent,
+ * the cards spin while it thinks and then fly into each person's box.
+ * Meter on top, the house in the middle (the 3D frame), one box per person on the sides.
  */
-export function SplitBoard({ scenario, error, names, people, solving, onOpenItem }: SplitBoardProps) {
+export function SplitBoard({ scenario, error, names, people, solving, unsplit, onSplit, onOpenItem }: SplitBoardProps) {
   const [showDetails, setShowDetails] = useState(false)
   /** Who approved which proposal; a new proposal needs new approvals. */
   const [approvals, setApprovals] = useState<Record<string, string>>({})
+  const [phase, setPhase] = useState<Phase>('idle')
+  /** The pile as it was when Split was pressed (the live list empties straight away). */
+  const [pile, setPile] = useState<ValuedItem[]>([])
+  /** Cards that already landed in a box during this Split. */
+  const [landed, setLanded] = useState<Set<string>>(new Set())
+  const startedAt = useRef(0)
+  const cardEls = useRef(new Map<string, HTMLElement>())
+  const clones = useRef(new Set<HTMLElement>())
+  /** Latest scenario for the flight, which must not restart when a save refreshes it. */
+  const scenarioRef = useRef(scenario)
+  useEffect(() => {
+    scenarioRef.current = scenario
+  }, [scenario])
+
+  // Spinning → flying once the agent answered with every card in it.
+  useEffect(() => {
+    if (phase !== 'spinning' || !scenario || solving) return
+    const assigned = new Set(scenario.split.assignments.map((a) => a.item_id))
+    if (!pile.every((vi) => assigned.has(vi.item.id))) return
+    const wait = Math.max(0, SPIN_MIN_MS - (performance.now() - startedAt.current))
+    const t = setTimeout(() => setPhase('flying'), wait)
+    return () => clearTimeout(t)
+  }, [phase, scenario, solving, pile])
+
+  // Flying: every card spins to its box, one after the other.
+  useEffect(() => {
+    const current = scenarioRef.current
+    if (phase !== 'flying' || !current) return
+    let cancelled = false
+    const byItem = new Map(current.split.assignments.map((a) => [a.item_id, a]))
+    const flights = pile.map((vi, i) => {
+      const a = byItem.get(vi.item.id)
+      const el = cardEls.current.get(vi.item.id)
+      const side = a ? sideOf(a.action) : null
+      const target = document.querySelector(`[data-split-box="${side === null ? 'sold' : side}"]`)
+      const done = () => !cancelled && setLanded((prev) => new Set(prev).add(vi.item.id))
+      if (!el || !target) {
+        done()
+        return Promise.resolve()
+      }
+      return flyCard(el, target, i * FLY_STAGGER_MS, clones.current).then(done)
+    })
+    Promise.all(flights).then(() => {
+      if (cancelled) return
+      setPhase('idle')
+      setPile([])
+      setLanded(new Set())
+    })
+    const live = clones.current
+    return () => {
+      cancelled = true
+      live.forEach((c) => c.remove())
+      live.clear()
+    }
+  }, [phase, pile])
+
+  function startSplit() {
+    setPile(unsplit)
+    setLanded(new Set())
+    startedAt.current = performance.now()
+    setPhase(reducedMotion() ? 'idle' : 'spinning')
+    onSplit()
+  }
 
   if (!scenario) {
     return (
@@ -206,23 +384,36 @@ export function SplitBoard({ scenario, error, names, people, solving, onOpenItem
     )
   }
 
+  const busy = phase !== 'idle'
+  const shownPile = busy ? pile : unsplit
+  const hidden = new Set(busy ? pile.filter((vi) => !landed.has(vi.item.id)).map((vi) => vi.item.id) : [])
+
   const split = scenario.split
   const byId = new Map(scenario.valued_items.map((vi) => [vi.item.id, vi]))
   const mine: Assignment[][] = [[], []]
   const sold: Assignment[] = []
   for (const a of split.assignments) {
+    if (hidden.has(a.item_id)) continue
     const side = sideOf(a.action)
     if (side === null) sold.push(a)
     else mine[side].push(a)
   }
-  const goods = [split.party_a_received_goods_eur, split.party_b_received_goods_eur]
+  const anySplit = split.assignments.length > 0
+  const anySold = split.assignments.some((a) => sideOf(a.action) === null)
+  // While cards fly, the meter only counts what already landed, so it moves card by card.
+  const landedGoods = [0, 1].map((side) =>
+    split.assignments
+      .filter((a) => !hidden.has(a.item_id) && sideOf(a.action) === side)
+      .reduce((sum, a) => sum + a.fair_value_eur, 0),
+  )
+  const goods = busy ? landedGoods : [split.party_a_received_goods_eur, split.party_b_received_goods_eur]
   const aPct = pct(goods[0], goods[0] + goods[1])
   const shares = [aPct, 100 - aPct]
   const cash = split.cash_transfer_a_to_b_eur
   const payer = cash >= 0 ? names[0] : names[1]
   const payee = cash >= 0 ? names[1] : names[0]
   const proposal = `${split.assignments.map((a) => `${a.item_id}:${a.action}`).join(',')}|${Math.round(cash)}`
-  const isApproved = (name: string) => approvals[name] === proposal
+  const isApproved = (name: string) => anySplit && approvals[name] === proposal
   const approvedCount = names.filter(isApproved).length
   const toggle = (name: string) =>
     setApprovals((prev) => ({ ...prev, [name]: prev[name] === proposal ? '' : proposal }))
@@ -243,17 +434,20 @@ export function SplitBoard({ scenario, error, names, people, solving, onOpenItem
     i < 2 ? (
       <PersonBox
         key={name}
+        dropKey={String(i)}
         name={name}
         color={participantColor(i)}
-        total={goods[i]}
+        total={busy ? undefined : goods[i]}
         share={shares[i]}
         approved={isApproved(name)}
-        onApprove={() => toggle(name)}
+        onApprove={anySplit && !busy ? () => toggle(name) : undefined}
       >
         {mine[i].length ? (
           <ul>{mine[i].map((a) => row(a, note(a, i as 0 | 1)))}</ul>
         ) : (
-          <p className="p-4 text-center text-sm text-muted">Nothing for {name} in this proposal</p>
+          <p className="p-4 text-center text-sm text-muted">
+            {anySplit || busy ? `Nothing for ${name} yet` : 'Press Split to let the agent decide'}
+          </p>
         )}
       </PersonBox>
     ) : (
@@ -266,11 +460,24 @@ export function SplitBoard({ scenario, error, names, people, solving, onOpenItem
   const all = people.length >= 2 ? people : names
   const left = all.map(box).filter((_, i) => i % 2 === 0)
   const right = all.map(box).filter((_, i) => i % 2 === 1)
-  const soldBox = sold.length > 0 && (
-    <PersonBox key="sold" name="Sold and split" color="#64748b" approved={false}>
-      <ul>{sold.map((a) => row(a, 'Sold, money split by share'))}</ul>
+  const soldBox = anySold && (
+    <PersonBox key="sold" dropKey="sold" name="Sold and split" color="#64748b" approved={false}>
+      {sold.length ? <ul>{sold.map((a) => row(a, 'Sold, money split by share'))}</ul> : null}
     </PersonBox>
   )
+
+  const pillText =
+    phase === 'spinning'
+      ? 'Agent deciding…'
+      : phase === 'flying'
+        ? 'Splitting…'
+        : solving
+          ? 'Agent re-balancing…'
+          : !anySplit
+            ? 'Not split yet'
+            : approvedCount === 2
+              ? 'Agreed ✓'
+              : `${approvedCount}/2 approved`
 
   return (
     <>
@@ -281,37 +488,70 @@ export function SplitBoard({ scenario, error, names, people, solving, onOpenItem
             <span className="h-2.5 w-2.5 rounded-full" style={{ background: participantColor(0) }} />
             {names[0]} <span className="font-extrabold text-terracotta">{shares[0]}%</span>
           </span>
-          <span className={`pill ${approvedCount === 2 ? 'pill-settled' : 'pill-draft'}`}>
-            {solving ? 'Agent re-balancing…' : approvedCount === 2 ? 'Agreed ✓' : `${approvedCount}/2 approved`}
-          </span>
+          <span className={`pill ${approvedCount === 2 && !busy ? 'pill-settled' : 'pill-draft'}`}>{pillText}</span>
           <span className="flex items-center gap-1.5">
             <span className="font-extrabold text-sage">{shares[1]}%</span> {names[1]}
             <span className="h-2.5 w-2.5 rounded-full" style={{ background: participantColor(1) }} />
           </span>
         </div>
         <div className="relative mt-2 flex h-3 overflow-hidden rounded-full bg-clay">
-          <div className="bg-terracotta transition-all duration-500" style={{ width: `${shares[0]}%` }} />
+          <div className="bg-terracotta transition-all duration-700" style={{ width: `${shares[0]}%` }} />
           <div className="flex-1 bg-sage" />
           <span className="absolute inset-y-0 left-1/2 w-1 -translate-x-1/2 bg-white shadow" aria-hidden />
         </div>
         <div className="mt-2.5 flex items-center gap-2 text-sm">
           <span className="rounded-full bg-midnight px-2.5 py-0.5 text-xs font-bold text-white">Agent</span>
           <span className="min-w-0 flex-1 truncate text-ink2">
-            {MODE_LABEL[split.mode] ?? split.mode} ·{' '}
-            {Math.abs(cash) < 1 ? (
-              'no cash to pay'
+            {busy ? (
+              phase === 'spinning' ? 'Weighing every item…' : 'Handing out the items…'
+            ) : !anySplit ? (
+              'Waiting for you to press Split'
             ) : (
               <>
-                <b className="text-petrol">{payer}</b> {verb(payer, 'pays', 'pay')} <b className="text-petrol">{payee}</b>{' '}
-                <b className="text-terracotta">{formatEur(Math.abs(cash))}</b>
+                {MODE_LABEL[split.mode] ?? split.mode} ·{' '}
+                {Math.abs(cash) < 1 ? (
+                  'no cash to pay'
+                ) : (
+                  <>
+                    <b className="text-petrol">{payer}</b> {verb(payer, 'pays', 'pay')} <b className="text-petrol">{payee}</b>{' '}
+                    <b className="text-terracotta">{formatEur(Math.abs(cash))}</b>
+                  </>
+                )}
               </>
             )}
           </span>
-          <button type="button" onClick={() => setShowDetails(true)} className="btn btn-ghost h-8 shrink-0 px-3 text-xs">
-            Why?
-          </button>
+          {anySplit && !busy && (
+            <button type="button" onClick={() => setShowDetails(true)} className="btn btn-ghost h-8 shrink-0 px-3 text-xs">
+              Why?
+            </button>
+          )}
         </div>
       </div>
+
+      {/* Pile: items waiting for the next Split, over the house */}
+      {shownPile.length > 0 && (
+        <div className="split-tray pop-in" data-phase={phase}>
+          <ul className="flex max-h-full flex-wrap items-center justify-center gap-y-4 px-5 py-3">
+            {shownPile.map((vi, i) => (
+              <PileCard
+                key={vi.item.id}
+                vi={vi}
+                index={i}
+                count={shownPile.length}
+                spinning={busy}
+                cardRef={(el) => {
+                  if (el) cardEls.current.set(vi.item.id, el)
+                  else cardEls.current.delete(vi.item.id)
+                }}
+                onOpen={() => onOpenItem(vi.item.id)}
+              />
+            ))}
+          </ul>
+          <button type="button" onClick={startSplit} disabled={busy} className="split-button">
+            {busy ? 'Splitting…' : `Split ${shownPile.length} ${shownPile.length === 1 ? 'item' : 'items'}`}
+          </button>
+        </div>
+      )}
 
       <div className="split-sides">
         <div className="split-side split-side-left">

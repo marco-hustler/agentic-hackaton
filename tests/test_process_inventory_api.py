@@ -60,3 +60,17 @@ def test_inventory_404_for_unknown_process() -> None:
     client = TestClient(app)
     assert client.get("/api/processes/nope/inventory").status_code == 404
     assert client.put("/api/processes/nope/inventory", json={"mode": "balanced", "valued_items": []}).status_code == 404
+
+
+def test_split_ids_round_trip():
+    from fastapi.testclient import TestClient
+
+    from cleanbreak.api.app import app
+
+    c = TestClient(app)
+    pid = c.post("/api/processes", json={"kind": "separation"}).json()["id"]
+    inv = c.get(f"/api/processes/{pid}/inventory").json()
+    assert inv["split_ids"] is None
+    ids = [vi["item"]["id"] for vi in inv["valued_items"]][:3]
+    c.put(f"/api/processes/{pid}/inventory", json={**inv, "split_ids": ids})
+    assert c.get(f"/api/processes/{pid}/inventory").json()["split_ids"] == ids

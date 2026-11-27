@@ -69,6 +69,9 @@ class ProcessStore:
                 )
                 """
             )
+            cols = {r["name"] for r in conn.execute("PRAGMA table_info(process_inventories)")}
+            if "split_ids" not in cols:  # added after the first DBs were created
+                conn.execute("ALTER TABLE process_inventories ADD COLUMN split_ids TEXT")
             conn.commit()
 
     def list_processes(self, owner_id: str = "local-user") -> list[ProcessSummary]:
@@ -164,13 +167,18 @@ class ProcessStore:
         """The saved inventory for a process, or None if none was saved yet."""
         with self._connect() as conn:
             row = conn.execute(
-                "SELECT mode, valued_items, updated_at FROM process_inventories WHERE process_id = ?",
+                "SELECT mode, valued_items, split_ids, updated_at FROM process_inventories WHERE process_id = ?",
                 (process_id,),
             ).fetchone()
         if row is None:
             return None
         return ProcessInventory.model_validate(
-            {"mode": row["mode"], "valued_items": json.loads(row["valued_items"]), "updated_at": row["updated_at"]}
+            {
+                "mode": row["mode"],
+                "valued_items": json.loads(row["valued_items"]),
+                "split_ids": json.loads(row["split_ids"]) if row["split_ids"] else None,
+                "updated_at": row["updated_at"],
+            }
         )
 
     def save_inventory(self, process_id: str, inventory: ProcessInventory) -> ProcessInventory | None:
@@ -179,17 +187,19 @@ class ProcessStore:
             return None
         now = _utc_now()
         items_json = json.dumps([vi.model_dump(mode="json") for vi in inventory.valued_items])
+        split_json = json.dumps(inventory.split_ids) if inventory.split_ids is not None else None
         with self._connect() as conn:
             conn.execute(
                 """
-                INSERT INTO process_inventories (process_id, mode, valued_items, updated_at)
-                VALUES (?, ?, ?, ?)
+                INSERT INTO process_inventories (process_id, mode, valued_items, split_ids, updated_at)
+                VALUES (?, ?, ?, ?, ?)
                 ON CONFLICT(process_id) DO UPDATE SET
                     mode = excluded.mode,
                     valued_items = excluded.valued_items,
+                    split_ids = excluded.split_ids,
                     updated_at = excluded.updated_at
                 """,
-                (process_id, inventory.mode, items_json, now),
+                (process_id, inventory.mode, items_json, split_json, now),
             )
             conn.commit()
         return inventory.model_copy(update={"updated_at": now})

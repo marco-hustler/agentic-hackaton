@@ -135,6 +135,8 @@ export async function getProcess(id: string) {
 export type ProcessInventory = {
   mode: SplitMode
   valued_items: ValuedItem[]
+  /** Items included in the last Split; null = never split. */
+  split_ids?: string[] | null
   updated_at?: string | null
 }
 
@@ -147,7 +149,7 @@ export function getProcessInventory(processId: string) {
 export function saveProcessInventory(processId: string, inventory: ProcessInventory, keepalive = false) {
   return api<ProcessInventory>(`/api/processes/${processId}/inventory`, {
     method: 'PUT',
-    body: JSON.stringify({ mode: inventory.mode, valued_items: inventory.valued_items }),
+    body: JSON.stringify({ mode: inventory.mode, valued_items: inventory.valued_items, split_ids: inventory.split_ids ?? null }),
     keepalive,
   })
 }

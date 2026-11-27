@@ -22,6 +22,8 @@ import type {
 
 type Entry = {
   valuedItems: ValuedItem[]
+  /** Items the last Split included. New items wait in the middle until the next Split. */
+  splitIds: string[]
   mode: SplitMode
   /** Null until the first solve with this house's names. */
   split: SplitResult | null
@@ -54,9 +56,13 @@ export type HouseInventory = {
   setMode: (mode: SplitMode) => void
   addItem: (vi: ValuedItem) => void
   removeItem: (id: string) => void
+  /** Items not split yet (added since the last Split). */
+  unsplit: ValuedItem[]
+  /** Ask the agent to split every item, including the waiting ones. */
+  splitAll: () => void
 }
 
-type PendingSave = { pid: string; key: string; mode: SplitMode; items: ValuedItem[] }
+type PendingSave = { pid: string; key: string; mode: SplitMode; items: ValuedItem[]; splitIds: string[] }
 
 export function useHouseInventory(processId: string | null, names: [string, string], enabled: boolean): HouseInventory {
   const [byProcess, setByProcess] = useState<Record<string, Entry>>({})
@@ -79,7 +85,15 @@ export function useHouseInventory(processId: string | null, names: [string, stri
     getProcessInventory(pid)
       .then((inv) => {
         if (cancelled) return
-        const loaded: Entry = { valuedItems: inv.valued_items, mode: inv.mode, split: null, version: 0, solvedKey: null, savedKey: '' }
+        const loaded: Entry = {
+          valuedItems: inv.valued_items,
+          splitIds: inv.split_ids ?? [],
+          mode: inv.mode,
+          split: null,
+          version: 0,
+          solvedKey: null,
+          savedKey: '',
+        }
         loaded.savedKey = saveKeyOf(loaded)
         setByProcess((prev) => (prev[pid] ? prev : { ...prev, [pid]: loaded }))
       })
@@ -96,7 +110,9 @@ export function useHouseInventory(processId: string | null, names: [string, stri
   useEffect(() => {
     if (!processId || !entry || !wantSolveKey || entry.solvedKey === wantSolveKey) return
     const pid = processId
-    const { valuedItems, mode, version } = entry
+    const { mode, version } = entry
+    const inSplit = new Set(entry.splitIds)
+    const valuedItems = entry.valuedItems.filter((vi) => inSplit.has(vi.item.id))
     const timer = setTimeout(
       () => {
         agentSplit({ party_a_name: names[0], party_b_name: names[1], valued_items: valuedItems })
@@ -122,7 +138,7 @@ export function useHouseInventory(processId: string | null, names: [string, stri
     const p = pendingSave.current
     if (!p) return
     pendingSave.current = null
-    saveProcessInventory(p.pid, { mode: p.mode, valued_items: p.items }, keepalive)
+    saveProcessInventory(p.pid, { mode: p.mode, valued_items: p.items, split_ids: p.splitIds }, keepalive)
       .then(() =>
         setByProcess((prev) => {
           const cur = prev[p.pid]
@@ -137,7 +153,7 @@ export function useHouseInventory(processId: string | null, names: [string, stri
 
   useEffect(() => {
     if (!processId || !entry || !wantSaveKey || entry.savedKey === wantSaveKey) return
-    pendingSave.current = { pid: processId, key: wantSaveKey, mode: entry.mode, items: entry.valuedItems }
+    pendingSave.current = { pid: processId, key: wantSaveKey, mode: entry.mode, items: entry.valuedItems, splitIds: entry.splitIds }
     if (saveTimer.current) clearTimeout(saveTimer.current)
     saveTimer.current = setTimeout(() => flushSave(), SAVE_DEBOUNCE_MS)
   }, [processId, entry, wantSaveKey, flushSave])
@@ -208,9 +224,25 @@ export function useHouseInventory(processId: string | null, names: [string, stri
 
   const removeItem = useCallback(
     (id: string) =>
-      edit((e) => ({ ...e, version: e.version + 1, valuedItems: e.valuedItems.filter((vi) => vi.item.id !== id) })),
+      edit((e) => ({
+        ...e,
+        version: e.version + 1,
+        valuedItems: e.valuedItems.filter((vi) => vi.item.id !== id),
+        splitIds: e.splitIds.filter((s) => s !== id),
+      })),
     [edit],
   )
+
+  const splitAll = useCallback(
+    () => edit((e) => ({ ...e, version: e.version + 1, splitIds: e.valuedItems.map((vi) => vi.item.id) })),
+    [edit],
+  )
+
+  const unsplit = useMemo(() => {
+    if (!entry) return []
+    const inSplit = new Set(entry.splitIds)
+    return entry.valuedItems.filter((vi) => !inSplit.has(vi.item.id))
+  }, [entry])
 
   const scenario = useMemo<DemoScenario | null>(
     () =>
@@ -227,5 +259,19 @@ export function useHouseInventory(processId: string | null, names: [string, stri
     [entry, names],
   )
 
-  return { scenario, error: loadError, solving, saving, solveError, updateItem, setPoints, forceAction, setMode, addItem, removeItem }
+  return {
+    scenario,
+    error: loadError,
+    solving,
+    saving,
+    solveError,
+    updateItem,
+    setPoints,
+    forceAction,
+    setMode,
+    addItem,
+    removeItem,
+    unsplit,
+    splitAll,
+  }
 }
