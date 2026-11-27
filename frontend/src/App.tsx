@@ -7,7 +7,8 @@ import { formatEur, pct } from './house/format'
 import { HouseNav, type HouseTab } from './house/HouseNav'
 import { InventoryPanel } from './house/InventoryPanel'
 import { ItemDetail } from './house/ItemDetail'
-import { SplitPanel } from './house/SplitPanel'
+import { SplitBoard } from './house/SplitBoard'
+import type { ValuedItem } from './types/inventory'
 import { useHouseInventory } from './house/useHouseInventory'
 import { CreateProcessWizard } from './overlays/CreateProcessWizard'
 import { OnboardingModal } from './overlays/OnboardingModal'
@@ -109,6 +110,21 @@ export default function App() {
   const inside = mode === 'house' && focusProcess !== null
   const detailVi = detailId ? (demo?.valued_items.find((vi) => vi.item.id === detailId) ?? null) : null
 
+  function itemDetail(vi: ValuedItem, backLabel: string) {
+    return (
+      <ItemDetail
+        key={vi.item.id}
+        vi={vi}
+        assignment={demo?.split.assignments.find((a) => a.item_id === vi.item.id)}
+        names={names}
+        solving={inventory.solving}
+        backLabel={backLabel}
+        onBack={() => setDetailId(null)}
+        onUpdate={(patch) => inventory.updateItem(vi.item.id, patch)}
+      />
+    )
+  }
+
   return (
     <div className="relative h-full min-h-screen overflow-hidden bg-canvas text-ink">
       {/* Layer: world. Full screen in the neighbourhood, left stage inside a house. */}
@@ -129,8 +145,8 @@ export default function App() {
           onCancel={backToWorld}
         />
       </div>
-      <div ref={frameRef} className="world-frame" data-mode={inside ? 'house' : 'world'}>
-        {inside && focusProcess && (
+      <div ref={frameRef} className="world-frame" data-mode={inside ? 'house' : 'world'} data-tab={tab}>
+        {inside && focusProcess && tab !== 'split' && (
           <div className="pop-in-late pointer-events-none absolute inset-x-3 bottom-3 z-20 flex justify-center">
             <div className="pointer-events-auto flex w-full max-w-xl items-center gap-3 rounded-2xl bg-midnight/95 px-4 py-3 text-white shadow-[0_12px_28px_-6px_rgba(15,23,42,0.2)]">
               <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/10" aria-hidden>
@@ -171,40 +187,52 @@ export default function App() {
             }}
             onBackToWorld={backToWorld}
           />
-          <div className="house-balance pop-in">
-            <BalanceCard split={demo?.split ?? null} names={names} />
-          </div>
-          <div className="house-panel pop-in-late">
-            {detailVi ? (
-              <ItemDetail
-                key={detailVi.item.id}
-                vi={detailVi}
-                assignment={demo?.split.assignments.find((a) => a.item_id === detailVi.item.id)}
-                names={names}
-                solving={inventory.solving}
-                onBack={() => setDetailId(null)}
-                onUpdate={(patch) => inventory.updateItem(detailVi.item.id, patch)}
-              />
-            ) : tab === 'split' ? (
-              <SplitPanel
+          {tab === 'split' ? (
+            <>
+              <SplitBoard
                 scenario={demo}
                 error={demoError}
                 names={names}
                 solving={inventory.solving}
                 onSetMode={inventory.setMode}
                 onOpenItem={setDetailId}
+                onForce={inventory.forceAction}
               />
-            ) : (
-              <InventoryPanel
-                demo={demo}
-                error={demoError}
-                onOpenItem={(id) => {
-                  setTab('split')
-                  setDetailId(id)
-                }}
-              />
-            )}
-          </div>
+              {detailVi && (
+                <>
+                  <button
+                    type="button"
+                    aria-label="Close item"
+                    className="fade-in absolute inset-0 z-40 bg-midnight/25"
+                    onClick={() => setDetailId(null)}
+                  />
+                  <div className="item-drawer pop-in">
+                    {itemDetail(detailVi, 'Close')}
+                  </div>
+                </>
+              )}
+            </>
+          ) : (
+            <>
+              <div className="house-balance pop-in">
+                <BalanceCard split={demo?.split ?? null} names={names} />
+              </div>
+              <div className="house-panel pop-in-late">
+                {detailVi ? (
+                  itemDetail(detailVi, '← Inventory')
+                ) : (
+                  <InventoryPanel
+                    demo={demo}
+                    error={demoError}
+                    onOpenItem={(id) => {
+                      setTab('split')
+                      setDetailId(id)
+                    }}
+                  />
+                )}
+              </div>
+            </>
+          )}
         </>
       ) : (
         <>

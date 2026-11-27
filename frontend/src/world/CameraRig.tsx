@@ -32,7 +32,7 @@ function goalFor(shot: CameraShot, focus: Vec2 | null, w: number, h: number) {
   if (shot === 'world' || !focus) return { y: 0, x: 0, z: 0, zoom: fit }
   if (shot === 'focus') return { x: focus[0], y: 0.8, z: focus[1], zoom: Math.min(fit * 1.8, 90) }
   // Interior: the cutaway (about 4.3 x 3.7 units) fills the frame.
-  return { x: focus[0], y: 0.5, z: focus[1], zoom: Math.max(20, Math.min(w / 7, h / 6)) }
+  return { x: focus[0], y: 0.5, z: focus[1], zoom: Math.max(20, Math.min(w / 7, h / 3.8)) }
 }
 
 /**

@@ -8,6 +8,7 @@ type ItemDetailProps = {
   assignment: Assignment | undefined
   names: [string, string]
   solving: boolean
+  backLabel?: string
   onBack: () => void
   onUpdate: (patch: Partial<HouseholdItem>) => void
 }
@@ -116,7 +117,7 @@ function PointsSlider({
 }
 
 /** Right-column detail for one item: idealo evidence + every input the split depends on. */
-export function ItemDetail({ vi, assignment, names, solving, onBack, onUpdate }: ItemDetailProps) {
+export function ItemDetail({ vi, assignment, names, solving, backLabel = '← Back', onBack, onUpdate }: ItemDetailProps) {
   const { item, valuation: v } = vi
   const drop = Math.round((1 - v.depreciation_factor) * 100)
   const pill = assignment ? actionPill(assignment.action, names) : null
@@ -134,7 +135,7 @@ export function ItemDetail({ vi, assignment, names, solving, onBack, onUpdate }:
     <section className="panel pop-in flex h-full flex-col overflow-hidden" style={{ background: '#ffffff' }} aria-label={`Item: ${item.name}`}>
       <div className="flex items-center gap-2 px-5 pt-4">
         <button type="button" onClick={onBack} className="btn btn-ghost h-8 px-2.5 text-xs">
-          ← Split
+          {backLabel}
         </button>
         {solving && (
           <span className="pill pill-neutral ml-auto">
