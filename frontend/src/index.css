@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+/* Warm neutral ramp: moving day, paper and cardboard. idealo orange is the only accent. */
+:root {
+  color-scheme: light;
+  --page: #f7f4ee;
+  --card: #fdfbf7;
+  --raised: #efe9df;
+  --line: rgba(31, 27, 22, 0.1);
+  --ink: #1f1b16;
+  --ink2: #5e554a;
+  --muted: #7b7266;
+  --leader: rgba(31, 27, 22, 0.3);
+  --accent: #c2410c;
+  --on-accent: #ffffff;
+  --accent-text: #c2410c;
+  --accent-line: rgba(194, 65, 12, 0.35);
+  --alex: #3b6ea8;
+  --sam: #2b7262;
+  --pos: #16a34a;
+  --neg: #dc2626;
+  --grass: #8fbc8f;
+  --grass-dark: #6b9a6b;
+  --earth: #c4a574;
+  --roof: #8b4513;
+}
+
+.dark {
+  color-scheme: dark;
+  --page: #161513;
+  --card: #1c1a18;
+  --raised: #262421;
+  --line: rgba(239, 233, 222, 0.08);
+  --ink: #efe9de;
+  --ink2: #aaa398;
+  --muted: #8a847a;
+  --leader: rgba(239, 233, 222, 0.25);
+  --accent: #f08a4b;
+  --on-accent: #1c1a18;
+  --accent-text: #f08a4b;
+  --accent-line: rgba(240, 138, 75, 0.35);
+  --alex: #7ea6d8;
+  --sam: #6fbfae;
+  --pos: #4cc38a;
+  --neg: #e5484d;
+  --grass: #4a6b4a;
+  --grass-dark: #3a553a;
+  --earth: #8a7355;
+  --roof: #6b3410;
+}
+
+@theme {
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
+  --color-page: var(--page);
+  --color-card: var(--card);
+  --color-raised: var(--raised);
+  --color-line: var(--line);
+  --color-ink: var(--ink);
+  --color-ink2: var(--ink2);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-on-accent: var(--on-accent);
+  --color-accent-text: var(--accent-text);
+  --color-alex: var(--alex);
+  --color-sam: var(--sam);
+  --color-pos: var(--pos);
+  --color-neg: var(--neg);
+  --color-grass: var(--grass);
+  --color-grass-dark: var(--grass-dark);
+  --color-earth: var(--earth);
+  --color-roof: var(--roof);
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-feature-settings: "tnum" 1;
+  background: var(--page);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}

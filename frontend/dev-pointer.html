@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CleanBreak — start the UI</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 40rem; margin: 3rem auto; padding: 0 1.25rem; line-height: 1.5; color: #1f1b16; }
+    code { background: #efe9df; padding: 0.1em 0.35em; border-radius: 4px; }
+    a { color: #c2410c; }
+  </style>
+</head>
+<body>
+  <h1>CleanBreak API is running</h1>
+  <p>The React UI is not built yet (no <code>frontend/dist</code>).</p>
+  <ol>
+    <li>In one terminal: <code>uvicorn cleanbreak.api.app:app --reload --port 8000</code></li>
+    <li>In another: <code>cd frontend && npm install && npm run dev</code></li>
+    <li>Open <a href="http://localhost:5173">http://localhost:5173</a></li>
+  </ol>
+  <p>Or open the previous Split Board at <a href="/legacy">/legacy</a>.</p>
+  <p>Production: <code>cd frontend && npm run build</code>, then reload this page.</p>
+</body>
+</html>

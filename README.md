@@ -9,29 +9,41 @@ Built for **Agentic Hackathon: From Research to Commerce** (Berlin, 27 Nov 2026)
 ## Docs
 
 - Product spec & P0/P1/P2 priorities: [`docs/idea-fair-household-split.md`](docs/idea-fair-household-split.md)
+- Process world UX flows: [`docs/flows-process-ux.md`](docs/flows-process-ux.md)
 - Stack & 3-person async team split: [`docs/stack.md`](docs/stack.md)
 - idealo MCP OAuth & probe guide: [`docs/idealo-mcp-setup.md`](docs/idealo-mcp-setup.md)
 - Official hackathon brief: [`docs/brief.md`](docs/brief.md)
+- Frontend (Vite React): [`frontend/README.md`](frontend/README.md)
 
 ---
 
 ## Quickstart (2 minutes, works out of the box)
 
-> Requires **Python 3.11+**. On macOS, if `python3 --version` is 3.9, use `/opt/homebrew/bin/python3` instead.
+> Requires **Python 3.11+** and **Node 20+** (for the React UI). On macOS, if `python3 --version` is 3.9, use `/opt/homebrew/bin/python3` instead.
 
 ```bash
-git checkout it-1
 python3 -m venv .venv          # or: /opt/homebrew/bin/python3 -m venv .venv
 source .venv/bin/activate      # Windows: .venv\Scripts\activate
-pip install -e ".[dev]"
 cp .env.example .env           # optional — works even without API keys
 
-# 1. Run unit tests (offline, zero API keys needed)
-pytest
+# One command: install Python deps + build React → frontend/dist
+make build
+# same as: ./scripts/build.sh
 
-# 2. Start the web app + API immediately (uses real cached idealo DE data in data/cache/)
+# Serve API + React (+ legacy) on one port
 uvicorn cleanbreak.api.app:app --reload --port 8000
 # Open http://localhost:8000
+# Legacy Split Board: http://localhost:8000/legacy
+
+# Or build + serve in one go:
+# make run
+```
+
+### Frontend HMR (optional, two terminals)
+
+```bash
+make dev-api   # :8000
+make dev-ui    # :5173, proxies /api → :8000
 ```
 
 ### idealo call budget — live calls are OFF by default

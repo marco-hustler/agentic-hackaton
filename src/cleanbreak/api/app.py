@@ -6,10 +6,12 @@ import asyncio
 import json
 import os
 from collections import Counter
+from pathlib import Path
 from typing import Callable, Literal
 
 from dotenv import load_dotenv
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException, Request
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
@@ -34,11 +36,28 @@ load_dotenv()
 
 DEMO_PATH = REPO_ROOT / "data" / "demo_berlin_wg.json"
 FRONTEND_DIR = REPO_ROOT / "frontend"
+LEGACY_DIR = FRONTEND_DIR / "legacy"
+DIST_DIR = FRONTEND_DIR / "dist"
 
 app = FastAPI(title="CleanBreak — Fair Household Split (idealo MCP)", version="0.1.0")
 
-if FRONTEND_DIR.exists():
-    app.mount("/static", StaticFiles(directory=str(FRONTEND_DIR)), name="static")
+# Vite dev server (React) talks to this API cross-origin.
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+if LEGACY_DIR.exists():
+    app.mount("/legacy-static", StaticFiles(directory=str(LEGACY_DIR)), name="legacy-static")
+
+if (DIST_DIR / "assets").is_dir():
+    app.mount("/assets", StaticFiles(directory=str(DIST_DIR / "assets")), name="vite-assets")
 
 
 class ValueRequest(BaseModel):
@@ -64,9 +83,44 @@ class RevalueSingleRequest(BaseModel):
     valuation: ItemValuation
 
 
+def _dist_index() -> Path | None:
+    path = DIST_DIR / "index.html"
+    return path if path.is_file() else None
+
+
 @app.get("/")
 async def index() -> FileResponse:
-    return FileResponse(FRONTEND_DIR / "index.html")
+    """Serve the React build when present; otherwise a tiny pointer to Vite + legacy."""
+    dist = _dist_index()
+    if dist is not None:
+        return FileResponse(dist)
+    pointer = FRONTEND_DIR / "dev-pointer.html"
+    if pointer.is_file():
+        return FileResponse(pointer)
+    raise HTTPException(
+        status_code=503,
+        detail="Frontend not built. Run: cd frontend && npm run dev (or npm run build)",
+    )
+
+
+@app.get("/legacy")
+async def legacy_index() -> FileResponse:
+    """Previous Split Board UI (vanilla HTML/JS) — still wired to /api/*."""
+    path = LEGACY_DIR / "index.html"
+    if not path.is_file():
+        raise HTTPException(status_code=404, detail="Legacy UI not found")
+    return FileResponse(path)
+
+
+@app.get("/favicon.svg", include_in_schema=False)
+@app.get("/icons.svg", include_in_schema=False)
+async def vite_public_file(request: Request) -> FileResponse:
+    """Vite puts a few assets next to index.html (not under /assets)."""
+    name = request.url.path.lstrip("/")
+    path = DIST_DIR / name
+    if path.is_file():
+        return FileResponse(path)
+    raise HTTPException(status_code=404)
 
 
 @app.get("/api/health")

@@ -14,37 +14,38 @@
 | **Fairness Solver** | **Pure deterministic Python** (`src/cleanbreak/solver/`) | Exact optimal search over all splits in <5 ms; zero LLM arithmetic hallucinations; unit-tested. |
 | **LLM Layer (Provider-Agnostic)** | **`litellm`** behind `src/cleanbreak/llm/client.py` + deterministic no-key fallback | Switch between **Gemini, OpenAI/ChatGPT, Claude, or Nebius** via one env var (`LLM_MODEL`). Core valuation & solver work even with no LLM key configured. |
 | **API Server** | **FastAPI + Uvicorn + Pydantic v2** (`src/cleanbreak/api/`) | Typed contracts shared across all 3 teammates; JSON API + (later) serve Vite `dist/`. |
-| **Frontend UI** | **Vite + React + TypeScript + Tailwind** (`frontend/`) | SimCity-style process world; overlays for wizard/lista; replaces the previous zero-build HTML/vanilla UI. |
+| **Frontend UI** | **Vite + React + TypeScript + Tailwind + R3F** (`frontend/`) | **Diorama 3D** SimCity-style (case = processi); overlay DOM per wizard/lista. |
 
 ---
 
-## Frontend — stack minimo (ship veloce)
+## Frontend — stack (ship veloce + diorama 3D)
 
-Scelta deliberatamente snella: solo ciò che serve a costruire il mondo SimCity + overlay in poco tempo.
+Obiettivo: mondo **davvero 3D** (WebGL), chrome UI in DOM sopra. Niente fake-isometric CSS al posto del diorama.
 
 | Pezzo | Tech | A cosa serve |
 |---|---|---|
 | **App** | **Vite + React + TypeScript** | UI tipizzata, HMR, build `dist/` |
-| **Stile** | **Tailwind CSS** | Layout, chrome, modali |
+| **Stile / chrome** | **Tailwind CSS** | Layout, header, modali sopra il 3D |
 | **API client** | **`fetch` → FastAPI** | Niente TanStack Query per ora |
 | **State** | **`useState` / `useContext`** | Niente Zustand/Redux |
-| **Mondo** | **React + CSS isometrico** (div/case cliccabili) | Quartiere: ogni casa = un processo; empty = `+` enorme |
+| **Mondo 3D** | **React Three Fiber + Three.js + `@react-three/drei`** | Quartiere / case / stanze in diorama 3D; orbit controls |
 | **Overlay** | **Modali HTML/Tailwind** | Onboarding, wizard, inventario, vista lista, dettaglio oggetto |
 | **Export Excel** | **SheetJS (`xlsx`)** | Solo quando serve la modale lista |
+| **Build one-shot** | **`make build`** (`scripts/build.sh`) | Python editable + `frontend/dist` |
 
-**Esplicitamente fuori stack (per ora):** Framer Motion, Zustand, TanStack Query, Radix, react-zoom-pan-pinch, Phaser, PixiJS, React Three Fiber.
+**Esplicitamente fuori stack (per ora):** Framer Motion, Zustand, TanStack Query, Radix, Phaser, PixiJS, CSS-only “isometric world”.
 
 **Integrazione backend**
 
 - Dev: Vite su `:5173` con proxy `/api` → FastAPI `:8000` + CORS
-- Prod: FastAPI serve la `dist/` Vite (o due servizi)
+- Prod: `make build` poi FastAPI serve `frontend/dist` su `:8000`
 
 **Ordine di build frontend**
 
-1. Scaffold Vite React TS + Tailwind
-2. Schermata Mondo (terra + `+` + case stub)
-3. Modale onboarding + wizard creazione
-4. Dentro casa (stanze stub) + inventario / lista overlay
+1. [x] Scaffold Vite React TS + Tailwind (+ legacy UI)
+2. [ ] Diorama 3D quartiere (R3F) + case + `+`
+3. Modale onboarding + wizard (già stub DOM)
+4. Dentro casa: stanze 3D + inventario / lista overlay
 5. Collegare FastAPI e dati reali / solver
 
 Dettaglio UX: `docs/flows-process-ux.md`.
@@ -107,10 +108,24 @@ python scripts/probe_idealo_mcp.py --list-tools
 #    Live calls from the web app stay OFF unless IDEALO_LIVE_ENABLED=true in .env
 #    (see docs/idealo-mcp-setup.md -> "How the app protects the call budget")
 
-# 6. Run API
-uvicorn cleanbreak.api.app:app --reload --port 8000
+# 6. One-shot build (Python editable install + Vite → frontend/dist)
+make build
+# same as: ./scripts/build.sh
 
-# 7. Run frontend (Vite) — from frontend/
-# npm install && npm run dev
-# Open http://localhost:5173 (proxied to API)
+# 7. Serve everything from FastAPI
+uvicorn cleanbreak.api.app:app --reload --port 8000
+# React:  http://localhost:8000/
+# Legacy: http://localhost:8000/legacy
+# Or: make run   (build + serve)
+
+# Optional HMR: make dev-api  +  make dev-ui (:5173)
+```
+
+### Frontend layout
+
+```text
+frontend/
+  src/           React world UI (Vite + TS + Tailwind)
+  legacy/        Previous Split Board (vanilla HTML/JS) — keep/reuse while migrating
+  dist/          Production build (gitignored; served by FastAPI at /)
 ```

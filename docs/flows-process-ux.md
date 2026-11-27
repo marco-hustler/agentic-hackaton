@@ -36,16 +36,18 @@ Avvio processo
 
 ---
 
-## 3. Metafora UI — il Mondo (SimCity / The Sims)
+## 3. Metafora UI — il Mondo (SimCity / The Sims) in **3D**
 
-L’intera esperienza è **basata sul diorama**. Non esiste una “lista processi” come schermata primaria.
+L’intera esperienza è **basata su un diorama 3D** (non una lista, non un mockup flat 2D fingendo di essere 3D).  
+Riferimento: quartiere / case stile **The Sims / SimCity**, vista obliqua/isometrica, oggetti e case come modelli nello spazio.
 
-### 3.1 Il Mondo
+### 3.1 Il Mondo (obbligo: 3D)
 
-- All’ingresso l’utente atterra in un **mondo** (terra / quartiere / piccola città), ispirato a **The Sims / SimCity**.
-- Ogni **casa** nel mondo = **un processo**.
-- Navigazione spaziale: pan/zoom sul mondo, click su una casa per entrarci.
-- Il mondo resta sempre sotto; è il canvas permanente dell’app.
+- All’ingresso l’utente atterra in un **mondo 3D** (terra / quartiere / piccola città).
+- Ogni **casa 3D** nel mondo = **un processo**.
+- Navigazione spaziale reale: orbit / pan / zoom sulla scena 3D, click su una casa per entrarci.
+- Il canvas WebGL resta sempre sotto; è il layer permanente dell’app.
+- **Non accettabile come “mondo”:** sola griglia CSS, card HTML, o SVG flat senza profondità 3D.
 
 ### 3.2 Layering: mondo sotto, UI statica sopra
 
@@ -57,14 +59,14 @@ L’intera esperienza è **basata sul diorama**. Non esiste una “lista process
 │  · Modali (onboarding, wizard, lista, …)    │
 │  · Tooltips, toast, drawer                  │
 ├─────────────────────────────────────────────┤
-│  Layer Mondo (canvas permanente)            │
-│  · Terreno / città / quartiere              │
-│  · Case = processi                          │
-│  · Slot “+” = crea nuovo processo           │
+│  Layer Mondo 3D (WebGL / R3F, permanente)   │
+│  · Terreno / città / quartiere in 3D        │
+│  · Case 3D = processi                       │
+│  · Slot “+” 3D = crea nuovo processo        │
 └─────────────────────────────────────────────┘
 ```
 
-Regola d’oro: **header, sidebar, modali e ogni chrome statico vivono sopra il mondo**. Il mondo non sparisce: si oscura / resta visibile dietro quando si apre un overlay.
+Regola d’oro: **header, sidebar, modali e ogni chrome statico vivono sopra il diorama 3D** (DOM overlay). Il mondo 3D non sparisce: si oscura / resta visibile dietro quando si apre un overlay.
 
 ### 3.3 Empty world (utente nuovo)
 
@@ -99,12 +101,12 @@ Al **primo accesso** (flag locale / sessione):
 
 **In scope**
 
-- Mondo diorama come landing permanente (SimCity-like)
-- Empty world con `+` enorme “Crea il tuo primo processo”
-- Modale onboarding al primo accesso
+- Mondo **diorama 3D** come landing permanente (SimCity-like)
+- Empty world 3D con `+` enorme “Crea il tuo primo processo”
+- Modale onboarding al primo accesso (DOM sopra il 3D)
 - Wizard creazione (modale sopra il mondo)
-- Entrata in casa = dettaglio processo (diorama interno a stanze)
-- Inventario e Separazione come overlay/tab sopra la casa
+- Entrata in casa = dettaglio processo in **diorama 3D interno** (stanze)
+- Inventario e Separazione come overlay/tab DOM sopra la scena
 - Vista lista = **modale** aperta sopra la casa (non una schermata alternativa)
 - Export Excel dalla vista lista
 
@@ -158,7 +160,7 @@ UI: card selezionabili, una sola scelta obbligatoria. Opzionale: titolo/descrizi
 
 ## 6. Dentro la casa — dettaglio processo
 
-Entrando in una casa, il canvas resta diorama: si passa dalla **vista quartiere** alla **vista interna** (pianta della casa, stile The Sims dall’alto).
+Entrando in una casa, il canvas resta **3D**: si passa dalla **vista quartiere** alla **vista interna** (pianta/volumi della casa, stile The Sims, ancora nello stesso motore 3D).
 
 ### 6.1 Header / chrome sopra la casa
 
@@ -189,16 +191,16 @@ Ogni item mostra (pipeline idealo MCP + input utente):
 
 Azioni MVP: aggiungi / modifica / rimuovi oggetto. (Opzionale: paste testo grezzo → parse.)
 
-### 6.3 Tab Separazione — diorama stanze
+### 6.3 Tab Separazione — diorama 3D stanze
 
-Vista default dentro la casa: **stanze = utenti**.
+Vista default dentro la casa: **stanze 3D = utenti**.
 
-- Una stanza per ogni partecipante
-- Nella stanza fluttuano gli oggetti assegnati (icone/thumb)
-- **Hover** oggetto → tooltip rapido (titolo, valore, perché assegnato)
-- **Click** oggetto → **modale dettaglio** sopra la casa (prezzo idealo, fair value, ownership, care points, evidence)
+- Una stanza/volume 3D per ogni partecipante
+- Nella stanza fluttuano gli oggetti assegnati (mesh / billboard / thumb in 3D)
+- **Hover** oggetto → tooltip DOM rapido (titolo, valore, perché assegnato)
+- **Click** oggetto → **modale dettaglio** sopra la scena (prezzo idealo, fair value, ownership, care points, evidence)
 - Zona neutra (corridoio / garage / “in bilico”) per oggetti da vendere / buy-new / non assegnati
-- Banner settlement flottante: cash equalization
+- Banner settlement flottante (DOM): cash equalization
 
 ### 6.4 Vista Lista = modale sopra la casa
 
@@ -262,47 +264,46 @@ Transizioni minime MVP: `draft` → `collecting` → `resolved`.
 
 ## 9. Principi UI
 
-- **Il mondo è la home.** Nessuna lista processi come schermata primaria.
-- **Case = processi.** Click per entrare, `+` per crearne uno.
-- **Tutto il chrome sta sopra il mondo** (header, sidebar, modali, toast).
-- Empty state = mondo + `+` enorme, non icona su pagina bianca.
+- **Il mondo 3D è la home.** Nessuna lista processi come schermata primaria.
+- **Case 3D = processi.** Click per entrare, `+` per crearne uno.
+- **Diorama = WebGL 3D**, non CSS fake-isometric.
+- **Tutto il chrome sta sopra il mondo** (header, sidebar, modali, toast in DOM).
+- Empty state = scena 3D + `+` enorme, non icona su pagina bianca.
 - Primo accesso = modale onboarding che spiega la metafora.
-- Wizard e lista sono **overlay**, non navigazioni che distruggono il canvas.
-- Dentro la casa: diorama stanze come default; lista solo come modale tool.
+- Wizard e lista sono **overlay DOM**, non navigazioni che smontano la scena.
+- Dentro la casa: diorama 3D stanze come default; lista solo come modale tool.
 - Export e numeri chiari: la magia non nasconde la trasparenza dei valori idealo.
 
 ---
 
-## 10. Stack UI (minimo, ship veloce)
+## 10. Stack UI (minimo + 3D)
 
-Allineato a `docs/stack.md`. Nessuna libreria di animazione / state manager / game engine.
+Allineato a `docs/stack.md`.
 
 | Pezzo | Tech |
 |---|---|
 | App | Vite + React + TypeScript |
-| Stile | Tailwind CSS |
+| Stile / chrome | Tailwind CSS |
 | API | `fetch` → FastAPI |
 | State | `useState` / `useContext` |
-| Mondo | React + CSS isometrico (case = processi) |
-| Overlay | Modali HTML/Tailwind |
+| **Mondo / casa (3D)** | **React Three Fiber + Three.js + Drei** |
+| Overlay | Modali HTML/Tailwind sopra il canvas |
 | Export | SheetJS (`xlsx`) quando serve la lista |
 
-Mondo sempre sotto; header / sidebar / modali sempre sopra (`z-index`).
+Scena 3D sempre sotto; header / sidebar / modali sempre sopra (`z-index` DOM).
 
 ---
 
 ## 11. Prossimi passi implementativi
 
-1. Scaffold Vite React TS + Tailwind in `frontend/`
-2. Canvas Mondo (terra/città) + layer UI sopra
-3. Empty world con `+` enorme
-4. Modale onboarding primo accesso
-5. Wizard creazione (modale) → spawn casa nel mondo
-6. Entrata in casa: diorama stanze + chrome sopra
-7. Inventario come overlay
-8. Separazione diorama (hover + modale dettaglio oggetto)
-9. Modale “Vista lista” + export Excel
-10. Collegare FastAPI / solver / idealo
+1. [x] Scaffold Vite React TS + Tailwind in `frontend/` (+ legacy Split Board in `frontend/legacy/`)
+2. [x] Shell app + overlay (onboarding, wizard) — mondo ancora stub 2D da sostituire
+3. **Sostituire lo stub con diorama 3D (R3F): quartiere + case + `+`**
+4. Entrata in casa: diorama 3D stanze + chrome sopra
+5. Inventario come overlay DOM
+6. Separazione 3D (hover + modale dettaglio oggetto)
+7. Modale “Vista lista” + export Excel (SheetJS già in deps)
+8. Collegare FastAPI process API / solver / idealo (oggi: stub locale + `/api/health`)
 
 ---
 
