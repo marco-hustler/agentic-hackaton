@@ -43,7 +43,6 @@ load_dotenv()
 
 DEMO_PATH = REPO_ROOT / "data" / "demo_berlin_wg.json"
 FRONTEND_DIR = REPO_ROOT / "frontend"
-LEGACY_DIR = FRONTEND_DIR / "legacy"
 DIST_DIR = FRONTEND_DIR / "dist"
 
 app = FastAPI(title="CleanBreak — Fair Household Split (idealo MCP)", version="0.1.0")
@@ -59,9 +58,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-if LEGACY_DIR.exists():
-    app.mount("/legacy-static", StaticFiles(directory=str(LEGACY_DIR)), name="legacy-static")
 
 if (DIST_DIR / "assets").is_dir():
     app.mount("/assets", StaticFiles(directory=str(DIST_DIR / "assets")), name="vite-assets")
@@ -97,7 +93,7 @@ def _dist_index() -> Path | None:
 
 @app.get("/")
 async def index() -> FileResponse:
-    """Serve the React build when present; otherwise a tiny pointer to Vite + legacy."""
+    """Serve the React production build (`make build`)."""
     dist = _dist_index()
     if dist is not None:
         return FileResponse(dist)
@@ -106,17 +102,8 @@ async def index() -> FileResponse:
         return FileResponse(pointer)
     raise HTTPException(
         status_code=503,
-        detail="Frontend not built. Run: cd frontend && npm run dev (or npm run build)",
+        detail="Frontend not built. Run: make build",
     )
-
-
-@app.get("/legacy")
-async def legacy_index() -> FileResponse:
-    """Previous Split Board UI (vanilla HTML/JS) — still wired to /api/*."""
-    path = LEGACY_DIR / "index.html"
-    if not path.is_file():
-        raise HTTPException(status_code=404, detail="Legacy UI not found")
-    return FileResponse(path)
 
 
 @app.get("/favicon.svg", include_in_schema=False)

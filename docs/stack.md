@@ -42,7 +42,7 @@ Obiettivo: mondo **davvero 3D** (WebGL), chrome UI in DOM sopra. Niente fake-iso
 
 **Ordine di build frontend**
 
-1. [x] Scaffold Vite React TS + Tailwind (+ legacy UI)
+1. [x] Scaffold Vite React TS + Tailwind
 2. [x] Diorama 3D quartiere (R3F) + case + `+` (landing isometrica, design `DESIGN.md`)
 3. Modale onboarding + wizard (già stub DOM)
 4. Dentro casa: stanze 3D + inventario / lista overlay
@@ -108,24 +108,18 @@ python scripts/probe_idealo_mcp.py --list-tools
 #    Live calls from the web app stay OFF unless IDEALO_LIVE_ENABLED=true in .env
 #    (see docs/idealo-mcp-setup.md -> "How the app protects the call budget")
 
-# 6. One-shot build (Python editable install + Vite → frontend/dist)
-make build
-# same as: ./scripts/build.sh
+# 6. One-shot: build Python + React, then serve on :8000
+make run
+# Open http://localhost:8000/
+# (uvicorn alone does not build the UI — use make build / make run)
 
-# 7. Serve everything from FastAPI
-uvicorn cleanbreak.api.app:app --reload --port 8000
-# React:  http://localhost:8000/
-# Legacy: http://localhost:8000/legacy
-# Or: make run   (build + serve)
-
-# Optional HMR: make dev-api  +  make dev-ui (:5173)
+# Optional HMR: make serve  +  make dev-ui (:5173)
 ```
 
 ### Frontend layout
 
 ```text
 frontend/
-  src/           React world UI (Vite + TS + Tailwind)
-  legacy/        Previous Split Board (vanilla HTML/JS) — keep/reuse while migrating
+  src/           React world UI (Vite + TS + Tailwind + R3F)
   dist/          Production build (gitignored; served by FastAPI at /)
 ```

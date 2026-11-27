@@ -296,7 +296,7 @@ Scena 3D sempre sotto; header / sidebar / modali sempre sopra (`z-index` DOM).
 
 ## 11. Prossimi passi implementativi
 
-1. [x] Scaffold Vite React TS + Tailwind in `frontend/` (+ legacy Split Board in `frontend/legacy/`)
+1. [x] Scaffold Vite React TS + Tailwind in `frontend/`
 2. [x] Shell app + overlay (onboarding, wizard) — mondo ancora stub 2D da sostituire
 3. **Sostituire lo stub con diorama 3D (R3F): quartiere + case + `+`**
 4. Entrata in casa: diorama 3D stanze + chrome sopra

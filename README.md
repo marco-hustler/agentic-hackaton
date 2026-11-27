@@ -19,31 +19,32 @@ Built for **Agentic Hackathon: From Research to Commerce** (Berlin, 27 Nov 2026)
 
 ## Quickstart (2 minutes, works out of the box)
 
-> Requires **Python 3.11+** and **Node 20+** (for the React UI). On macOS, if `python3 --version` is 3.9, use `/opt/homebrew/bin/python3` instead.
+> Requires **Python 3.11+** and **Node 20+**. On macOS, if `python3 --version` is 3.9, use `/opt/homebrew/bin/python3` instead.
 
 ```bash
 python3 -m venv .venv          # or: /opt/homebrew/bin/python3 -m venv .venv
 source .venv/bin/activate      # Windows: .venv\Scripts\activate
 cp .env.example .env           # optional — works even without API keys
 
-# One command: install Python deps + build React → frontend/dist
-make build
-# same as: ./scripts/build.sh
-
-# Serve API + React (+ legacy) on one port
-uvicorn cleanbreak.api.app:app --reload --port 8000
+# One command: Python deps + React → frontend/dist, then serve on :8000
+make run
 # Open http://localhost:8000
-# Legacy Split Board: http://localhost:8000/legacy
-
-# Or build + serve in one go:
-# make run
 ```
+
+`uvicorn` alone does **not** build the UI — it only serves whatever is already in `frontend/dist`. Use:
+
+| Command | What it does |
+|---|---|
+| `make build` | Install Python package + build React → `frontend/dist` |
+| `make run` | `make build` then serve API + UI on `:8000` |
+| `make serve` | Serve only (needs a prior `make build`) |
+| `make dev-ui` | Vite HMR on `:5173` (pair with `make serve`) |
 
 ### Frontend HMR (optional, two terminals)
 
 ```bash
-make dev-api   # :8000
-make dev-ui    # :5173, proxies /api → :8000
+make serve    # :8000 API (+ built UI)
+make dev-ui   # :5173, proxies /api → :8000
 ```
 
 ### idealo call budget — live calls are OFF by default
