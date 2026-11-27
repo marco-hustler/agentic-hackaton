@@ -326,7 +326,7 @@ def valuation_from_bundle(
 
     is_substitute = "discontinued" in item.name.lower() or "old " in item.name.lower()
     substitute_reason = (
-        f"Anchored via closest available idealo catalog match ({matched_title})."
+        f"This model is no longer sold, so it is priced like the closest match on idealo: {matched_title}."
         if is_substitute
         else None
     )

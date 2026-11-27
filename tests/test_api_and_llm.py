@@ -16,6 +16,17 @@ def test_fallback_inventory_parser() -> None:
     assert items[0].ownership == "shared"
     assert items[1].ownership == "party_a"
     assert items[1].condition == "like_new"
+    assert items[0].name == "PlayStation 5 Slim"
+    assert items[1].name == "Sony WH-1000XM5"
+    assert items[1].search_query == "Sony WH-1000XM5"
+
+
+def test_fallback_parser_strips_metadata_without_commas() -> None:
+    raw = "Sony WH-1000XM5 headphones 2024 Alex paid; our old Bosch washing machine from 2019 shared 50/50"
+    items = asyncio.run(parse_messy_inventory(raw, party_a_name="Alex", party_b_name="Sam"))
+    assert [i.name for i in items] == ["Sony WH-1000XM5 headphones", "Bosch washing machine"]
+    assert items[0].ownership == "party_a"
+    assert items[1].purchase_year == 2019
 
 
 def test_api_demo_and_solve_endpoints() -> None:
@@ -110,7 +121,11 @@ def test_solve_never_calls_llm(monkeypatch) -> None:
     client = TestClient(app)
     res = client.post("/api/solve", json=_demo_solve_payload(client))
     assert res.status_code == 200
-    assert res.json()["mediator_summary"].startswith("Based on")
+    from cleanbreak.models import SplitRequest
+    from cleanbreak.solver.optimizer import solve_split
+
+    expected = solve_split(SplitRequest.model_validate(_demo_solve_payload(client))).mediator_summary
+    assert res.json()["mediator_summary"] == expected
 
 
 def test_summary_endpoint_without_llm_returns_deterministic_text(monkeypatch) -> None:
@@ -131,3 +146,16 @@ def test_summary_endpoint_uses_llm(monkeypatch) -> None:
     client = TestClient(app)
     split = client.post("/api/solve", json=_demo_solve_payload(client)).json()
     assert client.post("/api/summary", json=split).json()["summary"] == "Polished summary."
+
+
+def test_reapply_depreciation_keeps_offer_data() -> None:
+    client = TestClient(app)
+    entry = client.get("/api/demo").json()["valued_items"][0]
+    before = entry["valuation"]
+    entry["item"]["depreciation_override"] = 0.5
+    after = client.post("/api/reapply-depreciation", json=entry).json()
+    assert after["depreciation_factor"] == 0.5
+    assert after["fair_value_eur"] == round(before["trusted_market_price_eur"] * 0.5, 2)
+    assert after["offer_count"] == before["offer_count"]
+    assert after["trusted_market_price_eur"] == before["trusted_market_price_eur"]
+

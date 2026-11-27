@@ -217,7 +217,7 @@ async def _value_items(
         return fallback[item.id].model_copy(update={"source_note": note})
 
     if mode == "fallback":
-        return [placeholder(i, "offline demo fallback") for i in items], "Using offline demo fallback valuations.", get_budget().snapshot()
+        return [placeholder(i, "offline demo fallback") for i in items], "Showing sample prices. idealo was not asked.", get_budget().snapshot()
 
     client = _make_client(country)
     results: list[ItemValuation | None] = [None] * len(items)
