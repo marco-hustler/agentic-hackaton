@@ -114,6 +114,7 @@ class ItemValuation(BaseModel):
     best_buy_new_url: str | None = None
 
     data_source: DataSourceType = "demo_fallback"
+    source_note: str | None = None  # why a placeholder was used (e.g. "live mode off")
 
 
 class ValuedItem(BaseModel):

@@ -6,14 +6,14 @@ import json
 import os
 from contextlib import asynccontextmanager
 from pathlib import Path
-from typing import Any, AsyncIterator
+from typing import Any, AsyncIterator, Literal
 
 import httpx2
 from mcp import ClientSession
 from mcp.client.streamable_http import create_mcp_http_client, streamable_http_client
 
-from cleanbreak.idealo.auth import build_oauth_provider
-from cleanbreak.idealo.budget import CallBudget, get_budget
+from cleanbreak.idealo.auth import build_oauth_provider, tokens_present
+from cleanbreak.idealo.budget import BudgetExhausted, CallBudget, get_budget
 from cleanbreak.idealo.cache import DiskCache
 from cleanbreak.models import (
     DataSourceType,
@@ -22,7 +22,22 @@ from cleanbreak.models import (
     ItemValuation,
     PriceHistoryStats,
 )
+from cleanbreak.paths import resolve_repo_path
 from cleanbreak.valuation.engine import build_valuation
+
+
+ERROR_BUNDLE_TTL_SECONDS = 15 * 60
+
+LookupStatus = Literal["found", "not_found", "error", "miss"]
+
+
+class IdealoToolError(RuntimeError):
+    """An idealo MCP tool answered with is_error=True (e.g. a rate limit). Never cached."""
+
+
+def normalize_query(query: str) -> str:
+    """Case- and whitespace-insensitive cache key for a product query."""
+    return " ".join(query.split()).casefold()
 
 
 class IdealoMCPClient:
@@ -37,17 +52,25 @@ class IdealoMCPClient:
         cache_dir: str | Path | None = None,
         callback_port: int | None = None,
         manual_callback: bool = False,
+        interactive: bool = False,
         budget: CallBudget | None = None,
     ) -> None:
         self.server_url = server_url or os.getenv("IDEALO_MCP_URL", "https://mcp.idealo.com/mcp")
         self.country = (country or os.getenv("IDEALO_COUNTRY", "DE")).upper()
-        self.token_file = Path(token_file or os.getenv("IDEALO_TOKEN_FILE", ".idealo_tokens.json"))
-        self.cache = DiskCache(cache_dir or os.getenv("IDEALO_CACHE_DIR", "data/cache"))
+        self.token_file = resolve_repo_path(token_file or os.getenv("IDEALO_TOKEN_FILE", ".idealo_tokens.json"))
+        resolved_cache_dir = cache_dir or os.getenv("IDEALO_CACHE_DIR", "data/cache")
+        self.cache = DiskCache(resolved_cache_dir)
+        # Item bundles (found / not_found) never expire; error bundles carry their own short expiry.
+        self.bundle_cache = DiskCache(resolved_cache_dir, ttl_seconds=0)
         self.callback_port = callback_port or int(os.getenv("IDEALO_OAUTH_CALLBACK_PORT", "6274"))
         self.manual_callback = manual_callback
+        self.interactive = interactive
         self.budget = budget or get_budget()
         self._session: ClientSession | None = None
         self._tool_names: set[str] = set()
+
+    def has_login(self) -> bool:
+        return tokens_present(self.token_file)
 
     @asynccontextmanager
     async def connect(self) -> AsyncIterator["IdealoMCPClient"]:
@@ -56,10 +79,11 @@ class IdealoMCPClient:
             token_file=self.token_file,
             callback_port=self.callback_port,
             manual_callback=self.manual_callback,
+            interactive=self.interactive,
         )
         http_client = create_mcp_http_client(
             auth=auth,
-            timeout=httpx2.Timeout(30.0, read=60.0),
+            timeout=httpx2.Timeout(10.0, read=10.0),
         )
         async with http_client:
             async with streamable_http_client(self.server_url, http_client=http_client) as (
@@ -98,7 +122,10 @@ class IdealoMCPClient:
         *,
         force_refresh: bool = False,
     ) -> tuple[Any, bool]:
-        """Call an MCP tool with transparent disk caching. Returns (parsed_payload, from_cache)."""
+        """Call an MCP tool with transparent disk caching. Returns (parsed_payload, from_cache).
+
+        Only successful results are cached; an is_error result raises IdealoToolError.
+        """
         if not force_refresh:
             cached = self.cache.get(tool_name, arguments)
             if cached is not None:
@@ -109,9 +136,14 @@ class IdealoMCPClient:
 
         await self.budget.reserve()
         result = await self._session.call_tool(tool_name, arguments=arguments)
+        if getattr(result, "is_error", False) or getattr(result, "isError", False):
+            raise IdealoToolError(f"idealo tool {tool_name} returned an error: {_extract_tool_payload(result)}")
         parsed = _extract_tool_payload(result)
         self.cache.set(tool_name, arguments, parsed)
         return parsed, False
+
+    def _bundle_key(self, query: str, country: str) -> dict[str, Any]:
+        return {"query": normalize_query(query), "country": country}
 
     async def probe_item_raw(
         self,
@@ -120,24 +152,40 @@ class IdealoMCPClient:
         country: str | None = None,
         force_refresh: bool = False,
     ) -> dict[str, Any]:
-        """Run search -> details/offers -> 30-day price history for one query (~3 MCP calls)."""
+        """Run search -> details/offers -> 30-day price history for one query (up to 4 MCP calls).
+
+        The bundle records `outcome`: found, not_found (search returned no product) or error
+        (any tool failed). Error bundles expire after 15 minutes; others are kept. A
+        BudgetExhausted error propagates without caching a bundle.
+        """
         mkt = (country or self.country).upper()
-        search_tool = self._resolve_tool("search_products")
-        search_args = {"query": query, "country": mkt}
-        search_data, search_cached = await self.call_tool_cached(
-            search_tool, search_args, force_refresh=force_refresh
-        )
-
-        top_product = _pick_first_product(search_data)
-        product_ref = _extract_product_ref(top_product) if top_product else None
-        item_type = _first_str(top_product, "itemType") if top_product else None
-
         details_data = None
         offers_data = None
         history_data = None
-        all_cached = search_cached
+        search_data: Any = None
+        top_product = None
+        product_ref = None
+        all_cached = True
+        outcome = "found"
+
+        try:
+            search_tool = self._resolve_tool("search_products")
+            search_data, search_cached = await self.call_tool_cached(
+                search_tool, {"query": query, "country": mkt}, force_refresh=force_refresh
+            )
+            all_cached = search_cached
+            top_product = _pick_first_product(search_data)
+            product_ref = _extract_product_ref(top_product) if top_product else None
+            if not product_ref:
+                outcome = "not_found"
+        except BudgetExhausted:
+            raise
+        except Exception as exc:
+            search_data = {"_error": str(exc)}
+            outcome = "error"
 
         if product_ref:
+            item_type = _first_str(top_product, "itemType")
             details_tool = self._resolve_tool("get_product_details")
             offers_tool = self._resolve_tool("get_product_offers")
             history_tool = self._resolve_tool("get_product_price_history", "get_price_history")
@@ -160,24 +208,22 @@ class IdealoMCPClient:
                         force_refresh=force_refresh,
                     )
                     all_cached = all_cached and from_cache
-                    if label == "details":
-                        details_data = data
-                    elif label == "offers":
-                        offers_data = data
-                    else:
-                        history_data = data
+                except BudgetExhausted:
+                    raise
                 except Exception as exc:
-                    err_obj = {"_error": str(exc)}
-                    if label == "details":
-                        details_data = err_obj
-                    elif label == "offers":
-                        offers_data = err_obj
-                    else:
-                        history_data = err_obj
+                    data = {"_error": str(exc)}
+                    outcome = "error"
+                if label == "details":
+                    details_data = data
+                elif label == "offers":
+                    offers_data = data
+                else:
+                    history_data = data
 
         bundle = {
             "query": query,
             "country": mkt,
+            "outcome": outcome,
             "product_ref": product_ref,
             "top_product": top_product,
             "search": search_data,
@@ -186,24 +232,45 @@ class IdealoMCPClient:
             "price_history": history_data,
             "all_cached": all_cached,
         }
-        # Save normalized item bundle in cache so UI can load instantly from cache_only mode!
-        self.cache.set("item_bundle", {"query": query, "country": mkt}, bundle)
+        self.bundle_cache.set(
+            "item_bundle",
+            self._bundle_key(query, mkt),
+            bundle,
+            expires_in=ERROR_BUNDLE_TTL_SECONDS if outcome == "error" else None,
+        )
         return bundle
 
-    def value_item_from_cache(self, item: HouseholdItemInput) -> ItemValuation | None:
-        query = (item.search_query or item.name).strip()
-        bundle = self.cache.get("item_bundle", {"query": query, "country": self.country})
+    def _cached_bundle(self, query: str) -> dict[str, Any] | None:
+        bundle = self.bundle_cache.get("item_bundle", self._bundle_key(query, self.country))
+        if bundle is None:
+            # Legacy key: committed demo bundles were stored under the exact query text.
+            bundle = self.bundle_cache.get("item_bundle", {"query": query.strip(), "country": self.country})
+        return bundle
+
+    def lookup_cached(self, item: HouseholdItemInput) -> tuple[LookupStatus, ItemValuation | None]:
+        """Resolve an item from cache only (0 calls). Status `miss` means no usable cached answer."""
+        bundle = self._cached_bundle((item.search_query or item.name).strip())
         if not bundle:
-            return None
-        return valuation_from_bundle(item, bundle, data_source="idealo_cached")
+            return "miss", None
+        return _status_and_valuation(item, bundle, data_source="idealo_cached")
 
     async def value_item(
         self, item: HouseholdItemInput, *, force_refresh: bool = False
-    ) -> ItemValuation:
+    ) -> tuple[LookupStatus, ItemValuation | None]:
         query = (item.search_query or item.name).strip()
         bundle = await self.probe_item_raw(query, country=self.country, force_refresh=force_refresh)
         source: DataSourceType = "idealo_cached" if bundle.get("all_cached") else "idealo_live"
-        return valuation_from_bundle(item, bundle, data_source=source)
+        return _status_and_valuation(item, bundle, data_source=source)
+
+
+def _status_and_valuation(
+    item: HouseholdItemInput, bundle: dict[str, Any], *, data_source: DataSourceType
+) -> tuple[LookupStatus, ItemValuation | None]:
+    # Bundles written before outcomes existed (the committed demo cache) are found results.
+    outcome = bundle.get("outcome", "found")
+    if outcome != "found":
+        return outcome, None
+    return "found", valuation_from_bundle(item, bundle, data_source=data_source)
 
 
 def valuation_from_bundle(

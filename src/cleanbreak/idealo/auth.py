@@ -16,6 +16,39 @@ from mcp.shared.auth import OAuthClientInformationFull, OAuthClientMetadata, OAu
 from pydantic import AnyUrl
 
 
+class LoginRequired(RuntimeError):
+    """Raised by the server-side provider instead of starting an interactive browser login."""
+
+
+def is_login_required(exc: BaseException) -> bool:
+    """True if `exc` is, or (inside an ExceptionGroup from the MCP transport) contains, LoginRequired."""
+    if isinstance(exc, LoginRequired):
+        return True
+    if isinstance(exc, BaseExceptionGroup):
+        return any(is_login_required(e) for e in exc.exceptions)
+    return False
+
+
+def tokens_present(token_file: str | Path) -> bool:
+    """Cheap, offline check that a previous `--list-tools` login saved an access token."""
+    try:
+        raw = json.loads(Path(token_file).read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return False
+    tokens = raw.get("tokens") if isinstance(raw, dict) else None
+    return isinstance(tokens, dict) and bool(tokens.get("access_token"))
+
+
+async def _refuse_interactive_login(authorization_url: str) -> None:
+    raise LoginRequired(
+        "idealo login required — run `python scripts/probe_idealo_mcp.py --list-tools` to log in."
+    )
+
+
+async def _no_callback():  # pragma: no cover - never reached because redirect raises first
+    raise LoginRequired("idealo login required.")
+
+
 class FileTokenStorage(TokenStorage):
     """Persists OAuth tokens and dynamically registered client info to a local JSON file."""
 
@@ -167,8 +200,13 @@ def build_oauth_provider(
     token_file: str | Path = ".idealo_tokens.json",
     callback_port: int = 6274,
     manual_callback: bool = False,
+    interactive: bool = True,
 ) -> OAuthClientProvider:
-    """Create a configured MCP v2 OAuthClientProvider with persisted token storage."""
+    """Create a configured MCP v2 OAuthClientProvider with persisted token storage.
+
+    `interactive=False` (server use) never opens a browser or waits for a callback: an
+    authorization redirect raises LoginRequired instead.
+    """
     catcher = LoopbackCallbackCatcher(port=callback_port, manual=manual_callback)
     metadata = OAuthClientMetadata(
         client_name="CleanBreak Hackathon Client",
@@ -180,6 +218,6 @@ def build_oauth_provider(
         server_url=server_url,
         client_metadata=metadata,
         storage=FileTokenStorage(token_file),
-        redirect_handler=catcher.redirect_handler,
-        callback_handler=catcher.callback_handler,
+        redirect_handler=catcher.redirect_handler if interactive else _refuse_interactive_login,
+        callback_handler=catcher.callback_handler if interactive else _no_callback,
     )

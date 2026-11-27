@@ -158,7 +158,7 @@ async def _value_items(
         if mode == "cache_only":
             fallback_map = {v.item_id: v for v in build_demo_fallback_valuations(items)}
             for item in items:
-                cached = client.value_item_from_cache(item)
+                _, cached = client.lookup_cached(item)
                 if cached is not None:
                     valuations.append(cached)
                 else:
@@ -175,7 +175,8 @@ async def _value_items(
         # live_or_cache
         async with client.connect():
             for item in items:
-                valuations.append(await client.value_item(item))
+                _, val = await client.value_item(item)
+                valuations.append(val or build_demo_fallback_valuations([item])[0])
         return valuations, None
     except Exception as exc:
         return (

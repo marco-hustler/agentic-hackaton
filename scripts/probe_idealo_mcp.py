@@ -37,6 +37,7 @@ async def run_probe(args: argparse.Namespace) -> None:
         country=args.country,
         callback_port=args.callback_port,
         manual_callback=args.manual_callback,
+        interactive=True,
     )
 
     async with client.connect():
@@ -69,16 +70,21 @@ async def run_probe(args: argparse.Namespace) -> None:
 
         for item, q in queries:
             bundle = await client.probe_item_raw(q, country=args.country, force_refresh=args.refresh)
-            val = await client.value_item(item, force_refresh=False)
-            raw_results.append({"item_id": item.id, "query": q, "bundle": bundle, "valuation": val.model_dump()})
+            status, val = await client.value_item(item, force_refresh=False)
+            raw_results.append(
+                {"item_id": item.id, "query": q, "bundle": bundle, "valuation": val.model_dump() if val else None}
+            )
+            if val is None:
+                print(f"{item.name[:34]:34} | ({status})")
+                continue
 
             deal_str = f"YES (-{val.deal_discount_pct:.0f}%)" if val.is_buy_new_deal else "no"
             print(
                 f"{item.name[:34]:34} | {val.matched_title[:32]:32} | "
                 f"{val.trusted_market_price_eur:9.2f} | {val.offer_count:6d} | {deal_str:20}"
             )
-            # Stay politely under the 3 req/s Trial-tier limit
-            await asyncio.sleep(0.5)
+        snap = client.budget.snapshot()
+        print(f"\nidealo calls used today: {snap['used']}/{snap['cap']} (remaining {snap['remaining']})")
 
         PROBE_OUT.write_text(json.dumps(raw_results, indent=2, ensure_ascii=False), encoding="utf-8")
         print(f"\nSaved raw probe output -> {PROBE_OUT.relative_to(REPO_ROOT)}")
