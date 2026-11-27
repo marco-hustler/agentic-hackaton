@@ -20,9 +20,14 @@ from cleanbreak.idealo.auth import default_token_path, find_exception, is_login_
 from cleanbreak.idealo.budget import BudgetExhausted, get_budget
 from cleanbreak.idealo.client import IdealoMCPClient
 from cleanbreak.llm.tasks import generate_mediator_summary, parse_messy_inventory
+from cleanbreak.db.processes import get_process_store
 from cleanbreak.models import (
+    AccountInfo,
     HouseholdItemInput,
     ItemValuation,
+    ProcessCreate,
+    ProcessStatusUpdate,
+    ProcessSummary,
     SplitMode,
     SplitRequest,
     SplitResult,
@@ -126,6 +131,38 @@ async def vite_public_file(request: Request) -> FileResponse:
 @app.get("/api/health")
 async def health() -> dict[str, str]:
     return {"status": "ok", "service": "cleanbreak"}
+
+
+@app.get("/api/me", response_model=AccountInfo)
+async def get_me() -> AccountInfo:
+    """Stub account for the header. Real auth is out of scope for the MVP."""
+    return AccountInfo()
+
+
+@app.get("/api/processes", response_model=list[ProcessSummary])
+async def list_processes() -> list[ProcessSummary]:
+    return get_process_store().list_processes()
+
+
+@app.post("/api/processes", response_model=ProcessSummary, status_code=201)
+async def create_process(payload: ProcessCreate) -> ProcessSummary:
+    return get_process_store().create_process(payload)
+
+
+@app.get("/api/processes/{process_id}", response_model=ProcessSummary)
+async def get_process(process_id: str) -> ProcessSummary:
+    process = get_process_store().get_process(process_id)
+    if process is None:
+        raise HTTPException(status_code=404, detail="Process not found")
+    return process
+
+
+@app.patch("/api/processes/{process_id}", response_model=ProcessSummary)
+async def patch_process(process_id: str, payload: ProcessStatusUpdate) -> ProcessSummary:
+    updated = get_process_store().update_status(process_id, payload.status)
+    if updated is None:
+        raise HTTPException(status_code=404, detail="Process not found")
+    return updated
 
 
 @app.get("/api/demo")

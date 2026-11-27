@@ -39,7 +39,8 @@ export function PlusLot({ position, hero = false, onCreate, onHover, hidden = fa
     if (!g) return
     const t = clock.getElapsedTime()
     g.position.y = (hero ? 1.9 : 1.1) + Math.sin(t * 1.8) * 0.12
-    g.rotation.y += dt * (hovered ? 1.6 : 0.5)
+    // Keep the central plus still at rest; rotation is only a hover response.
+    if (hovered) g.rotation.y += dt * 1.6
     const target = hovered ? 1.15 : 1
     g.scale.setScalar(safeScale(stepSpring(tokenSpring.current, target, dt)))
   })

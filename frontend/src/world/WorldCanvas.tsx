@@ -9,7 +9,7 @@ import { House } from './House'
 import { LabelProjector, type LabelAnchor, type LabelRegistry } from './labels'
 import { LOT_SLOTS, MAX_LOTS } from './layout'
 import { KIND_META, STATUS_META, WORLD } from './palette'
-import { PlusLot } from './PlusLot'
+import { FreeLot } from './FreeLot'
 import { INTERIOR, ROOM_PLANS, roomBounds, type RoomInfo } from './rooms'
 
 export type WorldMode = 'world' | 'confirm' | 'house'
@@ -29,7 +29,6 @@ type WorldCanvasProps = {
   onCancel: () => void
 }
 
-const PLUS_ID = '__plus__'
 const CONFIRM_ID = '__confirm__'
 const roomLabelId = (i: number) => `__room_${i}__`
 
@@ -52,8 +51,7 @@ export function WorldCanvas({
   onCancel,
 }: WorldCanvasProps) {
   const placed = processes.slice(0, MAX_LOTS)
-  const empty = placed.length === 0
-  const plusSlot = placed.length < MAX_LOTS ? LOT_SLOTS[placed.length] : null
+  const freeSlots = LOT_SLOTS.slice(placed.length)
   const [hoveredId, setHoveredId] = useState<string | null>(null)
 
   const focusIndex = placed.findIndex((p) => p.id === focusId)
@@ -69,8 +67,6 @@ export function WorldCanvas({
       anchors.push({ id: p.id, position: [LOT_SLOTS[i][0], 3.9, LOT_SLOTS[i][1] - 0.3] })
     })
     if (mode === 'confirm' && focusSlot) anchors.push({ id: CONFIRM_ID, position: [focusSlot[0], 1.2, focusSlot[1] - 0.3] })
-    if (plusSlot && mode === 'world')
-      anchors.push({ id: PLUS_ID, position: [plusSlot[0], empty ? 4.6 : 2.1, plusSlot[1]] })
   } else if (focusSlot && focusRooms) {
     ROOM_PLANS[focusRooms.length].forEach((r, i) => {
       const b = roomBounds(r)
@@ -147,15 +143,10 @@ export function WorldCanvas({
           )
         })}
 
-        {plusSlot && (
-          <PlusLot
-            position={plusSlot}
-            hero={empty}
-            hidden={mode !== 'world'}
-            onCreate={onCreateProcess}
-            onHover={hoverHandler(PLUS_ID)}
-          />
-        )}
+        {/* Every free lot is a hit area that starts a new process */}
+        {freeSlots.map(([x, z]) => (
+          <FreeLot key={`free-${x}-${z}`} position={[x, z]} interactive={mode === 'world'} onCreate={onCreateProcess} />
+        ))}
 
         <LabelProjector anchors={anchorsRef} registry={registry} />
       </Canvas>
@@ -219,24 +210,6 @@ export function WorldCanvas({
             </div>
           ) : null,
         )}
-
-        {shown.has(PLUS_ID) && plusSlot && (
-          <div ref={register(PLUS_ID)} className="absolute left-0 top-0" style={{ visibility: 'hidden' }} aria-hidden>
-            {empty ? (
-              <div
-                className={`panel flex flex-col items-center px-5 py-3 text-center transition-transform duration-150 ${
-                  hoveredId === PLUS_ID ? 'scale-105' : ''
-                }`}
-                style={{ minWidth: 240 }}
-              >
-                <span className="text-lg font-extrabold tracking-tight text-petrol">Create your first process</span>
-                <span className="text-xs text-ink2">A house appears here for every split you start</span>
-              </div>
-            ) : (
-              <span className={`pill ${hoveredId === PLUS_ID ? 'pill-draft' : 'pill-neutral'}`}>New process</span>
-            )}
-          </div>
-        )}
       </div>
 
       {/* Keyboard / screen-reader path to the same actions as the 3D scene */}
@@ -249,7 +222,7 @@ export function WorldCanvas({
               </button>
             </li>
           ))}
-          {plusSlot && (
+          {freeSlots.length > 0 && (
             <li>
               <button type="button" onClick={onCreateProcess}>
                 Create a new process

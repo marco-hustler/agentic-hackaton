@@ -1,7 +1,10 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { getHealth } from './api/client'
+import { listProcesses } from './api/client'
+import { LoginPage } from './auth/LoginPage'
+import { clearSession, loadSession } from './auth/session'
 import { AppHeader } from './chrome/AppHeader'
-import { WorldLegend } from './chrome/WorldLegend'
+import { ProcessList } from './chrome/ProcessList'
+import type { ProcessView } from './chrome/ViewSwitch'
 import { BalanceCard } from './house/BalanceCard'
 import { formatEur, pct } from './house/format'
 import { HouseNav, type HouseTab } from './house/HouseNav'
@@ -12,11 +15,11 @@ import type { ValuedItem } from './types/inventory'
 import { useHouseInventory } from './house/useHouseInventory'
 import { CreateProcessWizard } from './overlays/CreateProcessWizard'
 import { OnboardingModal } from './overlays/OnboardingModal'
-import type { ProcessSummary } from './types/process'
+import type { AccountInfo, ProcessSummary } from './types/process'
 import { buildRooms, participantNames } from './world/rooms'
 import { WorldCanvas, type WorldMode } from './world/WorldCanvas'
 
-const ONBOARDING_KEY = 'cleanbreak.onboarding.seen'
+const ONBOARDING_KEY = 'dividealo.onboarding.seen'
 
 function loadOnboardingSeen(): boolean {
   try {
@@ -35,10 +38,13 @@ function markOnboardingSeen() {
 }
 
 export default function App() {
+  const [account, setAccount] = useState<AccountInfo | null>(() => loadSession())
   const [processes, setProcesses] = useState<ProcessSummary[]>([])
+  const [loadError, setLoadError] = useState<string | null>(null)
+  /** Neighbourhood as a 3D world or as a plain list. */
+  const [view, setView] = useState<ProcessView>('world')
   const [showOnboarding, setShowOnboarding] = useState(() => !loadOnboardingSeen())
   const [showWizard, setShowWizard] = useState(false)
-  const [apiOk, setApiOk] = useState<boolean | null>(null)
   const [mode, setMode] = useState<WorldMode>('world')
   const [focusId, setFocusId] = useState<string | null>(null)
   const [spinRequest, setSpinRequest] = useState(0)
@@ -47,15 +53,21 @@ export default function App() {
   const [tab, setTab] = useState<HouseTab>('inventory')
   const frameRef = useRef<HTMLDivElement>(null)
 
+  // Processes are stored server-side per account (demo sign-in).
   useEffect(() => {
+    if (!account) return
     let cancelled = false
-    getHealth()
-      .then(() => !cancelled && setApiOk(true))
-      .catch(() => !cancelled && setApiOk(false))
+    listProcesses()
+      .then((list) => {
+        if (cancelled) return
+        setProcesses(list)
+        setLoadError(null)
+      })
+      .catch((err: unknown) => !cancelled && setLoadError(err instanceof Error ? err.message : 'Failed to load'))
     return () => {
       cancelled = true
     }
-  }, [])
+  }, [account])
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
@@ -123,6 +135,24 @@ export default function App() {
         onUpdate={(patch) => inventory.updateItem(vi.item.id, patch)}
       />
     )
+  }
+
+  function signOut() {
+    clearSession()
+    setAccount(null)
+    setProcesses([])
+    setShowWizard(false)
+    backToWorld()
+  }
+
+  function enterProcess(id: string) {
+    setView('world')
+    setFocusId(id)
+    setMode('house')
+  }
+
+  if (!account) {
+    return <LoginPage onSignedIn={setAccount} />
   }
 
   return (
@@ -236,8 +266,33 @@ export default function App() {
         </>
       ) : (
         <>
-          <AppHeader apiOk={apiOk} processCount={processes.length} onCreateProcess={openWizard} />
-          {mode === 'world' && <WorldLegend />}
+          {view === 'list' && <ProcessList processes={processes} onOpenProcess={enterProcess} />}
+          <AppHeader
+            account={account}
+            processCount={processes.length}
+            onSignOut={signOut}
+            view={view}
+            onViewChange={(next) => {
+              backToWorld()
+              setView(next)
+            }}
+          />
+          {mode === 'world' && !showWizard && !showOnboarding && (
+            <div className="pointer-events-none absolute inset-x-0 bottom-6 z-40 flex justify-center px-4 sm:bottom-8">
+              <button
+                type="button"
+                onClick={openWizard}
+                className="btn btn-slate pop-in pointer-events-auto h-11 px-5 shadow-[0_12px_28px_-6px_rgba(15,23,42,0.35)]"
+              >
+                <span className="text-base leading-none">+</span> New process
+              </button>
+            </div>
+          )}
+          {loadError && (
+            <div className="absolute bottom-20 left-1/2 z-40 -translate-x-1/2 rounded-lg border border-error/30 bg-white px-3 py-2 text-xs text-error shadow-sm">
+              {loadError}
+            </div>
+          )}
         </>
       )}
 
@@ -255,8 +310,7 @@ export default function App() {
         onClose={() => setShowWizard(false)}
         onCreated={(process) => {
           setProcesses((prev) => [...prev, process])
-          setFocusId(process.id)
-          setMode('house')
+          enterProcess(process.id)
         }}
       />
     </div>
