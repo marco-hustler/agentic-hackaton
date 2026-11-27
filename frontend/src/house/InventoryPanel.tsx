@@ -1,13 +1,8 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import {
-  catalogItem,
   createManualItem,
   draftItemTurn,
-  getIdealoStatus,
   getLlmStatus,
-  searchCatalog,
-  type CatalogHit,
-  type IdealoStatus,
   type ItemDraft,
   type ItemDraftMessage,
 } from '../api/client'
@@ -109,21 +104,14 @@ export function InventoryPanel({
         </div>
       </div>
 
-      {addingOpen && (
-        <AddObjectModal
-          ownedRefs={new Set(items.map((vi) => vi.valuation.product_ref).filter((r): r is string => !!r))}
-          onClose={() => onAddingOpenChange(false)}
-          onAdd={onAdd}
-        />
-      )}
+      {addingOpen && <AddObjectModal onClose={() => onAddingOpenChange(false)} onAdd={onAdd} />}
     </section>
   )
 }
 
-type CreateMode = 'idealo' | 'ai' | 'static'
+type CreateMode = 'static' | 'ai'
 
 type AddObjectModalProps = {
-  ownedRefs?: Set<string>
   onClose: () => void
   onAdd: (vi: ValuedItem) => void
   onValuingChange?: (valuing: boolean) => void
@@ -139,8 +127,9 @@ const CONDITIONS: { value: Condition; label: string }[] = [
 const THIS_YEAR = new Date().getFullYear()
 const YEARS = Array.from({ length: 30 }, (_, i) => THIS_YEAR - i)
 
-function AddObjectModal({ ownedRefs, onClose, onAdd }: Omit<AddObjectModalProps, 'onValuingChange'>) {
-  const [mode, setMode] = useState<CreateMode>('idealo')
+function AddObjectModal({ onClose, onAdd }: Omit<AddObjectModalProps, 'onValuingChange'>) {
+  const [mode, setMode] = useState<CreateMode>('static')
+  const [aiVisited, setAiVisited] = useState(false)
   const [valuing, setValuing] = useState(false)
   const [aiAvailable, setAiAvailable] = useState<boolean | null>(null)
 
@@ -179,7 +168,7 @@ function AddObjectModal({ ownedRefs, onClose, onAdd }: Omit<AddObjectModalProps,
       />
       <div
         className={`pop-in relative z-10 flex w-full flex-col overflow-hidden rounded-t-3xl border border-line bg-canvas shadow-[0_24px_60px_-16px_rgba(15,23,42,0.45)] sm:rounded-3xl ${
-          mode === 'ai' ? 'max-h-[92vh] max-w-lg sm:h-[min(720px,92vh)]' : 'max-h-[88vh] max-w-2xl'
+          mode === 'ai' ? 'max-h-[92vh] max-w-lg sm:h-[min(720px,92vh)]' : 'max-h-[88vh] max-w-xl'
         }`}
       >
         {valuing && <IdealoLoadingOverlay />}
@@ -187,11 +176,9 @@ function AddObjectModal({ ownedRefs, onClose, onAdd }: Omit<AddObjectModalProps,
           <div>
             <h3 className="text-lg font-extrabold text-petrol">Add object</h3>
             <p className="mt-0.5 text-sm text-muted">
-              {mode === 'idealo'
-                ? 'Search idealo MCP directly (cached or live) to price and add an object.'
-                : mode === 'ai'
-                  ? 'Chat with AI to draft the object, then we price it on idealo.'
-                  : 'Fill the form — we look it up on idealo on save.'}
+              {mode === 'ai'
+                ? 'Describe one object or a list of objects — we price every one on idealo.'
+                : 'Add one object — we look it up on idealo on save.'}
             </p>
           </div>
           <button type="button" className="btn btn-ghost h-9 w-9 rounded-full px-0" onClick={onClose} disabled={valuing} aria-label="Close">
@@ -203,25 +190,6 @@ function AddObjectModal({ ownedRefs, onClose, onAdd }: Omit<AddObjectModalProps,
           <div className="view-switch inline-flex w-full items-center gap-1 p-1" role="group" aria-label="Creation mode">
             <button
               type="button"
-              className={`view-switch-option min-w-0 flex-1 ${mode === 'idealo' ? 'view-switch-option-active' : ''}`}
-              aria-pressed={mode === 'idealo'}
-              disabled={valuing}
-              onClick={() => setMode('idealo')}
-            >
-              idealo MCP
-            </button>
-            <button
-              type="button"
-              className={`view-switch-option min-w-0 flex-1 ${mode === 'ai' ? 'view-switch-option-active' : ''} ${aiDisabled ? 'opacity-45' : ''}`}
-              aria-pressed={mode === 'ai'}
-              disabled={valuing || aiDisabled}
-              title={aiDisabled ? 'Configure AI keys from the account menu to enable AI creation' : 'Describe the object in chat'}
-              onClick={() => !aiDisabled && setMode('ai')}
-            >
-              AI chat
-            </button>
-            <button
-              type="button"
               className={`view-switch-option min-w-0 flex-1 ${mode === 'static' ? 'view-switch-option-active' : ''}`}
               aria-pressed={mode === 'static'}
               disabled={valuing}
@@ -229,250 +197,42 @@ function AddObjectModal({ ownedRefs, onClose, onAdd }: Omit<AddObjectModalProps,
             >
               Manual
             </button>
+            <button
+              type="button"
+              className={`view-switch-option min-w-0 flex-1 ${mode === 'ai' ? 'view-switch-option-active' : ''} ${aiDisabled ? 'opacity-45' : ''}`}
+              aria-pressed={mode === 'ai'}
+              disabled={valuing || aiDisabled}
+              title={aiDisabled ? 'Configure AI keys from the account menu to enable AI creation' : 'Describe one or more objects in chat'}
+              onClick={() => {
+                if (!aiDisabled) {
+                  setAiVisited(true)
+                  setMode('ai')
+                }
+              }}
+            >
+              AI chat
+            </button>
           </div>
           {aiDisabled && aiAvailable === false && (
-            <p className="mt-2 text-xs text-muted">AI needs LLM keys — open Account → Configure AI keys, or use idealo MCP / Manual.</p>
+            <p className="mt-2 text-xs text-muted">AI needs LLM keys — open Account → Configure AI keys, or use Manual.</p>
           )}
         </div>
 
-        <div className={`min-h-0 flex-1 ${mode === 'ai' ? 'flex flex-col overflow-hidden' : 'overflow-y-auto'}`}>
-          {mode === 'idealo' ? (
-            <IdealoSearchTab ownedRefs={ownedRefs ?? new Set()} onClose={onClose} onAdd={onAdd} onValuingChange={setValuing} />
-          ) : mode === 'ai' ? (
-            <AiCreateChat onClose={onClose} onAdd={onAdd} onValuingChange={setValuing} />
-          ) : (
-            <StaticCreateForm onClose={onClose} onAdd={onAdd} onValuingChange={setValuing} />
-          )}
+        <div
+          className={mode === 'static' ? 'min-h-0 flex-1 overflow-y-auto' : 'hidden'}
+          aria-hidden={mode !== 'static'}
+        >
+          <StaticCreateForm onClose={onClose} onAdd={onAdd} onValuingChange={setValuing} />
         </div>
-      </div>
-    </div>
-  )
-}
-
-const QUICK_SEARCHES = ['Dyson', 'Sonos', 'LG OLED', 'Bosch', 'KitchenAid', 'Nintendo']
-
-function extractApiDetail(e: unknown): string {
-  const raw = e instanceof Error ? e.message : String(e)
-  try {
-    const parsed = JSON.parse(raw) as { detail?: string }
-    if (typeof parsed.detail === 'string') return parsed.detail
-  } catch {
-    /* plain text */
-  }
-  return raw
-}
-
-function IdealoSearchTab({
-  ownedRefs,
-  onClose,
-  onAdd,
-  onValuingChange,
-}: {
-  ownedRefs: Set<string>
-  onClose: () => void
-  onAdd: (vi: ValuedItem) => void
-  onValuingChange?: (valuing: boolean) => void
-}) {
-  const [query, setQuery] = useState('')
-  const [status, setStatus] = useState<IdealoStatus | null>(null)
-  const [found, setFound] = useState<{ query: string; hits: CatalogHit[]; source: 'cache' | 'live' } | null>(null)
-  const [liveBusy, setLiveBusy] = useState(false)
-  const [searchError, setSearchError] = useState<string | null>(null)
-  const [addingRef, setAddingRef] = useState<string | null>(null)
-  const [addError, setAddError] = useState<string | null>(null)
-
-  useEffect(() => {
-    getIdealoStatus().then(setStatus).catch(() => undefined)
-  }, [])
-
-  const q = query.trim()
-
-  useEffect(() => {
-    if (q.length < 2) return
-    const ctrl = new AbortController()
-    const timer = setTimeout(() => {
-      searchCatalog(q, { signal: ctrl.signal })
-        .then((res) => {
-          setSearchError(null)
-          setFound({ query: q, hits: res, source: 'cache' })
-        })
-        .catch((e: unknown) => {
-          if (!ctrl.signal.aborted) setSearchError(extractApiDetail(e))
-        })
-    }, 180)
-    return () => {
-      clearTimeout(timer)
-      ctrl.abort()
-    }
-  }, [q])
-
-  const activeResult = q.length >= 2 && found?.query === q ? found : null
-  const hits = activeResult?.hits ?? []
-  const source = activeResult?.source ?? null
-  const loading = q.length >= 2 && !activeResult && !searchError
-
-  function updateQuery(next: string) {
-    setQuery(next)
-    setSearchError(null)
-    if (next.trim().length < 2) setFound(null)
-  }
-
-  async function searchLive() {
-    if (q.length < 2 || liveBusy) return
-    setLiveBusy(true)
-    setSearchError(null)
-    try {
-      const res = await searchCatalog(q, { live: true })
-      setFound({ query: q, hits: res, source: 'live' })
-      getIdealoStatus().then(setStatus).catch(() => undefined)
-    } catch (e) {
-      setSearchError(extractApiDetail(e))
-    } finally {
-      setLiveBusy(false)
-    }
-  }
-
-  async function addHit(hit: CatalogHit) {
-    setAddingRef(hit.product_ref)
-    setAddError(null)
-    onValuingChange?.(true)
-    try {
-      const vi = await holdIdealoMoment(() => catalogItem(hit))
-      onAdd(vi)
-      onClose()
-    } catch (e) {
-      setAddError(extractApiDetail(e))
-    } finally {
-      setAddingRef(null)
-      onValuingChange?.(false)
-    }
-  }
-
-  const liveReady = Boolean(status?.live_enabled && status?.logged_in)
-
-  return (
-    <div className="flex flex-col gap-3 px-5 py-4">
-      <div className="flex flex-wrap items-center justify-between gap-2 text-xs">
-        <span className={`pill ${liveReady ? 'pill-live' : 'pill-neutral'}`}>
-          {liveReady ? 'idealo MCP live ready' : status?.live_enabled ? 'idealo login needed' : 'idealo cache mode'}
-        </span>
-        {status?.remaining != null && status?.cap != null && (
-          <span className="text-muted">
-            MCP budget: {status.remaining}/{status.cap} left today
-          </span>
+        {aiVisited && (
+          <div
+            className={mode === 'ai' ? 'flex min-h-0 flex-1 flex-col overflow-hidden' : 'hidden'}
+            aria-hidden={mode !== 'ai'}
+          >
+            <AiCreateChat active={mode === 'ai'} onClose={onClose} onAdd={onAdd} onValuingChange={setValuing} />
+          </div>
         )}
       </div>
-
-      <form
-        className="flex gap-2"
-        onSubmit={(e) => {
-          e.preventDefault()
-          void searchLive()
-        }}
-      >
-        <label className="relative flex-1">
-          <span className="sr-only">Search idealo</span>
-          <svg viewBox="0 0 20 20" className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted" aria-hidden>
-            <circle cx="9" cy="9" r="6" fill="none" stroke="currentColor" strokeWidth="2" />
-            <path d="M13.5 13.5 18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-          </svg>
-          <input
-            autoFocus
-            type="search"
-            value={query}
-            onChange={(e) => updateQuery(e.target.value)}
-            placeholder="Search idealo (e.g. PlayStation 5, Dyson, Sonos)…"
-            className="field h-11 w-full pl-10 pr-3"
-          />
-        </label>
-        <button
-          type="submit"
-          disabled={q.length < 2 || liveBusy}
-          title={liveReady ? 'Query idealo MCP live for any product' : 'Query idealo MCP live (requires IDEALO_LIVE_ENABLED=true + OAuth login)'}
-          className="btn btn-agent h-11 shrink-0 px-3.5 text-xs"
-        >
-          {liveBusy ? 'Searching…' : 'Live MCP'}
-        </button>
-      </form>
-
-      {q.length < 2 && (
-        <div className="flex flex-wrap items-center gap-1.5">
-          <span className="text-xs text-muted">Instant cached:</span>
-          {QUICK_SEARCHES.map((term) => (
-            <button
-              key={term}
-              type="button"
-              onClick={() => updateQuery(term)}
-              className="rounded-full border border-line bg-surface px-2.5 py-1 text-xs font-semibold text-petrol transition hover:bg-surface-low"
-            >
-              {term}
-            </button>
-          ))}
-        </div>
-      )}
-
-      {searchError && <p className="rounded-xl bg-[#ffdad6] px-3 py-2 text-xs text-[#93000a]">{searchError}</p>}
-      {addError && <p className="rounded-xl bg-[#ffdad6] px-3 py-2 text-xs text-[#93000a]">{addError}</p>}
-
-      {q.length < 2 && (
-        <Empty>Type a product name for instant cached idealo results, or press Enter / Live MCP to query idealo.de live.</Empty>
-      )}
-      {q.length >= 2 && (loading || liveBusy) && hits.length === 0 && (
-        <p className="py-6 text-center text-sm text-muted">{liveBusy ? 'Querying idealo MCP live…' : 'Searching cached idealo catalog…'}</p>
-      )}
-      {q.length >= 2 && !loading && !liveBusy && hits.length === 0 && !searchError && (
-        <Empty>
-          No cached idealo match for “{q}”.{' '}
-          <button type="button" onClick={() => void searchLive()} className="font-bold text-petrol underline">
-            Search live on idealo MCP
-          </button>
-        </Empty>
-      )}
-
-      {hits.length > 0 && (
-        <>
-          <p className="text-xs text-muted">
-            {hits.length} {hits.length === 1 ? 'product' : 'products'} from{' '}
-            <strong className="text-petrol">{source === 'live' ? 'idealo MCP live' : 'idealo cache'}</strong>
-          </p>
-          <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-            {hits.map((hit) => {
-              const inHouse = ownedRefs.has(hit.product_ref)
-              const busy = addingRef === hit.product_ref
-              return (
-                <li
-                  key={hit.product_ref}
-                  className="flex flex-col overflow-hidden rounded-2xl border border-line bg-surface shadow-[0_1px_0_rgba(0,0,0,0.04)]"
-                >
-                  <div className="flex h-32 items-center justify-center bg-white p-3">
-                    {hit.image_url ? (
-                      <img src={hit.image_url} alt="" loading="lazy" className="h-full w-full object-contain" />
-                    ) : (
-                      <span className="h-8 w-8 rounded-lg" style={{ background: categoryColor(hit.category) }} />
-                    )}
-                  </div>
-                  <div className="flex flex-1 flex-col gap-1 border-t border-line p-3">
-                    <p className="line-clamp-2 text-sm font-bold text-ink">{hit.name}</p>
-                    {hit.variant && <p className="truncate text-xs text-muted">{hit.variant}</p>}
-                    <div className="mt-1 flex items-baseline justify-between gap-2">
-                      <span className="text-lg font-extrabold text-petrol">{formatEur(hit.price_eur)}</span>
-                      {hit.offer_count > 0 && <span className="text-[11px] text-muted">{hit.offer_count} offers</span>}
-                    </div>
-                    <button
-                      type="button"
-                      disabled={inHouse || busy}
-                      onClick={() => void addHit(hit)}
-                      className="btn btn-primary mt-2 h-9 w-full text-xs"
-                    >
-                      {inHouse ? 'In the house ✓' : busy ? 'Valuing…' : '+ Add to house'}
-                    </button>
-                  </div>
-                </li>
-              )
-            })}
-          </ul>
-        </>
-      )}
     </div>
   )
 }
@@ -524,7 +284,7 @@ function StaticCreateForm({ onClose, onAdd, onValuingChange }: AddObjectModalPro
     <form onSubmit={submit} className="flex flex-col gap-4 px-5 py-4">
       <label className="block">
         <span className="label-sm text-muted">Object name</span>
-        <input autoFocus type="text" value={name} onChange={(e) => setName(e.target.value)} className="field mt-1 h-11 w-full" placeholder="e.g. Bosch dishwasher" required maxLength={120} />
+        <input autoFocus type="text" value={name} onChange={(e) => setName(e.target.value)} className="field mt-1 h-11 w-full" placeholder="e.g. Sonos Era 300" required maxLength={120} />
       </label>
 
       <div className="grid grid-cols-2 gap-3">
@@ -604,10 +364,38 @@ function StaticCreateForm({ onClose, onAdd, onValuingChange }: AddObjectModalPro
   )
 }
 
-function AiCreateChat({ onClose, onAdd, onValuingChange }: AddObjectModalProps) {
+const REQUIRED_KEYS = ['name', 'price_eur', 'purchase_year', 'condition', 'importance'] as const
+
+const FIELD_NAMES: Record<string, string> = {
+  name: 'name',
+  price_eur: 'price',
+  purchase_year: 'year',
+  condition: 'condition',
+  importance: 'importance',
+}
+
+function hasAnyDraftField(d: ItemDraft) {
+  return REQUIRED_KEYS.some((k) => d[k] != null && d[k] !== '') || Boolean(d.category) || Boolean(d.notes)
+}
+
+function normalizeDrafts(res: { draft: ItemDraft; drafts?: ItemDraft[] }): ItemDraft[] {
+  if (res.drafts && res.drafts.length > 0) return res.drafts.filter(hasAnyDraftField)
+  return hasAnyDraftField(res.draft) ? [res.draft] : []
+}
+
+function isCompleteDraft(d: ItemDraft): d is ItemDraft & {
+  name: string
+  price_eur: number
+  purchase_year: number
+  condition: Condition
+  importance: number
+} {
+  return Boolean(d.name && d.price_eur != null && d.purchase_year != null && d.condition && d.importance != null)
+}
+
+function AiCreateChat({ active, onClose, onAdd, onValuingChange }: AddObjectModalProps & { active: boolean }) {
   const [messages, setMessages] = useState<ItemDraftMessage[]>([])
-  const [draft, setDraft] = useState<ItemDraft>({})
-  const [missing, setMissing] = useState<string[]>([])
+  const [drafts, setDrafts] = useState<ItemDraft[]>([])
   const [status, setStatus] = useState<'need_info' | 'ready' | 'rejected'>('need_info')
   const [input, setInput] = useState('')
   const [busy, setBusy] = useState(false)
@@ -620,19 +408,24 @@ function AiCreateChat({ onClose, onAdd, onValuingChange }: AddObjectModalProps) 
 
   useEffect(() => {
     scroller.current?.scrollTo({ top: scroller.current.scrollHeight, behavior: 'smooth' })
-  }, [messages, busy, status, error])
+  }, [messages, busy, status, error, drafts])
+
+  useEffect(() => {
+    if (!active) return
+    scroller.current?.scrollTo({ top: scroller.current.scrollHeight })
+    inputRef.current?.focus()
+  }, [active])
 
   useEffect(() => {
     if (started.current) return
     started.current = true
     setBusy(true)
     setPhase('booting')
-    // Conversation turns hit /api/items/draft (LLM). Final confirm hits /api/items/manual (idealo).
-    draftItemTurn({ messages: [], draft: {} })
+    // Conversation turns hit /api/items/draft (LLM). Final confirm prices each item on /api/items/manual (idealo).
+    draftItemTurn({ messages: [], drafts: [] })
       .then((res) => {
         setMessages([{ role: 'assistant', content: res.assistant_message }])
-        setDraft(res.draft)
-        setMissing(res.missing_fields)
+        setDrafts(normalizeDrafts(res))
         setStatus(res.status)
         setPhase('chat')
         if (res.status === 'rejected') {
@@ -648,7 +441,7 @@ function AiCreateChat({ onClose, onAdd, onValuingChange }: AddObjectModalProps) 
 
   async function send(text: string) {
     const content = text.trim()
-    if (!content || busy || adding || status === 'ready') return
+    if (!content || busy || adding) return
     const nextThread: ItemDraftMessage[] = [...messages, { role: 'user', content }]
     setMessages(nextThread)
     setInput('')
@@ -656,11 +449,9 @@ function AiCreateChat({ onClose, onAdd, onValuingChange }: AddObjectModalProps) 
     setPhase('chat')
     setError(null)
     try {
-      // Full chat transcript → /api/items/draft (LLM). Confirm later → /api/items/manual (idealo).
-      const res = await draftItemTurn({ messages: nextThread, draft })
+      const res = await draftItemTurn({ messages: nextThread, drafts })
       setMessages([...nextThread, { role: 'assistant', content: res.assistant_message }])
-      setDraft(res.draft)
-      setMissing(res.missing_fields)
+      setDrafts(normalizeDrafts(res))
       setStatus(res.status)
       if (res.status === 'rejected') {
         setError(res.assistant_message || 'AI rejected this request.')
@@ -674,50 +465,63 @@ function AiCreateChat({ onClose, onAdd, onValuingChange }: AddObjectModalProps) 
   }
 
   async function confirmAdd() {
-    const { name, price_eur, purchase_year, condition, importance, category, notes } = draft
-    if (status !== 'ready' || !name || price_eur == null || purchase_year == null || !condition || importance == null) return
+    const readyDrafts = drafts.filter(isCompleteDraft)
+    if (status !== 'ready' || readyDrafts.length === 0) return
     setAdding(true)
     setPhase('idealo')
     onValuingChange?.(true)
     setError(null)
+    const failed: string[] = []
+    let addedCount = 0
     try {
-      const vi = await holdIdealoMoment(() =>
-        createManualItem({
-          name,
-          price_eur,
-          purchase_year,
-          condition,
-          category: category ?? 'General',
-          importance,
-          notes: notes ?? '',
-        }),
-      )
-      onAdd(vi)
-      onClose()
-    } catch (e) {
-      setError(e instanceof Error ? e.message : String(e))
-      setPhase('chat')
+      await holdIdealoMoment(async () => {
+        for (const d of readyDrafts) {
+          try {
+            const vi = await createManualItem({
+              name: d.name,
+              price_eur: d.price_eur,
+              purchase_year: d.purchase_year,
+              condition: d.condition,
+              category: d.category ?? 'General',
+              importance: d.importance,
+              notes: d.notes ?? '',
+            })
+            onAdd(vi)
+            addedCount += 1
+          } catch (e) {
+            const msg = e instanceof Error ? e.message : String(e)
+            failed.push(`${d.name}: ${msg}`)
+          }
+        }
+      })
+      if (failed.length === 0) {
+        onClose()
+      } else {
+        setError(
+          (addedCount > 0 ? `Added ${addedCount} of ${readyDrafts.length}. Failed: ` : '') + failed.join(' · '),
+        )
+        setPhase('chat')
+      }
     } finally {
       setAdding(false)
       onValuingChange?.(false)
     }
   }
 
-  const fieldNames: Record<string, string> = {
-    name: 'name',
-    price_eur: 'price',
-    purchase_year: 'year',
-    condition: 'condition',
-    importance: 'importance',
-  }
-  const filled = (['name', 'price_eur', 'purchase_year', 'condition', 'importance'] as const).filter((k) => draft[k] != null && draft[k] !== '')
+  const readyCount = drafts.filter(isCompleteDraft).length
 
   return (
     <div className="flex min-h-0 flex-1 flex-col">
       <div className="flex shrink-0 items-center justify-between gap-2 border-b border-line bg-surface-low/70 px-4 py-2">
-        <span className="label-sm text-muted">AI chat · /api/items/draft</span>
+        <span className="label-sm text-muted">AI chat · 1 or more objects</span>
         <span className="text-xs font-semibold text-ink2">
-          {phase === 'booting' || busy ? 'AI is typing…' : phase === 'idealo' ? 'Looking up on idealo…' : status === 'ready' ? 'Ready to confirm' : 'Your turn'}
+          {phase === 'booting' || busy
+            ? 'AI is typing…'
+            : phase === 'idealo'
+              ? 'Looking up on idealo…'
+              : status === 'ready'
+                ? `${readyCount} ${readyCount === 1 ? 'object' : 'objects'} ready`
+                : 'Your turn'}
         </span>
       </div>
 
@@ -749,70 +553,91 @@ function AiCreateChat({ onClose, onAdd, onValuingChange }: AddObjectModalProps) 
           </div>
         )}
 
-        {filled.length > 0 && (
-          <div className="rounded-2xl border border-dashed border-line bg-canvas/80 px-3 py-2">
-            <p className="label-sm mb-1.5 text-muted">Draft so far</p>
-            <div className="flex flex-wrap gap-1.5">
-              {filled.map((k) => (
-                <span key={k} className="rounded-full bg-petrol/10 px-2 py-0.5 text-xs font-semibold text-petrol">
-                  {fieldNames[k]}: {String(draft[k])}
-                </span>
-              ))}
-              {missing.map((k) => (
-                <span key={k} className="rounded-full bg-amber/15 px-2 py-0.5 text-xs font-semibold text-amber">
-                  need {fieldNames[k] ?? k}
-                </span>
-              ))}
-            </div>
+        {drafts.length > 0 && (
+          <div className="space-y-2 rounded-2xl border border-dashed border-line bg-canvas/80 px-3 py-2.5">
+            <p className="label-sm text-muted">
+              {drafts.length === 1 ? 'Draft so far' : `Drafts so far (${drafts.length} objects)`}
+            </p>
+            {drafts.map((d, idx) => {
+              const filled = REQUIRED_KEYS.filter((k) => d[k] != null && d[k] !== '')
+              const missing = REQUIRED_KEYS.filter((k) => d[k] == null || d[k] === '')
+              return (
+                <div key={`${d.name ?? 'obj'}-${idx}`} className="rounded-xl border border-line bg-surface px-2.5 py-2">
+                  {drafts.length > 1 && (
+                    <p className="mb-1 text-xs font-extrabold text-petrol">
+                      {idx + 1}. {d.name ?? 'Unnamed object'}
+                    </p>
+                  )}
+                  <div className="flex flex-wrap gap-1.5">
+                    {filled.map((k) => (
+                      <span key={k} className="rounded-full bg-petrol/10 px-2 py-0.5 text-xs font-semibold text-petrol">
+                        {FIELD_NAMES[k]}: {String(d[k])}
+                      </span>
+                    ))}
+                    {missing.map((k) => (
+                      <span key={k} className="rounded-full bg-amber/15 px-2 py-0.5 text-xs font-semibold text-amber">
+                        need {FIELD_NAMES[k]}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )
+            })}
           </div>
         )}
 
         {error && (
           <p className="rounded-xl bg-[#ffdad6] p-3 text-sm text-[#93000a]" role="alert">
             {error}
-            <span className="mt-1 block text-xs opacity-80">Nothing was added to the inventory.</span>
           </p>
         )}
       </div>
 
       <div className="shrink-0 border-t border-line bg-surface px-4 py-3">
-        {status === 'ready' ? (
-          <div className="flex flex-col gap-2">
-            <p className="text-xs text-muted">AI draft is complete. Confirm to look it up on idealo (nothing is saved if idealo fails).</p>
-            <button type="button" className="btn btn-primary h-11 w-full" disabled={adding} onClick={confirmAdd}>
-              {adding ? 'Asking idealo…' : 'Confirm & price on idealo'}
+        {status === 'ready' && readyCount > 0 && (
+          <div className="mb-2.5 flex flex-col gap-2">
+            <p className="text-xs text-muted">
+              {readyCount === 1
+                ? 'AI draft is complete. Confirm to look it up on idealo, or keep typing to add more objects.'
+                : `${readyCount} objects ready. Confirm to price all ${readyCount} on idealo, or keep typing to add more.`}
+            </p>
+            <button type="button" className="btn btn-primary h-11 w-full" disabled={adding || busy} onClick={confirmAdd}>
+              {adding
+                ? 'Asking idealo…'
+                : readyCount === 1
+                  ? 'Confirm & price on idealo'
+                  : `Confirm & price ${readyCount} objects on idealo`}
             </button>
           </div>
-        ) : (
-          <form
-            className="flex items-end gap-2"
-            onSubmit={(e) => {
-              e.preventDefault()
-              void send(input)
-            }}
-          >
-            <textarea
-              ref={inputRef}
-              autoFocus
-              rows={2}
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' && !e.shiftKey) {
-                  e.preventDefault()
-                  void send(input)
-                }
-              }}
-              disabled={busy || adding}
-              maxLength={2000}
-              placeholder="e.g. Bosch dishwasher, €499, bought 2022, good condition, importance 8"
-              className="field min-h-[2.75rem] min-w-0 flex-1 resize-none py-2.5 text-sm"
-            />
-            <button type="submit" className="btn btn-primary h-11 shrink-0 self-stretch px-4" disabled={busy || adding || !input.trim()}>
-              Send
-            </button>
-          </form>
         )}
+        <form
+          className="flex items-end gap-2"
+          onSubmit={(e) => {
+            e.preventDefault()
+            void send(input)
+          }}
+        >
+          <textarea
+            ref={inputRef}
+            autoFocus
+            rows={2}
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault()
+                void send(input)
+              }
+            }}
+            disabled={busy || adding}
+            maxLength={2000}
+            placeholder="Describe 1 object or paste a list (e.g. Sonos Era 300 2024 like new €359 9/10; Dyson V15 2024 good €479 7/10)"
+            className="field min-h-[2.75rem] min-w-0 flex-1 resize-none py-2.5 text-sm"
+          />
+          <button type="submit" className="btn btn-primary h-11 shrink-0 self-stretch px-4" disabled={busy || adding || !input.trim()}>
+            Send
+          </button>
+        </form>
       </div>
     </div>
   )
@@ -875,4 +700,3 @@ function OwnedCard({ vi, onOpen, onRemove }: { vi: ValuedItem; onOpen: () => voi
     </li>
   )
 }
-
