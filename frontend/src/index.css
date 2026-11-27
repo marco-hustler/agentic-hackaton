@@ -461,6 +461,28 @@ body {
     box-shadow: 0 16px 36px -10px rgba(15, 23, 42, 0.55), 0 0 0 10px rgba(224, 90, 71, 0.25);
   }
 }
+/* Items on a room floor: a pile that fans open on hover */
+.room-card {
+  transform: translate(var(--sx), var(--sy)) rotate(var(--sr));
+  transition: transform 320ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition-delay: 0ms;
+}
+.room-stack:hover .room-card,
+.room-stack:focus-within .room-card {
+  transform: translate(var(--fx), var(--fy)) rotate(var(--fr)) scale(1.12);
+  transition-delay: var(--d);
+}
+.room-stack .room-card:hover {
+  transform: translate(var(--fx), calc(var(--fy) - 12px)) rotate(var(--fr)) scale(1.35);
+  z-index: 50 !important;
+}
+.room-stack-count {
+  transition: opacity 150ms ease;
+}
+.room-stack:hover .room-stack-count {
+  opacity: 0;
+}
+
 @media (min-width: 1024px) {
   .split-tray {
     left: calc(24px + var(--side-w) + 48px);

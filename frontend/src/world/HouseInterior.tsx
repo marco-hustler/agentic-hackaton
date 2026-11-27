@@ -5,14 +5,17 @@ import { WORLD } from './palette'
 import { INTERIOR, ROOM_PLANS, roomBounds, type RoomInfo } from './rooms'
 
 const FLOOR_Y = 0.1
-const DOOR_GAP = 0.5
 const WALL_COLOR = '#fbf9f3'
 const WALL_TOP = '#eae0d5'
+/** Partitions between rooms: solid, thicker and darker so each room reads as its own space. */
+const PARTITION_COLOR = '#d9cbb9'
+const PARTITION_TOP = '#1e293b'
+const PARTITION_T = 0.14
 const WOOD = '#c9a77c'
 
-type Segment = { x: number; z: number; len: number; alongX: boolean; h: number }
+type Segment = { x: number; z: number; len: number; alongX: boolean; h: number; partition?: boolean }
 
-/** Interior walls for a plan: tall back walls, low front walls, partitions with door gaps. */
+/** Interior walls for a plan: tall back walls, low front walls, solid partitions between rooms. */
 function useWalls(count: number): Segment[] {
   return useMemo(() => {
     const { w, d, wallH, lowWallH, partitionH } = INTERIOR
@@ -22,21 +25,14 @@ function useWalls(count: number): Segment[] {
       { x: 0, z: d / 2, len: w, alongX: true, h: lowWallH },
       { x: w / 2, z: 0, len: d, alongX: false, h: lowWallH },
     ]
+    // One solid partition per shared edge (no door gap): rooms read as separate spaces.
     const split = (a0: number, a1: number, fixed: number, alongX: boolean) => {
-      const mid = (a0 + a1) / 2
-      const pieces: [number, number][] = [
-        [a0, mid - DOOR_GAP / 2],
-        [mid + DOOR_GAP / 2, a1],
-      ]
-      for (const [p0, p1] of pieces) {
-        if (p1 - p0 < 0.05) continue
-        const c = (p0 + p1) / 2
-        segs.push(
-          alongX
-            ? { x: c, z: fixed, len: p1 - p0, alongX: true, h: partitionH }
-            : { x: fixed, z: c, len: p1 - p0, alongX: false, h: partitionH },
-        )
-      }
+      const c = (a0 + a1) / 2
+      segs.push(
+        alongX
+          ? { x: c, z: fixed, len: a1 - a0, alongX: true, h: partitionH, partition: true }
+          : { x: fixed, z: c, len: a1 - a0, alongX: false, h: partitionH, partition: true },
+      )
     }
     for (const r of ROOM_PLANS[count]) {
       const b = roomBounds(r)
@@ -48,18 +44,18 @@ function useWalls(count: number): Segment[] {
 }
 
 function Wall({ s }: { s: Segment }) {
-  const t = INTERIOR.wall
+  const t = s.partition ? PARTITION_T : INTERIOR.wall
   const args: [number, number, number] = s.alongX ? [s.len + t, s.h, t] : [t, s.h, s.len + t]
   return (
     <group position={[s.x, FLOOR_Y, s.z]}>
       <mesh position={[0, s.h / 2, 0]} castShadow receiveShadow>
         <boxGeometry args={args} />
-        <meshStandardMaterial color={WALL_COLOR} roughness={0.9} />
+        <meshStandardMaterial color={s.partition ? PARTITION_COLOR : WALL_COLOR} roughness={0.9} />
       </mesh>
       {/* Cut edge, like a sectioned architectural model */}
       <mesh position={[0, s.h + 0.004, 0]}>
         <boxGeometry args={[args[0], 0.008, args[2]]} />
-        <meshBasicMaterial color={WALL_TOP} />
+        <meshBasicMaterial color={s.partition ? PARTITION_TOP : WALL_TOP} />
       </mesh>
     </group>
   )
@@ -219,7 +215,7 @@ export function HouseInterior({ rooms }: { rooms: RoomInfo[] }) {
           <group key={i} position={[b.cx, FLOOR_Y, b.cz]}>
             <mesh position={[0, 0.005, 0]} receiveShadow>
               <boxGeometry args={[b.w - 0.04, 0.01, b.d - 0.04]} />
-              <meshStandardMaterial color={tint(room.color, 0.7)} roughness={0.95} />
+              <meshStandardMaterial color={tint(room.color, 0.5)} roughness={0.95} />
             </mesh>
             <PersonalRoom color={room.color} w={b.w} d={b.d} index={i} />
           </group>

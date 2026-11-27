@@ -315,30 +315,56 @@ function flyCard(el: HTMLElement, target: Element, delay: number, clones: Set<HT
     })
 }
 
-/** Small photo cards sitting on a room floor in the 3D house (portalled into its floor anchor). */
-function RoomStack({ items, onOpen }: { items: ValuedItem[]; onOpen: (id: string) => void }) {
-  const perRow = items.length > 4 ? 3 : 2
+/**
+ * The items on a room floor, as a stack of photo cards (portalled into the room's floor anchor).
+ * Hovering the stack fans the cards out so each one can be seen and opened.
+ */
+function RoomStack({ items, color, onOpen }: { items: ValuedItem[]; color: string; onOpen: (id: string) => void }) {
+  if (items.length === 0) return null
+  const n = items.length
+  const mid = (n - 1) / 2
+  const spread = Math.min(46, 260 / Math.max(n - 1, 1))
   return (
-    <div
-      className="pointer-events-none absolute left-0 top-0 grid -translate-x-1/2 -translate-y-1/2 gap-1"
-      style={{ gridTemplateColumns: `repeat(${Math.min(perRow, Math.max(items.length, 1))}, ${MINI_PX}px)` }}
-    >
-      {items.map((vi, i) => (
-        <button
-          key={vi.item.id}
-          type="button"
-          onClick={() => onOpen(vi.item.id)}
-          title={vi.item.name}
-          className="room-card pointer-events-auto flex items-center justify-center overflow-hidden rounded-xl border border-white bg-white shadow-[0_6px_14px_-6px_rgba(15,23,42,0.5)] transition hover:z-10 hover:scale-125"
-          style={{ width: MINI_PX, height: MINI_PX, rotate: `${((i * 37) % 11) - 5}deg` }}
-        >
-          {vi.valuation.image_url ? (
-            <img src={vi.valuation.image_url} alt="" className="h-full w-full object-contain p-1" />
-          ) : (
-            <span className="h-4 w-4 rounded-md bg-clay" />
-          )}
-        </button>
-      ))}
+    <div className="room-stack pointer-events-auto absolute left-0 top-0" style={{ width: MINI_PX, height: MINI_PX }}>
+      {items.map((vi, i) => {
+        const k = i - mid
+        const vars = {
+          // stacked: a slightly messy pile, newest on top
+          '--sx': `${(i - (n - 1)) * 2}px`,
+          '--sy': `${(i - (n - 1)) * 3}px`,
+          '--sr': `${((i * 37) % 9) - 4}deg`,
+          // fanned: an arc opening upwards
+          '--fx': `${k * spread}px`,
+          '--fy': `${Math.abs(k) * Math.abs(k) * 4 - 34}px`,
+          '--fr': `${k * 9}deg`,
+          '--d': `${i * 18}ms`,
+          width: MINI_PX,
+          height: MINI_PX,
+          zIndex: i,
+        } as React.CSSProperties
+        return (
+          <button
+            key={vi.item.id}
+            type="button"
+            onClick={() => onOpen(vi.item.id)}
+            title={`${vi.item.name} · ${formatEur(vi.valuation.fair_value_eur)}`}
+            className="room-card absolute -left-1/2 -top-1/2 flex items-center justify-center overflow-hidden rounded-xl border-2 bg-white shadow-[0_6px_14px_-6px_rgba(15,23,42,0.5)]"
+            style={{ ...vars, borderColor: color }}
+          >
+            {vi.valuation.image_url ? (
+              <img src={vi.valuation.image_url} alt="" className="h-full w-full object-contain p-1" />
+            ) : (
+              <span className="h-4 w-4 rounded-md bg-clay" />
+            )}
+          </button>
+        )
+      })}
+      <span
+        className="room-stack-count pointer-events-none absolute flex h-6 min-w-6 items-center justify-center rounded-full px-1.5 text-xs font-extrabold text-white shadow"
+        style={{ background: color, zIndex: n + 1, left: MINI_PX / 2 - 14, top: -MINI_PX / 2 - 12 }}
+      >
+        {n}
+      </span>
     </div>
   )
 }
@@ -632,6 +658,7 @@ export function SplitBoard({ scenario, error, names, people, solving, unsplit, o
         createPortal(
           <RoomStack
             items={mine[side].map((a) => byId.get(a.item_id)).filter((vi): vi is ValuedItem => !!vi)}
+            color={participantColor(side)}
             onOpen={onOpenItem}
           />,
           floor,
