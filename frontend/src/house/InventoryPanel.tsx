@@ -9,7 +9,7 @@ type InventoryPanelProps = {
   demo: DemoScenario | null
   error: string | null
   names: [string, string]
-  /** Expanded card (controlled, so the diorama can highlight its crate). */
+  /** Expanded card (controlled, so it survives a trip to the detail view). */
   openId: string | null
   onOpenChange: (id: string | null) => void
   onOpenItem: (id: string) => void

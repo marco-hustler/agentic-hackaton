@@ -1,27 +1,14 @@
 import { RoundedBox } from '@react-three/drei'
-import { useFrame } from '@react-three/fiber'
-import { useMemo, useRef, useState } from 'react'
+import { useMemo } from 'react'
 import * as THREE from 'three'
-import { setHoverCursor } from './cursor'
-import { safeScale, spring, stepSpring } from './motion'
-import { categoryColor, WORLD } from './palette'
-import {
-  CRATE,
-  crateOffset,
-  INTERIOR,
-  ROOM_PLANS,
-  roomBounds,
-  type RoomInfo,
-  type RoomItem,
-  type RoomKind,
-} from './rooms'
+import { WORLD } from './palette'
+import { INTERIOR, ROOM_PLANS, roomBounds, type RoomInfo } from './rooms'
 
-const FLOOR_Y = CRATE.floorY
+const FLOOR_Y = 0.1
 const DOOR_GAP = 0.5
 const WALL_COLOR = '#fbf9f3'
 const WALL_TOP = '#eae0d5'
 const WOOD = '#c9a77c'
-const FABRIC = '#94a3b8'
 
 type Segment = { x: number; z: number; len: number; alongX: boolean; h: number }
 
@@ -82,214 +69,132 @@ function tint(hex: string, amount: number) {
   return '#' + new THREE.Color(hex).lerp(new THREE.Color('#ffffff'), amount).getHexString()
 }
 
-/** Simple props per room kind, placed against the back corner of the room. */
-function Furniture({ kind, w, d }: { kind: RoomKind; w: number; d: number }) {
-  const bx = -w / 2 + 0.12
-  const bz = -d / 2 + 0.12
-  switch (kind) {
-    case 'Living room':
-      return (
-        <group>
-          <RoundedBox args={[0.9, 0.22, 0.34]} radius={0.05} position={[bx + 0.55, 0.11, bz + 0.2]} castShadow>
-            <meshStandardMaterial color={FABRIC} roughness={0.9} />
-          </RoundedBox>
-          <RoundedBox args={[0.9, 0.2, 0.1]} radius={0.04} position={[bx + 0.55, 0.3, bz + 0.06]} castShadow>
-            <meshStandardMaterial color={FABRIC} roughness={0.9} />
-          </RoundedBox>
-          <mesh position={[bx + 0.55, 0.012, bz + 0.62]} receiveShadow>
-            <boxGeometry args={[0.8, 0.01, 0.45]} />
-            <meshStandardMaterial color="#e7d5c0" roughness={1} />
-          </mesh>
-          <mesh position={[bx + 0.04, 0.15, bz + 0.75]} castShadow>
-            <boxGeometry args={[0.08, 0.3, 0.6]} />
-            <meshStandardMaterial color={WOOD} roughness={0.8} />
-          </mesh>
-          <mesh position={[bx + 0.04, 0.48, bz + 0.75]} castShadow>
-            <boxGeometry args={[0.03, 0.3, 0.5]} />
-            <meshStandardMaterial color={WORLD.petrol} roughness={0.4} />
-          </mesh>
-        </group>
-      )
-    case 'Kitchen':
-      return (
-        <group>
-          <mesh position={[bx + 0.5, 0.2, bz + 0.12]} castShadow>
-            <boxGeometry args={[1.0, 0.4, 0.26]} />
-            <meshStandardMaterial color="#f0eee8" roughness={0.7} />
-          </mesh>
-          <mesh position={[bx + 0.5, 0.41, bz + 0.12]}>
-            <boxGeometry args={[1.02, 0.03, 0.28]} />
-            <meshStandardMaterial color={WOOD} roughness={0.6} />
-          </mesh>
-          <mesh position={[bx + 0.55, 0.22, bz + 0.75]} castShadow>
-            <cylinderGeometry args={[0.24, 0.24, 0.03, 20]} />
-            <meshStandardMaterial color={WOOD} roughness={0.6} />
-          </mesh>
-          <mesh position={[bx + 0.55, 0.11, bz + 0.75]}>
-            <cylinderGeometry args={[0.03, 0.03, 0.2, 8]} />
-            <meshStandardMaterial color={WORLD.petrol} />
-          </mesh>
-        </group>
-      )
-    case 'Bedroom':
-      return (
-        <group>
-          <RoundedBox args={[0.6, 0.18, 0.9]} radius={0.04} position={[bx + 0.36, 0.09, bz + 0.48]} castShadow>
-            <meshStandardMaterial color={WOOD} roughness={0.8} />
-          </RoundedBox>
-          <RoundedBox args={[0.56, 0.06, 0.6]} radius={0.03} position={[bx + 0.36, 0.21, bz + 0.62]} castShadow>
-            <meshStandardMaterial color="#cbd5e1" roughness={0.9} />
-          </RoundedBox>
-          <RoundedBox args={[0.4, 0.08, 0.16]} radius={0.03} position={[bx + 0.36, 0.23, bz + 0.14]} castShadow>
-            <meshStandardMaterial color="#ffffff" roughness={0.9} />
-          </RoundedBox>
-        </group>
-      )
-    case 'Studio':
-      return (
-        <group>
-          <mesh position={[bx + 0.4, 0.3, bz + 0.15]} castShadow>
-            <boxGeometry args={[0.7, 0.03, 0.3]} />
-            <meshStandardMaterial color={WOOD} roughness={0.6} />
-          </mesh>
-          {[-0.3, 0.3].map((o) => (
-            <mesh key={o} position={[bx + 0.4 + o, 0.15, bz + 0.15]}>
-              <boxGeometry args={[0.03, 0.3, 0.26]} />
-              <meshStandardMaterial color={WORLD.petrol} />
-            </mesh>
-          ))}
-          <mesh position={[bx + 0.4, 0.42, bz + 0.08]} castShadow>
-            <boxGeometry args={[0.3, 0.2, 0.02]} />
-            <meshStandardMaterial color={WORLD.petrol} roughness={0.4} />
-          </mesh>
-          <mesh position={[bx + 0.06, 0.35, bz + 0.7]} castShadow>
-            <boxGeometry args={[0.12, 0.7, 0.45]} />
-            <meshStandardMaterial color={WOOD} roughness={0.8} />
-          </mesh>
-        </group>
-      )
-    case 'Hallway':
-      return (
-        <group>
-          <mesh position={[bx + 0.3, 0.25, bz + 0.08]} castShadow>
-            <boxGeometry args={[0.5, 0.5, 0.14]} />
-            <meshStandardMaterial color={WOOD} roughness={0.8} />
-          </mesh>
-          <mesh position={[bx + 0.1, 0.1, bz + 0.5]} castShadow>
-            <cylinderGeometry args={[0.07, 0.06, 0.2, 10]} />
-            <meshStandardMaterial color="#b45309" roughness={0.8} />
-          </mesh>
-          <mesh position={[bx + 0.1, 0.3, bz + 0.5]} castShadow>
-            <sphereGeometry args={[0.13, 12, 10]} />
-            <meshStandardMaterial color={WORLD.sage} roughness={0.8} flatShading />
-          </mesh>
-        </group>
-      )
-  }
+/** Fit factor so props stay in proportion in narrow rooms of the 4/5-person plans. */
+function fitScale(w: number, d: number) {
+  return Math.min(1.1, Math.max(0.68, Math.min(w / 1.9, d / 1.7)))
 }
 
-/** Items in a room as small crates on the free front half of the floor. */
-function Crate({
-  item,
-  position,
-  selected,
-  onSelect,
-}: {
-  item: RoomItem
-  position: [number, number]
-  selected: boolean
-  onSelect?: (id: string) => void
-}) {
-  const ref = useRef<THREE.Group>(null)
-  const [hovered, setHovered] = useState(false)
-  const pop = useRef(spring(0))
-  const lift = useRef(spring(0))
-
-  useFrame(({ clock }, dt) => {
-    const g = ref.current
-    if (!g) return
-    const s = stepSpring(pop.current, selected ? 1.45 : hovered ? 1.2 : 1, dt)
-    g.scale.setScalar(safeScale(s))
-    const bob = selected ? Math.sin(clock.getElapsedTime() * 3) * 0.03 : 0
-    g.position.y = stepSpring(lift.current, selected ? 0.28 : 0, dt) + bob
-  })
+/**
+ * A person's own room: everything soft is in their colour, so the room reads
+ * as theirs at a glance. Props hug the walls; the middle stays free for the pawn.
+ */
+function PersonalRoom({ color, w, d, index }: { color: string; w: number; d: number; index: number }) {
+  const k = fitScale(w, d)
+  const left = -w / 2
+  const back = -d / 2
+  const pad = 0.1
+  const blanket = tint(color, 0.15)
+  const soft = tint(color, 0.55)
+  const roomy = w >= 1.45
+  // Alternate the bed side so neighbouring rooms don't look copy-pasted.
+  const flip = index % 2 === 1 ? -1 : 1
+  const bedX = flip * (left + pad + 0.3 * k)
+  const deskX = -flip * (left + pad + 0.32 * k)
 
   return (
-    <group position={[position[0], 0, position[1]]}>
-      <group
-        ref={ref}
-        scale={0.001}
-        onPointerOver={(e) => {
-          if (!onSelect) return
-          e.stopPropagation()
-          setHovered(true)
-          setHoverCursor(true)
-        }}
-        onPointerOut={() => {
-          setHovered(false)
-          setHoverCursor(false)
-        }}
-        onClick={(e) => {
-          if (!onSelect) return
-          e.stopPropagation()
-          onSelect(item.id)
-        }}
+    <group>
+      {/* Rug */}
+      <RoundedBox
+        args={[Math.min(w - 0.5, 1.0 * k), 0.012, Math.min(d - 0.6, 0.7 * k)]}
+        radius={0.006}
+        position={[w * 0.12 * flip, 0.012, d * 0.12]}
+        receiveShadow
       >
-        <RoundedBox args={[CRATE.size, CRATE.size, CRATE.size]} radius={0.025} position={[0, CRATE.size / 2, 0]} castShadow>
-          <meshStandardMaterial
-            color={categoryColor(item.category)}
-            roughness={0.55}
-            emissive={selected ? '#ffffff' : '#000000'}
-            emissiveIntensity={selected ? 0.18 : 0}
-          />
+        <meshStandardMaterial color={soft} roughness={1} />
+      </RoundedBox>
+
+      {/* Bed: frame, mattress, blanket in the person's colour, pillow */}
+      <group position={[bedX, 0, back + pad + 0.45 * k]} scale={k}>
+        <RoundedBox args={[0.6, 0.14, 0.9]} radius={0.03} position={[0, 0.07, 0]} castShadow receiveShadow>
+          <meshStandardMaterial color={WOOD} roughness={0.8} />
+        </RoundedBox>
+        <RoundedBox args={[0.62, 0.3, 0.06]} radius={0.025} position={[0, 0.15, -0.45]} castShadow>
+          <meshStandardMaterial color={WOOD} roughness={0.8} />
+        </RoundedBox>
+        <RoundedBox args={[0.54, 0.07, 0.84]} radius={0.03} position={[0, 0.17, 0.01]} castShadow>
+          <meshStandardMaterial color="#ffffff" roughness={0.9} />
+        </RoundedBox>
+        <RoundedBox args={[0.58, 0.05, 0.56]} radius={0.025} position={[0, 0.215, 0.15]} castShadow>
+          <meshStandardMaterial color={blanket} roughness={0.85} />
+        </RoundedBox>
+        <RoundedBox args={[0.38, 0.07, 0.15]} radius={0.03} position={[0, 0.235, -0.3]} castShadow>
+          <meshStandardMaterial color="#f8fafc" roughness={0.9} />
         </RoundedBox>
       </group>
-      {/* Contact shadow ring under the selected crate */}
-      {selected && (
-        <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.012, 0]}>
-          <ringGeometry args={[0.13, 0.17, 24]} />
-          <meshBasicMaterial color={WORLD.door} transparent opacity={0.55} />
+
+      {/* Nightstand + lamp with a warm glow */}
+      <group position={[bedX + flip * 0.42 * k, 0, back + pad + 0.12 * k]} scale={k}>
+        <RoundedBox args={[0.2, 0.2, 0.2]} radius={0.02} position={[0, 0.1, 0]} castShadow>
+          <meshStandardMaterial color={WOOD} roughness={0.75} />
+        </RoundedBox>
+        <mesh position={[0, 0.24, 0]}>
+          <cylinderGeometry args={[0.015, 0.03, 0.08, 8]} />
+          <meshStandardMaterial color={WORLD.petrol} />
         </mesh>
+        <mesh position={[0, 0.31, 0]} castShadow>
+          <coneGeometry args={[0.07, 0.08, 14, 1, true]} />
+          <meshStandardMaterial color="#fff4d6" emissive="#ffd48a" emissiveIntensity={0.9} side={THREE.DoubleSide} />
+        </mesh>
+      </group>
+
+      {/* Desk + chair, when the room is wide enough */}
+      {roomy && (
+        <group position={[deskX, 0, back + pad + 0.16 * k]} scale={k}>
+          <mesh position={[0, 0.27, 0]} castShadow receiveShadow>
+            <boxGeometry args={[0.56, 0.03, 0.26]} />
+            <meshStandardMaterial color={WOOD} roughness={0.6} />
+          </mesh>
+          {[-0.25, 0.25].map((o) => (
+            <mesh key={o} position={[o, 0.13, 0]} castShadow>
+              <boxGeometry args={[0.03, 0.26, 0.22]} />
+              <meshStandardMaterial color={WOOD} roughness={0.7} />
+            </mesh>
+          ))}
+          <mesh position={[-0.1, 0.36, -0.05]} castShadow>
+            <boxGeometry args={[0.22, 0.15, 0.015]} />
+            <meshStandardMaterial color={WORLD.petrol} roughness={0.35} />
+          </mesh>
+          <mesh position={[0.17, 0.3, 0.02]} castShadow>
+            <boxGeometry args={[0.07, 0.035, 0.1]} />
+            <meshStandardMaterial color={color} roughness={0.6} />
+          </mesh>
+          {/* Chair */}
+          <group position={[0, 0, 0.27]}>
+            <RoundedBox args={[0.2, 0.03, 0.2]} radius={0.01} position={[0, 0.16, 0]} castShadow>
+              <meshStandardMaterial color={blanket} roughness={0.7} />
+            </RoundedBox>
+            <RoundedBox args={[0.2, 0.18, 0.03]} radius={0.01} position={[0, 0.26, 0.09]} castShadow>
+              <meshStandardMaterial color={blanket} roughness={0.7} />
+            </RoundedBox>
+            <mesh position={[0, 0.075, 0]}>
+              <cylinderGeometry args={[0.015, 0.015, 0.15, 6]} />
+              <meshStandardMaterial color={WORLD.petrol} />
+            </mesh>
+          </group>
+        </group>
       )}
+
+      {/* Plant in the front corner */}
+      <group position={[-flip * (left + pad + 0.1 * k), 0, d / 2 - pad - 0.12 * k]} scale={k}>
+        <mesh position={[0, 0.08, 0]} castShadow>
+          <cylinderGeometry args={[0.075, 0.06, 0.16, 12]} />
+          <meshStandardMaterial color="#c2703d" roughness={0.8} />
+        </mesh>
+        <mesh position={[0, 0.25, 0]} castShadow>
+          <icosahedronGeometry args={[0.13, 0]} />
+          <meshStandardMaterial color={WORLD.sage} roughness={0.8} flatShading />
+        </mesh>
+        <mesh position={[0.05, 0.36, 0.02]} castShadow>
+          <icosahedronGeometry args={[0.08, 0]} />
+          <meshStandardMaterial color="#3f9a6e" roughness={0.8} flatShading />
+        </mesh>
+      </group>
     </group>
   )
 }
 
-function Crates({
-  items,
-  w,
-  d,
-  selectedId,
-  onSelect,
-}: {
-  items: RoomItem[]
-  w: number
-  d: number
-  selectedId: string | null
-  onSelect?: (id: string) => void
-}) {
-  return (
-    <>
-      {items.map((it, i) => {
-        const at = crateOffset(i, items.length, w, d)
-        return at ? (
-          <Crate key={it.id} item={it} position={at} selected={it.id === selectedId} onSelect={onSelect} />
-        ) : null
-      })}
-    </>
-  )
-}
-
-/** Roofless cutaway of a house: one tinted room per person, with furniture and item crates. */
-export function HouseInterior({
-  rooms,
-  selectedId = null,
-  onSelectItem,
-}: {
-  rooms: RoomInfo[]
-  selectedId?: string | null
-  onSelectItem?: (id: string) => void
-}) {
+/** Roofless cutaway of a house: one room per person, furnished in their colour. */
+export function HouseInterior({ rooms }: { rooms: RoomInfo[] }) {
   const count = rooms.length
   const walls = useWalls(count)
   const plan = ROOM_PLANS[count]
@@ -316,8 +221,7 @@ export function HouseInterior({
               <boxGeometry args={[b.w - 0.04, 0.01, b.d - 0.04]} />
               <meshStandardMaterial color={tint(room.color, 0.7)} roughness={0.95} />
             </mesh>
-            <Furniture kind={room.kind} w={b.w} d={b.d} />
-            <Crates items={room.items} w={b.w} d={b.d} selectedId={selectedId} onSelect={onSelectItem} />
+            <PersonalRoom color={room.color} w={b.w} d={b.d} index={i} />
           </group>
         )
       })}

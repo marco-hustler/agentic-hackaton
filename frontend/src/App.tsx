@@ -10,9 +10,8 @@ import { ItemDetail } from './house/ItemDetail'
 import { useHouseInventory } from './house/useHouseInventory'
 import { CreateProcessWizard } from './overlays/CreateProcessWizard'
 import { OnboardingModal } from './overlays/OnboardingModal'
-import { roomForAction } from './types/inventory'
 import type { ProcessSummary } from './types/process'
-import { buildRooms, participantNames, type RoomItem } from './world/rooms'
+import { buildRooms, participantNames } from './world/rooms'
 import { WorldCanvas, type WorldMode } from './world/WorldCanvas'
 
 const ONBOARDING_KEY = 'cleanbreak.onboarding.seen'
@@ -42,9 +41,8 @@ export default function App() {
   const [focusId, setFocusId] = useState<string | null>(null)
   const [spinRequest, setSpinRequest] = useState(0)
   const [detailId, setDetailId] = useState<string | null>(null)
-  /** Card expanded in the list: highlights its crate without leaving the list. */
+  /** Card expanded in the list; kept when coming back from the detail. */
   const [listId, setListId] = useState<string | null>(null)
-  const selectedItemId = detailId ?? listId
   const frameRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -87,25 +85,7 @@ export default function App() {
   const demo = inventory.scenario
   const demoError = inventory.error
 
-  const focusRooms = useMemo(() => {
-    if (!focusProcess) return null
-    const perRoom: RoomItem[][] = []
-    if (demo) {
-      const byId = new Map(demo.valued_items.map((vi) => [vi.item.id, vi]))
-      for (const a of demo.split.assignments) {
-        const room = roomForAction(a.action)
-        const vi = byId.get(a.item_id)
-        if (room === null || !vi) continue
-        ;(perRoom[room] ??= []).push({
-          id: vi.item.id,
-          name: vi.item.name,
-          category: vi.item.category,
-          valueEur: vi.valuation.fair_value_eur,
-        })
-      }
-    }
-    return buildRooms(focusProcess, perRoom)
-  }, [focusProcess, demo])
+  const focusRooms = useMemo(() => (focusProcess ? buildRooms(focusProcess) : null), [focusProcess])
 
   const balance = useMemo<[number, number] | null>(() => {
     if (!demo) return null
@@ -140,8 +120,6 @@ export default function App() {
           focusRooms={focusRooms}
           spinRequest={spinRequest}
           frameRef={frameRef}
-          selectedItemId={selectedItemId}
-          onSelectItem={setDetailId}
           onCreateProcess={openWizard}
           onRequestOpen={(id) => {
             setFocusId(id)

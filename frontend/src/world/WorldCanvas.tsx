@@ -8,10 +8,9 @@ import { Ground } from './Ground'
 import { House } from './House'
 import { LabelProjector, type LabelAnchor, type LabelRegistry } from './labels'
 import { LOT_SLOTS, MAX_LOTS } from './layout'
-import { formatEur } from '../house/format'
-import { categoryColor, KIND_META, STATUS_META, WORLD } from './palette'
+import { KIND_META, STATUS_META, WORLD } from './palette'
 import { PlusLot } from './PlusLot'
-import { crateOffset, INTERIOR, ROOM_PLANS, roomBounds, type RoomInfo, type RoomItem } from './rooms'
+import { INTERIOR, ROOM_PLANS, roomBounds, type RoomInfo } from './rooms'
 
 export type WorldMode = 'world' | 'confirm' | 'house'
 
@@ -24,9 +23,6 @@ type WorldCanvasProps = {
   spinRequest: number
   /** Screen rect the scene is framed in; see CameraRig. */
   frameRef: RefObject<HTMLElement | null>
-  /** Item highlighted inside the open house (crate lifts + label). */
-  selectedItemId: string | null
-  onSelectItem: (id: string) => void
   onCreateProcess: () => void
   onRequestOpen: (id: string) => void
   onConfirmEnter: () => void
@@ -35,7 +31,6 @@ type WorldCanvasProps = {
 
 const PLUS_ID = '__plus__'
 const CONFIRM_ID = '__confirm__'
-const ITEM_ID = '__item__'
 const roomLabelId = (i: number) => `__room_${i}__`
 
 const SHOT: Record<WorldMode, CameraShot> = { world: 'world', confirm: 'focus', house: 'interior' }
@@ -51,8 +46,6 @@ export function WorldCanvas({
   focusRooms,
   spinRequest,
   frameRef,
-  selectedItemId,
-  onSelectItem,
   onCreateProcess,
   onRequestOpen,
   onConfirmEnter,
@@ -84,21 +77,6 @@ export function WorldCanvas({
       anchors.push({ id: roomLabelId(i), position: [focusSlot[0] + b.cx, INTERIOR.wallH + 0.35, focusSlot[1] + b.cz] })
     })
   }
-  // Selected crate: where it sits, to hang a label above it.
-  let selectedItem: RoomItem | null = null
-  if (inside && focusSlot && focusRooms && selectedItemId) {
-    const plan = ROOM_PLANS[focusRooms.length]
-    focusRooms.forEach((room, ri) => {
-      const idx = room.items.findIndex((it) => it.id === selectedItemId)
-      if (idx < 0) return
-      const b = roomBounds(plan[ri])
-      const off = crateOffset(idx, room.items.length, b.w, b.d)
-      if (!off) return
-      selectedItem = room.items[idx]
-      anchors.push({ id: ITEM_ID, position: [focusSlot[0] + b.cx + off[0], 0.95, focusSlot[1] + b.cz + off[1]] })
-    })
-  }
-  const labelItem = selectedItem as RoomItem | null
 
   const anchorsRef = useRef<LabelAnchor[]>(anchors)
   useLayoutEffect(() => {
@@ -163,8 +141,6 @@ export function WorldCanvas({
               open={inside && isFocus}
               hidden={inside && !isFocus}
               interactive={mode === 'world'}
-              selectedItemId={isFocus ? selectedItemId : null}
-              onSelectItem={onSelectItem}
               onOpen={() => onRequestOpen(p.id)}
               onHover={hoverHandler(p.id)}
             />
@@ -238,26 +214,10 @@ export function WorldCanvas({
             <div key={i} ref={register(roomLabelId(i))} className="absolute left-0 top-0" style={{ visibility: 'hidden' }}>
               <div className="panel pop-in-late flex items-center gap-2 py-1 pl-2 pr-3" style={{ borderRadius: 9999 }}>
                 <span className="h-2.5 w-2.5 rounded-full" style={{ background: room.color }} />
-                <span className="text-xs font-bold text-petrol">{room.kind}</span>
-                <span className="text-xs text-ink2">
-                  {room.owner} · {room.items.length} {room.items.length === 1 ? 'item' : 'items'}
-                </span>
+                <span className="text-xs font-bold text-petrol">{room.owner}</span>
               </div>
             </div>
           ) : null,
-        )}
-
-        {shown.has(ITEM_ID) && labelItem && (
-          <div ref={register(ITEM_ID)} className="absolute left-0 top-0" style={{ visibility: 'hidden' }}>
-            <div
-              key={labelItem.id}
-              className="pop-in flex max-w-56 items-center gap-2 rounded-full bg-midnight px-3 py-1.5 text-white shadow-lg"
-            >
-              <span className="h-2.5 w-2.5 shrink-0 rounded-[3px]" style={{ background: categoryColor(labelItem.category) }} />
-              <span className="truncate text-xs font-bold">{labelItem.name}</span>
-              <span className="shrink-0 text-xs font-extrabold text-[#b7e4c7]">{formatEur(labelItem.valueEur)}</span>
-            </div>
-          </div>
         )}
 
         {shown.has(PLUS_ID) && plusSlot && (

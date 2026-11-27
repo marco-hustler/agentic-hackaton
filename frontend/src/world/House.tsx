@@ -21,9 +21,6 @@ type HouseProps = {
   /** true = sink out of view (another house is open). */
   hidden: boolean
   interactive: boolean
-  /** Item highlighted in the open interior. */
-  selectedItemId?: string | null
-  onSelectItem?: (id: string) => void
   onOpen: () => void
   onHover: (hovered: boolean) => void
 }
@@ -59,8 +56,6 @@ export function House({
   open,
   hidden,
   interactive,
-  selectedItemId,
-  onSelectItem,
   onOpen,
   onHover,
 }: HouseProps) {
@@ -85,7 +80,8 @@ export function House({
       const b = roomBounds(plan[i])
       return {
         from: new THREE.Vector3((i - (people - 1) / 2) * 0.42, 0, 1.25),
-        to: new THREE.Vector3(b.cx + b.w * 0.22, 0.1, b.cz - b.d * 0.05),
+        // On the rug, which PersonalRoom mirrors on odd rooms.
+        to: new THREE.Vector3(b.cx + b.w * 0.12 * (i % 2 === 1 ? -1 : 1), 0.1, b.cz + b.d * 0.12),
       }
     })
   }, [people, roomList.length])
@@ -210,7 +206,7 @@ export function House({
 
         {/* Cutaway interior: one room per person */}
         <group ref={interior} visible={false}>
-          <HouseInterior rooms={roomList} selectedId={selectedItemId} onSelectItem={open ? onSelectItem : undefined} />
+          <HouseInterior rooms={roomList} />
         </group>
 
         {/* People as pawns: wait on the path, pop into their room on open */}
