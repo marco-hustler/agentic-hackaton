@@ -59,6 +59,7 @@ DEMO_PATH = REPO_ROOT / "data" / "demo_berlin_wg.json"
 def demo_seed_enabled() -> bool:
     """New houses start with the Berlin WG demo items only when DEMO_SEED_ENABLED is on (off by default)."""
     return os.getenv("DEMO_SEED_ENABLED", "false").strip().lower() in {"1", "true", "yes", "on"}
+
 FRONTEND_DIR = REPO_ROOT / "frontend"
 DIST_DIR = FRONTEND_DIR / "dist"
 
@@ -152,7 +153,13 @@ async def list_processes() -> list[ProcessSummary]:
 
 @app.post("/api/processes", response_model=ProcessSummary, status_code=201)
 async def create_process(payload: ProcessCreate) -> ProcessSummary:
-    return get_process_store().create_process(payload)
+    """New houses start with an empty inventory; DEMO_SEED_ENABLED fills it with the demo items instead."""
+    store = get_process_store()
+    created = store.create_process(payload)
+    if demo_seed_enabled():
+        valued, _ = await _demo_valued_items()
+        store.save_inventory(created.id, ProcessInventory(valued_items=valued))
+    return created
 
 
 @app.get("/api/processes/{process_id}", response_model=ProcessSummary)
@@ -187,8 +194,8 @@ async def _demo_valued_items(raw: dict | None = None) -> tuple[list[ValuedItem],
 
 @app.get("/api/processes/{process_id}/inventory", response_model=ProcessInventory)
 async def get_process_inventory(process_id: str) -> ProcessInventory:
-    """A house's saved inventory. Empty until items are added; with DEMO_SEED_ENABLED the first visit
-    seeds it from the demo (idealo cache only, 0 MCP calls)."""
+    """A house's saved inventory. Houses from before per-process inventories have no row yet:
+    they start empty, or with the demo items (idealo cache only, 0 MCP calls) when DEMO_SEED_ENABLED is on."""
     store = get_process_store()
     if store.get_process(process_id) is None:
         raise HTTPException(status_code=404, detail="Process not found")
