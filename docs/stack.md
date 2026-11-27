@@ -69,8 +69,10 @@ cp .env.example .env
 # 4. Run unit tests
 pytest
 
-# 5. Probe idealo MCP (opens browser for OAuth login on first run)
-python scripts/probe_idealo_mcp.py
+# 5. (Optional, spends idealo calls) log in to idealo MCP — opens browser for OAuth
+python scripts/probe_idealo_mcp.py --list-tools
+#    Live calls from the web app stay OFF unless IDEALO_LIVE_ENABLED=true in .env
+#    (see docs/idealo-mcp-setup.md -> "How the app protects the call budget")
 
 # 6. Run web app + API
 uvicorn cleanbreak.api.app:app --reload --port 8000
