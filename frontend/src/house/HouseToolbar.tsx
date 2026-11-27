@@ -17,6 +17,8 @@ type HouseToolbarProps = {
   inventoryFilter?: string
   onInventoryFilter?: (value: string) => void
   onAddObject?: () => void
+  /** When false, show an Idealo auth hint instead of the Add object button. */
+  idealoReady?: boolean
   /** When set, show search + Invite on the right (collaborators tab). */
   collaboratorsFilter?: string
   onCollaboratorsFilter?: (value: string) => void
@@ -65,6 +67,7 @@ export function HouseToolbar({
   inventoryFilter = '',
   onInventoryFilter,
   onAddObject,
+  idealoReady = true,
   collaboratorsFilter = '',
   onCollaboratorsFilter,
   onInviteCollaborator,
@@ -77,14 +80,20 @@ export function HouseToolbar({
   const toolsRow = showInventoryTools ? (
     <>
       <SearchField label="Search inventory" value={inventoryFilter} onChange={onInventoryFilter} embedded={variant === 'embedded'} />
-      <button
-        type="button"
-        className={`btn btn-primary h-10 shrink-0 px-3.5 ${variant === 'overlay' ? 'shadow-[0_8px_20px_-8px_rgba(224,90,71,0.45)]' : ''}`}
-        onClick={onAddObject}
-      >
-        <span className="text-base leading-none">+</span>
-        <span className="hidden sm:inline">Add object</span>
-      </button>
+      {idealoReady ? (
+        <button
+          type="button"
+          className={`btn btn-primary h-10 shrink-0 px-3.5 ${variant === 'overlay' ? 'shadow-[0_8px_20px_-8px_rgba(224,90,71,0.45)]' : ''}`}
+          onClick={onAddObject}
+        >
+          <span className="text-base leading-none">+</span>
+          <span className="hidden sm:inline">Add object</span>
+        </button>
+      ) : (
+        <p className="max-w-[14rem] text-right text-xs font-semibold leading-snug text-ink2 sm:max-w-[18rem]">
+          Authenticate with Idealo from your account menu above to add objects.
+        </p>
+      )}
     </>
   ) : showCollaboratorTools ? (
     <>

@@ -9,9 +9,10 @@ type AppHeaderProps = {
   onSignOut: () => void
   view: ProcessView
   onViewChange: (view: ProcessView) => void
+  onIdealoChange?: (ready: boolean) => void
 }
 
-export function AppHeader({ account, processCount, onSignOut, view, onViewChange }: AppHeaderProps) {
+export function AppHeader({ account, processCount, onSignOut, view, onViewChange, onIdealoChange }: AppHeaderProps) {
   return (
     <header className="pointer-events-none absolute inset-x-0 top-0 z-40 grid grid-cols-1 items-start gap-3 p-4 sm:grid-cols-[1fr_auto] sm:p-6 lg:grid-cols-[1fr_auto_1fr]">
       <div className="panel pointer-events-auto flex items-center gap-3 justify-self-start px-4 py-3">
@@ -30,7 +31,7 @@ export function AppHeader({ account, processCount, onSignOut, view, onViewChange
         <ViewSwitch value={view} onChange={onViewChange} />
       </div>
 
-      <AccountMenu account={account} onSignOut={onSignOut} />
+      <AccountMenu account={account} onSignOut={onSignOut} onIdealoChange={onIdealoChange} />
     </header>
   )
 }

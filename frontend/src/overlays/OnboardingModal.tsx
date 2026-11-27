@@ -2,15 +2,26 @@ type OnboardingModalProps = {
   open: boolean
   onClose: () => void
   onStart: () => void
+  /** Idealo session auth is required before creating a process. */
+  idealoReady?: boolean
 }
 
 const STEPS = [
-  { title: 'This world is yours', body: 'Every house in the neighbourhood is one split process.' },
-  { title: 'Build and invite', body: 'Create a house, invite the people involved, fill the inventory together.' },
-  { title: 'Fair by design', body: 'idealo prices every item; Dividealo proposes a fair division.' },
+  {
+    title: 'Authenticate with Idealo',
+    body: 'Open your account menu (top right) and connect Idealo MCP — required to price items and create processes.',
+  },
+  {
+    title: 'Optional: add an LLM',
+    body: 'Configure AI keys in the same menu if you want chat-assisted drafting. Without an LLM, manual add still works.',
+  },
+  {
+    title: 'Build and split',
+    body: 'Create a house, fill the inventory together, and Dividealo proposes a fair division from idealo prices.',
+  },
 ]
 
-export function OnboardingModal({ open, onClose, onStart }: OnboardingModalProps) {
+export function OnboardingModal({ open, onClose, onStart, idealoReady = false }: OnboardingModalProps) {
   if (!open) return null
 
   return (
@@ -40,13 +51,19 @@ export function OnboardingModal({ open, onClose, onStart }: OnboardingModalProps
             </li>
           ))}
         </ol>
-        <div className="mt-6 flex flex-wrap justify-end gap-2">
+        <div className="mt-6 flex flex-wrap items-center justify-end gap-2">
           <button type="button" onClick={onClose} className="btn btn-ghost">
             Explore first
           </button>
-          <button type="button" onClick={onStart} className="btn btn-primary">
-            Create your first process
-          </button>
+          {idealoReady ? (
+            <button type="button" onClick={onStart} className="btn btn-primary">
+              Create your first process
+            </button>
+          ) : (
+            <p className="max-w-[16rem] text-right text-xs font-semibold leading-snug text-ink2">
+              Authenticate with Idealo from your account menu above to continue.
+            </p>
+          )}
         </div>
       </div>
     </div>

@@ -65,6 +65,26 @@ async def _no_callback():  # pragma: no cover - never reached because redirect r
     raise LoginRequired("idealo login required.")
 
 
+class MemoryTokenStorage(TokenStorage):
+    """In-memory tokens for a single request (browser session access token override)."""
+
+    def __init__(self, access_token: str, *, token_type: str = "Bearer") -> None:
+        self._tokens = OAuthToken(access_token=access_token.strip(), token_type=token_type)
+        self._client_info: OAuthClientInformationFull | None = None
+
+    async def get_tokens(self) -> OAuthToken | None:
+        return self._tokens
+
+    async def set_tokens(self, tokens: OAuthToken) -> None:
+        self._tokens = tokens
+
+    async def get_client_info(self) -> OAuthClientInformationFull | None:
+        return self._client_info
+
+    async def set_client_info(self, client_info: OAuthClientInformationFull) -> None:
+        self._client_info = client_info
+
+
 class FileTokenStorage(TokenStorage):
     """Persists OAuth tokens and dynamically registered client info to a local JSON file."""
 
@@ -217,11 +237,15 @@ def build_oauth_provider(
     callback_port: int = 6274,
     manual_callback: bool = False,
     interactive: bool = True,
+    access_token: str | None = None,
 ) -> OAuthClientProvider:
     """Create a configured MCP v2 OAuthClientProvider with persisted token storage.
 
     `interactive=False` (server use) never opens a browser or waits for a callback: an
     authorization redirect raises LoginRequired instead.
+
+    When `access_token` is set (browser session override), tokens live in memory for this
+    request only — server env / token file stay untouched.
     """
     catcher = LoopbackCallbackCatcher(port=callback_port, manual=manual_callback)
     metadata = OAuthClientMetadata(
@@ -230,10 +254,15 @@ def build_oauth_provider(
         grant_types=["authorization_code", "refresh_token"],
         response_types=["code"],
     )
+    storage: TokenStorage
+    if access_token and access_token.strip():
+        storage = MemoryTokenStorage(access_token.strip())
+    else:
+        storage = FileTokenStorage(token_file)
     return OAuthClientProvider(
         server_url=server_url,
         client_metadata=metadata,
-        storage=FileTokenStorage(token_file),
+        storage=storage,
         redirect_handler=catcher.redirect_handler if interactive else _refuse_interactive_login,
         callback_handler=catcher.callback_handler if interactive else _no_callback,
     )

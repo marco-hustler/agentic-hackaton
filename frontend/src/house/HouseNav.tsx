@@ -17,7 +17,10 @@ type HouseNavProps = {
   inventoryFilter?: string
   onInventoryFilter?: (value: string) => void
   onAddObject?: () => void
+  /** When false, Add object is replaced by an Idealo auth hint. */
+  idealoReady?: boolean
   inventoryCount?: number | null
+  onIdealoChange?: (ready: boolean) => void
 }
 
 /** Top chrome inside a house: logo / process title / account, then back + view switch. */
@@ -31,7 +34,9 @@ export function HouseNav({
   inventoryFilter = '',
   onInventoryFilter,
   onAddObject,
+  idealoReady = true,
   inventoryCount = null,
+  onIdealoChange,
 }: HouseNavProps) {
   /* Every house tab: title lives as a notch on the white shell; chrome is logo + account only. */
   const inventoryNotchTitle = tab === 'inventory' || tab === 'split' || tab === 'export' || tab === 'collaborators'
@@ -55,7 +60,7 @@ export function HouseNav({
         )}
 
         <div className="justify-self-end">
-          <AccountMenu account={account} onSignOut={onSignOut} />
+          <AccountMenu account={account} onSignOut={onSignOut} onIdealoChange={onIdealoChange} />
         </div>
       </div>
 
@@ -68,6 +73,7 @@ export function HouseNav({
           inventoryFilter={inventoryFilter}
           onInventoryFilter={onInventoryFilter}
           onAddObject={onAddObject}
+          idealoReady={idealoReady}
         />
       )}
     </header>

@@ -2,6 +2,7 @@
 
 import asyncio
 
+import pytest
 from fastapi.testclient import TestClient
 
 from cleanbreak.api.app import app
@@ -11,8 +12,6 @@ from cleanbreak.llm.item_draft import (
     ItemDraftTurnRequest,
     run_item_draft_turn,
 )
-
-
 def test_heuristic_asks_until_complete() -> None:
     req = ItemDraftTurnRequest(messages=[ChatMessage(role="user", content="IKEA Billy bookshelf")])
     first = asyncio.run(run_item_draft_turn(req))
@@ -70,7 +69,80 @@ def test_llm_cannot_force_ready_with_gaps() -> None:
     assert res.draft.name == "Lamp"
 
 
-def test_manual_create_endpoint() -> None:
+def test_llm_error_when_provider_returns_nothing() -> None:
+    class DeadLLM:
+        is_configured = True
+
+        async def complete(self, **kwargs):
+            return None
+
+    req = ItemDraftTurnRequest(messages=[ChatMessage(role="user", content="a lamp")])
+    res = asyncio.run(run_item_draft_turn(req, llm=DeadLLM()))
+    assert res.status == "rejected"
+    assert res.guardrail == "llm_error"
+    assert "API key" in res.assistant_message or "did not respond" in res.assistant_message
+
+
+def test_manual_create_requires_idealo_success(monkeypatch: pytest.MonkeyPatch) -> None:
+    """Fallback / placeholder valuations must not create an inventory item."""
+    from cleanbreak.api import app as api_app
+    from cleanbreak.idealo.catalog import valued_item_from_manual
+
+    base = valued_item_from_manual(
+        name="Unknown gadget",
+        price_eur=99,
+        purchase_year=2022,
+        condition="good",
+        importance=5,
+    )
+    placeholder = base.valuation.model_copy(
+        update={"data_source": "demo_fallback", "source_note": "live mode off"}
+    )
+
+    async def fake_value_items(items, **kwargs):
+        return [placeholder], None, {}
+
+    monkeypatch.setattr(api_app, "_value_items", fake_value_items)
+    client = TestClient(app)
+    res = client.post(
+        "/api/items/manual",
+        json={
+            "name": "Unknown gadget",
+            "price_eur": 99,
+            "purchase_year": 2022,
+            "condition": "good",
+            "importance": 5,
+        },
+    )
+    assert res.status_code == 502
+    assert "idealo" in res.json()["detail"].lower()
+
+
+def test_manual_create_succeeds_with_idealo_valuation(monkeypatch: pytest.MonkeyPatch) -> None:
+    from cleanbreak.api import app as api_app
+    from cleanbreak.idealo.catalog import valued_item_from_manual
+
+    async def fake_value_items(items, **kwargs):
+        base = valued_item_from_manual(
+            name=items[0].name,
+            price_eur=420,
+            purchase_year=items[0].purchase_year,
+            condition=items[0].condition,
+            importance=8,
+            category=items[0].category,
+        )
+        val = base.valuation.model_copy(
+            update={
+                "data_source": "idealo_cached",
+                "source_note": None,
+                "trusted_market_price_eur": 420,
+                "fair_value_eur": 336,
+                "matched_title": "Bosch dishwasher",
+            }
+        )
+        return [val], None, {}
+
+    monkeypatch.setattr(api_app, "_value_items", fake_value_items)
     client = TestClient(app)
     res = client.post(
         "/api/items/manual",
@@ -87,18 +159,66 @@ def test_manual_create_endpoint() -> None:
     body = res.json()
     assert body["item"]["name"] == "Bosch dishwasher"
     assert body["item"]["party_a_points"] == 80
-    assert body["item"]["party_b_points"] == 80
-    assert body["valuation"]["trusted_market_price_eur"] == 499
-    assert body["valuation"]["source_note"] == "manual entry"
+    assert body["valuation"]["data_source"] == "idealo_cached"
+    assert body["valuation"]["trusted_market_price_eur"] == 420
 
 
-def test_draft_endpoint_empty_opens_prompt() -> None:
+def test_draft_endpoint_requires_llm(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setenv("LLM_MODEL", "")
+    monkeypatch.setenv("LLM_API_KEY", "")
+    monkeypatch.delenv("OPENAI_API_KEY", raising=False)
+    monkeypatch.delenv("GEMINI_API_KEY", raising=False)
+    monkeypatch.delenv("ANTHROPIC_API_KEY", raising=False)
     client = TestClient(app)
     res = client.post("/api/items/draft", json={"messages": [], "draft": {}})
+    assert res.status_code == 503
+    assert "not configured" in res.json()["detail"].lower()
+
+
+def test_llm_status_accepts_session_headers(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setenv("LLM_MODEL", "")
+    monkeypatch.setenv("LLM_API_KEY", "")
+    monkeypatch.delenv("OPENAI_API_KEY", raising=False)
+    monkeypatch.delenv("GEMINI_API_KEY", raising=False)
+    monkeypatch.delenv("ANTHROPIC_API_KEY", raising=False)
+    client = TestClient(app)
+    empty = client.get("/api/llm/status")
+    assert empty.json()["configured"] is False
+    with_headers = client.get(
+        "/api/llm/status",
+        headers={"X-LLM-Model": "openai/gpt-4o-mini", "X-LLM-Api-Key": "test-key"},
+    )
+    assert with_headers.status_code == 200
+    body = with_headers.json()
+    assert body["configured"] is True
+    assert body["model"] == "openai/gpt-4o-mini"
+
+
+def test_idealo_status_accepts_session_token(monkeypatch: pytest.MonkeyPatch, tmp_path) -> None:
+    monkeypatch.setenv("IDEALO_TOKEN_FILE", str(tmp_path / "no_tokens.json"))
+    client = TestClient(app)
+    assert client.get("/api/idealo/status").json()["logged_in"] is False
+    with_token = client.get("/api/idealo/status", headers={"X-Idealo-Access-Token": "session-token"})
+    assert with_token.json()["logged_in"] is True
+
+
+def test_draft_welcome_message_is_conversational() -> None:
+    req = ItemDraftTurnRequest(messages=[], draft=ItemDraft())
+    res = asyncio.run(run_item_draft_turn(req))
+    assert res.status == "need_info"
+    assert "tell me about the object" in res.assistant_message.lower()
+
+
+def test_llm_status_endpoint(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setenv("LLM_MODEL", "")
+    monkeypatch.setenv("LLM_API_KEY", "")
+    monkeypatch.delenv("OPENAI_API_KEY", raising=False)
+    monkeypatch.delenv("GEMINI_API_KEY", raising=False)
+    monkeypatch.delenv("ANTHROPIC_API_KEY", raising=False)
+    client = TestClient(app)
+    res = client.get("/api/llm/status")
     assert res.status_code == 200
-    body = res.json()
-    assert body["status"] == "need_info"
-    assert set(body["missing_fields"]) == {"name", "price_eur", "purchase_year", "condition", "importance"}
+    assert res.json()["configured"] is False
 
 
 def test_merge_keeps_existing_fields() -> None:

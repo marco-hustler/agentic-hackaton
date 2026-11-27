@@ -2,6 +2,7 @@ import type { DemoScenario, HouseholdItem, ItemValuation, SplitMode, SplitResult
 
 /** Thin fetch helper for the FastAPI backend (proxied in Vite dev). */
 
+import { credentialHeaders, llmConfiguredInSession, loadLlmCredentials } from '../auth/credentials'
 import type {
   AccountInfo,
   ProcessCreatePayload,
@@ -25,18 +26,37 @@ export async function api<T = unknown>(
   init?: RequestInit,
 ): Promise<T> {
   const res = await fetch(path, {
+    ...init,
     headers: {
       'Content-Type': 'application/json',
+      ...credentialHeaders(),
       ...(init?.headers ?? {}),
     },
-    ...init,
   })
   if (!res.ok) {
     const text = await res.text().catch(() => res.statusText)
-    throw new ApiError(res.status, text || res.statusText)
+    throw new ApiError(res.status, formatApiErrorDetail(text) || res.statusText)
   }
   if (res.status === 204) return undefined as T
   return res.json() as Promise<T>
+}
+
+/** FastAPI often returns `{"detail":"..."}` — surface that string to the UI. */
+function formatApiErrorDetail(raw: string): string {
+  const trimmed = (raw || '').trim()
+  if (!trimmed) return ''
+  try {
+    const parsed = JSON.parse(trimmed) as { detail?: unknown }
+    if (typeof parsed.detail === 'string') return parsed.detail
+    if (Array.isArray(parsed.detail)) {
+      return parsed.detail
+        .map((d) => (typeof d === 'object' && d && 'msg' in d ? String((d as { msg: unknown }).msg) : String(d)))
+        .join('; ')
+    }
+  } catch {
+    /* plain text */
+  }
+  return trimmed
 }
 
 type ApiProcess = {
@@ -103,6 +123,16 @@ export type IdealoStatus = { live_enabled: boolean; logged_in: boolean; used?: n
 /** Live flag + today's budget. Reads local state only. */
 export function getIdealoStatus() {
   return api<IdealoStatus>('/api/idealo/status')
+}
+
+export type LlmStatus = { configured: boolean; model?: string | null }
+
+/** Whether AI object creation can run (session keys or server env). */
+export async function getLlmStatus(): Promise<LlmStatus> {
+  if (llmConfiguredInSession()) {
+    return { configured: true, model: loadLlmCredentials().model || null }
+  }
+  return api<LlmStatus>('/api/llm/status')
 }
 
 export function getMe() {

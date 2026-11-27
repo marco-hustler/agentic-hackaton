@@ -17,19 +17,25 @@ Built for **Agentic Hackathon: From Research to Commerce** (Berlin, 27 Nov 2026)
 
 ---
 
-## Quickstart (2 minutes, works out of the box)
+## Quickstart
 
 > Requires **Python 3.11+** and **Node 20+**. On macOS, if `python3 --version` is 3.9, use `/opt/homebrew/bin/python3` instead.
 
 ```bash
 python3 -m venv .venv          # or: /opt/homebrew/bin/python3 -m venv .venv
 source .venv/bin/activate      # Windows: .venv\Scripts\activate
-cp .env.example .env           # optional — works even without API keys
+cp .env.example .env           # optional — server-side keys; browser session overrides also work
 
 # One command: Python deps + React → frontend/dist, then serve on :8000
 make run
 # Open http://localhost:8000
 ```
+
+### First launch in the UI (required + optional)
+
+1. **Sign in** with a demo account (email is enough).
+2. **Authenticate with Idealo** (required) — open the account menu (top right) → *Authenticate with Idealo*, complete Idealo MCP OAuth, paste the token/code. Session-only; without it you cannot create a process or add objects.
+3. **Configure an LLM** (optional) — same menu → *Configure AI keys* (`LLM_MODEL`, `LLM_API_KEY`, optional `LLM_API_BASE`). Enables AI-assisted item drafting; manual add still works without it.
 
 `uvicorn` alone does **not** build the UI — it only serves whatever is already in `frontend/dist`. Use:
 
@@ -56,15 +62,15 @@ The Trial tier allows **500 calls/day and 3 calls/sec**, shared by everyone usin
 - Only one person should turn live mode on at a time. Commit new `data/cache/` files after a live test so teammates reuse them.
 
 ### Optional: Log in / refresh idealo data from the command line (OAuth)
-Real responses for all 7 demo items are already cached in `data/cache/`. The server never opens a login itself — log in here:
+Prefer the in-app account menu for day-to-day use. For CLI probes / cache refresh:
 ```bash
 python scripts/probe_idealo_mcp.py --list-tools   # opens browser for idealo OAuth (~3 calls)
 python scripts/probe_idealo_mcp.py --probe-demo   # ~2 calls to connect; cached items cost 0 more
 python scripts/probe_idealo_mcp.py --probe-demo --refresh   # re-fetches everything (~30 calls!)
 ```
 
-### Optional: Enable Any LLM Provider
-To enable Gemini, OpenAI, Claude, or Nebius, install `pip install -e ".[llm,dev]"` and set `LLM_MODEL` + your API key in `.env`. Without an LLM key, CleanBreak falls back to deterministic parsing/explanations so the demo never breaks.
+### Optional: LLM via `.env` (server fallback)
+Browser session keys from the account menu take precedence. To set a server-wide default, install `pip install -e ".[llm,dev]"` and set `LLM_MODEL` + your API key in `.env`. Without any LLM key, Dividealo falls back to deterministic parsing so the demo never breaks.
 
 ---
 

@@ -34,6 +34,27 @@ class LLMConfig:
         api_base = (os.getenv("LLM_API_BASE") or "").strip() or None
         return cls(model=model, api_key=api_key, api_base=api_base)
 
+    @classmethod
+    def from_headers(cls, headers: dict[str, str] | None) -> "LLMConfig | None":
+        """Build config from browser-session headers when both model and key are present."""
+        if not headers:
+            return None
+        lower = {str(k).lower(): str(v) for k, v in headers.items()}
+        model = (lower.get("x-llm-model") or "").strip() or None
+        api_key = (lower.get("x-llm-api-key") or "").strip() or None
+        api_base = (lower.get("x-llm-api-base") or "").strip() or None
+        if not (model and api_key):
+            return None
+        return cls(model=model, api_key=api_key, api_base=api_base)
+
+    @classmethod
+    def resolve(cls, headers: dict[str, str] | None = None) -> "LLMConfig":
+        """Prefer per-request session headers; fall back to server env (e.g. Vercel)."""
+        from_session = cls.from_headers(headers)
+        if from_session is not None:
+            return from_session
+        return cls.from_env()
+
     @property
     def is_configured(self) -> bool:
         return bool(self.model and self.api_key)

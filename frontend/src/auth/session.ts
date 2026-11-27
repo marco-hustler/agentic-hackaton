@@ -1,4 +1,5 @@
 import type { AccountInfo } from '../types/process'
+import { clearAllCredentials } from './credentials'
 
 const SESSION_KEY = 'dividealo.auth.session'
 
@@ -63,6 +64,7 @@ export function clearSession() {
   } catch {
     /* ignore */
   }
+  clearAllCredentials()
 }
 
 /** Fake sign-in: any plausible email + non-empty password. */

@@ -26,6 +26,7 @@ from cleanbreak.idealo.catalog import (
     valued_item_from_manual,
 )
 from cleanbreak.idealo.client import IdealoMCPClient
+from cleanbreak.llm.client import AgnosticLLMClient, LLMConfig
 from cleanbreak.llm.item_draft import (
     ItemDraftTurnRequest,
     ItemDraftTurnResponse,
@@ -250,8 +251,13 @@ async def get_demo_scenario(mode: SplitMode = "balanced") -> dict:
 
 
 @app.post("/api/value", response_model=ValueResponse)
-async def value_items_endpoint(req: ValueRequest) -> ValueResponse:
-    valuations, warning, budget = await _value_items(req.items, country=req.country, mode=req.mode)
+async def value_items_endpoint(req: ValueRequest, request: Request) -> ValueResponse:
+    valuations, warning, budget = await _value_items(
+        req.items,
+        country=req.country,
+        mode=req.mode,
+        access_token=_session_idealo_token(request),
+    )
     return ValueResponse(valuations=valuations, warning=warning, budget=budget)
 
 
@@ -267,13 +273,35 @@ async def catalog_item(hit: CatalogHit) -> ValuedItem:
     return valued_item_from_hit(hit)
 
 
+def _header_map(request: Request) -> dict[str, str]:
+    return {k: v for k, v in request.headers.items()}
+
+
+def _session_idealo_token(request: Request | None) -> str | None:
+    if request is None:
+        return None
+    token = (request.headers.get("x-idealo-access-token") or "").strip()
+    return token or None
+
+
 @app.get("/api/idealo/status")
-async def idealo_status() -> dict:
+async def idealo_status(request: Request) -> dict:
     """Live-mode flag, login presence and today's call budget. Never touches the network."""
+    session_token = _session_idealo_token(request)
     return {
         "live_enabled": live_enabled(),
-        "logged_in": tokens_present(default_token_path()),
+        "logged_in": bool(session_token) or tokens_present(default_token_path()),
         **get_budget().snapshot(),
+    }
+
+
+@app.get("/api/llm/status")
+async def llm_status(request: Request) -> dict:
+    """Whether an LLM provider is configured (session headers or server env)."""
+    cfg = LLMConfig.resolve(_header_map(request))
+    return {
+        "configured": cfg.is_configured,
+        "model": cfg.model if cfg.is_configured else None,
     }
 
 
@@ -311,42 +339,35 @@ async def solve_agent_endpoint(req: SplitRequest) -> SplitResult:
 
 
 @app.post("/api/summary")
-async def summary_endpoint(result: SplitResult) -> dict[str, str]:
+async def summary_endpoint(result: SplitResult, request: Request) -> dict[str, str]:
     """Optional LLM polish of the mediator summary, fetched in the background by the UI."""
-    return {"summary": await generate_mediator_summary(result)}
+    llm = AgnosticLLMClient(LLMConfig.resolve(_header_map(request)))
+    return {"summary": await generate_mediator_summary(result, llm=llm)}
 
 
 @app.post("/api/parse")
-async def parse_endpoint(req: ParseRequest) -> dict:
+async def parse_endpoint(req: ParseRequest, request: Request) -> dict:
+    llm = AgnosticLLMClient(LLMConfig.resolve(_header_map(request)))
     items = await parse_messy_inventory(
-        req.raw_text, party_a_name=req.party_a_name, party_b_name=req.party_b_name
+        req.raw_text, party_a_name=req.party_a_name, party_b_name=req.party_b_name, llm=llm
     )
     return {"items": [i.model_dump() for i in items]}
 
 
 @app.post("/api/items/draft", response_model=ItemDraftTurnResponse)
-async def item_draft_turn(req: ItemDraftTurnRequest) -> ItemDraftTurnResponse:
+async def item_draft_turn(req: ItemDraftTurnRequest, request: Request) -> ItemDraftTurnResponse:
     """Conversational AI object drafting: asks until every required field is present.
 
-    Provider-agnostic (LiteLLM / OpenAI-compatible / deterministic fallback).
-    Guardrails reject prompt injection and off-topic requests; never materialises
-    an item until status=ready.
+    Requires a configured LLM (session keys or server env). Guardrails reject prompt injection
+    and off-topic requests; never materialises an item until status=ready.
     """
-    return await run_item_draft_turn(req)
-
-
-@app.post("/api/items/manual", response_model=ValuedItem)
-async def create_manual_item(req: ManualItemCreate) -> ValuedItem:
-    """Create a valued house item from explicit fields (static form or confirmed AI draft)."""
-    return valued_item_from_manual(
-        name=req.name,
-        price_eur=req.price_eur,
-        purchase_year=req.purchase_year,
-        condition=req.condition,
-        category=req.category,
-        importance=req.importance,
-        notes=req.notes,
-    )
+    client = AgnosticLLMClient(LLMConfig.resolve(_header_map(request)))
+    if not client.is_configured:
+        raise HTTPException(
+            status_code=503,
+            detail="AI is not configured. Open Account → Configure AI keys, or set LLM_MODEL + API key on the server.",
+        )
+    return await run_item_draft_turn(req, llm=client)
 
 
 LIVE_ITEM_CAP = 10  # uncached items looked up live per action
@@ -363,12 +384,58 @@ NOTE_SLOW = "idealo slow"
 NOTE_NOT_FOUND = "idealo found no match"
 
 
+def _idealo_create_error(note: str | None) -> str:
+    """Human-readable reason when create cannot use a real idealo valuation."""
+    mapping = {
+        NOTE_LIVE_OFF: "idealo live lookups are off. Set IDEALO_LIVE_ENABLED=true, or use a product already in the cache.",
+        NOTE_NOT_CACHED: "No cached idealo match for this product. Enable live mode (IDEALO_LIVE_ENABLED) or pick a cached catalog item.",
+        NOTE_LOGIN: "Sign in to idealo MCP first (Account → Authenticate with Idealo), then try again.",
+        NOTE_BUDGET: "Daily idealo call budget reached. Try again tomorrow or use a cached product.",
+        NOTE_NOT_FOUND: "idealo found no match for that product. Try a clearer name or brand + model.",
+        NOTE_ERROR: "idealo MCP failed while looking up this product. Try again in a moment.",
+        NOTE_SLOW: "idealo MCP was too slow. Try again in a moment.",
+        NOTE_SKIPPED: "idealo lookup was skipped (per-action limit).",
+    }
+    return mapping.get(note or "", "Could not value this product on idealo. Try again.")
+
+
+@app.post("/api/items/manual", response_model=ValuedItem)
+async def create_manual_item(req: ManualItemCreate, request: Request) -> ValuedItem:
+    """Look up the product on idealo first. Only create/return an item when valuation succeeds.
+
+    On cache miss / login / budget / not-found / MCP error → 502 and nothing is created.
+    """
+    base = valued_item_from_manual(
+        name=req.name,
+        price_eur=req.price_eur,
+        purchase_year=req.purchase_year,
+        condition=req.condition,
+        category=req.category,
+        importance=req.importance,
+        notes=req.notes,
+    )
+    try:
+        valuations, _, _ = await _value_items(
+            [base.item],
+            mode="live_or_cache",
+            access_token=_session_idealo_token(request),
+        )
+    except Exception:
+        raise HTTPException(status_code=502, detail=_idealo_create_error(NOTE_ERROR)) from None
+    if not valuations:
+        raise HTTPException(status_code=502, detail=_idealo_create_error(NOTE_ERROR))
+    val = valuations[0]
+    if val.data_source not in ("idealo_cached", "idealo_live"):
+        raise HTTPException(status_code=502, detail=_idealo_create_error(val.source_note))
+    return ValuedItem(item=base.item, valuation=val)
+
+
 def live_enabled() -> bool:
     return os.getenv("IDEALO_LIVE_ENABLED", "false").strip().lower() in {"1", "true", "yes", "on"}
 
 
-def _make_client(country: str) -> IdealoMCPClient:
-    return IdealoMCPClient(country=country, interactive=False)
+def _make_client(country: str, *, access_token: str | None = None) -> IdealoMCPClient:
+    return IdealoMCPClient(country=country, interactive=False, access_token=access_token)
 
 
 class _StopLive(Exception):
@@ -392,6 +459,7 @@ async def _value_items(
     *,
     country: str = "DE",
     mode: Literal["cache_only", "live_or_cache", "fallback"] = "cache_only",
+    access_token: str | None = None,
 ) -> tuple[list[ItemValuation], str | None, dict]:
     """Value each item independently: cache -> live (only if allowed) -> labelled placeholder.
 
@@ -408,7 +476,7 @@ async def _value_items(
     if mode == "fallback":
         return [placeholder(i, "offline demo fallback") for i in items], "Showing sample prices. idealo was not asked.", get_budget().snapshot()
 
-    client = _make_client(country)
+    client = _make_client(country, access_token=access_token)
     results: list[ItemValuation | None] = [None] * len(items)
     pending: list[int] = []
     for idx, item in enumerate(items):

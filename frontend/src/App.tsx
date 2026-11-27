@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { listProcesses, updateProcess } from './api/client'
+import { idealoConfiguredInSession } from './auth/credentials'
 import { LoginPage } from './auth/LoginPage'
 import { clearSession, loadSession } from './auth/session'
 import { AppHeader } from './chrome/AppHeader'
@@ -64,6 +65,7 @@ export default function App() {
   const [view, setView] = useState<ProcessView>('world')
   const [showOnboarding, setShowOnboarding] = useState(() => !loadOnboardingSeen())
   const [showWizard, setShowWizard] = useState(false)
+  const [idealoReady, setIdealoReady] = useState(() => idealoConfiguredInSession())
   const [mode, setMode] = useState<WorldMode>(initialPlace ? 'house' : 'world')
   const [focusId, setFocusId] = useState<string | null>(initialPlace?.focusId ?? null)
   const [detailId, setDetailId] = useState<string | null>(null)
@@ -141,9 +143,15 @@ export default function App() {
   const focusRooms = useMemo(() => (focusProcess ? buildRooms(focusProcess) : null), [focusProcess])
 
   function openWizard() {
+    if (!idealoReady) return
     setShowOnboarding(false)
     markOnboardingSeen()
     setShowWizard(true)
+  }
+
+  function requestAddObject() {
+    if (!idealoReady) return
+    setAddingObject(true)
   }
 
   function backToWorld() {
@@ -238,6 +246,7 @@ export default function App() {
           spinRequest={0}
           frameRef={frameRef}
           onCreateProcess={openWizard}
+          canCreateProcess={idealoReady}
           onRequestOpen={(id) => {
             setFocusId(id)
             setMode('confirm')
@@ -260,7 +269,9 @@ export default function App() {
             onSignOut={signOut}
             inventoryFilter={inventoryFilter}
             onInventoryFilter={setInventoryFilter}
-            onAddObject={() => setAddingObject(true)}
+            onAddObject={requestAddObject}
+            idealoReady={idealoReady}
+            onIdealoChange={setIdealoReady}
             inventoryCount={inventory.itemCount}
           />
           {tab === 'split' ? (
@@ -323,14 +334,15 @@ export default function App() {
               demo={demo}
               error={demoError}
               filter={inventoryFilter}
-              addingOpen={addingObject}
+              addingOpen={addingObject && idealoReady}
               onAddingOpenChange={setAddingObject}
               tab={tab}
               onTab={goToTab}
               onBackToWorld={backToWorld}
               inventoryCount={inventory.itemCount}
               onInventoryFilter={setInventoryFilter}
-              onAddObject={() => setAddingObject(true)}
+              onAddObject={requestAddObject}
+              idealoReady={idealoReady}
               onAdd={inventory.addItem}
               onRemove={inventory.removeItem}
               onOpenItem={setDetailId}
@@ -362,16 +374,23 @@ export default function App() {
               backToWorld()
               setView(next)
             }}
+            onIdealoChange={setIdealoReady}
           />
           {mode === 'world' && !showWizard && !showOnboarding && (
             <div className="pointer-events-none absolute inset-x-0 bottom-6 z-40 flex justify-center px-4 sm:bottom-8">
-              <button
-                type="button"
-                onClick={openWizard}
-                className="btn btn-slate pop-in pointer-events-auto h-11 px-5 shadow-[0_12px_28px_-6px_rgba(15,23,42,0.35)]"
-              >
-                <span className="text-base leading-none">+</span> New process
-              </button>
+              {idealoReady ? (
+                <button
+                  type="button"
+                  onClick={openWizard}
+                  className="btn btn-slate pop-in pointer-events-auto h-11 px-5 shadow-[0_12px_28px_-6px_rgba(15,23,42,0.35)]"
+                >
+                  <span className="text-base leading-none">+</span> New process
+                </button>
+              ) : (
+                <p className="panel pop-in pointer-events-auto max-w-md px-4 py-3 text-center text-sm font-semibold text-ink2 shadow-[0_12px_28px_-6px_rgba(15,23,42,0.25)]">
+                  Authenticate with Idealo from your account menu above to create a process.
+                </p>
+              )}
             </div>
           )}
           {loadError && (
@@ -385,6 +404,7 @@ export default function App() {
       {/* Layer: modals */}
       <OnboardingModal
         open={showOnboarding}
+        idealoReady={idealoReady}
         onClose={() => {
           setShowOnboarding(false)
           markOnboardingSeen()

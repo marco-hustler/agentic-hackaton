@@ -386,7 +386,11 @@ async def run_item_draft_turn(
     if not req.messages:
         return ItemDraftTurnResponse(
             status="need_info",
-            assistant_message="Name, price, year, condition, importance (1–10).",
+            assistant_message=(
+                "Hi — tell me about the object you want to add. "
+                "I'll need its name, price (€), year, condition "
+                "(like new / good / fair / worn), and importance (1–10)."
+            ),
             draft=req.draft,
             missing_fields=list(REQUIRED_FIELDS),
         )
@@ -427,42 +431,55 @@ async def run_item_draft_turn(
             json_mode=True,
             temperature=0.1,
         )
-        if raw:
-            try:
-                parsed = json.loads(raw)
-                llm_draft = _sanitize_llm_draft(parsed.get("draft") or {})
-                draft = merge_drafts(draft, llm_draft)
-                # Always recompute missing server-side — never trust the model alone.
-                missing = missing_required(draft)
-                status = parsed.get("status")
-                if status == "rejected" and isinstance(parsed.get("guardrail"), str):
-                    return ItemDraftTurnResponse(
-                        status="rejected",
-                        assistant_message=str(parsed.get("assistant_message") or "Only household objects.")[:120],
-                        draft=draft,
-                        missing_fields=missing,
-                        guardrail="llm_policy",
-                    )
-                if missing:
-                    msg = str(parsed.get("assistant_message") or "").strip()
-                    if not msg or status == "ready":
-                        msg = _ask_for(missing)
-                    return ItemDraftTurnResponse(
-                        status="need_info",
-                        assistant_message=msg[:120],
-                        draft=draft,
-                        missing_fields=missing,
-                    )
+        if not raw:
+            return ItemDraftTurnResponse(
+                status="rejected",
+                assistant_message="AI provider did not respond. Check LLM_MODEL and your API key.",
+                draft=draft,
+                missing_fields=missing_required(draft),
+                guardrail="llm_error",
+            )
+        try:
+            parsed = json.loads(raw)
+            llm_draft = _sanitize_llm_draft(parsed.get("draft") or {})
+            draft = merge_drafts(draft, llm_draft)
+            # Always recompute missing server-side — never trust the model alone.
+            missing = missing_required(draft)
+            status = parsed.get("status")
+            if status == "rejected" and isinstance(parsed.get("guardrail"), str):
                 return ItemDraftTurnResponse(
-                    status="ready",
-                    assistant_message=_ready_summary(draft),
+                    status="rejected",
+                    assistant_message=str(parsed.get("assistant_message") or "Only household objects.")[:120],
                     draft=draft,
-                    missing_fields=[],
+                    missing_fields=missing,
+                    guardrail="llm_policy",
                 )
-            except Exception:
-                pass
+            if missing:
+                msg = str(parsed.get("assistant_message") or "").strip()
+                if not msg or status == "ready":
+                    msg = _ask_for(missing)
+                return ItemDraftTurnResponse(
+                    status="need_info",
+                    assistant_message=msg[:120],
+                    draft=draft,
+                    missing_fields=missing,
+                )
+            return ItemDraftTurnResponse(
+                status="ready",
+                assistant_message=_ready_summary(draft),
+                draft=draft,
+                missing_fields=[],
+            )
+        except Exception:
+            return ItemDraftTurnResponse(
+                status="rejected",
+                assistant_message="AI returned an unreadable response. Try again.",
+                draft=draft,
+                missing_fields=missing_required(draft),
+                guardrail="llm_error",
+            )
 
-    # Deterministic path (no LLM / LLM failed).
+    # Deterministic path when no LLM is configured (unit tests / offline).
     draft = merge_drafts(draft, _heuristic_extract(latest.content, draft))
     missing = missing_required(draft)
     if missing:
