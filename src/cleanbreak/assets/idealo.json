@@ -1,0 +1,5 @@
+{
+  "_comment": "Replace this file with your .idealo_tokens.json contents (client_info + tokens). Run: python scripts/probe_idealo_mcp.py --list-tools",
+  "client_info": null,
+  "tokens": null
+}
