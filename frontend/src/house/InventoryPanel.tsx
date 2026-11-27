@@ -93,7 +93,7 @@ export function InventoryPanel({
 
       {addingOpen && (
         <AddObjectModal
-          ownedRefs={new Set(items.map((vi) => vi.valuation.product_ref).filter(Boolean))}
+          ownedRefs={new Set(items.map((vi) => vi.valuation.product_ref).filter((r): r is string => !!r))}
           onClose={() => onAddingOpenChange(false)}
           onAdd={onAdd}
         />
