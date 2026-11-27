@@ -20,3 +20,6 @@ build/
 
 # Runtime probe dumps (keep curated data/cache/ fixtures committed only intentionally)
 data/probe_results.json
+
+# Local daily idealo MCP call counter (per machine)
+data/idealo_budget.json

@@ -13,6 +13,7 @@ from mcp import ClientSession
 from mcp.client.streamable_http import create_mcp_http_client, streamable_http_client
 
 from cleanbreak.idealo.auth import build_oauth_provider
+from cleanbreak.idealo.budget import CallBudget, get_budget
 from cleanbreak.idealo.cache import DiskCache
 from cleanbreak.models import (
     DataSourceType,
@@ -36,6 +37,7 @@ class IdealoMCPClient:
         cache_dir: str | Path | None = None,
         callback_port: int | None = None,
         manual_callback: bool = False,
+        budget: CallBudget | None = None,
     ) -> None:
         self.server_url = server_url or os.getenv("IDEALO_MCP_URL", "https://mcp.idealo.com/mcp")
         self.country = (country or os.getenv("IDEALO_COUNTRY", "DE")).upper()
@@ -43,6 +45,7 @@ class IdealoMCPClient:
         self.cache = DiskCache(cache_dir or os.getenv("IDEALO_CACHE_DIR", "data/cache"))
         self.callback_port = callback_port or int(os.getenv("IDEALO_OAUTH_CALLBACK_PORT", "6274"))
         self.manual_callback = manual_callback
+        self.budget = budget or get_budget()
         self._session: ClientSession | None = None
         self._tool_names: set[str] = set()
 
@@ -64,8 +67,10 @@ class IdealoMCPClient:
                 write_stream,
             ):
                 async with ClientSession(read_stream, write_stream) as session:
+                    await self.budget.reserve()
                     await session.initialize()
                     self._session = session
+                    await self.budget.reserve()
                     tools_res = await session.list_tools()
                     self._tool_names = {t.name for t in tools_res.tools}
                     try:
@@ -76,6 +81,7 @@ class IdealoMCPClient:
     async def list_tools(self) -> list[dict[str, Any]]:
         if self._session is None:
             raise RuntimeError("Client not connected. Use `async with client.connect():`.")
+        await self.budget.reserve()
         res = await self._session.list_tools()
         return [t.model_dump(mode="json") for t in res.tools]
 
@@ -101,6 +107,7 @@ class IdealoMCPClient:
         if self._session is None:
             raise RuntimeError("Client not connected. Use `async with client.connect():`.")
 
+        await self.budget.reserve()
         result = await self._session.call_tool(tool_name, arguments=arguments)
         parsed = _extract_tool_payload(result)
         self.cache.set(tool_name, arguments, parsed)
