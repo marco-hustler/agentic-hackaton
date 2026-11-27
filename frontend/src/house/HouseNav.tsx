@@ -34,7 +34,7 @@ export function HouseNav({
   inventoryCount = null,
 }: HouseNavProps) {
   /* Every house tab: title lives as a notch on the white shell; chrome is logo + account only. */
-  const inventoryNotchTitle = tab === 'inventory' || tab === 'split' || tab === 'export'
+  const inventoryNotchTitle = tab === 'inventory' || tab === 'split' || tab === 'export' || tab === 'collaborators'
 
   return (
     <header

@@ -1,10 +1,11 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { listProcesses } from './api/client'
+import { listProcesses, updateProcess } from './api/client'
 import { LoginPage } from './auth/LoginPage'
 import { clearSession, loadSession } from './auth/session'
 import { AppHeader } from './chrome/AppHeader'
 import { ProcessList } from './chrome/ProcessList'
 import type { ProcessView } from './chrome/ViewSwitch'
+import { CollaboratorsPanel } from './house/CollaboratorsPanel'
 import { ExportPanel } from './house/ExportPanel'
 import { HouseNav, type HouseTab } from './house/HouseNav'
 import { InventoryPanel } from './house/InventoryPanel'
@@ -39,7 +40,7 @@ function markOnboardingSeen() {
 
 /** Where we are inside the app, kept in the URL hash so a reload lands in the same place. */
 type Place = { focusId: string; tab: HouseTab } | null
-const TABS: HouseTab[] = ['inventory', 'split', 'export']
+const TABS: HouseTab[] = ['inventory', 'split', 'export', 'collaborators']
 
 function readPlace(): Place {
   const m = /^#\/house\/([^/]+)(?:\/([a-z]+))?/.exec(window.location.hash)
@@ -70,6 +71,10 @@ export default function App() {
   const [tab, setTab] = useState<HouseTab>(initialPlace?.tab ?? 'inventory')
   const [inventoryFilter, setInventoryFilter] = useState('')
   const [addingObject, setAddingObject] = useState(false)
+  const [collaboratorsFilter, setCollaboratorsFilter] = useState('')
+  const [invitingCollaborator, setInvitingCollaborator] = useState(false)
+  const [collaboratorsSaving, setCollaboratorsSaving] = useState(false)
+  const [collaboratorsError, setCollaboratorsError] = useState<string | null>(null)
   const frameRef = useRef<HTMLDivElement>(null)
 
   // Processes are stored server-side per account (demo sign-in).
@@ -120,10 +125,12 @@ export default function App() {
     writePlace(mode === 'house' && focusId ? { focusId, tab } : null)
   }, [mode, focusId, tab])
 
-  const names = useMemo<[string, string]>(() => {
-    const n = focusProcess ? participantNames(focusProcess) : ['You']
-    return [n[0], n[1] ?? 'Invite someone']
-  }, [focusProcess])
+  const people = useMemo(() => (focusProcess ? participantNames(focusProcess) : ['You']), [focusProcess])
+  const needsCollaborator = Boolean(focusProcess && focusProcess.participantEmails.length === 0)
+  const names = useMemo<[string, string]>(
+    () => [people[0] ?? 'You', people[1] ?? (needsCollaborator ? 'Invite someone' : 'Partner')],
+    [people, needsCollaborator],
+  )
 
   // Editable inventory for the house we're in. Seeded from the demo scenario
   // (idealo cache only, zero MCP calls); edits re-run the deterministic solver.
@@ -144,8 +151,33 @@ export default function App() {
     setTab('inventory')
     setInventoryFilter('')
     setAddingObject(false)
+    setCollaboratorsFilter('')
+    setInvitingCollaborator(false)
+    setCollaboratorsError(null)
     setMode('world')
     setFocusId(null)
+  }
+
+  function goToTab(next: HouseTab) {
+    setDetailId(null)
+    setAddingObject(false)
+    setInvitingCollaborator(false)
+    setTab(next)
+  }
+
+  async function saveParticipants(emails: string[]) {
+    if (!focusProcess) return
+    setCollaboratorsSaving(true)
+    setCollaboratorsError(null)
+    try {
+      const updated = await updateProcess(focusProcess.id, { participantEmails: emails })
+      setProcesses((prev) => prev.map((p) => (p.id === updated.id ? updated : p)))
+    } catch (err) {
+      setCollaboratorsError(err instanceof Error ? err.message : 'Could not update collaborators')
+      throw err
+    } finally {
+      setCollaboratorsSaving(false)
+    }
   }
 
   const inside = mode === 'house' && focusProcess !== null
@@ -191,11 +223,7 @@ export default function App() {
         <SplitShell
           processTitle={focusProcess.title}
           tab={tab}
-          onTab={(t) => {
-            setDetailId(null)
-            setAddingObject(false)
-            setTab(t)
-          }}
+          onTab={goToTab}
           onBackToWorld={backToWorld}
           inventoryCount={inventory.itemCount}
         />
@@ -227,11 +255,7 @@ export default function App() {
             processTitle={focusProcess.title}
             account={account}
             tab={tab}
-            onTab={(t) => {
-              setDetailId(null)
-              setAddingObject(false)
-              setTab(t)
-            }}
+            onTab={goToTab}
             onBackToWorld={backToWorld}
             onSignOut={signOut}
             inventoryFilter={inventoryFilter}
@@ -245,7 +269,12 @@ export default function App() {
                 scenario={demo}
                 error={demoError}
                 names={names}
-                people={participantNames(focusProcess)}
+                people={people}
+                needsCollaborator={needsCollaborator}
+                onInviteCollaborator={() => {
+                  goToTab('collaborators')
+                  setInvitingCollaborator(true)
+                }}
                 solving={inventory.solving}
                 unsplit={inventory.unsplit}
                 onSplit={inventory.splitAll}
@@ -253,7 +282,7 @@ export default function App() {
                 onMoveItem={inventory.forceAction}
                 processId={focusProcess.id}
               />
-              {detailVi && (
+              {detailVi && !needsCollaborator && (
                 <>
                   <button
                     type="button"
@@ -274,16 +303,33 @@ export default function App() {
               error={demoError}
               names={names}
               tab={tab}
-              onTab={(t) => {
-                setDetailId(null)
-                setAddingObject(false)
-                setTab(t)
-              }}
+              onTab={goToTab}
               onBackToWorld={backToWorld}
               inventoryCount={inventory.itemCount}
               onOpenItem={(id) => {
                 setTab('split')
                 setDetailId(id)
+              }}
+            />
+          ) : tab === 'collaborators' ? (
+            <CollaboratorsPanel
+              processTitle={focusProcess.title}
+              emails={focusProcess.participantEmails}
+              filter={collaboratorsFilter}
+              onFilter={setCollaboratorsFilter}
+              inviting={invitingCollaborator}
+              onInvitingChange={setInvitingCollaborator}
+              saving={collaboratorsSaving}
+              error={collaboratorsError}
+              tab={tab}
+              onTab={goToTab}
+              onBackToWorld={backToWorld}
+              inventoryCount={inventory.itemCount}
+              onInvite={async (email) => {
+                await saveParticipants([...focusProcess.participantEmails, email])
+              }}
+              onRemove={async (email) => {
+                await saveParticipants(focusProcess.participantEmails.filter((e) => e !== email))
               }}
             />
           ) : (
@@ -295,11 +341,7 @@ export default function App() {
               addingOpen={addingObject}
               onAddingOpenChange={setAddingObject}
               tab={tab}
-              onTab={(t) => {
-                setDetailId(null)
-                setAddingObject(false)
-                setTab(t)
-              }}
+              onTab={goToTab}
               onBackToWorld={backToWorld}
               inventoryCount={inventory.itemCount}
               onInventoryFilter={setInventoryFilter}

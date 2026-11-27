@@ -47,7 +47,10 @@ class ProcessSummary(BaseModel):
 
 
 class ProcessStatusUpdate(BaseModel):
-    status: ProcessStatus
+    """Partial update for a process (status and/or collaborators)."""
+
+    status: ProcessStatus | None = None
+    participant_emails: list[str] | None = None
 
 
 

@@ -17,11 +17,46 @@ type HouseToolbarProps = {
   inventoryFilter?: string
   onInventoryFilter?: (value: string) => void
   onAddObject?: () => void
+  /** When set, show search + Invite on the right (collaborators tab). */
+  collaboratorsFilter?: string
+  onCollaboratorsFilter?: (value: string) => void
+  onInviteCollaborator?: () => void
   /** Overlay uses absolute positioning; embedded sits in the white inventory shell. */
   variant?: 'overlay' | 'embedded'
 }
 
-/** Back + view switch, optionally inventory search/add. */
+function SearchField({
+  label,
+  value,
+  onChange,
+  embedded,
+}: {
+  label: string
+  value: string
+  onChange: (value: string) => void
+  embedded?: boolean
+}) {
+  return (
+    <label className={`relative w-full min-w-0 ${embedded ? 'sm:w-36 lg:w-44' : 'w-36 sm:w-44 lg:w-56'}`}>
+      <span className="sr-only">{label}</span>
+      <svg viewBox="0 0 20 20" className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted" aria-hidden>
+        <circle cx="9" cy="9" r="6" fill="none" stroke="currentColor" strokeWidth="2" />
+        <path d="M13.5 13.5 18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      </svg>
+      <input
+        type="search"
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        placeholder="Search…"
+        className={`field h-10 w-full rounded-xl border border-line pl-9 pr-3 text-sm ${
+          embedded ? 'bg-white' : 'bg-white/90 shadow-[0_8px_20px_-8px_rgba(15,23,42,0.25)] backdrop-blur'
+        }`}
+      />
+    </label>
+  )
+}
+
+/** Back + view switch, optionally inventory / collaborators tools. */
 export function HouseToolbar({
   tab,
   onTab,
@@ -30,9 +65,45 @@ export function HouseToolbar({
   inventoryFilter = '',
   onInventoryFilter,
   onAddObject,
+  collaboratorsFilter = '',
+  onCollaboratorsFilter,
+  onInviteCollaborator,
   variant = 'overlay',
 }: HouseToolbarProps) {
   const showInventoryTools = tab === 'inventory' && onInventoryFilter && onAddObject
+  const showCollaboratorTools = tab === 'collaborators' && onCollaboratorsFilter && onInviteCollaborator
+  const tools = showInventoryTools || showCollaboratorTools
+
+  const toolsRow = showInventoryTools ? (
+    <>
+      <SearchField label="Search inventory" value={inventoryFilter} onChange={onInventoryFilter} embedded={variant === 'embedded'} />
+      <button
+        type="button"
+        className={`btn btn-primary h-10 shrink-0 px-3.5 ${variant === 'overlay' ? 'shadow-[0_8px_20px_-8px_rgba(224,90,71,0.45)]' : ''}`}
+        onClick={onAddObject}
+      >
+        <span className="text-base leading-none">+</span>
+        <span className="hidden sm:inline">Add object</span>
+      </button>
+    </>
+  ) : showCollaboratorTools ? (
+    <>
+      <SearchField
+        label="Search collaborators"
+        value={collaboratorsFilter}
+        onChange={onCollaboratorsFilter}
+        embedded={variant === 'embedded'}
+      />
+      <button
+        type="button"
+        className={`btn btn-primary h-10 shrink-0 px-3.5 ${variant === 'overlay' ? 'shadow-[0_8px_20px_-8px_rgba(224,90,71,0.45)]' : ''}`}
+        onClick={onInviteCollaborator}
+      >
+        <span className="text-base leading-none">+</span>
+        <span className="hidden sm:inline">Invite</span>
+      </button>
+    </>
+  ) : null
 
   if (variant === 'embedded') {
     return (
@@ -48,28 +119,7 @@ export function HouseToolbar({
           <HouseViewSwitch value={tab} onChange={onTab} inventoryCount={inventoryCount} />
         </div>
 
-        {showInventoryTools && (
-          <div className="inventory-toolbar-tools">
-            <label className="relative w-full min-w-0 sm:w-36 lg:w-44">
-              <span className="sr-only">Search inventory</span>
-              <svg viewBox="0 0 20 20" className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted" aria-hidden>
-                <circle cx="9" cy="9" r="6" fill="none" stroke="currentColor" strokeWidth="2" />
-                <path d="M13.5 13.5 18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-              </svg>
-              <input
-                type="search"
-                value={inventoryFilter}
-                onChange={(e) => onInventoryFilter(e.target.value)}
-                placeholder="Search…"
-                className="field h-10 w-full rounded-xl border border-line bg-white pl-9 pr-3 text-sm"
-              />
-            </label>
-            <button type="button" className="btn btn-primary h-10 shrink-0 px-3.5" onClick={onAddObject}>
-              <span className="text-base leading-none">+</span>
-              <span className="hidden sm:inline">Add object</span>
-            </button>
-          </div>
-        )}
+        {tools && <div className="inventory-toolbar-tools">{toolsRow}</div>}
       </div>
     )
   }
@@ -92,27 +142,8 @@ export function HouseToolbar({
         <HouseViewSwitch value={tab} onChange={onTab} inventoryCount={inventoryCount} />
       </div>
 
-      {showInventoryTools ? (
-        <div className="pointer-events-auto justify-self-end flex items-center gap-2">
-          <label className="relative w-36 sm:w-44 lg:w-56">
-            <span className="sr-only">Search inventory</span>
-            <svg viewBox="0 0 20 20" className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted" aria-hidden>
-              <circle cx="9" cy="9" r="6" fill="none" stroke="currentColor" strokeWidth="2" />
-              <path d="M13.5 13.5 18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-            </svg>
-            <input
-              type="search"
-              value={inventoryFilter}
-              onChange={(e) => onInventoryFilter(e.target.value)}
-              placeholder="Search…"
-              className="field h-10 w-full rounded-xl border border-line bg-white/90 pl-9 pr-3 text-sm shadow-[0_8px_20px_-8px_rgba(15,23,42,0.25)] backdrop-blur"
-            />
-          </label>
-          <button type="button" className="btn btn-primary h-10 shrink-0 px-3.5 shadow-[0_8px_20px_-8px_rgba(224,90,71,0.45)]" onClick={onAddObject}>
-            <span className="text-base leading-none">+</span>
-            <span className="hidden sm:inline">Add object</span>
-          </button>
-        </div>
+      {tools ? (
+        <div className="pointer-events-auto justify-self-end flex items-center gap-2">{toolsRow}</div>
       ) : (
         <span aria-hidden className="justify-self-end" />
       )}

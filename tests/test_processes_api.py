@@ -67,6 +67,26 @@ def test_patch_process_status() -> None:
     assert patched.json()["status"] == "collecting"
 
 
+def test_patch_process_participants() -> None:
+    client = TestClient(app)
+    process = client.post("/api/processes", json={"kind": "separation"}).json()
+    assert process["participant_emails"] == []
+
+    patched = client.patch(
+        f"/api/processes/{process['id']}",
+        json={"participant_emails": ["sam@example.com", "friend@example.com", "sam@example.com"]},
+    )
+    assert patched.status_code == 200
+    assert patched.json()["participant_emails"] == ["sam@example.com", "friend@example.com"]
+
+    cleared = client.patch(
+        f"/api/processes/{process['id']}",
+        json={"participant_emails": []},
+    )
+    assert cleared.status_code == 200
+    assert cleared.json()["participant_emails"] == []
+
+
 def test_get_missing_process_404() -> None:
     client = TestClient(app)
     assert client.get("/api/processes/does-not-exist").status_code == 404

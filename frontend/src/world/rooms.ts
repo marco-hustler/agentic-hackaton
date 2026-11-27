@@ -77,7 +77,7 @@ export function buildRooms(process: ProcessSummary): RoomInfo[] {
   const names = participantNames(process)
   const n = roomCountFor(names.length)
   return Array.from({ length: n }, (_, i) => ({
-    owner: names[i] ?? 'Invite someone',
+    owner: names[i] ?? '',
     color: participantColor(i),
   }))
 }

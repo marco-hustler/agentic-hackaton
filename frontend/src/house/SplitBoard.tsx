@@ -11,6 +11,9 @@ type SplitBoardProps = {
   names: [string, string]
   /** Everyone in the process; people beyond the first two get an empty box for now. */
   people: string[]
+  /** True when there is no second person yet — show a CTA instead of empty dual boxes. */
+  needsCollaborator?: boolean
+  onInviteCollaborator?: () => void
   solving: boolean
   /** Items waiting in the middle for the next Split. */
   unsplit: ValuedItem[]
@@ -452,7 +455,20 @@ function useRoomFloors(): Element[] {
  * the cards spin while it thinks and then fly into each person's box.
  * Meter on top, the house in the middle (the 3D frame), one box per person on the sides.
  */
-export function SplitBoard({ scenario, error, names, people, solving, unsplit, onSplit, onOpenItem, onMoveItem, processId }: SplitBoardProps) {
+export function SplitBoard({
+  scenario,
+  error,
+  names,
+  people,
+  needsCollaborator = false,
+  onInviteCollaborator,
+  solving,
+  unsplit,
+  onSplit,
+  onOpenItem,
+  onMoveItem,
+  processId,
+}: SplitBoardProps) {
   const [showDetails, setShowDetails] = useState(false)
   /** Who approved which proposal; a new proposal needs new approvals. */
   const [approvals, setApprovals] = useState<Record<string, string>>(() => loadApprovals(processId))
@@ -475,6 +491,7 @@ export function SplitBoard({ scenario, error, names, people, solving, unsplit, o
   const [roomOver, setRoomOver] = useState<number | null>(null)
   const roomDropRef = useRef<((side: number, id: string) => void) | null>(null)
   useEffect(() => {
+    if (needsCollaborator) return
     const nearestRoom = (e: DragEvent): number | null => {
       if (!e.dataTransfer?.types.includes(DRAG_TYPE) || !roomDropRef.current) return null
       if ((e.target as Element | null)?.closest?.('[data-split-box]')) return null // a side box handles it
@@ -513,7 +530,7 @@ export function SplitBoard({ scenario, error, names, people, solving, unsplit, o
       window.removeEventListener('drop', onDrop)
       window.removeEventListener('dragend', clear)
     }
-  }, [floors])
+  }, [floors, needsCollaborator])
   const cardEls = useRef(new Map<string, HTMLElement>())
   const clones = useRef(new Set<HTMLElement>())
   /** Latest scenario for the flight, which must not restart when a save refreshes it. */
@@ -524,18 +541,18 @@ export function SplitBoard({ scenario, error, names, people, solving, unsplit, o
 
   // Spinning → flying once the agent answered with every card in it.
   useEffect(() => {
-    if (phase !== 'thinking' || !scenario || solving) return
+    if (needsCollaborator || phase !== 'thinking' || !scenario || solving) return
     const assigned = new Set(scenario.split.assignments.map((a) => a.item_id))
     if (!pile.every((vi) => assigned.has(vi.item.id))) return
     const wait = Math.max(0, THINK_MIN_MS - (performance.now() - startedAt.current))
     const t = setTimeout(() => setPhase('flying'), wait)
     return () => clearTimeout(t)
-  }, [phase, scenario, solving, pile])
+  }, [phase, scenario, solving, pile, needsCollaborator])
 
   // Flying: every card spins to its box, one after the other.
   useEffect(() => {
     const current = scenarioRef.current
-    if (phase !== 'flying' || !current) return
+    if (needsCollaborator || phase !== 'flying' || !current) return
     let cancelled = false
     const byItem = new Map(current.split.assignments.map((a) => [a.item_id, a]))
     const flights = pile.map((vi, i) => {
@@ -565,7 +582,7 @@ export function SplitBoard({ scenario, error, names, people, solving, unsplit, o
       live.forEach((c) => c.remove())
       live.clear()
     }
-  }, [phase, pile])
+  }, [phase, pile, needsCollaborator])
 
   function startSplit() {
     setPile(unsplit)
@@ -573,6 +590,22 @@ export function SplitBoard({ scenario, error, names, people, solving, unsplit, o
     startedAt.current = performance.now()
     setPhase(reducedMotion() ? 'idle' : 'thinking')
     onSplit()
+  }
+
+  if (needsCollaborator) {
+    return (
+      <div className="split-meter panel pop-in flex flex-col items-center justify-center gap-3 text-center" style={{ background: '#ffffff' }}>
+        <p className="text-base font-extrabold tracking-tight text-petrol">Invite someone to split with</p>
+        <p className="max-w-sm text-sm text-ink2">
+          The agent needs at least two people. Add a collaborator, then come back here to split the house.
+        </p>
+        {onInviteCollaborator && (
+          <button type="button" className="btn btn-primary h-10 px-4" onClick={onInviteCollaborator}>
+            Invite collaborator
+          </button>
+        )}
+      </div>
+    )
   }
 
   if (!scenario) {

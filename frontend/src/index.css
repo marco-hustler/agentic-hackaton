@@ -350,7 +350,8 @@ body {
   }
 }
 
-.world-frame[data-mode="house"][data-tab="inventory"] {
+.world-frame[data-mode="house"][data-tab="inventory"],
+.world-frame[data-mode="house"][data-tab="collaborators"] {
   top: var(--house-chrome-compact);
   bottom: calc(100% - var(--house-chrome-compact));
 }

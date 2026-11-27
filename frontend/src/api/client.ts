@@ -131,6 +131,21 @@ export async function getProcess(id: string) {
   return mapProcess(row)
 }
 
+/** Patch status and/or collaborator emails on a process. */
+export async function updateProcess(
+  id: string,
+  patch: { status?: ProcessStatus; participantEmails?: string[] },
+) {
+  const body: Record<string, unknown> = {}
+  if (patch.status !== undefined) body.status = patch.status
+  if (patch.participantEmails !== undefined) body.participant_emails = patch.participantEmails
+  const row = await api<ApiProcess>(`/api/processes/${id}`, {
+    method: 'PATCH',
+    body: JSON.stringify(body),
+  })
+  return mapProcess(row)
+}
+
 /** A house's own items + solver mode, stored server-side per process. */
 export type ProcessInventory = {
   mode: SplitMode
@@ -175,4 +190,58 @@ export function searchCatalog(q: string, signal?: AbortSignal) {
 /** A new house item valued at the hit's cached idealo price. */
 export function catalogItem(hit: CatalogHit) {
   return api<ValuedItem>('/api/catalog/item', { method: 'POST', body: JSON.stringify(hit) })
+}
+
+export type ItemDraft = {
+  name?: string | null
+  price_eur?: number | null
+  purchase_year?: number | null
+  condition?: 'like_new' | 'good' | 'fair' | 'worn' | null
+  category?: string | null
+  importance?: number | null
+  notes?: string | null
+}
+
+export type ItemDraftMessage = { role: 'user' | 'assistant'; content: string }
+
+export type ItemDraftTurnResponse = {
+  status: 'need_info' | 'ready' | 'rejected'
+  assistant_message: string
+  draft: ItemDraft
+  missing_fields: string[]
+  guardrail?: string | null
+}
+
+/** One conversational turn for AI object creation (asks until every required field is present). */
+export function draftItemTurn(body: {
+  messages: ItemDraftMessage[]
+  draft?: ItemDraft
+  party_a_name?: string
+  party_b_name?: string
+}) {
+  return api<ItemDraftTurnResponse>('/api/items/draft', {
+    method: 'POST',
+    body: JSON.stringify({
+      messages: body.messages,
+      draft: body.draft ?? {},
+      party_a_name: body.party_a_name ?? 'Alex',
+      party_b_name: body.party_b_name ?? 'Sam',
+    }),
+  })
+}
+
+/** Materialise a valued item from explicit fields (static form or confirmed AI draft). */
+export function createManualItem(body: {
+  name: string
+  price_eur: number
+  purchase_year: number
+  condition?: 'like_new' | 'good' | 'fair' | 'worn'
+  category?: string
+  importance?: number
+  notes?: string
+}) {
+  return api<ValuedItem>('/api/items/manual', {
+    method: 'POST',
+    body: JSON.stringify(body),
+  })
 }

@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 
-export type HouseTab = 'inventory' | 'split' | 'export'
+export type HouseTab = 'inventory' | 'split' | 'export' | 'collaborators'
 
 type HouseViewSwitchProps = {
   value: HouseTab
@@ -37,10 +37,22 @@ function ExportIcon() {
   )
 }
 
-const OPTIONS: { id: HouseTab; label: string; icon: () => ReactNode }[] = [
-  { id: 'inventory', label: 'Inventory', icon: InventoryIcon },
+function CollaboratorsIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4" aria-hidden>
+      <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+      <circle cx="9" cy="7" r="4" />
+      <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+      <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+    </svg>
+  )
+}
+
+const OPTIONS: { id: HouseTab; label: string; icon: () => ReactNode; minWidth?: string }[] = [
+  { id: 'inventory', label: 'Inventory', icon: InventoryIcon, minWidth: 'min-w-[7.5rem]' },
   { id: 'split', label: 'Split', icon: SplitIcon },
-  { id: 'export', label: 'List & Export', icon: ExportIcon },
+  { id: 'export', label: 'List & Export', icon: ExportIcon, minWidth: 'min-w-[8.5rem]' },
+  { id: 'collaborators', label: 'Collaborators', icon: CollaboratorsIcon, minWidth: 'min-w-[8.5rem]' },
 ]
 
 export function HouseViewSwitch({ value, onChange, inventoryCount = null }: HouseViewSwitchProps) {
@@ -56,7 +68,7 @@ export function HouseViewSwitch({ value, onChange, inventoryCount = null }: Hous
           <button
             key={opt.id}
             type="button"
-            className={`view-switch-option ${opt.id === 'export' ? 'min-w-[8.5rem]' : opt.id === 'inventory' ? 'min-w-[7.5rem]' : ''} ${value === opt.id ? 'view-switch-option-active' : ''}`}
+            className={`view-switch-option ${opt.minWidth ?? ''} ${value === opt.id ? 'view-switch-option-active' : ''}`}
             aria-pressed={value === opt.id}
             onClick={() => onChange(opt.id)}
           >

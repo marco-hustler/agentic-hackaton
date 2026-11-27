@@ -124,3 +124,40 @@ def valued_item_from_hit(hit: CatalogHit, *, current_year: int | None = None) ->
         current_year=year,
     ).model_copy(update={"offer_count": hit.offer_count})
     return ValuedItem(item=item, valuation=valuation)
+
+
+def valued_item_from_manual(
+    *,
+    name: str,
+    price_eur: float,
+    purchase_year: int,
+    condition: str = "good",
+    category: str = "General",
+    importance: int = 5,
+    notes: str = "",
+    current_year: int | None = None,
+) -> ValuedItem:
+    """Build a ValuedItem from explicit user fields (static form or confirmed AI draft)."""
+    year = current_year or datetime.now().year
+    points = max(1, min(100, int(importance) * 10))
+    item_id = "item-" + hashlib.sha1(f"manual:{name}:{datetime.now().isoformat()}".encode()).hexdigest()[:10]
+    item = HouseholdItemInput(
+        id=item_id,
+        name=name.strip(),
+        search_query=name.strip(),
+        category=(category or "General").strip() or "General",
+        purchase_year=purchase_year,
+        condition=condition,  # type: ignore[arg-type]
+        party_a_points=points,
+        party_b_points=points,
+        notes=notes.strip(),
+    )
+    valuation = build_valuation(
+        item,
+        matched_title=name.strip(),
+        offers=[],
+        fallback_price_eur=max(0.0, float(price_eur)),
+        data_source="demo_fallback",
+        current_year=year,
+    ).model_copy(update={"source_note": "manual entry"})
+    return ValuedItem(item=item, valuation=valuation)

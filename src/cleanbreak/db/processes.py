@@ -135,6 +135,14 @@ class ProcessStore:
                     now,
                 ),
             )
+            # Each process owns its inventory; start empty (never share a global/demo list).
+            conn.execute(
+                """
+                INSERT INTO process_inventories (process_id, mode, valued_items, split_ids, updated_at)
+                VALUES (?, ?, ?, ?, ?)
+                """,
+                (process_id, "balanced", "[]", None, now),
+            )
             conn.commit()
 
         return ProcessSummary(
@@ -148,15 +156,39 @@ class ProcessStore:
         )
 
     def update_status(self, process_id: str, status: ProcessStatus) -> ProcessSummary | None:
+        return self.update_process(process_id, status=status)
+
+    def update_process(
+        self,
+        process_id: str,
+        *,
+        status: ProcessStatus | None = None,
+        participant_emails: list[str] | None = None,
+    ) -> ProcessSummary | None:
+        """Patch status and/or collaborator emails. None if the process is missing."""
+        if status is None and participant_emails is None:
+            return self.get_process(process_id)
         now = _utc_now()
+        fields: list[str] = ["updated_at = ?"]
+        values: list[object] = [now]
+        if status is not None:
+            fields.append("status = ?")
+            values.append(status)
+        if participant_emails is not None:
+            emails = [e.strip().lower() for e in participant_emails if e.strip()]
+            seen: set[str] = set()
+            unique: list[str] = []
+            for email in emails:
+                if email not in seen:
+                    seen.add(email)
+                    unique.append(email)
+            fields.append("participant_emails = ?")
+            values.append(json.dumps(unique))
+        values.append(process_id)
         with self._connect() as conn:
             cur = conn.execute(
-                """
-                UPDATE processes
-                SET status = ?, updated_at = ?
-                WHERE id = ?
-                """,
-                (status, now, process_id),
+                f"UPDATE processes SET {', '.join(fields)} WHERE id = ?",
+                values,
             )
             conn.commit()
             if cur.rowcount == 0:

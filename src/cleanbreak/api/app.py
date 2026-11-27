@@ -18,8 +18,20 @@ from pydantic import BaseModel
 
 from cleanbreak.idealo.auth import default_token_path, find_exception, is_login_required, tokens_present
 from cleanbreak.idealo.budget import BudgetExhausted, get_budget
-from cleanbreak.idealo.catalog import CatalogHit, load_catalog, search_catalog, valued_item_from_hit
+from cleanbreak.idealo.catalog import (
+    CatalogHit,
+    load_catalog,
+    search_catalog,
+    valued_item_from_hit,
+    valued_item_from_manual,
+)
 from cleanbreak.idealo.client import IdealoMCPClient
+from cleanbreak.llm.item_draft import (
+    ItemDraftTurnRequest,
+    ItemDraftTurnResponse,
+    ManualItemCreate,
+    run_item_draft_turn,
+)
 from cleanbreak.llm.tasks import generate_mediator_summary, parse_messy_inventory
 from cleanbreak.db.processes import get_process_store
 from cleanbreak.models import (
@@ -153,7 +165,13 @@ async def get_process(process_id: str) -> ProcessSummary:
 
 @app.patch("/api/processes/{process_id}", response_model=ProcessSummary)
 async def patch_process(process_id: str, payload: ProcessStatusUpdate) -> ProcessSummary:
-    updated = get_process_store().update_status(process_id, payload.status)
+    if payload.status is None and payload.participant_emails is None:
+        raise HTTPException(status_code=422, detail="Nothing to update")
+    updated = get_process_store().update_process(
+        process_id,
+        status=payload.status,
+        participant_emails=payload.participant_emails,
+    )
     if updated is None:
         raise HTTPException(status_code=404, detail="Process not found")
     return updated
@@ -292,6 +310,31 @@ async def parse_endpoint(req: ParseRequest) -> dict:
         req.raw_text, party_a_name=req.party_a_name, party_b_name=req.party_b_name
     )
     return {"items": [i.model_dump() for i in items]}
+
+
+@app.post("/api/items/draft", response_model=ItemDraftTurnResponse)
+async def item_draft_turn(req: ItemDraftTurnRequest) -> ItemDraftTurnResponse:
+    """Conversational AI object drafting: asks until every required field is present.
+
+    Provider-agnostic (LiteLLM / OpenAI-compatible / deterministic fallback).
+    Guardrails reject prompt injection and off-topic requests; never materialises
+    an item until status=ready.
+    """
+    return await run_item_draft_turn(req)
+
+
+@app.post("/api/items/manual", response_model=ValuedItem)
+async def create_manual_item(req: ManualItemCreate) -> ValuedItem:
+    """Create a valued house item from explicit fields (static form or confirmed AI draft)."""
+    return valued_item_from_manual(
+        name=req.name,
+        price_eur=req.price_eur,
+        purchase_year=req.purchase_year,
+        condition=req.condition,
+        category=req.category,
+        importance=req.importance,
+        notes=req.notes,
+    )
 
 
 LIVE_ITEM_CAP = 10  # uncached items looked up live per action

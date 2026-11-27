@@ -1,6 +1,11 @@
-import { useEffect, useMemo, useState } from 'react'
-import { catalogItem, searchCatalog, type CatalogHit } from '../api/client'
-import type { DemoScenario, ValuedItem } from '../types/inventory'
+import { useEffect, useMemo, useRef, useState } from 'react'
+import {
+  createManualItem,
+  draftItemTurn,
+  type ItemDraft,
+  type ItemDraftMessage,
+} from '../api/client'
+import type { Condition, DemoScenario, ValuedItem } from '../types/inventory'
 import { categoryColor } from '../world/palette'
 import { formatEur } from './format'
 import { HouseToolbar } from './HouseToolbar'
@@ -24,10 +29,6 @@ type InventoryPanelProps = {
   onAdd: (vi: ValuedItem) => void
   onRemove: (id: string) => void
 }
-
-const SEARCH_DEBOUNCE_MS = 200
-
-type Found = { query: string; hits: CatalogHit[]; error: string | null }
 
 /** House inventory: title notch + toolbar + cards in one white shell. */
 export function InventoryPanel({
@@ -79,7 +80,7 @@ export function InventoryPanel({
             {error && <p className="mb-4 rounded-xl bg-[#ffdad6] p-3 text-sm text-[#93000a]">Could not load the inventory: {error}</p>}
 
             {demo && owned.length === 0 && (
-              <Empty>{q ? 'Nothing in this house matches.' : 'No items yet. Add an object from idealo.'}</Empty>
+              <Empty>{q ? 'Nothing in this house matches.' : 'No items yet. Add an object to get started.'}</Empty>
             )}
             <ul className="columns-1 gap-5 sm:columns-2 lg:columns-3 2xl:columns-4">
               {!demo && !error && <SkeletonCards n={6} />}
@@ -91,48 +92,30 @@ export function InventoryPanel({
         </div>
       </div>
 
-      {addingOpen && (
-        <AddObjectModal
-          ownedRefs={new Set(items.map((vi) => vi.valuation.product_ref).filter((r): r is string => !!r))}
-          onClose={() => onAddingOpenChange(false)}
-          onAdd={onAdd}
-        />
-      )}
+      {addingOpen && <AddObjectModal onClose={() => onAddingOpenChange(false)} onAdd={onAdd} />}
     </section>
   )
 }
 
+type CreateMode = 'static' | 'ai'
+
 type AddObjectModalProps = {
-  ownedRefs: Set<string>
   onClose: () => void
   onAdd: (vi: ValuedItem) => void
 }
 
-function AddObjectModal({ ownedRefs, onClose, onAdd }: AddObjectModalProps) {
-  const [query, setQuery] = useState('')
-  const [found, setFound] = useState<Found | null>(null)
-  const [adding, setAdding] = useState<string | null>(null)
-  const [addError, setAddError] = useState<string | null>(null)
-  const q = query.trim().toLowerCase()
+const CONDITIONS: { value: Condition; label: string }[] = [
+  { value: 'like_new', label: 'Like new' },
+  { value: 'good', label: 'Good' },
+  { value: 'fair', label: 'Fair' },
+  { value: 'worn', label: 'Worn' },
+]
 
-  useEffect(() => {
-    if (q.length < 2) {
-      setFound(null)
-      return
-    }
-    const ctrl = new AbortController()
-    const timer = setTimeout(() => {
-      searchCatalog(q, ctrl.signal)
-        .then((hits) => setFound({ query: q, hits, error: null }))
-        .catch((e: unknown) => {
-          if (!ctrl.signal.aborted) setFound({ query: q, hits: [], error: e instanceof Error ? e.message : String(e) })
-        })
-    }, SEARCH_DEBOUNCE_MS)
-    return () => {
-      clearTimeout(timer)
-      ctrl.abort()
-    }
-  }, [q])
+const THIS_YEAR = new Date().getFullYear()
+const YEARS = Array.from({ length: 30 }, (_, i) => THIS_YEAR - i)
+
+function AddObjectModal({ onClose, onAdd }: AddObjectModalProps) {
+  const [mode, setMode] = useState<CreateMode>('static')
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
@@ -142,30 +125,14 @@ function AddObjectModal({ ownedRefs, onClose, onAdd }: AddObjectModalProps) {
     return () => window.removeEventListener('keydown', onKey)
   }, [onClose])
 
-  const searching = q.length >= 2
-  const results = searching && found?.query === q ? found : null
-
-  async function add(hit: CatalogHit) {
-    setAdding(hit.product_ref)
-    setAddError(null)
-    try {
-      onAdd(await catalogItem(hit))
-      onClose()
-    } catch (e) {
-      setAddError(e instanceof Error ? e.message : String(e))
-    } finally {
-      setAdding(null)
-    }
-  }
-
   return (
     <div className="fixed inset-0 z-50 flex items-end justify-center sm:items-center" role="dialog" aria-modal="true" aria-label="Add object">
       <button type="button" aria-label="Close" className="absolute inset-0 bg-midnight/40 backdrop-blur-sm" onClick={onClose} />
-      <div className="pop-in relative z-10 flex max-h-[88vh] w-full max-w-3xl flex-col overflow-hidden rounded-t-3xl border border-line bg-canvas shadow-[0_24px_60px_-16px_rgba(15,23,42,0.45)] sm:rounded-3xl">
+      <div className="pop-in relative z-10 flex max-h-[88vh] w-full max-w-xl flex-col overflow-hidden rounded-t-3xl border border-line bg-canvas shadow-[0_24px_60px_-16px_rgba(15,23,42,0.45)] sm:rounded-3xl">
         <div className="flex items-start justify-between gap-3 border-b border-line px-5 py-4">
           <div>
             <h3 className="text-lg font-extrabold text-petrol">Add object</h3>
-            <p className="mt-0.5 text-sm text-muted">Search idealo and add a valued item to this house.</p>
+            <p className="mt-0.5 text-sm text-muted">Manual form or short description.</p>
           </div>
           <button type="button" className="btn btn-ghost h-9 w-9 rounded-full px-0" onClick={onClose} aria-label="Close">
             ✕
@@ -173,50 +140,266 @@ function AddObjectModal({ ownedRefs, onClose, onAdd }: AddObjectModalProps) {
         </div>
 
         <div className="border-b border-line px-5 py-3">
-          <label className="relative block">
-            <span className="sr-only">Search idealo</span>
-            <svg viewBox="0 0 20 20" className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted" aria-hidden>
-              <circle cx="9" cy="9" r="6" fill="none" stroke="currentColor" strokeWidth="2" />
-              <path d="M13.5 13.5 18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-            </svg>
-            <input
-              autoFocus
-              type="search"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search a product on idealo…"
-              className="field h-12 w-full rounded-xl pl-10 pr-3"
-            />
-          </label>
-          {addError && <p className="mt-2 text-sm text-error">Could not add the item: {addError}</p>}
+          <div className="view-switch inline-flex w-full items-center gap-1 p-1" role="group" aria-label="Creation mode">
+            <button
+              type="button"
+              className={`view-switch-option min-w-0 flex-1 ${mode === 'static' ? 'view-switch-option-active' : ''}`}
+              aria-pressed={mode === 'static'}
+              onClick={() => setMode('static')}
+            >
+              Manual
+            </button>
+            <button
+              type="button"
+              className={`view-switch-option min-w-0 flex-1 ${mode === 'ai' ? 'view-switch-option-active' : ''}`}
+              aria-pressed={mode === 'ai'}
+              onClick={() => setMode('ai')}
+            >
+              AI
+            </button>
+          </div>
         </div>
 
-        <div className="overflow-y-auto px-5 py-4">
-          {!searching && <Empty>Type at least 2 characters to search the idealo catalog.</Empty>}
-          {searching && !results && (
-            <ul className="columns-1 gap-4 sm:columns-2">
-              <SkeletonCards n={3} />
-            </ul>
-          )}
-          {results?.error && <Empty>idealo search failed: {results.error}</Empty>}
-          {results && results.hits.length === 0 && !results.error && (
-            <Empty>No idealo products for “{query.trim()}”. Offline, only products from earlier idealo searches are available.</Empty>
-          )}
-          {results && results.hits.length > 0 && (
-            <ul className="columns-1 gap-4 sm:columns-2">
-              {results.hits.map((hit) => (
-                <FoundCard
-                  key={hit.product_ref}
-                  hit={hit}
-                  inHouse={ownedRefs.has(hit.product_ref)}
-                  adding={adding === hit.product_ref}
-                  onAdd={() => add(hit)}
-                />
-              ))}
-            </ul>
-          )}
+        <div className="min-h-0 flex-1 overflow-y-auto">
+          {mode === 'static' ? <StaticCreateForm onClose={onClose} onAdd={onAdd} /> : <AiCreateChat onClose={onClose} onAdd={onAdd} />}
         </div>
       </div>
+    </div>
+  )
+}
+
+function StaticCreateForm({ onClose, onAdd }: AddObjectModalProps) {
+  const [name, setName] = useState('')
+  const [price, setPrice] = useState('')
+  const [year, setYear] = useState(THIS_YEAR - 2)
+  const [condition, setCondition] = useState<Condition>('good')
+  const [category, setCategory] = useState('General')
+  const [importance, setImportance] = useState(5)
+  const [notes, setNotes] = useState('')
+  const [busy, setBusy] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+
+  const priceNum = Number(price.replace(',', '.'))
+  const canSubmit = name.trim().length >= 2 && Number.isFinite(priceNum) && priceNum >= 0
+
+  async function submit(e: React.FormEvent) {
+    e.preventDefault()
+    if (!canSubmit || busy) return
+    setBusy(true)
+    setError(null)
+    try {
+      onAdd(
+        await createManualItem({
+          name: name.trim(),
+          price_eur: priceNum,
+          purchase_year: year,
+          condition,
+          category: category.trim() || 'General',
+          importance,
+          notes: notes.trim(),
+        }),
+      )
+      onClose()
+    } catch (err) {
+      setError(err instanceof Error ? err.message : String(err))
+    } finally {
+      setBusy(false)
+    }
+  }
+
+  return (
+    <form onSubmit={submit} className="flex flex-col gap-4 px-5 py-4">
+      <label className="block">
+        <span className="label-sm text-muted">Object name</span>
+        <input autoFocus type="text" value={name} onChange={(e) => setName(e.target.value)} className="field mt-1 h-11 w-full" placeholder="e.g. Bosch dishwasher" required maxLength={120} />
+      </label>
+
+      <div className="grid grid-cols-2 gap-3">
+        <label className="block">
+          <span className="label-sm text-muted">Price (€)</span>
+          <input
+            type="text"
+            inputMode="decimal"
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
+            className="field mt-1 h-11 w-full"
+            placeholder="499"
+            required
+          />
+        </label>
+        <label className="block">
+          <span className="label-sm text-muted">Year of use</span>
+          <select value={year} onChange={(e) => setYear(Number(e.target.value))} className="field mt-1 h-11 w-full">
+            {YEARS.map((y) => (
+              <option key={y} value={y}>
+                {y}
+              </option>
+            ))}
+          </select>
+        </label>
+      </div>
+
+      <div className="grid grid-cols-2 gap-3">
+        <label className="block">
+          <span className="label-sm text-muted">Condition</span>
+          <select value={condition} onChange={(e) => setCondition(e.target.value as Condition)} className="field mt-1 h-11 w-full">
+            {CONDITIONS.map((c) => (
+              <option key={c.value} value={c.value}>
+                {c.label}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label className="block">
+          <span className="label-sm text-muted">Category</span>
+          <input type="text" value={category} onChange={(e) => setCategory(e.target.value)} className="field mt-1 h-11 w-full" placeholder="Appliance" maxLength={60} />
+        </label>
+      </div>
+
+      <label className="block">
+        <span className="flex items-baseline justify-between text-sm">
+          <span className="label-sm text-muted">Importance</span>
+          <span className="font-extrabold text-petrol">{importance}/10</span>
+        </span>
+        <input
+          type="range"
+          min={1}
+          max={10}
+          value={importance}
+          onChange={(e) => setImportance(Number(e.target.value))}
+          className="mt-2 w-full"
+          style={{ accentColor: 'var(--petrol)' }}
+        />
+      </label>
+
+      <label className="block">
+        <span className="label-sm text-muted">Notes</span>
+        <textarea value={notes} onChange={(e) => setNotes(e.target.value)} className="field mt-1 min-h-[4.5rem] w-full resize-y py-2" maxLength={500} />
+      </label>
+
+      {error && <p className="text-sm text-error">{error}</p>}
+
+      <button type="submit" className="btn btn-primary h-11 w-full" disabled={!canSubmit || busy}>
+        {busy ? 'Adding…' : 'Add to house'}
+      </button>
+    </form>
+  )
+}
+
+function AiCreateChat({ onClose, onAdd }: AddObjectModalProps) {
+  const [messages, setMessages] = useState<ItemDraftMessage[]>([])
+  const [draft, setDraft] = useState<ItemDraft>({})
+  const [missing, setMissing] = useState<string[]>([])
+  const [status, setStatus] = useState<'need_info' | 'ready' | 'rejected'>('need_info')
+  const [prompt, setPrompt] = useState('Name, price, year, condition, importance (1–10).')
+  const [input, setInput] = useState('')
+  const [busy, setBusy] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const started = useRef(false)
+
+  useEffect(() => {
+    if (started.current) return
+    started.current = true
+    setBusy(true)
+    draftItemTurn({ messages: [], draft: {} })
+      .then((res) => {
+        setPrompt(res.assistant_message)
+        setDraft(res.draft)
+        setMissing(res.missing_fields)
+        setStatus(res.status)
+      })
+      .catch((e: unknown) => setError(e instanceof Error ? e.message : String(e)))
+      .finally(() => setBusy(false))
+  }, [])
+
+  async function send(text: string) {
+    const content = text.trim()
+    if (!content || busy || status === 'ready') return
+    const nextMessages: ItemDraftMessage[] = [...messages, { role: 'user', content }]
+    setMessages(nextMessages)
+    setInput('')
+    setBusy(true)
+    setError(null)
+    try {
+      const res = await draftItemTurn({ messages: nextMessages, draft })
+      setMessages([...nextMessages, { role: 'assistant', content: res.assistant_message }])
+      setPrompt(res.assistant_message)
+      setDraft(res.draft)
+      setMissing(res.missing_fields)
+      setStatus(res.status)
+    } catch (e) {
+      setError(e instanceof Error ? e.message : String(e))
+    } finally {
+      setBusy(false)
+    }
+  }
+
+  async function confirmAdd() {
+    if (status !== 'ready' || !draft.name || draft.price_eur == null || draft.purchase_year == null || !draft.condition || draft.importance == null) return
+    setBusy(true)
+    setError(null)
+    try {
+      onAdd(
+        await createManualItem({
+          name: draft.name,
+          price_eur: draft.price_eur,
+          purchase_year: draft.purchase_year,
+          condition: draft.condition,
+          category: draft.category ?? 'General',
+          importance: draft.importance,
+          notes: draft.notes ?? '',
+        }),
+      )
+      onClose()
+    } catch (e) {
+      setError(e instanceof Error ? e.message : String(e))
+    } finally {
+      setBusy(false)
+    }
+  }
+
+  const fieldNames: Record<string, string> = {
+    name: 'name',
+    price_eur: 'price',
+    purchase_year: 'year',
+    condition: 'condition',
+    importance: 'importance',
+  }
+  const missingLabel = missing.length > 0 ? missing.map((k) => fieldNames[k] ?? k).join(', ') : null
+
+  return (
+    <div className="flex flex-col gap-4 px-5 py-4">
+      <p className="text-sm text-ink2">{prompt}</p>
+      {missingLabel && status !== 'ready' && <p className="label-sm text-muted">Still need: {missingLabel}</p>}
+      {error && <p className="text-sm text-error">{error}</p>}
+
+      {status === 'ready' ? (
+        <button type="button" className="btn btn-primary h-11 w-full" disabled={busy} onClick={confirmAdd}>
+          {busy ? 'Adding…' : 'Add to house'}
+        </button>
+      ) : (
+        <form
+          className="flex gap-2"
+          onSubmit={(e) => {
+            e.preventDefault()
+            void send(input)
+          }}
+        >
+          <input
+            autoFocus
+            type="text"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            disabled={busy}
+            maxLength={2000}
+            placeholder="Describe the object"
+            className="field h-11 min-w-0 flex-1"
+          />
+          <button type="submit" className="btn btn-primary h-11 shrink-0 px-4" disabled={busy || !input.trim()}>
+            {busy ? '…' : 'Send'}
+          </button>
+        </form>
+      )}
     </div>
   )
 }
@@ -279,23 +462,3 @@ function OwnedCard({ vi, onOpen, onRemove }: { vi: ValuedItem; onOpen: () => voi
   )
 }
 
-function FoundCard({ hit, inHouse, adding, onAdd }: { hit: CatalogHit; inHouse: boolean; adding: boolean; onAdd: () => void }) {
-  return (
-    <li className={CARD}>
-      <a href={hit.url ?? undefined} target="_blank" rel="noreferrer" className="block" title="Open on idealo">
-        <Photo src={hit.image_url} category={hit.category} />
-      </a>
-      <span className="flex flex-1 flex-col gap-1 border-t border-line p-4">
-        <span className="line-clamp-2 text-base font-bold text-ink">{hit.name}</span>
-        {hit.variant && <span className="truncate text-sm text-muted">{hit.variant}</span>}
-        <span className="mt-1 flex items-baseline justify-between gap-2">
-          <span className="text-2xl font-extrabold text-petrol">{formatEur(hit.price_eur)}</span>
-          {hit.offer_count > 0 && <span className="text-xs text-muted">{hit.offer_count} {hit.offer_count === 1 ? 'offer' : 'offers'}</span>}
-        </span>
-        <button type="button" onClick={onAdd} disabled={inHouse || adding} className="btn btn-primary mt-3 h-11 w-full">
-          {inHouse ? 'In the house ✓' : adding ? 'Valuing…' : '+ Add to house'}
-        </button>
-      </span>
-    </li>
-  )
-}
