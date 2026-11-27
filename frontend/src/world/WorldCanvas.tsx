@@ -31,6 +31,8 @@ type WorldCanvasProps = {
 
 const CONFIRM_ID = '__confirm__'
 const roomLabelId = (i: number) => `__room_${i}__`
+/** Floor point of a room: the split page drops item cards there (`data-room-floor`). */
+const roomFloorId = (i: number) => `__floor_${i}__`
 
 const SHOT: Record<WorldMode, CameraShot> = { world: 'world', confirm: 'focus', house: 'interior' }
 
@@ -71,6 +73,7 @@ export function WorldCanvas({
     ROOM_PLANS[focusRooms.length].forEach((r, i) => {
       const b = roomBounds(r)
       anchors.push({ id: roomLabelId(i), position: [focusSlot[0] + b.cx, INTERIOR.wallH + 0.35, focusSlot[1] + b.cz] })
+      anchors.push({ id: roomFloorId(i), position: [focusSlot[0] + b.cx, 0.15, focusSlot[1] + b.cz] })
     })
   }
 
@@ -198,6 +201,18 @@ export function WorldCanvas({
               </div>
             </div>
           </div>
+        )}
+
+        {focusRooms?.map((_, i) =>
+          shown.has(roomFloorId(i)) ? (
+            <div
+              key={`floor-${i}`}
+              ref={register(roomFloorId(i))}
+              data-room-floor={i}
+              className="absolute left-0 top-0 h-0 w-0"
+              style={{ visibility: 'hidden' }}
+            />
+          ) : null,
         )}
 
         {focusRooms?.map((room, i) =>

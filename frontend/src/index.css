@@ -461,30 +461,14 @@ body {
     box-shadow: 0 16px 36px -10px rgba(15, 23, 42, 0.55), 0 0 0 10px rgba(224, 90, 71, 0.25);
   }
 }
-.card-spin {
-  animation: card-spin 0.7s cubic-bezier(0.45, 0, 0.55, 1) infinite;
-  transform-style: preserve-3d;
-}
-@keyframes card-spin {
-  0% {
-    transform: translateY(0) rotateY(0deg);
-  }
-  50% {
-    transform: translateY(-14px) rotateY(180deg) scale(1.06);
-  }
-  100% {
-    transform: translateY(0) rotateY(360deg);
-  }
-}
 @media (min-width: 1024px) {
   .split-tray {
     left: calc(24px + var(--side-w) + 48px);
     right: calc(24px + var(--side-w) + 48px);
-    top: calc(var(--split-top) + var(--meter-h) + 40px);
-    bottom: 40px;
-    max-height: none;
-    justify-content: center;
-    gap: 22px;
+    bottom: 36px;
+    max-height: 52vh;
+    justify-content: flex-end;
+    gap: 14px;
   }
 }
 
@@ -548,7 +532,6 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .pulse-dot,
   .split-button,
-  .card-spin,
   .pop-in,
   .pop-in-late,
   .fade-in {

@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
 import type { Assignment, AssignmentAction, DemoScenario, ValuedItem } from '../types/inventory'
 import { participantColor } from '../world/rooms'
 import { formatEur, pct, verb } from './format'
@@ -17,11 +18,13 @@ type SplitBoardProps = {
   onOpenItem: (id: string) => void
 }
 
-type Phase = 'idle' | 'spinning' | 'flying'
-/** Cards keep spinning at least this long, even if the agent answers sooner. */
-const SPIN_MIN_MS = 1100
-const FLY_MS = 950
-const FLY_STAGGER_MS = 140
+type Phase = 'idle' | 'thinking' | 'flying'
+/** A short beat before the cards leave, even if the agent answers instantly. */
+const THINK_MIN_MS = 350
+const FLY_MS = 820
+const FLY_STAGGER_MS = 120
+/** Size of a card once it sits on a room floor. */
+const MINI_PX = 56
 
 const MODE_LABEL: Record<string, string> = {
   balanced: 'Closest to 50/50',
@@ -206,9 +209,9 @@ function DetailsModal({ scenario, names, onClose }: { scenario: DemoScenario; na
 }
 
 /** A small card in the middle pile: photo, name, value. */
-function PileCard({ vi, spinning, index, count, cardRef, onOpen }: {
+function PileCard({ vi, waiting, index, count, cardRef, onOpen }: {
   vi: ValuedItem
-  spinning: boolean
+  waiting: boolean
   index: number
   count: number
   cardRef: (el: HTMLElement | null) => void
@@ -225,11 +228,8 @@ function PileCard({ vi, spinning, index, count, cardRef, onOpen }: {
         ref={cardRef}
         type="button"
         onClick={onOpen}
-        disabled={spinning}
-        style={spinning ? { animationDelay: `${(index % 5) * -110}ms` } : undefined}
-        className={`pile-card flex w-24 flex-col overflow-hidden rounded-2xl border border-line bg-surface text-left shadow-[0_10px_24px_-12px_rgba(15,23,42,0.35)] transition hover:-translate-y-2 xl:w-28 ${
-          spinning ? 'card-spin' : 'pop-in'
-        }`}
+        disabled={waiting}
+        className={`pile-card flex w-24 flex-col overflow-hidden rounded-2xl border border-line bg-surface text-left shadow-[0_10px_24px_-12px_rgba(15,23,42,0.35)] pop-in transition hover:-translate-y-2 xl:w-28`}
       >
         <span className="relative flex aspect-square w-full items-center justify-center bg-white">
           {vi.valuation.image_url ? (
@@ -255,12 +255,23 @@ const reducedMotion = () => {
   }
 }
 
-/** Fly a copy of `el` into `target`, spinning; resolves when it lands. */
+/** Where a card lands: a room floor point (stays small) or a side box. */
+type Landing = { x: number; y: number; scale: number; bump: Element | null }
+
+function landingFor(target: Element, fromWidth: number): Landing {
+  const to = target.getBoundingClientRect()
+  if (target.hasAttribute('data-room-floor')) {
+    return { x: to.left, y: to.top, scale: MINI_PX / fromWidth, bump: null }
+  }
+  return { x: to.left + to.width / 2, y: to.top + Math.min(to.height / 2, 180), scale: 0.3, bump: target }
+}
+
+/** Glide a copy of `el` along an arc to its landing; resolves when it lands. No spinning. */
 function flyCard(el: HTMLElement, target: Element, delay: number, clones: Set<HTMLElement>): Promise<void> {
   const from = el.getBoundingClientRect()
-  const to = target.getBoundingClientRect()
+  const land = landingFor(target, from.width)
   const clone = el.cloneNode(true) as HTMLElement
-  clone.classList.remove('card-spin', 'pop-in')
+  clone.classList.remove('pop-in')
   Object.assign(clone.style, {
     position: 'fixed',
     left: `${from.left}px`,
@@ -271,22 +282,23 @@ function flyCard(el: HTMLElement, target: Element, delay: number, clones: Set<HT
     zIndex: '60',
     pointerEvents: 'none',
     animation: 'none',
+    rotate: '0deg',
   })
   document.body.appendChild(clone)
   clones.add(clone)
-  const dx = to.left + to.width / 2 - (from.left + from.width / 2)
-  const dy = to.top + Math.min(to.height / 2, 180) - (from.top + from.height / 2)
-  const tilt = dx > 0 ? 14 : -14
+  const dx = land.x - (from.left + from.width / 2)
+  const dy = land.y - (from.top + from.height / 2)
+  const lift = Math.min(160, 60 + Math.abs(dx) * 0.15)
   const anim = clone.animate(
     [
-      { transform: 'perspective(900px) translate(0, 0) rotateY(0deg) rotateZ(0deg) scale(1)', opacity: 1 },
-      { transform: `perspective(900px) translate(0, -36px) rotateY(180deg) rotateZ(${-tilt / 2}deg) scale(1.18)`, opacity: 1, offset: 0.18 },
+      { transform: 'translate(0, 0) scale(1)', boxShadow: '0 10px 24px -12px rgba(15,23,42,0.35)' },
+      { transform: 'translate(0, -18px) scale(1.08)', boxShadow: '0 26px 40px -14px rgba(15,23,42,0.45)', offset: 0.15 },
       {
-        transform: `perspective(900px) translate(${dx * 0.45}px, ${dy * 0.45 - 150}px) rotateY(720deg) rotateZ(${tilt}deg) scale(1.3)`,
-        opacity: 1,
-        offset: 0.55,
+        transform: `translate(${dx * 0.55}px, ${dy * 0.55 - lift}px) scale(${(1 + land.scale) / 1.6})`,
+        boxShadow: '0 30px 48px -16px rgba(15,23,42,0.45)',
+        offset: 0.6,
       },
-      { transform: `perspective(900px) translate(${dx}px, ${dy}px) rotateY(1080deg) rotateZ(0deg) scale(0.28)`, opacity: 0.1 },
+      { transform: `translate(${dx}px, ${dy}px) scale(${land.scale})`, boxShadow: '0 4px 10px -4px rgba(15,23,42,0.4)' },
     ],
     { duration: FLY_MS, delay, easing: 'cubic-bezier(0.45, 0, 0.2, 1)', fill: 'both' },
   )
@@ -296,11 +308,58 @@ function flyCard(el: HTMLElement, target: Element, delay: number, clones: Set<HT
     .then(() => {
       clone.remove()
       clones.delete(clone)
-      target.animate(
+      land.bump?.animate(
         [{ transform: 'scale(1)' }, { transform: 'scale(1.035)' }, { transform: 'scale(1)' }],
         { duration: 360, easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)' },
       )
     })
+}
+
+/** Small photo cards sitting on a room floor in the 3D house (portalled into its floor anchor). */
+function RoomStack({ items, onOpen }: { items: ValuedItem[]; onOpen: (id: string) => void }) {
+  const perRow = items.length > 4 ? 3 : 2
+  return (
+    <div
+      className="pointer-events-none absolute left-0 top-0 grid -translate-x-1/2 -translate-y-1/2 gap-1"
+      style={{ gridTemplateColumns: `repeat(${Math.min(perRow, Math.max(items.length, 1))}, ${MINI_PX}px)` }}
+    >
+      {items.map((vi, i) => (
+        <button
+          key={vi.item.id}
+          type="button"
+          onClick={() => onOpen(vi.item.id)}
+          title={vi.item.name}
+          className="room-card pointer-events-auto flex items-center justify-center overflow-hidden rounded-xl border border-white bg-white shadow-[0_6px_14px_-6px_rgba(15,23,42,0.5)] transition hover:z-10 hover:scale-125"
+          style={{ width: MINI_PX, height: MINI_PX, rotate: `${((i * 37) % 11) - 5}deg` }}
+        >
+          {vi.valuation.image_url ? (
+            <img src={vi.valuation.image_url} alt="" className="h-full w-full object-contain p-1" />
+          ) : (
+            <span className="h-4 w-4 rounded-md bg-clay" />
+          )}
+        </button>
+      ))}
+    </div>
+  )
+}
+
+/** The room floor anchors the 3D scene exposes, found once they are mounted. */
+function useRoomFloors(): Element[] {
+  const [floors, setFloors] = useState<Element[]>([])
+  useEffect(() => {
+    let raf = 0
+    let tries = 0
+    const look = () => {
+      const found = [...document.querySelectorAll('[data-room-floor]')].sort(
+        (a, b) => Number(a.getAttribute('data-room-floor')) - Number(b.getAttribute('data-room-floor')),
+      )
+      if (found.length > 0) setFloors(found)
+      else if (tries++ < 120) raf = requestAnimationFrame(look)
+    }
+    look()
+    return () => cancelAnimationFrame(raf)
+  }, [])
+  return floors
 }
 
 /**
@@ -318,6 +377,7 @@ export function SplitBoard({ scenario, error, names, people, solving, unsplit, o
   /** Cards that already landed in a box during this Split. */
   const [landed, setLanded] = useState<Set<string>>(new Set())
   const startedAt = useRef(0)
+  const floors = useRoomFloors()
   const cardEls = useRef(new Map<string, HTMLElement>())
   const clones = useRef(new Set<HTMLElement>())
   /** Latest scenario for the flight, which must not restart when a save refreshes it. */
@@ -328,10 +388,10 @@ export function SplitBoard({ scenario, error, names, people, solving, unsplit, o
 
   // Spinning → flying once the agent answered with every card in it.
   useEffect(() => {
-    if (phase !== 'spinning' || !scenario || solving) return
+    if (phase !== 'thinking' || !scenario || solving) return
     const assigned = new Set(scenario.split.assignments.map((a) => a.item_id))
     if (!pile.every((vi) => assigned.has(vi.item.id))) return
-    const wait = Math.max(0, SPIN_MIN_MS - (performance.now() - startedAt.current))
+    const wait = Math.max(0, THINK_MIN_MS - (performance.now() - startedAt.current))
     const t = setTimeout(() => setPhase('flying'), wait)
     return () => clearTimeout(t)
   }, [phase, scenario, solving, pile])
@@ -346,7 +406,10 @@ export function SplitBoard({ scenario, error, names, people, solving, unsplit, o
       const a = byItem.get(vi.item.id)
       const el = cardEls.current.get(vi.item.id)
       const side = a ? sideOf(a.action) : null
-      const target = document.querySelector(`[data-split-box="${side === null ? 'sold' : side}"]`)
+      const target =
+        side === null
+          ? document.querySelector('[data-split-box="sold"]')
+          : (document.querySelector(`[data-room-floor="${side}"]`) ?? document.querySelector(`[data-split-box="${side}"]`))
       const done = () => !cancelled && setLanded((prev) => new Set(prev).add(vi.item.id))
       if (!el || !target) {
         done()
@@ -372,7 +435,7 @@ export function SplitBoard({ scenario, error, names, people, solving, unsplit, o
     setPile(unsplit)
     setLanded(new Set())
     startedAt.current = performance.now()
-    setPhase(reducedMotion() ? 'idle' : 'spinning')
+    setPhase(reducedMotion() ? 'idle' : 'thinking')
     onSplit()
   }
 
@@ -467,7 +530,7 @@ export function SplitBoard({ scenario, error, names, people, solving, unsplit, o
   )
 
   const pillText =
-    phase === 'spinning'
+    phase === 'thinking'
       ? 'Agent deciding…'
       : phase === 'flying'
         ? 'Splitting…'
@@ -503,7 +566,7 @@ export function SplitBoard({ scenario, error, names, people, solving, unsplit, o
           <span className="rounded-full bg-midnight px-2.5 py-0.5 text-xs font-bold text-white">Agent</span>
           <span className="min-w-0 flex-1 truncate text-ink2">
             {busy ? (
-              phase === 'spinning' ? 'Weighing every item…' : 'Handing out the items…'
+              phase === 'thinking' ? 'Weighing every item…' : 'Handing out the items…'
             ) : !anySplit ? (
               'Waiting for you to press Split'
             ) : (
@@ -531,14 +594,17 @@ export function SplitBoard({ scenario, error, names, people, solving, unsplit, o
       {/* Pile: items waiting for the next Split, over the house */}
       {shownPile.length > 0 && (
         <div className="split-tray pop-in" data-phase={phase}>
-          <ul className="flex max-h-full flex-wrap items-center justify-center gap-y-4 px-5 py-3">
+          <button type="button" onClick={startSplit} disabled={busy} className="split-button">
+            {busy ? 'Splitting…' : `Split ${shownPile.length} ${shownPile.length === 1 ? 'item' : 'items'}`}
+          </button>
+          <ul className="flex max-h-full flex-wrap items-end justify-center gap-y-4 px-5 pb-1 pt-3">
             {shownPile.map((vi, i) => (
               <PileCard
                 key={vi.item.id}
                 vi={vi}
                 index={i}
                 count={shownPile.length}
-                spinning={busy}
+                waiting={busy}
                 cardRef={(el) => {
                   if (el) cardEls.current.set(vi.item.id, el)
                   else cardEls.current.delete(vi.item.id)
@@ -547,9 +613,6 @@ export function SplitBoard({ scenario, error, names, people, solving, unsplit, o
               />
             ))}
           </ul>
-          <button type="button" onClick={startSplit} disabled={busy} className="split-button">
-            {busy ? 'Splitting…' : `Split ${shownPile.length} ${shownPile.length === 1 ? 'item' : 'items'}`}
-          </button>
         </div>
       )}
 
@@ -563,6 +626,18 @@ export function SplitBoard({ scenario, error, names, people, solving, unsplit, o
           {right.length >= left.length && soldBox}
         </div>
       </div>
+
+      {/* Split items sit on their owner's room floor in the house */}
+      {floors.slice(0, 2).map((floor, side) =>
+        createPortal(
+          <RoomStack
+            items={mine[side].map((a) => byId.get(a.item_id)).filter((vi): vi is ValuedItem => !!vi)}
+            onOpen={onOpenItem}
+          />,
+          floor,
+          `room-${side}`,
+        ),
+      )}
 
       {showDetails && <DetailsModal scenario={scenario} names={names} onClose={() => setShowDetails(false)} />}
     </>
