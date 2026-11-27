@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { createProcess } from '../api/client'
 import type { ProcessKind, ProcessSummary } from '../types/process'
 import { KIND_META } from '../world/palette'
 
@@ -30,6 +31,12 @@ function isEmail(value: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
 }
 
+function defaultTitle(kind: ProcessKind) {
+  if (kind === 'separation') return 'Separation'
+  if (kind === 'inheritance') return 'Inheritance'
+  return 'Household split'
+}
+
 export function CreateProcessWizard({
   open,
   onClose,
@@ -37,18 +44,24 @@ export function CreateProcessWizard({
 }: CreateProcessWizardProps) {
   const [step, setStep] = useState<1 | 2 | 3>(1)
   const [kind, setKind] = useState<ProcessKind | null>(null)
+  const [title, setTitle] = useState('')
   const [emailInput, setEmailInput] = useState('')
   const [emails, setEmails] = useState<string[]>([])
   const [emailError, setEmailError] = useState<string | null>(null)
+  const [submitting, setSubmitting] = useState(false)
+  const [submitError, setSubmitError] = useState<string | null>(null)
 
   if (!open) return null
 
   function resetAndClose() {
     setStep(1)
     setKind(null)
+    setTitle('')
     setEmailInput('')
     setEmails([])
     setEmailError(null)
+    setSubmitting(false)
+    setSubmitError(null)
     onClose()
   }
 
@@ -68,23 +81,22 @@ export function CreateProcessWizard({
     setEmailError(null)
   }
 
-  function create() {
-    if (!kind) return
-    const title =
-      kind === 'separation'
-        ? 'Separation'
-        : kind === 'inheritance'
-          ? 'Inheritance'
-          : 'Household split'
-    const process: ProcessSummary = {
-      id: crypto.randomUUID(),
-      title,
-      kind,
-      status: 'draft',
-      participantEmails: emails,
+  async function create() {
+    if (!kind || submitting) return
+    setSubmitting(true)
+    setSubmitError(null)
+    try {
+      const process = await createProcess({
+        kind,
+        title: title.trim() || null,
+        participantEmails: emails,
+      })
+      onCreated(process)
+      resetAndClose()
+    } catch (err) {
+      setSubmitError(err instanceof Error ? err.message : 'Could not create process')
+      setSubmitting(false)
     }
-    onCreated(process)
-    resetAndClose()
   }
 
   return (
@@ -94,6 +106,7 @@ export function CreateProcessWizard({
         className="absolute inset-0 bg-midnight/40"
         aria-label="Close wizard"
         onClick={resetAndClose}
+        disabled={submitting}
       />
       <div
         role="dialog"
@@ -110,32 +123,52 @@ export function CreateProcessWizard({
         </h2>
 
         {step === 1 && (
-          <div className="mt-4 grid gap-2">
-            {KINDS.map((k) => (
-              <button
-                key={k.id}
-                type="button"
-                onClick={() => setKind(k.id)}
-                className={`flex items-center gap-3 rounded-2xl border px-4 py-3 text-left transition ${
-                  kind === k.id
-                    ? 'border-terracotta bg-surface-low shadow-[0_0_0_3px_rgba(224,90,71,0.2)]'
-                    : 'border-line-strong bg-surface hover:bg-surface-low'
-                }`}
-              >
-                <span className="h-8 w-8 shrink-0 rounded-lg" style={{ background: KIND_META[k.id].roof }} aria-hidden />
-                <span>
-                  <span className="block font-bold text-ink">{k.title}</span>
-                  <span className="block text-sm text-ink2">{k.blurb}</span>
-                </span>
-              </button>
-            ))}
+          <div className="mt-4 space-y-4">
+            <div className="grid gap-2">
+              {KINDS.map((k) => (
+                <button
+                  key={k.id}
+                  type="button"
+                  onClick={() => {
+                    setKind(k.id)
+                    if (!title.trim()) setTitle(defaultTitle(k.id))
+                  }}
+                  className={`flex items-center gap-3 rounded-2xl border px-4 py-3 text-left transition ${
+                    kind === k.id
+                      ? 'border-terracotta bg-surface-low shadow-[0_0_0_3px_rgba(224,90,71,0.2)]'
+                      : 'border-line-strong bg-surface hover:bg-surface-low'
+                  }`}
+                >
+                  <span
+                    className="h-8 w-8 shrink-0 rounded-lg"
+                    style={{ background: KIND_META[k.id].roof }}
+                    aria-hidden
+                  />
+                  <span>
+                    <span className="block font-bold text-ink">{k.title}</span>
+                    <span className="block text-sm text-ink2">{k.blurb}</span>
+                  </span>
+                </button>
+              ))}
+            </div>
+            <label className="block space-y-1.5">
+              <span className="label-md text-muted">Process name (optional)</span>
+              <input
+                type="text"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                placeholder="e.g. Alex & Sam"
+                className="field w-full"
+              />
+            </label>
           </div>
         )}
 
         {step === 2 && (
           <div className="mt-4 space-y-3">
             <p className="text-sm text-ink2">
-              We will invite them to collaborate on this process.
+              We will invite them to collaborate on this process. You are already
+              included as the creator.
             </p>
             <div className="flex gap-2">
               <input
@@ -151,11 +184,7 @@ export function CreateProcessWizard({
                 placeholder="name@email.com"
                 className="field flex-1"
               />
-              <button
-                type="button"
-                onClick={addEmail}
-                className="btn btn-slate"
-              >
+              <button type="button" onClick={addEmail} className="btn btn-slate">
                 Add
               </button>
             </div>
@@ -171,9 +200,7 @@ export function CreateProcessWizard({
                     <button
                       type="button"
                       className="text-muted hover:text-error"
-                      onClick={() =>
-                        setEmails((prev) => prev.filter((e) => e !== email))
-                      }
+                      onClick={() => setEmails((prev) => prev.filter((e) => e !== email))}
                       aria-label={`Remove ${email}`}
                     >
                       ×
@@ -188,6 +215,12 @@ export function CreateProcessWizard({
         {step === 3 && (
           <div className="mt-4 space-y-2 text-sm text-ink2">
             <p>
+              <span className="text-muted">Name:</span>{' '}
+              <span className="font-bold text-ink">
+                {title.trim() || (kind ? defaultTitle(kind) : '—')}
+              </span>
+            </p>
+            <p>
               <span className="text-muted">Type:</span>{' '}
               <span className="font-bold text-ink">
                 {KINDS.find((k) => k.id === kind)?.title}
@@ -199,12 +232,14 @@ export function CreateProcessWizard({
                 {emails.length ? emails.join(', ') : 'None yet (you can invite later)'}
               </span>
             </p>
+            {submitError && <p className="pt-2 text-sm text-error">{submitError}</p>}
           </div>
         )}
 
         <div className="mt-6 flex justify-between gap-2">
           <button
             type="button"
+            disabled={submitting}
             onClick={() => {
               if (step === 1) resetAndClose()
               else setStep((s) => (s === 3 ? 2 : 1))
@@ -225,10 +260,11 @@ export function CreateProcessWizard({
           ) : (
             <button
               type="button"
-              onClick={create}
+              disabled={submitting}
+              onClick={() => void create()}
               className="btn btn-primary"
             >
-              Create process
+              {submitting ? 'Creating…' : 'Create process'}
             </button>
           )}
         </div>

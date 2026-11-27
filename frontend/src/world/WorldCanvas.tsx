@@ -6,17 +6,14 @@ import { setHoverCursor } from './cursor'
 import { Ground } from './Ground'
 import { House } from './House'
 import { LabelProjector, type LabelAnchor, type LabelRegistry } from './labels'
-import { LOT_SLOTS, MAX_LOTS } from './layout'
+import { LOT_SIZE, LOT_SLOTS, MAX_LOTS, type Vec2 } from './layout'
 import { STATUS_META, WORLD } from './palette'
-import { PlusLot } from './PlusLot'
 
 type WorldCanvasProps = {
   processes: ProcessSummary[]
   onCreateProcess: () => void
   onOpenProcess: (id: string) => void
 }
-
-const PLUS_ID = '__plus__'
 
 /** Isometric camera whose zoom fits the whole plate to the viewport. */
 function IsoCamera() {
@@ -27,21 +24,54 @@ function IsoCamera() {
   return <OrthographicCamera makeDefault position={[20, 18, 20]} zoom={zoom} near={-100} far={200} />
 }
 
+/** Invisible (but hoverable) hit area on a free lot — opens the create wizard. */
+function FreeLot({
+  position,
+  onCreate,
+}: {
+  position: Vec2
+  onCreate: () => void
+}) {
+  const [hovered, setHovered] = useState(false)
+  return (
+    <mesh
+      position={[position[0], 0.06, position[1]]}
+      onPointerOver={(e) => {
+        e.stopPropagation()
+        setHovered(true)
+        setHoverCursor(true)
+      }}
+      onPointerOut={() => {
+        setHovered(false)
+        setHoverCursor(false)
+      }}
+      onClick={(e) => {
+        e.stopPropagation()
+        onCreate()
+      }}
+    >
+      <boxGeometry args={[LOT_SIZE - 0.2, 0.08, LOT_SIZE - 0.2]} />
+      <meshStandardMaterial
+        color={hovered ? WORLD.lot : WORLD.lawnDark}
+        roughness={1}
+      />
+    </mesh>
+  )
+}
+
 /**
  * Landing world: an isometric 3D neighbourhood where every house is a process.
- * Always rendered under the DOM chrome and overlays.
+ * Click any free lot pad to start a new process.
  */
 export function WorldCanvas({ processes, onCreateProcess, onOpenProcess }: WorldCanvasProps) {
   const placed = processes.slice(0, MAX_LOTS)
-  const empty = placed.length === 0
-  const plusSlot = placed.length < MAX_LOTS ? LOT_SLOTS[placed.length] : null
+  const freeSlots = LOT_SLOTS.slice(placed.length)
   const [hoveredId, setHoveredId] = useState<string | null>(null)
 
   const anchors: LabelAnchor[] = placed.map((p, i) => ({
     id: p.id,
     position: [LOT_SLOTS[i][0], 3.9, LOT_SLOTS[i][1] - 0.3],
   }))
-  if (plusSlot) anchors.push({ id: PLUS_ID, position: [plusSlot[0], empty ? 4.6 : 2.1, plusSlot[1]] })
 
   const anchorsRef = useRef<LabelAnchor[]>(anchors)
   useLayoutEffect(() => {
@@ -57,7 +87,7 @@ export function WorldCanvas({ processes, onCreateProcess, onOpenProcess }: World
     setHoveredId((cur) => (on ? id : cur === id ? null : cur))
 
   return (
-    <div className="absolute inset-0" style={{ background: WORLD.background }}>
+    <div className="absolute inset-0 bg-transparent" style={{ background: WORLD.background }}>
       <Canvas shadows dpr={[1, 2]} onPointerMissed={() => setHoverCursor(false)}>
         <IsoCamera />
         <OrbitControls
@@ -98,9 +128,9 @@ export function WorldCanvas({ processes, onCreateProcess, onOpenProcess }: World
           />
         ))}
 
-        {plusSlot && (
-          <PlusLot position={plusSlot} hero={empty} onCreate={onCreateProcess} onHover={hoverHandler(PLUS_ID)} />
-        )}
+        {freeSlots.map(([x, z]) => (
+          <FreeLot key={`free-${x}-${z}`} position={[x, z]} onCreate={onCreateProcess} />
+        ))}
 
         <LabelProjector anchors={anchorsRef} registry={registry} />
       </Canvas>
@@ -128,27 +158,6 @@ export function WorldCanvas({ processes, onCreateProcess, onOpenProcess }: World
             </div>
           )
         })}
-        {plusSlot && (
-          <div
-            ref={register(PLUS_ID)}
-            className="absolute left-0 top-0"
-            style={{ visibility: 'hidden', willChange: 'transform' }}
-          >
-            {empty ? (
-              <div
-                className={`panel flex flex-col items-center px-5 py-3 text-center transition-transform duration-150 ${
-                  hoveredId === PLUS_ID ? 'scale-105' : ''
-                }`}
-                style={{ minWidth: 240 }}
-              >
-                <span className="text-lg font-extrabold tracking-tight text-petrol">Create your first process</span>
-                <span className="text-xs text-ink2">A house appears here for every split you start</span>
-              </div>
-            ) : (
-              <span className={`pill ${hoveredId === PLUS_ID ? 'pill-draft' : 'pill-neutral'}`}>New process</span>
-            )}
-          </div>
-        )}
       </div>
 
       {/* Keyboard / screen-reader path to the same actions as the 3D scene */}
@@ -160,7 +169,7 @@ export function WorldCanvas({ processes, onCreateProcess, onOpenProcess }: World
             </button>
           </li>
         ))}
-        {plusSlot && (
+        {freeSlots.length > 0 && (
           <li>
             <button type="button" onClick={onCreateProcess}>
               Create a new process

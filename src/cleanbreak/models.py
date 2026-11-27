@@ -12,6 +12,44 @@ SplitMode = Literal["balanced", "min_cash", "liquidate_contested"]
 AssignmentAction = Literal["party_a", "party_b", "sell_split", "keep_a_buy_new_b", "keep_b_buy_new_a"]
 DataSourceType = Literal["idealo_live", "idealo_cached", "demo_fallback"]
 
+# Dividealo world — process lifecycle (UI + SQLite API)
+ProcessKind = Literal["separation", "inheritance", "other"]
+ProcessStatus = Literal["draft", "collecting", "ready", "resolved", "closed"]
+
+
+class AccountInfo(BaseModel):
+    """Stub session account shown in the app chrome (auth comes later)."""
+
+    id: str = "local-user"
+    name: str = "Demo User"
+    email: str = "you@dividealo.app"
+    initials: str = "DU"
+
+
+class ProcessCreate(BaseModel):
+    """Payload to create a new split process from the world wizard."""
+
+    kind: ProcessKind
+    title: str | None = None
+    participant_emails: list[str] = Field(default_factory=list)
+
+
+class ProcessSummary(BaseModel):
+    """One process (= one house) in the Dividealo world."""
+
+    id: str
+    title: str
+    kind: ProcessKind
+    status: ProcessStatus = "draft"
+    participant_emails: list[str] = Field(default_factory=list)
+    created_at: str | None = None
+    updated_at: str | None = None
+
+
+class ProcessStatusUpdate(BaseModel):
+    status: ProcessStatus
+
+
 
 class HouseholdItemInput(BaseModel):
     """One physical item in the household inventory."""

@@ -27,3 +27,7 @@ data/probe_results.json
 
 # Local daily idealo MCP call counter (per machine)
 data/idealo_budget.json
+
+# Local SQLite process DB (per machine)
+data/processes.db
+data/processes.db-*
