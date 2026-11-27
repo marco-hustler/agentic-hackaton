@@ -20,9 +20,6 @@ from cleanbreak.paths import resolve_repo_path
 
 E = TypeVar("E", bound=BaseException)
 
-# Packaged deploy asset — drop your .idealo_tokens.json contents here.
-_PACKAGED_TOKEN_FILE = Path(__file__).resolve().parent.parent / "assets" / "idealo.json"
-
 
 class LoginRequired(RuntimeError):
     """Raised by the server-side provider instead of starting an interactive browser login."""
@@ -44,28 +41,8 @@ def is_login_required(exc: BaseException) -> bool:
     return find_exception(exc, LoginRequired) is not None
 
 
-def packaged_token_path() -> Path:
-    """Path to src/cleanbreak/assets/idealo.json (ships with the package on deploy)."""
-    return _PACKAGED_TOKEN_FILE
-
-
 def default_token_path() -> Path:
-    """Token file resolution for local + deploy.
-
-    1. IDEALO_TOKEN_FILE env override (tests / explicit local path)
-    2. Packaged src/cleanbreak/assets/idealo.json when it has real tokens
-    3. Repo-root .idealo_tokens.json (interactive local login)
-    4. Packaged path as the deploy drop-in target
-    """
-    override = (os.getenv("IDEALO_TOKEN_FILE") or "").strip()
-    if override:
-        return resolve_repo_path(override)
-    if tokens_present(_PACKAGED_TOKEN_FILE):
-        return _PACKAGED_TOKEN_FILE
-    local = resolve_repo_path(".idealo_tokens.json")
-    if local.exists():
-        return local
-    return _PACKAGED_TOKEN_FILE
+    return resolve_repo_path(os.getenv("IDEALO_TOKEN_FILE", ".idealo_tokens.json"))
 
 
 def tokens_present(token_file: str | Path) -> bool:

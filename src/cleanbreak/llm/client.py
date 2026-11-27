@@ -13,8 +13,6 @@ from dataclasses import dataclass
 
 import httpx
 
-from cleanbreak import secrets as hardcoded
-
 
 @dataclass
 class LLMConfig:
@@ -25,17 +23,15 @@ class LLMConfig:
 
     @classmethod
     def from_env(cls) -> "LLMConfig":
-        # Hardcoded values in cleanbreak.secrets win over .env (for deploy).
-        model = (hardcoded.LLM_MODEL or os.getenv("LLM_MODEL") or "").strip() or None
+        model = (os.getenv("LLM_MODEL") or "").strip() or None
         api_key = (
-            hardcoded.LLM_API_KEY
-            or os.getenv("LLM_API_KEY")
+            os.getenv("LLM_API_KEY")
             or os.getenv("OPENAI_API_KEY")
             or os.getenv("GEMINI_API_KEY")
             or os.getenv("ANTHROPIC_API_KEY")
             or ""
         ).strip() or None
-        api_base = (hardcoded.LLM_API_BASE or os.getenv("LLM_API_BASE") or "").strip() or None
+        api_base = (os.getenv("LLM_API_BASE") or "").strip() or None
         return cls(model=model, api_key=api_key, api_base=api_base)
 
     @property
