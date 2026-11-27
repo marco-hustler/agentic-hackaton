@@ -241,3 +241,45 @@ def test_merge_keeps_existing_fields() -> None:
     assert res.draft.condition == "fair"
     assert res.draft.importance == 4
     assert res.status == "ready"
+
+
+def test_ai_chat_handles_list_of_multiple_objects() -> None:
+    class MultiLLM:
+        is_configured = True
+
+        async def complete(self, **kwargs):
+            return (
+                '{"status":"ready","assistant_message":"Both ready.","drafts":['
+                '{"name":"Sonos Era 300","price_eur":359,"purchase_year":2024,"condition":"like_new","importance":9},'
+                '{"name":"Dyson V15","price_eur":479,"purchase_year":2024,"condition":"good","importance":7}'
+                '],"missing_fields":[]}'
+            )
+
+    req = ItemDraftTurnRequest(
+        messages=[ChatMessage(role="user", content="Sonos Era 300 2024 like new 359€ 9/10 and Dyson V15 2024 good 479€ 7/10")]
+    )
+    res = asyncio.run(run_item_draft_turn(req, llm=MultiLLM()))
+    assert res.status == "ready"
+    assert len(res.drafts) == 2
+    assert [d.name for d in res.drafts] == ["Sonos Era 300", "Dyson V15"]
+    assert res.draft.name == "Sonos Era 300"
+    assert "2 objects ready" in res.assistant_message
+
+
+def test_ai_chat_list_waits_if_any_object_missing_fields() -> None:
+    class PartialMultiLLM:
+        is_configured = True
+
+        async def complete(self, **kwargs):
+            return (
+                '{"status":"ready","assistant_message":"done","drafts":['
+                '{"name":"Sonos Era 300","price_eur":359,"purchase_year":2024,"condition":"like_new","importance":9},'
+                '{"name":"Dyson V15","price_eur":479,"purchase_year":2024}'
+                '],"missing_fields":[]}'
+            )
+
+    req = ItemDraftTurnRequest(messages=[ChatMessage(role="user", content="Sonos Era 300 and Dyson V15")])
+    res = asyncio.run(run_item_draft_turn(req, llm=PartialMultiLLM()))
+    assert res.status == "need_info"
+    assert len(res.drafts) == 2
+    assert "condition" in res.missing_fields and "importance" in res.missing_fields

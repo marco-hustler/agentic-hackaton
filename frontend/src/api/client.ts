@@ -244,14 +244,16 @@ export type ItemDraftTurnResponse = {
   status: 'need_info' | 'ready' | 'rejected'
   assistant_message: string
   draft: ItemDraft
+  drafts?: ItemDraft[]
   missing_fields: string[]
   guardrail?: string | null
 }
 
-/** One conversational turn for AI object creation (asks until every required field is present). */
+/** One conversational turn for AI object creation (1 or more objects; asks until every required field is present). */
 export function draftItemTurn(body: {
   messages: ItemDraftMessage[]
   draft?: ItemDraft
+  drafts?: ItemDraft[]
   party_a_name?: string
   party_b_name?: string
 }) {
@@ -259,7 +261,8 @@ export function draftItemTurn(body: {
     method: 'POST',
     body: JSON.stringify({
       messages: body.messages,
-      draft: body.draft ?? {},
+      draft: body.draft ?? body.drafts?.[0] ?? {},
+      drafts: body.drafts ?? (body.draft ? [body.draft] : []),
       party_a_name: body.party_a_name ?? 'Alex',
       party_b_name: body.party_b_name ?? 'Sam',
     }),
