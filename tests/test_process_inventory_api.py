@@ -31,13 +31,15 @@ def test_new_process_inventory_is_empty() -> None:
     assert again["valued_items"] == []
 
 
-def test_new_process_stays_empty_even_when_demo_seed_flag_on(monkeypatch: pytest.MonkeyPatch) -> None:
-    """Create always writes an empty inventory row, so DEMO_SEED must not overwrite it."""
+def test_demo_seed_fills_inventory_on_create(monkeypatch: pytest.MonkeyPatch) -> None:
+    """With DEMO_SEED_ENABLED, create fills the new process inventory from the Berlin WG demo."""
     monkeypatch.setenv("DEMO_SEED_ENABLED", "true")
     client = TestClient(app)
+    used_before = get_budget().snapshot()["used"]
     pid = _new_process(client)
     body = client.get(f"/api/processes/{pid}/inventory").json()
-    assert body["valued_items"] == []
+    assert len(body["valued_items"]) == 7
+    assert get_budget().snapshot()["used"] == used_before
 
 
 def test_demo_seed_fills_only_when_inventory_row_missing(monkeypatch: pytest.MonkeyPatch, tmp_path) -> None:
