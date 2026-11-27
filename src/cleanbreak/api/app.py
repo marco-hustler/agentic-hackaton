@@ -143,9 +143,14 @@ async def reapply_depreciation(req: RevalueSingleRequest) -> ItemValuation:
 
 @app.post("/api/solve", response_model=SplitResult)
 async def solve_endpoint(req: SplitRequest) -> SplitResult:
-    result = solve_split(req)
-    result.mediator_summary = await generate_mediator_summary(result)
-    return result
+    """Deterministic solver only — interactive actions never wait on an LLM."""
+    return solve_split(req)
+
+
+@app.post("/api/summary")
+async def summary_endpoint(result: SplitResult) -> dict[str, str]:
+    """Optional LLM polish of the mediator summary, fetched in the background by the UI."""
+    return {"summary": await generate_mediator_summary(result)}
 
 
 @app.post("/api/parse")

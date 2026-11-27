@@ -88,3 +88,46 @@ def test_llm_supplied_ids_are_replaced() -> None:
 
     items = asyncio.run(parse_messy_inventory("espresso", llm=FakeLLM()))
     assert items[0].id != "espresso" and items[0].id.startswith("espresso_")
+
+
+def _demo_solve_payload(client):
+    body = client.get("/api/demo").json()
+    return {
+        "party_a_name": body["party_a_name"],
+        "party_b_name": body["party_b_name"],
+        "mode": "balanced",
+        "valued_items": body["valued_items"],
+    }
+
+
+def test_solve_never_calls_llm(monkeypatch) -> None:
+    import cleanbreak.api.app as app_module
+
+    async def boom(*a, **k):
+        raise AssertionError("LLM called on the solve path")
+
+    monkeypatch.setattr(app_module, "generate_mediator_summary", boom)
+    client = TestClient(app)
+    res = client.post("/api/solve", json=_demo_solve_payload(client))
+    assert res.status_code == 200
+    assert res.json()["mediator_summary"].startswith("Based on")
+
+
+def test_summary_endpoint_without_llm_returns_deterministic_text(monkeypatch) -> None:
+    monkeypatch.delenv("LLM_MODEL", raising=False)
+    client = TestClient(app)
+    split = client.post("/api/solve", json=_demo_solve_payload(client)).json()
+    res = client.post("/api/summary", json=split)
+    assert res.status_code == 200 and res.json()["summary"] == split["mediator_summary"]
+
+
+def test_summary_endpoint_uses_llm(monkeypatch) -> None:
+    import cleanbreak.api.app as app_module
+
+    async def polished(result, **k):
+        return "Polished summary."
+
+    monkeypatch.setattr(app_module, "generate_mediator_summary", polished)
+    client = TestClient(app)
+    split = client.post("/api/solve", json=_demo_solve_payload(client)).json()
+    assert client.post("/api/summary", json=split).json()["summary"] == "Polished summary."
