@@ -369,8 +369,7 @@ body {
 }
 
 /*
- * Notched shell: title tab top-aligned with logo/account, taller than those
- * panels, fused into the white shell — air under logo/account, solid join.
+ * Title chip floats like logo/account (same height band + same gap to the shell).
  */
 .inventory-shell-notched {
   position: relative;
@@ -379,12 +378,12 @@ body {
   border-radius: 0;
   box-shadow: none;
   overflow: visible;
-  /* Notch height − 2px overlap so the shell starts under the tab */
-  padding-top: calc(4.5rem - 2px);
+  /* title chip height + same ~16px air logo/account have above the shell */
+  padding-top: calc(3.5rem + 16px);
 }
 @media (min-width: 640px) {
   .inventory-shell-notched {
-    padding-top: calc(4.75rem - 2px);
+    padding-top: calc(3.6rem + 16px);
   }
 }
 
@@ -395,11 +394,10 @@ body {
   z-index: 3;
   transform: translateX(-50%);
   max-width: min(42vw, 22rem);
-  /* Taller than logo/account (~3.6rem) → gap under those panels */
-  height: 4.5rem;
-  padding: 0.7rem 1.25rem 1.2rem;
+  height: 3.5rem;
+  padding: 0 1.25rem;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   text-align: center;
   font-size: 1.05rem;
@@ -412,28 +410,13 @@ body {
   overflow: hidden;
   background: #ffffff;
   border: 1px solid var(--line);
-  border-bottom: none;
-  border-radius: 1rem 1rem 0 0;
-  box-shadow:
-    0 -2px 8px -2px rgba(30, 41, 59, 0.06),
-    -4px 0 12px -6px rgba(30, 41, 59, 0.08),
-    4px 0 12px -6px rgba(30, 41, 59, 0.08);
-}
-/* Cover the shell's top border under the tab */
-.inventory-title-notch::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -4px;
-  height: 8px;
-  background: #ffffff;
-  pointer-events: none;
+  border-radius: 1rem;
+  box-shadow: var(--shadow-card);
 }
 @media (min-width: 640px) {
   .inventory-title-notch {
-    height: 4.75rem;
-    padding: 0.8rem 1.5rem 1.35rem;
+    height: 3.6rem;
+    padding: 0 1.5rem;
     font-size: 1.2rem;
     max-width: min(40vw, 24rem);
   }
@@ -447,11 +430,7 @@ body {
   background: #ffffff;
   border: 1px solid var(--line);
   border-radius: 1.25rem;
-  /* Side + bottom only — no top shadow under the fused title notch */
-  box-shadow:
-    -8px 14px 28px -16px rgba(30, 41, 59, 0.12),
-    8px 14px 28px -16px rgba(30, 41, 59, 0.12),
-    0 18px 36px -18px rgba(30, 41, 59, 0.14);
+  box-shadow: var(--shadow-card);
   overflow: hidden;
   position: relative;
   z-index: 1;
