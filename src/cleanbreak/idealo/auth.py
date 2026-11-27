@@ -9,24 +9,40 @@ import os
 import threading
 import webbrowser
 from pathlib import Path
+from typing import TypeVar
 from urllib.parse import parse_qs, urlparse
 
 from mcp.client.auth import AuthorizationCodeResult, OAuthClientProvider, TokenStorage
 from mcp.shared.auth import OAuthClientInformationFull, OAuthClientMetadata, OAuthToken
 from pydantic import AnyUrl
 
+from cleanbreak.paths import resolve_repo_path
+
+E = TypeVar("E", bound=BaseException)
+
 
 class LoginRequired(RuntimeError):
     """Raised by the server-side provider instead of starting an interactive browser login."""
 
 
-def is_login_required(exc: BaseException) -> bool:
-    """True if `exc` is, or (inside an ExceptionGroup from the MCP transport) contains, LoginRequired."""
-    if isinstance(exc, LoginRequired):
-        return True
+def find_exception(exc: BaseException, cls: type[E]) -> E | None:
+    """Return `exc` or the first `cls` nested in ExceptionGroups (the MCP transport wraps errors)."""
+    if isinstance(exc, cls):
+        return exc
     if isinstance(exc, BaseExceptionGroup):
-        return any(is_login_required(e) for e in exc.exceptions)
-    return False
+        for inner in exc.exceptions:
+            found = find_exception(inner, cls)
+            if found is not None:
+                return found
+    return None
+
+
+def is_login_required(exc: BaseException) -> bool:
+    return find_exception(exc, LoginRequired) is not None
+
+
+def default_token_path() -> Path:
+    return resolve_repo_path(os.getenv("IDEALO_TOKEN_FILE", ".idealo_tokens.json"))
 
 
 def tokens_present(token_file: str | Path) -> bool:

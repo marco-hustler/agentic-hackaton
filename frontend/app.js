@@ -8,6 +8,7 @@ const state = {
   split: null,
   idealo: null, // { live_enabled, logged_in, used, cap, remaining }
   splitVersion: 0,
+  summaryTimer: null,
 };
 
 // Single fetch helper: on any failure show the error and return null, leaving state untouched.
@@ -94,9 +95,15 @@ async function resolveSplit() {
   return true;
 }
 
-// Optional LLM polish: never blocks the UI; a stale or failed response is ignored silently.
-async function fetchSummaryInBackground() {
+// Optional LLM polish: debounced so slider bursts make one call; stale or failed responses are ignored.
+function fetchSummaryInBackground() {
   const version = ++state.splitVersion;
+  clearTimeout(state.summaryTimer);
+  state.summaryTimer = setTimeout(() => polishSummary(version), 500);
+}
+
+async function polishSummary(version) {
+  if (version !== state.splitVersion) return;
   try {
     const res = await fetch("/api/summary", {
       method: "POST",
@@ -109,9 +116,7 @@ async function fetchSummaryInBackground() {
       state.split.mediator_summary = summary;
       document.getElementById("mediatorSummary").textContent = summary;
     }
-  } catch (_) {
-    /* optional enhancement — ignore */
-  }
+  } catch (_) {}
 }
 
 async function refreshViaLiveIdealo() {

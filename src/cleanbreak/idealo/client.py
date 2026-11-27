@@ -12,7 +12,7 @@ import httpx2
 from mcp import ClientSession
 from mcp.client.streamable_http import create_mcp_http_client, streamable_http_client
 
-from cleanbreak.idealo.auth import build_oauth_provider, tokens_present
+from cleanbreak.idealo.auth import build_oauth_provider, default_token_path, tokens_present
 from cleanbreak.idealo.budget import BudgetExhausted, CallBudget, get_budget
 from cleanbreak.idealo.cache import DiskCache
 from cleanbreak.models import (
@@ -57,7 +57,7 @@ class IdealoMCPClient:
     ) -> None:
         self.server_url = server_url or os.getenv("IDEALO_MCP_URL", "https://mcp.idealo.com/mcp")
         self.country = (country or os.getenv("IDEALO_COUNTRY", "DE")).upper()
-        self.token_file = resolve_repo_path(token_file or os.getenv("IDEALO_TOKEN_FILE", ".idealo_tokens.json"))
+        self.token_file = resolve_repo_path(token_file) if token_file else default_token_path()
         resolved_cache_dir = cache_dir or os.getenv("IDEALO_CACHE_DIR", "data/cache")
         self.cache = DiskCache(resolved_cache_dir)
         # Item bundles (found / not_found) never expire; error bundles carry their own short expiry.

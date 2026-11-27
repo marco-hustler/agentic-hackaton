@@ -53,11 +53,15 @@ async def parse_messy_inventory(
     )
 
 
+def _slugify(text: str, *, default: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "_", text.lower()).strip("_")[:24] or default
+
+
 def _with_unique_ids(items: list[HouseholdItemInput]) -> list[HouseholdItemInput]:
     """Server-assigned ids (`<slug>_<6 hex>`): never collide with demo ids or earlier parses."""
     out = []
     for item in items:
-        slug = re.sub(r"[^a-z0-9]+", "_", (item.name or item.id).lower()).strip("_")[:24] or "item"
+        slug = _slugify(item.name or item.id, default="item")
         out.append(item.model_copy(update={"id": f"{slug}_{secrets.token_hex(3)}"}))
     return out
 
@@ -96,7 +100,7 @@ def _fallback_parse_inventory(
         clean_query = re.sub(r"\b(from|bought|paid|shared|50/50|201\d|202\d|old|our|my)\b", "", clean_name, flags=re.I)
         clean_query = re.sub(r"\s+", " ", clean_query).strip(" ,.-") or clean_name
 
-        slug = re.sub(r"[^a-z0-9]+", "_", clean_name.lower()).strip("_")[:24] or f"item_{idx}"
+        slug = _slugify(clean_name, default=f"item_{idx}")
         items.append(
             HouseholdItemInput(
                 id=f"{slug}_{idx}",

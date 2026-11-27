@@ -6,7 +6,7 @@ import asyncio
 import json
 import os
 from collections import Counter
-from typing import Literal
+from typing import Callable, Literal
 
 from dotenv import load_dotenv
 from fastapi import FastAPI
@@ -14,7 +14,7 @@ from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
-from cleanbreak.idealo.auth import is_login_required, tokens_present
+from cleanbreak.idealo.auth import default_token_path, find_exception, is_login_required, tokens_present
 from cleanbreak.idealo.budget import BudgetExhausted, get_budget
 from cleanbreak.idealo.client import IdealoMCPClient
 from cleanbreak.llm.tasks import generate_mediator_summary, parse_messy_inventory
@@ -26,7 +26,7 @@ from cleanbreak.models import (
     SplitResult,
     ValuedItem,
 )
-from cleanbreak.paths import REPO_ROOT, resolve_repo_path
+from cleanbreak.paths import REPO_ROOT
 from cleanbreak.solver.optimizer import solve_split
 from cleanbreak.valuation.engine import build_demo_fallback_valuations, compute_depreciation
 
@@ -112,10 +112,9 @@ async def value_items_endpoint(req: ValueRequest) -> ValueResponse:
 @app.get("/api/idealo/status")
 async def idealo_status() -> dict:
     """Live-mode flag, login presence and today's call budget. Never touches the network."""
-    token_file = resolve_repo_path(os.getenv("IDEALO_TOKEN_FILE", ".idealo_tokens.json"))
     return {
         "live_enabled": live_enabled(),
-        "logged_in": tokens_present(token_file),
+        "logged_in": tokens_present(default_token_path()),
         **get_budget().snapshot(),
     }
 
@@ -189,17 +188,6 @@ class _StopLive(Exception):
         self.note = note
 
 
-def _find(exc: BaseException, cls: type[BaseException]) -> BaseException | None:
-    if isinstance(exc, cls):
-        return exc
-    if isinstance(exc, BaseExceptionGroup):
-        for inner in exc.exceptions:
-            found = _find(inner, cls)
-            if found is not None:
-                return found
-    return None
-
-
 def _summarize_notes(valuations: list[ItemValuation]) -> str | None:
     counts = Counter(v.source_note for v in valuations if v.source_note)
     if not counts:
@@ -221,9 +209,11 @@ async def _value_items(
     Live idealo calls happen only when live mode is enabled, a login exists, the budget
     covers a connection plus one lookup, and at most LIVE_ITEM_CAP uncached items per action.
     """
-    fallback = {v.item_id: v for v in build_demo_fallback_valuations(items)}
+    fallback: dict[str, ItemValuation] = {}
 
     def placeholder(item: HouseholdItemInput, note: str) -> ItemValuation:
+        if not fallback:
+            fallback.update({v.item_id: v for v in build_demo_fallback_valuations(items)})
         return fallback[item.id].model_copy(update={"source_note": note})
 
     if mode == "fallback":
@@ -263,7 +253,13 @@ async def _value_items(
     return valuations, _summarize_notes(valuations), client.budget.snapshot()
 
 
-async def _live_lookup(client, items, pending, results, placeholder) -> None:
+async def _live_lookup(
+    client: IdealoMCPClient,
+    items: list[HouseholdItemInput],
+    pending: list[int],
+    results: list[ItemValuation | None],
+    placeholder: Callable[[HouseholdItemInput, str], ItemValuation],
+) -> None:
     to_lookup, skipped = pending[:LIVE_ITEM_CAP], pending[LIVE_ITEM_CAP:]
     for idx in skipped:
         results[idx] = placeholder(items[idx], NOTE_SKIPPED)
@@ -292,13 +288,13 @@ async def _live_lookup(client, items, pending, results, placeholder) -> None:
     deadline = float(os.getenv("IDEALO_LIVE_DEADLINE_SECONDS", "20"))
     try:
         await asyncio.wait_for(run(), timeout=deadline)
-    except (asyncio.TimeoutError, TimeoutError):
+    except TimeoutError:
         note = NOTE_SLOW
     except Exception as exc:  # includes ExceptionGroups raised by the MCP transport
-        stop = _find(exc, _StopLive)
+        stop = find_exception(exc, _StopLive)
         if stop is not None:
-            note = stop.note  # type: ignore[attr-defined]
-        elif _find(exc, BudgetExhausted) is not None:
+            note = stop.note
+        elif find_exception(exc, BudgetExhausted) is not None:
             note = NOTE_BUDGET
         elif is_login_required(exc):
             note = NOTE_LOGIN
