@@ -16,7 +16,7 @@ from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
-from cleanbreak.idealo.auth import default_token_path, find_exception, is_login_required, tokens_present
+from cleanbreak.idealo.auth import default_token_path, find_exception, is_login_required, server_login_present
 from cleanbreak.idealo.budget import BudgetExhausted, get_budget
 from cleanbreak.idealo.catalog import (
     CatalogHit,
@@ -369,7 +369,7 @@ def _session_idealo_token(request: Request | None) -> str | None:
 @app.get("/api/idealo/status")
 async def idealo_status(request: Request) -> dict:
     """Live-mode flag, login presence and today's call budget. Never touches the network."""
-    file_logged_in = tokens_present(default_token_path())
+    file_logged_in = server_login_present(default_token_path())
     session_token = _session_idealo_token(request)
     source = "file" if file_logged_in else ("session" if session_token else None)
     return {

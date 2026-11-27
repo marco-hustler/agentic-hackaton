@@ -10,40 +10,13 @@ from datetime import datetime, timezone
 from pathlib import Path
 from threading import Lock
 
+from cleanbreak.db.pg import PgConn as _PgConn
 from cleanbreak.models import ProcessCreate, ProcessInventory, ProcessKind, ProcessStatus, ProcessSummary
 from cleanbreak.paths import REPO_ROOT, resolve_repo_path
 
 _DEFAULT_DB = REPO_ROOT / "data" / "processes.db"
 _lock = Lock()
 _store: ProcessStore | None = None
-
-
-class _PgConn:
-    """Minimal sqlite3-like wrapper over psycopg: `?` placeholders, dict rows, commit on clean exit."""
-
-    def __init__(self, url: str) -> None:
-        import psycopg
-        from psycopg.rows import dict_row
-
-        self._conn = psycopg.connect(url, row_factory=dict_row)
-
-    def execute(self, sql: str, params: tuple | list = ()):  # noqa: ANN201 - psycopg cursor
-        return self._conn.execute(sql.replace("?", "%s"), params)
-
-    def commit(self) -> None:
-        self._conn.commit()
-
-    def __enter__(self) -> "_PgConn":
-        return self
-
-    def __exit__(self, exc_type, exc, tb) -> None:  # noqa: ANN001
-        try:
-            if exc_type is None:
-                self._conn.commit()
-            else:
-                self._conn.rollback()
-        finally:
-            self._conn.close()
 
 
 def _utc_now() -> str:

@@ -65,19 +65,72 @@ def _is_jwt_expired(token: str, *, leeway_seconds: int = 30) -> bool:
         return False
 
 
-def tokens_present(token_file: str | Path) -> bool:
-    """Cheap, offline check that a previous `--list-tools` login saved a live access token."""
-    try:
-        raw = json.loads(Path(token_file).read_text(encoding="utf-8"))
-    except (OSError, ValueError):
-        return False
+def _login_usable(raw: object) -> bool:
+    """A saved login works if its access token is live, or it can be refreshed (refresh token + client)."""
     tokens = raw.get("tokens") if isinstance(raw, dict) else None
     if not isinstance(tokens, dict):
         return False
     access_token = tokens.get("access_token")
-    if not isinstance(access_token, str) or not access_token:
+    if isinstance(access_token, str) and access_token and not _is_jwt_expired(access_token):
+        return True
+    refresh = tokens.get("refresh_token")
+    return bool(isinstance(refresh, str) and refresh and isinstance(raw, dict) and raw.get("client_info"))
+
+
+def tokens_present(token_file: str | Path) -> bool:
+    """Cheap, offline check that a previous `--list-tools` login saved a usable token."""
+    try:
+        raw = json.loads(Path(token_file).read_text(encoding="utf-8"))
+    except (OSError, ValueError):
         return False
-    return not _is_jwt_expired(access_token)
+    return _login_usable(raw)
+
+
+def _stored_tokens(raw: object) -> OAuthToken | None:
+    """Tokens to hand the MCP SDK. An expired access token is blanked (refresh token kept), so the
+    SDK refreshes before the first request instead of sending it and getting idealo's 403."""
+    if not isinstance(raw, dict) or not raw:
+        return None
+    tok = OAuthToken.model_validate(raw)
+    if tok.access_token and _is_jwt_expired(tok.access_token):
+        if not tok.refresh_token:
+            return None
+        return tok.model_copy(update={"access_token": ""})
+    return tok
+
+
+# ---- server login stored in Postgres (Vercel) -------------------------------------------------
+
+DB_TOKEN_KEY = "idealo_oauth"
+
+
+def _kv():  # noqa: ANN202 - KvStore | None
+    from cleanbreak.db.pg import database_url
+
+    url = database_url()
+    if url is None:
+        return None
+    from cleanbreak.db.kv import KvStore
+
+    return KvStore(url)
+
+
+def db_login_present() -> bool:
+    """True when Postgres holds a usable idealo login (only when DATABASE_URL is set)."""
+    kv = _kv()
+    if kv is None:
+        return False
+    try:
+        return _login_usable(kv.get(DB_TOKEN_KEY))
+    except Exception:
+        return False
+
+
+def server_login_present(token_file: str | Path | None = None) -> bool:
+    """The server's own idealo login: Postgres on Vercel, else the local token file."""
+    if _kv() is not None:
+        return db_login_present()
+    return tokens_present(token_file or default_token_path())
 
 
 async def _refuse_interactive_login(authorization_url: str) -> None:
@@ -133,13 +186,7 @@ class FileTokenStorage(TokenStorage):
             pass
 
     async def get_tokens(self) -> OAuthToken | None:
-        raw = self._read().get("tokens")
-        if not raw:
-            return None
-        tok = OAuthToken.model_validate(raw)
-        if tok.access_token and _is_jwt_expired(tok.access_token):
-            return None
-        return tok
+        return _stored_tokens(self._read().get("tokens"))
 
     async def set_tokens(self, tokens: OAuthToken) -> None:
         data = self._read()
@@ -154,6 +201,21 @@ class FileTokenStorage(TokenStorage):
         data = self._read()
         data["client_info"] = client_info.model_dump(mode="json")
         self._write(data)
+
+
+class DbTokenStorage(FileTokenStorage):
+    """Same JSON shape as the token file, kept in Postgres so refreshed tokens reach every instance."""
+
+    def __init__(self, kv, key: str = DB_TOKEN_KEY) -> None:  # noqa: ANN001 - KvStore
+        self.kv = kv
+        self.key = key
+
+    def _read(self) -> dict:
+        raw = self.kv.get(self.key)
+        return raw if isinstance(raw, dict) else {}
+
+    def _write(self, data: dict) -> None:
+        self.kv.set(self.key, data)
 
 
 class LoopbackCallbackCatcher:
@@ -285,7 +347,10 @@ def build_oauth_provider(
         response_types=["code"],
     )
     storage: TokenStorage
-    if tokens_present(token_file):
+    kv = _kv()
+    if kv is not None and db_login_present():
+        storage = DbTokenStorage(kv)
+    elif tokens_present(token_file):
         storage = FileTokenStorage(token_file)
     elif access_token and access_token.strip():
         storage = MemoryTokenStorage(access_token.strip())

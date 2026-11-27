@@ -12,7 +12,7 @@ import httpx2
 from mcp import ClientSession
 from mcp.client.streamable_http import create_mcp_http_client, streamable_http_client
 
-from cleanbreak.idealo.auth import build_oauth_provider, default_token_path, tokens_present
+from cleanbreak.idealo.auth import build_oauth_provider, default_token_path, server_login_present
 from cleanbreak.idealo.budget import BudgetExhausted, CallBudget, get_budget
 from cleanbreak.idealo.cache import DiskCache
 from cleanbreak.models import (
@@ -72,7 +72,7 @@ class IdealoMCPClient:
         self._tool_names: set[str] = set()
 
     def has_login(self) -> bool:
-        return bool(self.access_token) or tokens_present(self.token_file)
+        return bool(self.access_token) or server_login_present(self.token_file)
 
     @asynccontextmanager
     async def connect(self) -> AsyncIterator["IdealoMCPClient"]:

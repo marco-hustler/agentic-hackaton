@@ -67,6 +67,35 @@ class CallBudget:
             self._last_call = time.monotonic()
 
 
+class DbCallBudget(CallBudget):
+    """Same budget, counted in Postgres so every Vercel instance shares one daily counter.
+
+    The cap check and the increment are one atomic statement; the 3 calls/sec throttle stays
+    per instance.
+    """
+
+    KEY = "idealo_budget"
+
+    def __init__(self, kv, *, cap: int = DEFAULT_CAP, min_interval: float = DEFAULT_MIN_INTERVAL) -> None:  # noqa: ANN001
+        super().__init__(Path("postgres:idealo_budget"), cap=cap, min_interval=min_interval)
+        self.kv = kv
+
+    def _read_used(self) -> int:
+        return self.kv.used_today(self.KEY)
+
+    def _write_used(self, used: int) -> None:  # pragma: no cover - reserve() increments atomically
+        raise NotImplementedError
+
+    async def reserve(self) -> None:
+        async with self._lock:
+            wait = self._last_call + self.min_interval - time.monotonic()
+            if wait > 0:
+                await asyncio.sleep(wait)
+            if self.kv.try_increment_today(self.KEY, self.cap) is None:
+                raise BudgetExhausted(f"Daily idealo call budget reached ({self.cap}/{self.cap}).")
+            self._last_call = time.monotonic()
+
+
 _REGISTRY: dict[Path, CallBudget] = {}
 
 
@@ -75,11 +104,26 @@ def default_budget_path() -> Path:
 
 
 def get_budget(path: str | Path | None = None) -> CallBudget:
-    """One shared budget per counter file per process, so concurrent requests share the lock."""
+    """One shared budget per counter per process, so concurrent requests share the lock.
+
+    With DATABASE_URL (Vercel + Neon) and no explicit path, the counter lives in Postgres.
+    """
+    from cleanbreak.db.pg import database_url
+
+    cap = int(os.getenv("IDEALO_DAILY_CALL_CAP", str(DEFAULT_CAP)))
+    url = database_url() if path is None else None
+    if url is not None:
+        key = Path("postgres:idealo_budget")
+        budget = _REGISTRY.get(key)
+        if budget is None:
+            from cleanbreak.db.kv import KvStore
+
+            budget = DbCallBudget(KvStore(url), cap=cap)
+            _REGISTRY[key] = budget
+        return budget
     resolved = Path(path) if path is not None else default_budget_path()
     budget = _REGISTRY.get(resolved)
     if budget is None:
-        cap = int(os.getenv("IDEALO_DAILY_CALL_CAP", str(DEFAULT_CAP)))
         budget = CallBudget(resolved, cap=cap)
         _REGISTRY[resolved] = budget
     return budget
