@@ -146,3 +146,26 @@ export function saveProcessInventory(processId: string, inventory: ProcessInvent
     keepalive,
   })
 }
+
+/** A product from cached idealo searches (offline catalog, 0 MCP calls). */
+export type CatalogHit = {
+  product_ref: string
+  name: string
+  variant: string
+  price_eur: number
+  image_url: string | null
+  url: string | null
+  offer_count: number
+  rating: number | null
+  review_count: number
+  category: string
+}
+
+export function searchCatalog(q: string, signal?: AbortSignal) {
+  return api<CatalogHit[]>(`/api/catalog/search?q=${encodeURIComponent(q)}`, { signal })
+}
+
+/** A new house item valued at the hit's cached idealo price. */
+export function catalogItem(hit: CatalogHit) {
+  return api<ValuedItem>('/api/catalog/item', { method: 'POST', body: JSON.stringify(hit) })
+}

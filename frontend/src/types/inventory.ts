@@ -52,6 +52,7 @@ export type ItemValuation = {
   item_id: string
   matched_title: string
   image_url: string | null
+  product_ref?: string | null
   product_url: string | null
   category_label?: string | null
   is_substitute?: boolean

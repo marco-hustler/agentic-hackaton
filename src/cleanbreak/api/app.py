@@ -18,6 +18,7 @@ from pydantic import BaseModel
 
 from cleanbreak.idealo.auth import default_token_path, find_exception, is_login_required, tokens_present
 from cleanbreak.idealo.budget import BudgetExhausted, get_budget
+from cleanbreak.idealo.catalog import CatalogHit, load_catalog, search_catalog, valued_item_from_hit
 from cleanbreak.idealo.client import IdealoMCPClient
 from cleanbreak.llm.tasks import generate_mediator_summary, parse_messy_inventory
 from cleanbreak.db.processes import get_process_store
@@ -227,6 +228,18 @@ async def get_demo_scenario(mode: SplitMode = "balanced") -> dict:
 async def value_items_endpoint(req: ValueRequest) -> ValueResponse:
     valuations, warning, budget = await _value_items(req.items, country=req.country, mode=req.mode)
     return ValueResponse(valuations=valuations, warning=warning, budget=budget)
+
+
+@app.get("/api/catalog/search", response_model=list[CatalogHit])
+async def catalog_search(q: str = "", limit: int = 24) -> list[CatalogHit]:
+    """Search products from cached idealo searches (0 MCP calls)."""
+    return search_catalog(q, load_catalog(), limit=max(1, min(limit, 60)))
+
+
+@app.post("/api/catalog/item", response_model=ValuedItem)
+async def catalog_item(hit: CatalogHit) -> ValuedItem:
+    """A new house item for a catalog hit, valued at its cached idealo price (0 MCP calls)."""
+    return valued_item_from_hit(hit)
 
 
 @app.get("/api/idealo/status")

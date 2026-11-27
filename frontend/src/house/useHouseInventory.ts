@@ -52,6 +52,8 @@ export type HouseInventory = {
   setPoints: (id: string, a: number, b: number) => void
   forceAction: (id: string, action: AssignmentAction | null) => void
   setMode: (mode: SplitMode) => void
+  addItem: (vi: ValuedItem) => void
+  removeItem: (id: string) => void
 }
 
 type PendingSave = { pid: string; key: string; mode: SplitMode; items: ValuedItem[] }
@@ -199,6 +201,17 @@ export function useHouseInventory(processId: string | null, names: [string, stri
 
   const setMode = useCallback((mode: SplitMode) => edit((e) => ({ ...e, mode })), [edit])
 
+  const addItem = useCallback(
+    (vi: ValuedItem) => edit((e) => ({ ...e, version: e.version + 1, valuedItems: [vi, ...e.valuedItems] })),
+    [edit],
+  )
+
+  const removeItem = useCallback(
+    (id: string) =>
+      edit((e) => ({ ...e, version: e.version + 1, valuedItems: e.valuedItems.filter((vi) => vi.item.id !== id) })),
+    [edit],
+  )
+
   const scenario = useMemo<DemoScenario | null>(
     () =>
       entry?.split
@@ -214,5 +227,5 @@ export function useHouseInventory(processId: string | null, names: [string, stri
     [entry, names],
   )
 
-  return { scenario, error: loadError, solving, saving, solveError, updateItem, setPoints, forceAction, setMode }
+  return { scenario, error: loadError, solving, saving, solveError, updateItem, setPoints, forceAction, setMode, addItem, removeItem }
 }
