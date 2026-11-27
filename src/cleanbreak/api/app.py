@@ -42,6 +42,11 @@ from cleanbreak.valuation.engine import build_demo_fallback_valuations, compute_
 load_dotenv()
 
 DEMO_PATH = REPO_ROOT / "data" / "demo_berlin_wg.json"
+
+
+def demo_seed_enabled() -> bool:
+    """New houses start with the Berlin WG demo items only when DEMO_SEED_ENABLED is on (off by default)."""
+    return os.getenv("DEMO_SEED_ENABLED", "false").strip().lower() in {"1", "true", "yes", "on"}
 FRONTEND_DIR = REPO_ROOT / "frontend"
 DIST_DIR = FRONTEND_DIR / "dist"
 
@@ -164,13 +169,16 @@ async def _demo_valued_items(raw: dict | None = None) -> tuple[list[ValuedItem],
 
 @app.get("/api/processes/{process_id}/inventory", response_model=ProcessInventory)
 async def get_process_inventory(process_id: str) -> ProcessInventory:
-    """A house's saved inventory. The first visit seeds it from the demo (idealo cache only, 0 MCP calls)."""
+    """A house's saved inventory. Empty until items are added; with DEMO_SEED_ENABLED the first visit
+    seeds it from the demo (idealo cache only, 0 MCP calls)."""
     store = get_process_store()
     if store.get_process(process_id) is None:
         raise HTTPException(status_code=404, detail="Process not found")
     saved = store.get_inventory(process_id)
     if saved is not None:
         return saved
+    if not demo_seed_enabled():
+        return ProcessInventory()
     valued, _ = await _demo_valued_items()
     seeded = store.save_inventory(process_id, ProcessInventory(valued_items=valued))
     assert seeded is not None

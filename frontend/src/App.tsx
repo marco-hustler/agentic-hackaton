@@ -37,7 +37,25 @@ function markOnboardingSeen() {
   }
 }
 
+/** Where we are inside the app, kept in the URL hash so a reload lands in the same place. */
+type Place = { focusId: string; tab: HouseTab } | null
+const TABS: HouseTab[] = ['inventory', 'split', 'export']
+
+function readPlace(): Place {
+  const m = /^#\/house\/([^/]+)(?:\/([a-z]+))?/.exec(window.location.hash)
+  if (!m) return null
+  const tab = TABS.includes(m[2] as HouseTab) ? (m[2] as HouseTab) : 'inventory'
+  return { focusId: decodeURIComponent(m[1]), tab }
+}
+
+function writePlace(place: Place) {
+  const hash = place ? `#/house/${encodeURIComponent(place.focusId)}/${place.tab}` : ''
+  if (window.location.hash === hash) return
+  window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}${hash}`)
+}
+
 export default function App() {
+  const [initialPlace] = useState(readPlace)
   const [account, setAccount] = useState<AccountInfo | null>(() => loadSession())
   const [processes, setProcesses] = useState<ProcessSummary[]>([])
   const [loadError, setLoadError] = useState<string | null>(null)
@@ -45,11 +63,11 @@ export default function App() {
   const [view, setView] = useState<ProcessView>('world')
   const [showOnboarding, setShowOnboarding] = useState(() => !loadOnboardingSeen())
   const [showWizard, setShowWizard] = useState(false)
-  const [mode, setMode] = useState<WorldMode>('world')
-  const [focusId, setFocusId] = useState<string | null>(null)
+  const [mode, setMode] = useState<WorldMode>(initialPlace ? 'house' : 'world')
+  const [focusId, setFocusId] = useState<string | null>(initialPlace?.focusId ?? null)
   const [detailId, setDetailId] = useState<string | null>(null)
   /** Right-hand view inside a house. Item details live under Split. */
-  const [tab, setTab] = useState<HouseTab>('inventory')
+  const [tab, setTab] = useState<HouseTab>(initialPlace?.tab ?? 'inventory')
   const [inventoryFilter, setInventoryFilter] = useState('')
   const [addingObject, setAddingObject] = useState(false)
   const frameRef = useRef<HTMLDivElement>(null)
@@ -63,6 +81,14 @@ export default function App() {
         if (cancelled) return
         setProcesses(list)
         setLoadError(null)
+        // A remembered house that no longer exists (or belongs to someone else): back to the world.
+        setFocusId((cur) => {
+          if (cur && !list.some((p) => p.id === cur)) {
+            setMode('world')
+            return null
+          }
+          return cur
+        })
       })
       .catch((err: unknown) => !cancelled && setLoadError(err instanceof Error ? err.message : 'Failed to load'))
     return () => {
@@ -88,6 +114,12 @@ export default function App() {
   }, [mode, showWizard, showOnboarding, detailId])
 
   const focusProcess = processes.find((p) => p.id === focusId) ?? null
+
+  // Keep the URL in sync with the house + tab we're in.
+  useEffect(() => {
+    writePlace(mode === 'house' && focusId ? { focusId, tab } : null)
+  }, [mode, focusId, tab])
+
   const names = useMemo<[string, string]>(() => {
     const n = focusProcess ? participantNames(focusProcess) : ['You']
     return [n[0], n[1] ?? 'Invite someone']
@@ -219,6 +251,7 @@ export default function App() {
                 onSplit={inventory.splitAll}
                 onOpenItem={setDetailId}
                 onMoveItem={inventory.forceAction}
+                processId={focusProcess.id}
               />
               {detailVi && (
                 <>

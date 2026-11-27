@@ -1,5 +1,6 @@
-"""Per-process inventory persistence: seeded from the demo on first read, saved on PUT."""
+"""Per-process inventory persistence: empty by default (demo seed behind DEMO_SEED_ENABLED), saved on PUT."""
 
+import pytest
 from fastapi.testclient import TestClient
 
 from cleanbreak.api.app import app
@@ -10,6 +11,21 @@ def _new_process(client: TestClient) -> str:
     res = client.post("/api/processes", json={"kind": "separation", "participant_emails": ["marco@example.com"]})
     assert res.status_code == 201
     return res.json()["id"]
+
+
+@pytest.fixture(autouse=True)
+def _demo_seed(monkeypatch: pytest.MonkeyPatch) -> None:
+    """Most tests here need items to edit: turn the demo seed on unless a test says otherwise."""
+    monkeypatch.setenv("DEMO_SEED_ENABLED", "true")
+
+
+def test_new_house_is_empty_without_demo_seed(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setenv("DEMO_SEED_ENABLED", "false")
+    client = TestClient(app)
+    pid = _new_process(client)
+    body = client.get(f"/api/processes/{pid}/inventory").json()
+    assert body["valued_items"] == []
+    assert body["split_ids"] is None
 
 
 def test_first_read_seeds_demo_items_without_idealo_calls() -> None:

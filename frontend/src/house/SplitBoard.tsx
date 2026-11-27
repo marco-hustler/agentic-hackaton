@@ -18,6 +18,19 @@ type SplitBoardProps = {
   onOpenItem: (id: string) => void
   /** Drag a card to another box: pin it there and let the agent re-balance the rest. */
   onMoveItem?: (id: string, action: AssignmentAction) => void
+  /** Approvals are remembered per house across reloads. */
+  processId?: string
+}
+
+const approvalsKey = (pid: string) => `dividealo.approvals.${pid}`
+
+function loadApprovals(pid: string | undefined): Record<string, string> {
+  if (!pid) return {}
+  try {
+    return JSON.parse(localStorage.getItem(approvalsKey(pid)) ?? '{}') as Record<string, string>
+  } catch {
+    return {}
+  }
 }
 
 const DRAG_TYPE = 'application/x-dividealo-item'
@@ -439,10 +452,18 @@ function useRoomFloors(): Element[] {
  * the cards spin while it thinks and then fly into each person's box.
  * Meter on top, the house in the middle (the 3D frame), one box per person on the sides.
  */
-export function SplitBoard({ scenario, error, names, people, solving, unsplit, onSplit, onOpenItem, onMoveItem }: SplitBoardProps) {
+export function SplitBoard({ scenario, error, names, people, solving, unsplit, onSplit, onOpenItem, onMoveItem, processId }: SplitBoardProps) {
   const [showDetails, setShowDetails] = useState(false)
   /** Who approved which proposal; a new proposal needs new approvals. */
-  const [approvals, setApprovals] = useState<Record<string, string>>({})
+  const [approvals, setApprovals] = useState<Record<string, string>>(() => loadApprovals(processId))
+  useEffect(() => {
+    if (!processId) return
+    try {
+      localStorage.setItem(approvalsKey(processId), JSON.stringify(approvals))
+    } catch {
+      /* private mode: approvals just won't survive a reload */
+    }
+  }, [approvals, processId])
   const [phase, setPhase] = useState<Phase>('idle')
   /** The pile as it was when Split was pressed (the live list empties straight away). */
   const [pile, setPile] = useState<ValuedItem[]>([])
