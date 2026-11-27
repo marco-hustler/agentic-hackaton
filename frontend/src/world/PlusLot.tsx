@@ -12,18 +12,26 @@ type PlusLotProps = {
   hero?: boolean
   onCreate: () => void
   onHover: (hovered: boolean) => void
+  hidden?: boolean
 }
 
 const EDGE = LOT_SIZE - 0.5
 const DASH_COUNT = 7
 
 /** An empty lot with a floating terracotta "+" token. Click starts the wizard. */
-export function PlusLot({ position, hero = false, onCreate, onHover }: PlusLotProps) {
+export function PlusLot({ position, hero = false, onCreate, onHover, hidden = false }: PlusLotProps) {
+  const root = useRef<THREE.Group>(null)
   const token = useRef<THREE.Group>(null)
   const [hovered, setHovered] = useState(false)
   const size = hero ? 2.0 : 0.95
 
   useFrame(({ clock }, dt) => {
+    const r = root.current
+    if (r) {
+      const s = r.scale.x + ((hidden ? 0 : 1) - r.scale.x) * (1 - Math.exp(-dt * 7))
+      r.scale.setScalar(s)
+      r.visible = s > 0.02
+    }
     const g = token.current
     if (!g) return
     const t = clock.getElapsedTime()
@@ -60,8 +68,10 @@ export function PlusLot({ position, hero = false, onCreate, onHover }: PlusLotPr
 
   return (
     <group
+      ref={root}
       position={[position[0], 0, position[1]]}
       onPointerOver={(e) => {
+        if (hidden) return
         e.stopPropagation()
         setHovered(true)
         onHover(true)
@@ -73,6 +83,7 @@ export function PlusLot({ position, hero = false, onCreate, onHover }: PlusLotPr
         setHoverCursor(false)
       }}
       onClick={(e) => {
+        if (hidden) return
         e.stopPropagation()
         onCreate()
       }}
@@ -97,7 +108,6 @@ export function PlusLot({ position, hero = false, onCreate, onHover }: PlusLotPr
           <meshStandardMaterial color={WORLD.terracotta} roughness={0.45} />
         </RoundedBox>
       </group>
-
     </group>
   )
 }

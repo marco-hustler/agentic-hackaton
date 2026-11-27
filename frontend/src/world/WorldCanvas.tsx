@@ -1,47 +1,79 @@
 import { OrbitControls, OrthographicCamera } from '@react-three/drei'
-import { Canvas, useThree } from '@react-three/fiber'
+import { Canvas } from '@react-three/fiber'
 import { useLayoutEffect, useRef, useState } from 'react'
 import type { ProcessSummary } from '../types/process'
+import { CameraRig, type CameraShot } from './CameraRig'
 import { setHoverCursor } from './cursor'
 import { Ground } from './Ground'
 import { House } from './House'
 import { LabelProjector, type LabelAnchor, type LabelRegistry } from './labels'
 import { LOT_SLOTS, MAX_LOTS } from './layout'
-import { STATUS_META, WORLD } from './palette'
+import { KIND_META, STATUS_META, WORLD } from './palette'
 import { PlusLot } from './PlusLot'
+import { INTERIOR, ROOM_PLANS, roomBounds, type RoomInfo } from './rooms'
+
+export type WorldMode = 'world' | 'confirm' | 'house'
 
 type WorldCanvasProps = {
   processes: ProcessSummary[]
+  mode: WorldMode
+  focusId: string | null
+  /** Rooms (with items) for the focused house. */
+  focusRooms: RoomInfo[] | null
+  spinRequest: number
   onCreateProcess: () => void
-  onOpenProcess: (id: string) => void
+  onRequestOpen: (id: string) => void
+  onConfirmEnter: () => void
+  onCancel: () => void
 }
 
 const PLUS_ID = '__plus__'
+const CONFIRM_ID = '__confirm__'
+const roomLabelId = (i: number) => `__room_${i}__`
 
-/** Isometric camera whose zoom fits the whole plate to the viewport. */
-function IsoCamera() {
-  const width = useThree((s) => s.size.width)
-  const height = useThree((s) => s.size.height)
-  // The plate's isometric footprint is roughly 30 units wide, 22 tall.
-  const zoom = Math.max(14, Math.min(width / 30, height / 22))
-  return <OrthographicCamera makeDefault position={[20, 18, 20]} zoom={zoom} near={-100} far={200} />
-}
+const SHOT: Record<WorldMode, CameraShot> = { world: 'world', confirm: 'focus', house: 'interior' }
 
 /**
- * Landing world: an isometric 3D neighbourhood where every house is a process.
- * Always rendered under the DOM chrome and overlays.
+ * The isometric 3D neighbourhood: every house is a process.
+ * world → click a house → confirm (camera centres on it) → house (roof off, rooms).
  */
-export function WorldCanvas({ processes, onCreateProcess, onOpenProcess }: WorldCanvasProps) {
+export function WorldCanvas({
+  processes,
+  mode,
+  focusId,
+  focusRooms,
+  spinRequest,
+  onCreateProcess,
+  onRequestOpen,
+  onConfirmEnter,
+  onCancel,
+}: WorldCanvasProps) {
   const placed = processes.slice(0, MAX_LOTS)
   const empty = placed.length === 0
   const plusSlot = placed.length < MAX_LOTS ? LOT_SLOTS[placed.length] : null
   const [hoveredId, setHoveredId] = useState<string | null>(null)
 
-  const anchors: LabelAnchor[] = placed.map((p, i) => ({
-    id: p.id,
-    position: [LOT_SLOTS[i][0], 3.9, LOT_SLOTS[i][1] - 0.3],
-  }))
-  if (plusSlot) anchors.push({ id: PLUS_ID, position: [plusSlot[0], empty ? 4.6 : 2.1, plusSlot[1]] })
+  const focusIndex = placed.findIndex((p) => p.id === focusId)
+  const focusProcess = focusIndex >= 0 ? placed[focusIndex] : null
+  const focusSlot = focusIndex >= 0 ? LOT_SLOTS[focusIndex] : null
+  const inside = mode === 'house' && focusProcess !== null
+
+  // ---- label anchors -------------------------------------------------------
+  const anchors: LabelAnchor[] = []
+  if (!inside) {
+    placed.forEach((p, i) => {
+      if (mode === 'confirm' && p.id === focusId) return
+      anchors.push({ id: p.id, position: [LOT_SLOTS[i][0], 3.9, LOT_SLOTS[i][1] - 0.3] })
+    })
+    if (mode === 'confirm' && focusSlot) anchors.push({ id: CONFIRM_ID, position: [focusSlot[0], 1.2, focusSlot[1] - 0.3] })
+    if (plusSlot && mode === 'world')
+      anchors.push({ id: PLUS_ID, position: [plusSlot[0], empty ? 4.6 : 2.1, plusSlot[1]] })
+  } else if (focusSlot && focusRooms) {
+    ROOM_PLANS[focusRooms.length].forEach((r, i) => {
+      const b = roomBounds(r)
+      anchors.push({ id: roomLabelId(i), position: [focusSlot[0] + b.cx, INTERIOR.wallH + 0.35, focusSlot[1] + b.cz] })
+    })
+  }
 
   const anchorsRef = useRef<LabelAnchor[]>(anchors)
   useLayoutEffect(() => {
@@ -52,25 +84,32 @@ export function WorldCanvas({ processes, onCreateProcess, onOpenProcess }: World
     if (el) registry.current.set(id, el)
     else registry.current.delete(id)
   }
+  const shown = new Set(anchors.map((a) => a.id))
 
-  const hoverHandler = (id: string) => (on: boolean) =>
-    setHoveredId((cur) => (on ? id : cur === id ? null : cur))
+  const hoverHandler = (id: string) => (on: boolean) => setHoveredId((cur) => (on ? id : cur === id ? null : cur))
 
   return (
     <div className="absolute inset-0" style={{ background: WORLD.background }}>
-      <Canvas shadows dpr={[1, 2]} onPointerMissed={() => setHoverCursor(false)}>
-        <IsoCamera />
+      <Canvas
+        shadows
+        dpr={[1, 2]}
+        onPointerMissed={() => {
+          setHoverCursor(false)
+          if (mode === 'confirm') onCancel()
+        }}
+      >
+        <OrthographicCamera makeDefault position={[20, 18, 20]} zoom={20} near={-100} far={200} />
         <OrbitControls
           makeDefault
-          target={[0, 0, 0]}
           enableDamping
           dampingFactor={0.08}
           minPolarAngle={Math.PI / 5}
           maxPolarAngle={Math.PI / 2.6}
           minZoom={14}
-          maxZoom={120}
+          maxZoom={160}
           screenSpacePanning
         />
+        <CameraRig shot={SHOT[mode]} focus={focusSlot} spinRequest={spinRequest} />
 
         <color attach="background" args={[WORLD.background]} />
         <hemisphereLight args={['#ffffff', '#cfc6b8', 0.9]} />
@@ -88,34 +127,43 @@ export function WorldCanvas({ processes, onCreateProcess, onOpenProcess }: World
 
         <Ground />
 
-        {placed.map((p, i) => (
-          <House
-            key={p.id}
-            process={p}
-            position={LOT_SLOTS[i]}
-            onOpen={() => onOpenProcess(p.id)}
-            onHover={hoverHandler(p.id)}
-          />
-        ))}
+        {placed.map((p, i) => {
+          const isFocus = p.id === focusId
+          return (
+            <House
+              key={p.id}
+              process={p}
+              position={LOT_SLOTS[i]}
+              rooms={isFocus && focusRooms ? focusRooms : undefined}
+              open={inside && isFocus}
+              hidden={inside && !isFocus}
+              interactive={mode === 'world'}
+              onOpen={() => onRequestOpen(p.id)}
+              onHover={hoverHandler(p.id)}
+            />
+          )
+        })}
 
         {plusSlot && (
-          <PlusLot position={plusSlot} hero={empty} onCreate={onCreateProcess} onHover={hoverHandler(PLUS_ID)} />
+          <PlusLot
+            position={plusSlot}
+            hero={empty}
+            hidden={mode !== 'world'}
+            onCreate={onCreateProcess}
+            onHover={hoverHandler(PLUS_ID)}
+          />
         )}
 
         <LabelProjector anchors={anchorsRef} registry={registry} />
       </Canvas>
 
-      {/* World-anchored labels, positioned every frame by LabelProjector */}
-      <div className="pointer-events-none absolute inset-0 z-10 overflow-hidden" aria-hidden>
+      {/* World-anchored DOM, positioned every frame by LabelProjector */}
+      <div className="pointer-events-none absolute inset-0 z-10 overflow-hidden">
         {placed.map((p) => {
+          if (!shown.has(p.id)) return null
           const status = STATUS_META[p.status]
           return (
-            <div
-              key={p.id}
-              ref={register(p.id)}
-              className="absolute left-0 top-0"
-              style={{ visibility: 'hidden', willChange: 'transform' }}
-            >
+            <div key={p.id} ref={register(p.id)} className="absolute left-0 top-0" style={{ visibility: 'hidden' }} aria-hidden>
               <div
                 className={`panel flex items-center gap-2 py-1 pl-3 pr-1 transition-transform duration-150 ${
                   hoveredId === p.id ? 'scale-110' : ''
@@ -128,12 +176,52 @@ export function WorldCanvas({ processes, onCreateProcess, onOpenProcess }: World
             </div>
           )
         })}
-        {plusSlot && (
-          <div
-            ref={register(PLUS_ID)}
-            className="absolute left-0 top-0"
-            style={{ visibility: 'hidden', willChange: 'transform' }}
-          >
+
+        {shown.has(CONFIRM_ID) && focusProcess && (
+          <div ref={register(CONFIRM_ID)} className="absolute left-0 top-0" style={{ visibility: 'hidden' }}>
+            <div
+              role="dialog"
+              aria-label={`Enter ${focusProcess.title}`}
+              className="panel pointer-events-auto w-72 p-4"
+              style={{ background: '#ffffff', transform: 'translateX(calc(50% + 150px))' }}
+            >
+              <p className="label-sm text-terracotta">{KIND_META[focusProcess.kind].label}</p>
+              <h3 className="mt-0.5 text-lg font-extrabold tracking-tight text-petrol">Enter {focusProcess.title}?</h3>
+              <div className="mt-2 flex flex-wrap gap-1.5">
+                <span className={`pill ${STATUS_META[focusProcess.status].pill}`}>
+                  {STATUS_META[focusProcess.status].label}
+                </span>
+                <span className="pill pill-neutral">{1 + focusProcess.participantEmails.length} people</span>
+              </div>
+              <p className="mt-2 text-sm text-ink2">The roof comes off and you see one room per person.</p>
+              <div className="mt-4 flex justify-end gap-2">
+                <button type="button" className="btn btn-ghost h-9" onClick={onCancel}>
+                  Not now
+                </button>
+                <button type="button" className="btn btn-primary h-9" onClick={onConfirmEnter} autoFocus>
+                  Enter house
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {focusRooms?.map((room, i) =>
+          shown.has(roomLabelId(i)) ? (
+            <div key={i} ref={register(roomLabelId(i))} className="absolute left-0 top-0" style={{ visibility: 'hidden' }}>
+              <div className="panel flex items-center gap-2 py-1 pl-2 pr-3" style={{ borderRadius: 9999 }}>
+                <span className="h-2.5 w-2.5 rounded-full" style={{ background: room.color }} />
+                <span className="text-xs font-bold text-petrol">{room.kind}</span>
+                <span className="text-xs text-ink2">
+                  {room.owner} · {room.itemCategories.length} {room.itemCategories.length === 1 ? 'item' : 'items'}
+                </span>
+              </div>
+            </div>
+          ) : null,
+        )}
+
+        {shown.has(PLUS_ID) && plusSlot && (
+          <div ref={register(PLUS_ID)} className="absolute left-0 top-0" style={{ visibility: 'hidden' }} aria-hidden>
             {empty ? (
               <div
                 className={`panel flex flex-col items-center px-5 py-3 text-center transition-transform duration-150 ${
@@ -152,22 +240,24 @@ export function WorldCanvas({ processes, onCreateProcess, onOpenProcess }: World
       </div>
 
       {/* Keyboard / screen-reader path to the same actions as the 3D scene */}
-      <ul className="sr-only">
-        {placed.map((p) => (
-          <li key={p.id}>
-            <button type="button" onClick={() => onOpenProcess(p.id)}>
-              Open process {p.title}
-            </button>
-          </li>
-        ))}
-        {plusSlot && (
-          <li>
-            <button type="button" onClick={onCreateProcess}>
-              Create a new process
-            </button>
-          </li>
-        )}
-      </ul>
+      {mode === 'world' && (
+        <ul className="sr-only">
+          {placed.map((p) => (
+            <li key={p.id}>
+              <button type="button" onClick={() => onRequestOpen(p.id)}>
+                Open process {p.title}
+              </button>
+            </li>
+          ))}
+          {plusSlot && (
+            <li>
+              <button type="button" onClick={onCreateProcess}>
+                Create a new process
+              </button>
+            </li>
+          )}
+        </ul>
+      )}
     </div>
   )
 }

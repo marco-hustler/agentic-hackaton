@@ -37,3 +37,8 @@ export type HealthResponse = {
 export function getHealth() {
   return api<HealthResponse>('/api/health')
 }
+
+/** Preloaded demo scenario. Server reads idealo from cache only: no live calls. */
+export function getDemo() {
+  return api<import('../types/inventory').DemoScenario>('/api/demo')
+}

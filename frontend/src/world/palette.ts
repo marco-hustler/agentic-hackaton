@@ -38,4 +38,12 @@ export const STATUS_META: Record<ProcessStatus, { label: string; pill: string }>
 }
 
 /** One colour per participant pawn standing in front of a house. */
-export const PAWN_COLORS = [WORLD.terracotta, WORLD.sage, WORLD.petrol, WORLD.amber]
+export const PAWN_COLORS = [WORLD.terracotta, WORLD.sage, WORLD.petrol, WORLD.amber, '#9a6b4f']
+
+/** Crate colour per item category inside rooms. */
+export function categoryColor(category: string) {
+  const palette = ['#e05a47', '#059669', '#1e293b', '#d97706', '#9a6b4f', '#64748b']
+  let h = 0
+  for (const c of category) h = (h * 31 + c.charCodeAt(0)) >>> 0
+  return palette[h % palette.length]
+}

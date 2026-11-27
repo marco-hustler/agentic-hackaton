@@ -1,18 +1,9 @@
+import { LogoMark } from './LogoMark'
+
 type AppHeaderProps = {
   apiOk: boolean | null
   processCount: number
   onCreateProcess: () => void
-}
-
-function LogoMark() {
-  // Isometric cube: one block of the diorama.
-  return (
-    <svg viewBox="0 0 32 32" className="h-9 w-9 shrink-0" aria-hidden>
-      <path d="M16 3 28 10 16 17 4 10Z" fill="#e05a47" />
-      <path d="M4 10 16 17v12L4 22Z" fill="#1e293b" />
-      <path d="M28 10 16 17v12l12-7Z" fill="#059669" />
-    </svg>
-  )
 }
 
 export function AppHeader({ apiOk, processCount, onCreateProcess }: AppHeaderProps) {
