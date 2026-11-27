@@ -132,243 +132,247 @@ export function ItemDetail({ vi, assignment, names, solving, backLabel = '← Ba
   ]
 
   return (
-    <section className="panel pop-in flex h-full flex-col overflow-hidden" style={{ background: '#ffffff' }} aria-label={`Item: ${item.name}`}>
-      <div className="flex items-center gap-2 px-5 pt-4">
-        <button type="button" onClick={onBack} className="btn btn-ghost h-8 px-2.5 text-xs">
-          {backLabel}
-        </button>
-        {solving && (
-          <span className="pill pill-neutral ml-auto">
-            <span className="pulse-dot" /> Re-balancing…
-          </span>
-        )}
-      </div>
-
-      <div className="min-h-0 flex-1 space-y-3 overflow-y-auto px-5 pb-5 pt-3">
-        {/* Header */}
-        <div className="flex gap-3">
-          <div className="flex h-20 w-20 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-line bg-surface">
-            {v.image_url ? (
-              <img src={v.image_url} alt="" className="h-full w-full object-contain p-1.5" />
-            ) : (
-              <span className="h-6 w-6 rounded-md" style={{ background: categoryColor(item.category) }} />
+    <section className="panel flex min-h-0 w-full flex-col overflow-hidden" style={{ background: '#ffffff' }} aria-label={`Item: ${item.name}`}>
+      {/* Title bar */}
+      <div className="flex items-start gap-3 border-b border-line px-6 py-4">
+        <div className="min-w-0 flex-1">
+          <p className="label-sm text-muted">{item.category}</p>
+          <h2 className="text-2xl font-extrabold leading-tight tracking-tight text-petrol">{item.name}</h2>
+          {v.matched_title && v.matched_title !== item.name && (
+            <p className="truncate text-xs text-ink2" title={v.matched_title}>
+              idealo match: {v.matched_title}
+              {v.is_substitute ? ' (substitute)' : ''}
+            </p>
+          )}
+          <div className="mt-2 flex flex-wrap gap-1.5">
+            {pill && <span className={`pill ${pill.cls}`}>{pill.text}</span>}
+            {assignment?.is_contested && <span className="pill pill-draft">Contested</span>}
+            <SourcePill vi={vi} />
+            {solving && (
+              <span className="pill pill-neutral">
+                <span className="pulse-dot" /> Re-balancing…
+              </span>
             )}
-          </div>
-          <div className="min-w-0 flex-1">
-            <p className="label-sm text-muted">{item.category}</p>
-            <h2 className="text-xl font-extrabold leading-tight tracking-tight text-petrol">{item.name}</h2>
-            {v.matched_title && v.matched_title !== item.name && (
-              <p className="truncate text-xs text-ink2" title={v.matched_title}>
-                idealo match: {v.matched_title}
-                {v.is_substitute ? ' (substitute)' : ''}
-              </p>
-            )}
-            <div className="mt-1.5 flex flex-wrap gap-1.5">
-              {pill && <span className={`pill ${pill.cls}`}>{pill.text}</span>}
-              {assignment?.is_contested && <span className="pill pill-draft">Contested</span>}
-              <SourcePill vi={vi} />
-            </div>
           </div>
         </div>
+        <button type="button" onClick={onBack} className="btn btn-ghost h-9 shrink-0 px-3 text-sm" aria-label="Close">
+          {backLabel}
+        </button>
+      </div>
 
-        {/* Value */}
-        <dl className="grid grid-cols-3 gap-2 rounded-2xl bg-midnight p-3 text-white">
-          <div>
-            <dt className="text-xs text-white/60">New on idealo</dt>
-            <dd className="text-lg font-extrabold">{formatEur(v.trusted_market_price_eur)}</dd>
-          </div>
-          <div>
-            <dt className="text-xs text-white/60">Depreciation</dt>
-            <dd className="text-lg font-extrabold text-[#ffb4a2]">−{drop}%</dd>
-          </div>
-          <div>
-            <dt className="text-xs text-white/60">Fair value</dt>
-            <dd className="text-lg font-extrabold text-[#b7e4c7]">{formatEur(v.fair_value_eur)}</dd>
-          </div>
-        </dl>
-
-        {/* Assignment */}
-        <Section title="Who gets it" aside={forced ? <span className="pill pill-draft">Locked</span> : undefined}>
-          <div className="grid grid-cols-4 gap-1 rounded-xl bg-clay/60 p-1" role="radiogroup" aria-label="Assignment">
-            {lockOptions.map((o) => {
-              const active = forced === o.value
-              return (
-                <button
-                  key={o.label}
-                  type="button"
-                  role="radio"
-                  aria-checked={active}
-                  onClick={() => onUpdate({ forced_action: o.value })}
-                  className={`truncate rounded-lg px-2 py-1.5 text-xs font-bold transition ${
-                    active ? 'bg-white text-petrol shadow-sm' : 'text-ink2 hover:bg-white/50'
-                  }`}
-                >
-                  {o.label}
-                </button>
-              )
-            })}
-          </div>
-          {assignment?.rationale && <p className="mt-2 text-xs leading-relaxed text-ink2">{assignment.rationale}</p>}
-        </Section>
-
-        {/* Priority */}
-        <Section title="How much each side wants it">
-          <div className="space-y-2.5">
-            <PointsSlider
-              name={names[0]}
-              value={item.party_a_points}
-              accent="var(--terracotta)"
-              onChange={(n) => onUpdate({ party_a_points: n })}
-            />
-            <PointsSlider
-              name={names[1]}
-              value={item.party_b_points}
-              accent="var(--sage)"
-              onChange={(n) => onUpdate({ party_b_points: n })}
-            />
-          </div>
-        </Section>
-
-        {/* Depreciation */}
-        <Section title="Condition & age">
-          <div className="grid grid-cols-2 gap-2">
-            <label className="block">
-              <span className="text-xs text-muted">Condition</span>
-              <select
-                value={item.condition}
-                onChange={(e) => onUpdate({ condition: e.target.value as Condition })}
-                className="field mt-0.5 w-full"
-              >
-                {CONDITIONS.map((c) => (
-                  <option key={c.value} value={c.value}>
-                    {c.label}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <label className="block">
-              <span className="text-xs text-muted">Bought in</span>
-              <select
-                value={item.purchase_year}
-                onChange={(e) => onUpdate({ purchase_year: Number(e.target.value) })}
-                className="field mt-0.5 w-full"
-              >
-                {(YEARS.includes(item.purchase_year) ? YEARS : [item.purchase_year, ...YEARS]).map((y) => (
-                  <option key={y} value={y}>
-                    {y}
-                  </option>
-                ))}
-              </select>
-            </label>
-          </div>
-          <label className="mt-3 block">
-            <span className="flex items-baseline justify-between text-xs">
-              <span className="text-muted">Retained value {override === null ? '(computed)' : '(set by hand)'}</span>
-              <span className="font-extrabold text-ink">{Math.round(v.depreciation_factor * 100)}%</span>
-            </span>
-            <input
-              type="range"
-              min={10}
-              max={100}
-              value={Math.round((override ?? v.depreciation_factor) * 100)}
-              onChange={(e) => onUpdate({ depreciation_override: Number(e.target.value) / 100 })}
-              className="mt-1 w-full accent-[var(--petrol)]"
-            />
-          </label>
-          <div className="mt-1 flex items-start justify-between gap-2">
-            <p className="text-xs leading-relaxed text-ink2">{v.depreciation_explanation}</p>
-            {override !== null && (
-              <button
-                type="button"
-                onClick={() => onUpdate({ depreciation_override: null })}
-                className="btn btn-ghost h-7 shrink-0 px-2 text-xs"
-              >
-                Reset
-              </button>
+      <div className="grid min-h-0 flex-1 gap-4 overflow-y-auto p-6 md:grid-cols-2">
+        {/* Product + idealo evidence */}
+        <div className="order-2 space-y-3 md:order-1">
+          <div className="flex aspect-[16/10] items-center justify-center overflow-hidden rounded-2xl border border-line bg-white">
+            {v.image_url ? (
+              <img src={v.image_url} alt="" className="h-full w-full object-contain p-4" />
+            ) : (
+              <span className="h-10 w-10 rounded-xl" style={{ background: categoryColor(item.category) }} />
             )}
           </div>
-        </Section>
 
-        {/* idealo evidence */}
-        <Section
-          title="idealo evidence"
-          aside={
-            <button
-              type="button"
-              disabled
-              title="Live refresh is off in the demo: prices come from the idealo cache, so no MCP calls are spent."
-              className="btn btn-agent h-7 px-2.5 text-xs"
-            >
-              Refresh from idealo
-            </button>
-          }
-        >
-          {v.is_buy_new_deal && (
-            <div className="mb-3 rounded-xl border border-amber/40 bg-amber/10 p-2.5 text-xs">
-              <p className="font-extrabold text-ink">
-                Deal{v.deal_discount_pct > 0 ? ` −${Math.round(v.deal_discount_pct)}%` : ''}
-                {v.deal_headline ? ` · ${v.deal_headline}` : ''}
-              </p>
-              {v.best_buy_new_url && (
-                <a href={v.best_buy_new_url} target="_blank" rel="noreferrer" className="font-bold text-petrol underline">
-                  Buy new on idealo
-                </a>
+          {/* Value */}
+          <dl className="grid grid-cols-3 gap-2 rounded-2xl bg-midnight p-3 text-white">
+            <div>
+              <dt className="text-xs text-white/60">New on idealo</dt>
+              <dd className="text-lg font-extrabold">{formatEur(v.trusted_market_price_eur)}</dd>
+            </div>
+            <div>
+              <dt className="text-xs text-white/60">Depreciation</dt>
+              <dd className="text-lg font-extrabold text-[#ffb4a2]">−{drop}%</dd>
+            </div>
+            <div>
+              <dt className="text-xs text-white/60">Fair value</dt>
+              <dd className="text-lg font-extrabold text-[#b7e4c7]">{formatEur(v.fair_value_eur)}</dd>
+            </div>
+          </dl>
+
+          {/* idealo evidence */}
+          <Section
+            title="idealo evidence"
+            aside={
+              <button
+                type="button"
+                disabled
+                title="Live refresh is off in the demo: prices come from the idealo cache, so no MCP calls are spent."
+                className="btn btn-agent h-7 px-2.5 text-xs"
+              >
+                Refresh from idealo
+              </button>
+            }
+          >
+            {v.is_buy_new_deal && (
+              <div className="mb-3 rounded-xl border border-amber/40 bg-amber/10 p-2.5 text-xs">
+                <p className="font-extrabold text-ink">
+                  Deal{v.deal_discount_pct > 0 ? ` −${Math.round(v.deal_discount_pct)}%` : ''}
+                  {v.deal_headline ? ` · ${v.deal_headline}` : ''}
+                </p>
+                {v.best_buy_new_url && (
+                  <a href={v.best_buy_new_url} target="_blank" rel="noreferrer" className="font-bold text-petrol underline">
+                    Buy new on idealo
+                  </a>
+                )}
+              </div>
+            )}
+
+            <div className="flex flex-wrap gap-1.5 text-xs">
+              <span className="pill pill-neutral">{v.offer_count} offers</span>
+              {v.trusted_offer_count > 0 && <span className="pill pill-neutral">{v.trusted_offer_count} trusted</span>}
+              <span className={`pill ${v.scarcity_level === 'scarce' ? 'pill-draft' : 'pill-neutral'}`}>{v.scarcity_level}</span>
+              {v.lowest_offer_eur > 0 && <span className="pill pill-neutral">Lowest {formatEur(v.lowest_offer_eur)}</span>}
+            </div>
+
+            {v.price_history && (
+              <div className="mt-3">
+                <p className="text-xs font-bold text-ink2">Price, last 30 days</p>
+                <PriceRange h={v.price_history} />
+              </div>
+            )}
+
+            {v.top_offers.length > 0 && (
+              <ul className="dashed-rule mt-3 divide-y divide-line pt-1">
+                {v.top_offers.map((o, i) => (
+                  <li key={`${o.shop_name}-${i}`} className="flex items-center gap-2 py-2 text-sm">
+                    <span className="min-w-0 flex-1">
+                      <span className="block truncate font-bold text-ink">{o.shop_name}</span>
+                      <span className="block truncate text-xs text-muted">
+                        {o.shop_rating != null ? `★ ${o.shop_rating.toFixed(1)}` : 'no rating'}
+                        {o.delivery_text ? ` · ${o.delivery_text}` : ''}
+                        {o.free_return_days ? ` · ${o.free_return_days}d returns` : ''}
+                      </span>
+                    </span>
+                    <span className="shrink-0 text-right">
+                      <span className="block font-extrabold text-petrol">{formatEur(o.total_eur)}</span>
+                      {o.shipping_eur > 0 && <span className="block text-[11px] text-muted">incl. {formatEur(o.shipping_eur)} ship.</span>}
+                    </span>
+                    {o.offer_url && (
+                      <a
+                        href={o.offer_url}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="btn btn-ghost h-7 shrink-0 px-2 text-xs"
+                        aria-label={`Open ${o.shop_name} offer`}
+                      >
+                        ↗
+                      </a>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            )}
+
+            {v.product_url && (
+              <a href={v.product_url} target="_blank" rel="noreferrer" className="btn btn-agent mt-2 h-8 px-3 text-xs">
+                View on idealo
+              </a>
+            )}
+          </Section>
+        </div>
+
+        {/* Decisions */}
+        <div className="order-1 space-y-3 md:order-2">
+          {/* Assignment */}
+          <Section title="Who gets it" aside={forced ? <span className="pill pill-draft">Locked</span> : undefined}>
+            <div className="grid grid-cols-4 gap-1 rounded-xl bg-clay/60 p-1" role="radiogroup" aria-label="Assignment">
+              {lockOptions.map((o) => {
+                const active = forced === o.value
+                return (
+                  <button
+                    key={o.label}
+                    type="button"
+                    role="radio"
+                    aria-checked={active}
+                    onClick={() => onUpdate({ forced_action: o.value })}
+                    className={`truncate rounded-lg px-2 py-1.5 text-xs font-bold transition ${
+                      active ? 'bg-white text-petrol shadow-sm' : 'text-ink2 hover:bg-white/50'
+                    }`}
+                  >
+                    {o.label}
+                  </button>
+                )
+              })}
+            </div>
+            {assignment?.rationale && <p className="mt-2 text-xs leading-relaxed text-ink2">{assignment.rationale}</p>}
+          </Section>
+
+          {/* Priority */}
+          <Section title="How much each side wants it">
+            <div className="space-y-2.5">
+              <PointsSlider
+                name={names[0]}
+                value={item.party_a_points}
+                accent="var(--terracotta)"
+                onChange={(n) => onUpdate({ party_a_points: n })}
+              />
+              <PointsSlider
+                name={names[1]}
+                value={item.party_b_points}
+                accent="var(--sage)"
+                onChange={(n) => onUpdate({ party_b_points: n })}
+              />
+            </div>
+          </Section>
+
+          {/* Depreciation */}
+          <Section title="Condition & age">
+            <div className="grid grid-cols-2 gap-2">
+              <label className="block">
+                <span className="text-xs text-muted">Condition</span>
+                <select
+                  value={item.condition}
+                  onChange={(e) => onUpdate({ condition: e.target.value as Condition })}
+                  className="field mt-0.5 w-full"
+                >
+                  {CONDITIONS.map((c) => (
+                    <option key={c.value} value={c.value}>
+                      {c.label}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <label className="block">
+                <span className="text-xs text-muted">Bought in</span>
+                <select
+                  value={item.purchase_year}
+                  onChange={(e) => onUpdate({ purchase_year: Number(e.target.value) })}
+                  className="field mt-0.5 w-full"
+                >
+                  {(YEARS.includes(item.purchase_year) ? YEARS : [item.purchase_year, ...YEARS]).map((y) => (
+                    <option key={y} value={y}>
+                      {y}
+                    </option>
+                  ))}
+                </select>
+              </label>
+            </div>
+            <label className="mt-3 block">
+              <span className="flex items-baseline justify-between text-xs">
+                <span className="text-muted">Retained value {override === null ? '(computed)' : '(set by hand)'}</span>
+                <span className="font-extrabold text-ink">{Math.round(v.depreciation_factor * 100)}%</span>
+              </span>
+              <input
+                type="range"
+                min={10}
+                max={100}
+                value={Math.round((override ?? v.depreciation_factor) * 100)}
+                onChange={(e) => onUpdate({ depreciation_override: Number(e.target.value) / 100 })}
+                className="mt-1 w-full accent-[var(--petrol)]"
+              />
+            </label>
+            <div className="mt-1 flex items-start justify-between gap-2">
+              <p className="text-xs leading-relaxed text-ink2">{v.depreciation_explanation}</p>
+              {override !== null && (
+                <button
+                  type="button"
+                  onClick={() => onUpdate({ depreciation_override: null })}
+                  className="btn btn-ghost h-7 shrink-0 px-2 text-xs"
+                >
+                  Reset
+                </button>
               )}
             </div>
-          )}
-
-          <div className="flex flex-wrap gap-1.5 text-xs">
-            <span className="pill pill-neutral">{v.offer_count} offers</span>
-            {v.trusted_offer_count > 0 && <span className="pill pill-neutral">{v.trusted_offer_count} trusted</span>}
-            <span className={`pill ${v.scarcity_level === 'scarce' ? 'pill-draft' : 'pill-neutral'}`}>{v.scarcity_level}</span>
-            {v.lowest_offer_eur > 0 && <span className="pill pill-neutral">Lowest {formatEur(v.lowest_offer_eur)}</span>}
-          </div>
-
-          {v.price_history && (
-            <div className="mt-3">
-              <p className="text-xs font-bold text-ink2">Price, last 30 days</p>
-              <PriceRange h={v.price_history} />
-            </div>
-          )}
-
-          {v.top_offers.length > 0 && (
-            <ul className="dashed-rule mt-3 divide-y divide-line pt-1">
-              {v.top_offers.map((o, i) => (
-                <li key={`${o.shop_name}-${i}`} className="flex items-center gap-2 py-2 text-sm">
-                  <span className="min-w-0 flex-1">
-                    <span className="block truncate font-bold text-ink">{o.shop_name}</span>
-                    <span className="block truncate text-xs text-muted">
-                      {o.shop_rating != null ? `★ ${o.shop_rating.toFixed(1)}` : 'no rating'}
-                      {o.delivery_text ? ` · ${o.delivery_text}` : ''}
-                      {o.free_return_days ? ` · ${o.free_return_days}d returns` : ''}
-                    </span>
-                  </span>
-                  <span className="shrink-0 text-right">
-                    <span className="block font-extrabold text-petrol">{formatEur(o.total_eur)}</span>
-                    {o.shipping_eur > 0 && <span className="block text-[11px] text-muted">incl. {formatEur(o.shipping_eur)} ship.</span>}
-                  </span>
-                  {o.offer_url && (
-                    <a
-                      href={o.offer_url}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="btn btn-ghost h-7 shrink-0 px-2 text-xs"
-                      aria-label={`Open ${o.shop_name} offer`}
-                    >
-                      ↗
-                    </a>
-                  )}
-                </li>
-              ))}
-            </ul>
-          )}
-
-          {v.product_url && (
-            <a href={v.product_url} target="_blank" rel="noreferrer" className="btn btn-agent mt-2 h-8 px-3 text-xs">
-              View on idealo
-            </a>
-          )}
-        </Section>
+          </Section>
+        </div>
       </div>
     </section>
   )

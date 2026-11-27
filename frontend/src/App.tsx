@@ -203,11 +203,11 @@ export default function App() {
                   <button
                     type="button"
                     aria-label="Close item"
-                    className="fade-in absolute inset-0 z-40 bg-midnight/25"
+                    className="fade-in fixed inset-0 z-40 bg-midnight/40 backdrop-blur-sm"
                     onClick={() => setDetailId(null)}
                   />
-                  <div className="item-drawer pop-in">
-                    {itemDetail(detailVi, 'Close')}
+                  <div className="item-modal" role="dialog" aria-modal="true">
+                    <div className="pop-in flex flex-col">{itemDetail(detailVi, '✕ Close')}</div>
                   </div>
                 </>
               )}
