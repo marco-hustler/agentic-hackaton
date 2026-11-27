@@ -22,7 +22,7 @@ from cleanbreak.models import (
     ValuedItem,
 )
 from cleanbreak.solver.optimizer import solve_split
-from cleanbreak.valuation.engine import build_demo_fallback_valuations, build_valuation
+from cleanbreak.valuation.engine import build_demo_fallback_valuations, compute_depreciation
 
 load_dotenv()
 
@@ -105,22 +105,21 @@ async def value_items_endpoint(req: ValueRequest) -> ValueResponse:
 
 @app.post("/api/reapply-depreciation", response_model=ItemValuation)
 async def reapply_depreciation(req: RevalueSingleRequest) -> ItemValuation:
-    """Recalculate fair_value_eur after user edits condition/year/depreciation slider (0 MCP calls)."""
+    """Recalculate fair_value_eur after the user moves the slider (0 MCP calls)."""
     v = req.valuation
-    return build_valuation(
-        req.item,
-        matched_title=v.matched_title,
-        offers=v.top_offers,
-        price_history=v.price_history,
-        fallback_price_eur=v.trusted_market_price_eur,
-        product_ref=v.product_ref,
-        product_url=v.product_url,
-        image_url=v.image_url,
-        is_substitute=v.is_substitute,
-        substitute_reason=v.substitute_reason,
-        category_label=v.category_label,
-        test_grade=v.test_grade,
-        data_source=v.data_source,
+    factor, explanation = compute_depreciation(
+        purchase_year=req.item.purchase_year,
+        condition=req.item.condition,
+        override=req.item.depreciation_override,
+    )
+    # Only the depreciation changes. top_offers holds 5 offers, so rebuilding from it
+    # would shrink offer_count and shift the trusted price.
+    return v.model_copy(
+        update={
+            "depreciation_factor": factor,
+            "depreciation_explanation": explanation,
+            "fair_value_eur": round(v.trusted_market_price_eur * factor, 2),
+        }
     )
 
 
@@ -146,7 +145,7 @@ async def _value_items(
     mode: Literal["cache_only", "live_or_cache", "fallback"] = "cache_only",
 ) -> tuple[list[ItemValuation], str | None]:
     if mode == "fallback":
-        return build_demo_fallback_valuations(items), "Using offline demo fallback valuations."
+        return build_demo_fallback_valuations(items), "Showing sample prices. idealo was not asked."
 
     try:
         from cleanbreak.idealo.client import IdealoMCPClient
@@ -165,8 +164,8 @@ async def _value_items(
                     missing_live = True
                     valuations.append(fallback_map[item.id])
             warning = (
-                "Some items are using demo fallback values — run `python scripts/probe_idealo_mcp.py --probe-demo` "
-                "or click 'Value via idealo MCP' to fetch live prices."
+                "Some items use sample prices because idealo has not been asked about them yet. "
+                "Use Refresh from idealo to get real prices."
                 if missing_live
                 else None
             )
@@ -180,5 +179,5 @@ async def _value_items(
     except Exception as exc:
         return (
             build_demo_fallback_valuations(items),
-            f"idealo MCP unavailable ({exc}). Showing offline fallback valuations.",
+            f"Could not reach idealo ({exc}). Showing sample prices.",
         )

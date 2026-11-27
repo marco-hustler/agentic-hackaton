@@ -40,10 +40,6 @@ def compute_depreciation(
     override: float | None = None,
 ) -> tuple[float, str]:
     """Return (retained_value_multiplier, human_readable_explanation)."""
-    if override is not None:
-        clamped = round(max(0.10, min(1.00, override)), 2)
-        return clamped, f"Custom user override: {int(clamped * 100)}% of replacement value."
-
     year_now = current_year or datetime.now().year
     age_years = max(0, year_now - purchase_year)
 
@@ -59,9 +55,13 @@ def compute_depreciation(
     combined = round(max(0.25, min(1.0, age_factor * cond_factor)), 2)
 
     explanation = (
-        f"{age_years} yr old ({int(age_factor * 100)}%) × '{condition}' condition "
-        f"({int(cond_factor * 100)}%) = {int(combined * 100)}% of today's replacement value."
+        f"{age_years} years old ({int(age_factor * 100)}%), {condition.replace('_', ' ')} condition "
+        f"({int(cond_factor * 100)}%): {int(combined * 100)}% of today's price for a new one."
     )
+    # Moving the slider back to the suggested value clears the override.
+    if override is not None and abs(override - combined) >= 0.005:
+        clamped = round(max(0.10, min(1.00, override)), 2)
+        return clamped, f"Set by hand to {int(clamped * 100)}%. Suggested: {int(combined * 100)}%."
     return combined, explanation
 
 
@@ -291,7 +291,7 @@ def build_demo_fallback_valuations(items: list[HouseholdItemInput]) -> list[Item
         "washer": {
             "matched_title": "Bosch Serie 6 WGG244Z40 (8 kg, 1400 U/min)",
             "is_substitute": True,
-            "substitute_reason": "2019 model discontinued — anchored via closest available Bosch Serie 6 8 kg category substitute.",
+            "substitute_reason": "The 2019 model is no longer sold, so it is priced like the closest Bosch Serie 6 8 kg on idealo.",
             "offers": [
                 IdealoOffer(shop_name="AO / Coolblue", price_eur=579.0, shipping_eur=39.9, total_eur=618.9, shop_rating=4.7, delivery_text="3-5 Werktage", free_return_days=30),
                 IdealoOffer(shop_name="MediaMarkt", price_eur=599.0, shipping_eur=39.9, total_eur=638.9, shop_rating=4.4, delivery_text="3-6 Werktage", free_return_days=14),

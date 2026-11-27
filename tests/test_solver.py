@@ -91,3 +91,32 @@ def test_forced_swap_updates_transfer_deterministically() -> None:
     )
 
     assert res_a.cash_transfer_a_to_b_eur > res_b.cash_transfer_a_to_b_eur
+
+
+def test_contested_rule_is_relative_to_each_partys_average() -> None:
+    from cleanbreak.solver.optimizer import is_item_contested
+
+    item = HouseholdItemInput(id="x", name="X", party_a_points=12, party_b_points=10)
+    vi = ValuedItem(item=item, valuation=build_demo_fallback_valuations([item])[0])
+    # With 20 items the average is 5 points, so 12 against 10 is wanted by both.
+    assert is_item_contested(vi, (5.0, 5.0))
+    # With 7 items the average is about 14, so the same points are not enough.
+    assert not is_item_contested(vi, (14.3, 14.3))
+
+    item.party_a_points, item.party_b_points = 31, 15
+    assert not is_item_contested(vi, (5.0, 5.0))  # 15 is less than half of 31
+    item.party_a_points, item.party_b_points = 30, 15
+    assert is_item_contested(vi, (5.0, 5.0))
+    item.party_a_points, item.party_b_points = 0, 0
+    assert not is_item_contested(vi, (0.0, 0.0))
+
+
+def test_least_cash_counts_the_buyers_top_up() -> None:
+    items = _sample_items()
+    vals = build_demo_fallback_valuations(items)
+    valued = [ValuedItem(item=i, valuation=v) for i, v in zip(items, vals)]
+
+    # Buying new costs the buyer money, so the mode that minimises money avoids it.
+    res = solve_split(SplitRequest(mode="min_cash", valued_items=valued))
+    espresso = next(a for a in res.assignments if a.item_id == "espresso")
+    assert espresso.action in ("party_a", "party_b")

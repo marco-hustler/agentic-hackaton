@@ -23,19 +23,35 @@ from cleanbreak.models import (
 )
 
 
-def is_item_contested(vi: ValuedItem) -> bool:
-    """An item is contested when both parties allocate meaningful care points to it."""
+# The smaller of the two point counts must be at least this share of the larger one.
+CONTESTED_MIN_RATIO = 0.5
+
+
+def average_points(valued_items: list[ValuedItem]) -> tuple[float, float]:
+    """Each party's average points per item, so the contested rule scales with the list size."""
+    n = max(1, len(valued_items))
+    return (
+        sum(vi.item.party_a_points for vi in valued_items) / n,
+        sum(vi.item.party_b_points for vi in valued_items) / n,
+    )
+
+
+def is_item_contested(vi: ValuedItem, averages: tuple[float, float]) -> bool:
+    """Both parties put at least their own average on the item, and neither wants it far more."""
     pa = vi.item.party_a_points
     pb = vi.item.party_b_points
-    return pa >= 15 and pb >= 15 and abs(pa - pb) <= 15
+    if pa <= 0 or pb <= 0:
+        return False
+    avg_a, avg_b = averages
+    return pa >= avg_a and pb >= avg_b and min(pa, pb) >= CONTESTED_MIN_RATIO * max(pa, pb)
 
 
-def _candidate_actions(vi: ValuedItem, mode: SplitMode) -> list[AssignmentAction]:
+def _candidate_actions(vi: ValuedItem, mode: SplitMode, averages: tuple[float, float]) -> list[AssignmentAction]:
     if vi.item.forced_action is not None:
         return [vi.item.forced_action]
 
     actions: list[AssignmentAction] = ["party_a", "party_b"]
-    contested = is_item_contested(vi)
+    contested = is_item_contested(vi, averages)
 
     # Signature "Aha!" option: both want it AND idealo shows a real 30-day deal in stock.
     if contested and vi.valuation.is_buy_new_deal:
@@ -65,7 +81,8 @@ def _evaluate_plan(
     friction_a = 0.0
     friction_b = 0.0
     ownership_bonus = 0.0
-    arbitrage_bonus = 0.0
+    # Money the buyer of a new item pays on top of their share of the used one.
+    topup_total = 0.0
     liquidate_bonus = 0.0
 
     for vi, act in zip(valued_items, actions):
@@ -95,7 +112,7 @@ def _evaluate_plan(
             won_b += pb * 0.85
             goods_a += val
             entitled_a_kept += share_a * val
-            arbitrage_bonus += 0.14
+            topup_total += max(0.0, vi.valuation.lowest_offer_eur - val * (1.0 - share_a))
             if vi.item.ownership == "party_a":
                 ownership_bonus += 0.02
         elif act == "keep_b_buy_new_a":
@@ -103,47 +120,46 @@ def _evaluate_plan(
             won_a += pa * 0.85
             goods_b += val
             entitled_a_kept += share_a * val
-            arbitrage_bonus += 0.14
+            topup_total += max(0.0, vi.valuation.lowest_offer_eur - val * share_a)
             if vi.item.ownership == "party_b":
                 ownership_bonus += 0.02
         elif act == "sell_split":
             # Both give up the contested item and split proceeds cleanly.
             won_a += pa * 0.30
             won_b += pb * 0.30
-            if mode == "liquidate_contested" and is_item_contested(vi):
+            if mode == "liquidate_contested":
                 liquidate_bonus += 0.12
 
     frac_a = won_a / total_a_pts
     frac_b = won_b / total_b_pts
     cash_transfer = goods_a - entitled_a_kept
     cash_ratio = abs(cash_transfer) / total_value
+    # Spending on a new item weighs like paying the other party.
+    topup_ratio = topup_total / total_value
     friction_gap = abs(friction_a - friction_b) / total_value
 
     if mode == "min_cash":
         score = (
-            -0.75 * cash_ratio
+            -0.75 * (cash_ratio + topup_ratio)
             + 0.25 * (frac_a + frac_b)
             + 0.15 * min(frac_a, frac_b)
             + ownership_bonus
-            + 0.5 * arbitrage_bonus
         )
     elif mode == "liquidate_contested":
         score = (
             0.45 * (frac_a + frac_b)
             + 0.35 * min(frac_a, frac_b)
-            - 0.15 * cash_ratio
+            - 0.15 * (cash_ratio + topup_ratio)
             + liquidate_bonus
-            + 0.5 * arbitrage_bonus
             + ownership_bonus
         )
     else:  # "balanced" (default envy-free)
         score = (
             0.52 * (frac_a + frac_b)
             + 0.38 * min(frac_a, frac_b)
-            - 0.12 * cash_ratio
+            - 0.12 * (cash_ratio + topup_ratio)
             - 0.05 * friction_gap
             + ownership_bonus
-            + arbitrage_bonus
         )
 
     metrics = {
@@ -159,7 +175,8 @@ def _evaluate_plan(
 def _solve_exact_or_greedy(
     valued_items: list[ValuedItem], mode: SplitMode
 ) -> tuple[AssignmentAction, ...]:
-    action_lists = [_candidate_actions(vi, mode) for vi in valued_items]
+    averages = average_points(valued_items)
+    action_lists = [_candidate_actions(vi, mode, averages) for vi in valued_items]
 
     # Exact search is instant for <= 12 items (typical household split is 5-10 items).
     total_combos = 1
@@ -225,60 +242,29 @@ def _build_item_rationale(
         buy_price = val.lowest_offer_eur
         extra = max(0.0, round(buy_price - val.fair_value_eur * (1.0 - item.effective_party_a_share()), 2))
         savings_note = (
-            f"{party_b_name} puts their €{val.fair_value_eur * (1.0 - item.effective_party_a_share()):.0f} "
-            f"share toward a brand-new unit at €{buy_price:.0f} (top-up €{extra:.0f}; "
-            f"-{val.deal_discount_pct:.0f}% vs 30-day avg)."
+            f"{party_b_name} puts their €{val.fair_value_eur * (1.0 - item.effective_party_a_share()):,.0f} "
+            f"share toward a new one at €{buy_price:,.0f}, adding €{extra:,.0f}. "
+            f"That is {val.deal_discount_pct:.0f}% under the 30-day average."
         )
-        rationale = (
-            f"High contention ({party_a_name}: {item.party_a_points} pts, {party_b_name}: {item.party_b_points} pts), "
-            f"but idealo flags a live 30-day deal (-{val.deal_discount_pct:.0f}%). "
-            f"{party_a_name} keeps the used unit; {party_b_name} grabs a brand-new one at €{buy_price:.0f}."
-        )
+        # The deal box above the columns explains it.
+        rationale = ""
     elif action == "keep_b_buy_new_a":
         buy_url = val.best_buy_new_url
         buy_price = val.lowest_offer_eur
         extra = max(0.0, round(buy_price - val.fair_value_eur * item.effective_party_a_share(), 2))
         savings_note = (
-            f"{party_a_name} puts their €{val.fair_value_eur * item.effective_party_a_share():.0f} "
-            f"share toward a brand-new unit at €{buy_price:.0f} (top-up €{extra:.0f}; "
-            f"-{val.deal_discount_pct:.0f}% vs 30-day avg)."
+            f"{party_a_name} puts their €{val.fair_value_eur * item.effective_party_a_share():,.0f} "
+            f"share toward a new one at €{buy_price:,.0f}, adding €{extra:,.0f}. "
+            f"That is {val.deal_discount_pct:.0f}% under the 30-day average."
         )
-        rationale = (
-            f"High contention ({party_a_name}: {item.party_a_points} pts, {party_b_name}: {item.party_b_points} pts), "
-            f"but idealo flags a live 30-day deal (-{val.deal_discount_pct:.0f}%). "
-            f"{party_b_name} keeps the used unit; {party_a_name} grabs a brand-new one at €{buy_price:.0f}."
-        )
+        # The deal box above the columns explains it.
+        rationale = ""
     elif action == "sell_split":
-        rationale = (
-            f"Contested ({item.party_a_points} vs {item.party_b_points} pts) — sell and split "
-            f"~€{val.fair_value_eur:.0f} proportionally by ownership."
-        )
-    elif action == "party_a":
-        reason_bits = []
-        if item.forced_action == "party_a":
-            reason_bits.append("manually assigned")
-        elif item.party_a_points > item.party_b_points:
-            reason_bits.append(f"{party_a_name} prioritized it higher ({item.party_a_points} vs {item.party_b_points} pts)")
-        else:
-            reason_bits.append(f"balances overall split equity ({item.party_a_points} vs {item.party_b_points} pts)")
-        if item.ownership == "party_a":
-            reason_bits.append(f"originally paid by {party_a_name}")
-        if val.is_substitute:
-            reason_bits.append("valued via idealo category substitute")
-        rationale = "; ".join(reason_bits).capitalize() + "."
-    else:  # party_b
-        reason_bits = []
-        if item.forced_action == "party_b":
-            reason_bits.append("manually assigned")
-        elif item.party_b_points > item.party_a_points:
-            reason_bits.append(f"{party_b_name} prioritized it higher ({item.party_b_points} vs {item.party_a_points} pts)")
-        else:
-            reason_bits.append(f"balances overall split equity ({item.party_b_points} vs {item.party_a_points} pts)")
-        if item.ownership == "party_b":
-            reason_bits.append(f"originally paid by {party_b_name}")
-        if val.is_substitute:
-            reason_bits.append("valued via idealo category substitute")
-        rationale = "; ".join(reason_bits).capitalize() + "."
+        rationale = "The money is split by who paid."
+    elif item.forced_action is not None:
+        rationale = "Moved here with Swap, so the points no longer decide this item."
+    else:
+        rationale = ""
 
     return rationale, buy_url, buy_price, savings_note
 
@@ -313,6 +299,7 @@ def solve_split(request: SplitRequest) -> SplitResult:
         )
 
     best_actions = _solve_exact_or_greedy(valued_items, request.mode)
+    averages = average_points(valued_items)
 
     assignments: list[AssignedItemResult] = []
     arbitrage_highlights: list[AssignedItemResult] = []
@@ -392,7 +379,7 @@ def solve_split(request: SplitRequest) -> SplitResult:
             trusted_market_price_eur=round(val.trusted_market_price_eur, 2),
             party_a_points=item.party_a_points,
             party_b_points=item.party_b_points,
-            is_contested=is_item_contested(vi),
+            is_contested=is_item_contested(vi, averages),
             rationale=rationale,
             buy_new_url=buy_url,
             buy_new_price_eur=buy_price,
@@ -404,11 +391,11 @@ def solve_split(request: SplitRequest) -> SplitResult:
 
     cash_a_to_b = round(goods_a - entitled_a_kept, 2)
     if abs(cash_a_to_b) < 1.0:
-        cash_summary = f"Even split — no cash transfer needed between {party_a} and {party_b}."
+        cash_summary = f"Even split. No payment between {party_a} and {party_b}."
     elif cash_a_to_b > 0:
-        cash_summary = f"{party_a} transfers €{cash_a_to_b:.2f} to {party_b} to equalize the split."
+        cash_summary = f"{party_a} pays {party_b} €{cash_a_to_b:,.2f}."
     else:
-        cash_summary = f"{party_b} transfers €{abs(cash_a_to_b):.2f} to {party_a} to equalize the split."
+        cash_summary = f"{party_b} pays {party_a} €{abs(cash_a_to_b):,.2f}."
 
     frac_a = pts_a_won / max(1, pts_a_total)
     frac_b = pts_b_won / max(1, pts_b_total)
@@ -416,16 +403,7 @@ def solve_split(request: SplitRequest) -> SplitResult:
     is_envy_free = frac_a >= 0.50 and frac_b >= 0.50
     fairness_score_pct = round(min(100.0, ((frac_a + frac_b) / 2.0) * 100.0), 1)
 
-    mediator_summary = build_deterministic_mediator_summary(
-        party_a=party_a,
-        party_b=party_b,
-        total_fair=total_fair,
-        goods_a=goods_a,
-        goods_b=goods_b,
-        cash_summary=cash_summary,
-        fairness_score_pct=fairness_score_pct,
-        arbitrage_highlights=arbitrage_highlights,
-    )
+    mediator_summary = DETERMINISTIC_SUMMARY
 
     return SplitResult(
         mode=request.mode,
@@ -452,25 +430,6 @@ def solve_split(request: SplitRequest) -> SplitResult:
     )
 
 
-def build_deterministic_mediator_summary(
-    *,
-    party_a: str,
-    party_b: str,
-    total_fair: float,
-    goods_a: float,
-    goods_b: float,
-    cash_summary: str,
-    fairness_score_pct: float,
-    arbitrage_highlights: list[AssignedItemResult],
-) -> str:
-    """Clean, neutral, non-hallucinated summary used directly or as fallback when no LLM is set."""
-    parts = [
-        f"Based on trusted idealo market offers and transparent age depreciation, the shared inventory is valued at €{total_fair:.2f}.",
-        f"{party_a} keeps €{goods_a:.2f} in items and {party_b} keeps €{goods_b:.2f}, achieving a {fairness_score_pct:.0f}% priority-match score. {cash_summary}",
-    ]
-    if arbitrage_highlights:
-        top = arbitrage_highlights[0]
-        parts.append(
-            f"Conflict breaker: instead of fighting over the {top.item_name}, live idealo 30-day pricing flags a deal at €{top.buy_new_price_eur:.0f} so one party keeps the existing unit while the other buys new today."
-        )
-    return " ".join(parts)
+# Used directly or as the fallback when no LLM is set. The UI shows the totals, the payment
+# and the contested item, so the summary adds only where the values come from.
+DETERMINISTIC_SUMMARY = "Values come from idealo offers by well rated shops, minus age and condition."

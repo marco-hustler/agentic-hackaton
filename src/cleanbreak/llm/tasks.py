@@ -79,17 +79,24 @@ def _fallback_parse_inventory(
         else:
             condition = "good"
 
-        # Clean search query by stripping ownership/year parentheticals
-        clean_name = re.sub(r"\([^)]*\)", "", chunk).strip(" ,.-")
-        clean_query = re.sub(r"\b(from|bought|paid|shared|50/50|201\d|202\d|old|our|my)\b", "", clean_name, flags=re.I)
-        clean_query = re.sub(r"\s+", " ", clean_query).strip(" ,.-") or clean_name
+        # The product is the text before the first comma or the first ownership/condition word.
+        product = re.sub(r"\([^)]*\)", "", chunk).split(",", 1)[0]
+        meta = re.compile(
+            r"\b(from|bought|paid|shared|50/50|like new|worn|beat|%s|%s)\b" % (re.escape(party_a_name), re.escape(party_b_name)),
+            re.I,
+        )
+        if (m := meta.search(product)) is not None:
+            product = product[: m.start()]
+        product = re.sub(r"\b(201\d|202\d)\b", "", product)
+        product = re.sub(r"^((our|my|the|old)\s+)+", "", product.strip(), flags=re.I)
+        clean_name = re.sub(r"\s+", " ", product).strip(" ,.-") or chunk
 
         slug = re.sub(r"[^a-z0-9]+", "_", clean_name.lower()).strip("_")[:24] or f"item_{idx}"
         items.append(
             HouseholdItemInput(
                 id=f"{slug}_{idx}",
-                name=clean_name or chunk,
-                search_query=clean_query,
+                name=clean_name,
+                search_query=clean_name,
                 purchase_year=purchase_year,
                 condition=condition,  # type: ignore[arg-type]
                 ownership=ownership,  # type: ignore[arg-type]

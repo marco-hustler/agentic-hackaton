@@ -25,10 +25,15 @@ def test_trusted_price_ignores_low_rated_outlier() -> None:
 def test_depreciation_curve_and_override() -> None:
     mult, expl = compute_depreciation(purchase_year=2023, condition="good", current_year=2026)
     assert 0.50 <= mult <= 0.65
-    assert "3 yr old" in expl
+    assert "3 years old" in expl
 
     override_mult, _ = compute_depreciation(purchase_year=2023, condition="good", override=0.8)
     assert override_mult == 0.8
+
+    # Moving the slider back to the suggested value is not an override.
+    same_mult, same_expl = compute_depreciation(purchase_year=2023, condition="good", current_year=2026, override=mult)
+    assert same_mult == mult
+    assert same_expl == expl
 
 
 def test_black_friday_30d_deal_detection() -> None:
