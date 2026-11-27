@@ -16,7 +16,13 @@ type SplitBoardProps = {
   unsplit: ValuedItem[]
   onSplit: () => void
   onOpenItem: (id: string) => void
+  /** Drag a card to another box: pin it there and let the agent re-balance the rest. */
+  onMoveItem?: (id: string, action: AssignmentAction) => void
 }
+
+const DRAG_TYPE = 'application/x-dividealo-item'
+/** Box key -> the action that pins an item into that box. */
+const DROP_ACTION: Record<string, AssignmentAction> = { '0': 'party_a', '1': 'party_b', sold: 'sell_split' }
 
 type Phase = 'idle' | 'thinking' | 'flying'
 /** A short beat before the cards leave, even if the agent answers instantly. */
@@ -42,7 +48,7 @@ function Thumb({ vi }: { vi: ValuedItem }) {
   return (
     <span className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-line bg-white" aria-hidden>
       {vi.valuation.image_url ? (
-        <img src={vi.valuation.image_url} alt="" loading="lazy" className="h-full w-full object-contain p-1" />
+        <img src={vi.valuation.image_url} alt="" loading="lazy" draggable={false} className="h-full w-full object-contain p-1" />
       ) : (
         <span className="h-4 w-4 rounded-md bg-clay" />
       )}
@@ -51,13 +57,27 @@ function Thumb({ vi }: { vi: ValuedItem }) {
 }
 
 /** One item row in a person's box: photo, name, value. */
-function ItemRow({ vi, a, note, onOpen }: { vi: ValuedItem; a: Assignment; note?: string; onOpen: () => void }) {
+function ItemRow({ vi, a, note, onOpen, draggable }: { vi: ValuedItem; a: Assignment; note?: string; onOpen: () => void; draggable?: boolean }) {
+  const [dragging, setDragging] = useState(false)
   return (
-    <li className="pop-in">
+    <li className={`pop-in ${dragging ? 'opacity-40' : ''}`}>
+      {/* The row itself is the drag source (not its photo), so the whole card moves. */}
       <button
         type="button"
         onClick={onOpen}
-        className="flex w-full items-center gap-3 rounded-2xl px-2 py-2 text-left transition hover:bg-surface-low active:scale-[0.99]"
+        draggable={draggable}
+        onDragStart={(e) => {
+          e.dataTransfer.setData(DRAG_TYPE, vi.item.id)
+          e.dataTransfer.setData('text/plain', vi.item.name)
+          e.dataTransfer.effectAllowed = 'move'
+          const r = e.currentTarget.getBoundingClientRect()
+          e.dataTransfer.setDragImage(e.currentTarget, e.clientX - r.left, e.clientY - r.top)
+          setDragging(true)
+        }}
+        onDragEnd={() => setDragging(false)}
+        className={`flex w-full select-none items-center gap-3 rounded-2xl bg-white px-2 py-2 text-left transition hover:bg-surface-low active:scale-[0.99] ${
+          draggable ? 'cursor-grab active:cursor-grabbing' : ''
+        }`}
       >
         <Thumb vi={vi} />
         <span className="min-w-0 flex-1">
@@ -79,17 +99,37 @@ type BoxProps = {
   share?: number
   approved: boolean
   onApprove?: () => void
+  /** Set when cards can be dropped here. */
+  onDropItem?: (id: string) => void
   children: React.ReactNode
 }
 
 /** A person's box: name, approve tick, their items, their total. */
-function PersonBox({ dropKey, name, color, total, share, approved, onApprove, children }: BoxProps) {
+function PersonBox({ dropKey, name, color, total, share, approved, onApprove, onDropItem, children }: BoxProps) {
+  const [over, setOver] = useState(false)
+  const accepts = (e: React.DragEvent) => onDropItem !== undefined && e.dataTransfer.types.includes(DRAG_TYPE)
   return (
     <section
       data-split-box={dropKey}
-      className="panel pop-in flex min-h-0 flex-col overflow-hidden"
-      style={{ background: '#ffffff' }}
+      className="panel pop-in flex min-h-0 flex-col overflow-hidden transition-shadow"
+      style={{ background: '#ffffff', boxShadow: over ? `0 0 0 3px ${color}, var(--shadow-card)` : undefined }}
       aria-label={name}
+      onDragOver={(e) => {
+        if (!accepts(e)) return
+        e.preventDefault()
+        e.dataTransfer.dropEffect = 'move'
+        if (!over) setOver(true)
+      }}
+      onDragLeave={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setOver(false)
+      }}
+      onDrop={(e) => {
+        setOver(false)
+        if (!accepts(e)) return
+        e.preventDefault()
+        const id = e.dataTransfer.getData(DRAG_TYPE)
+        if (id) onDropItem?.(id)
+      }}
     >
       <header className="flex items-center gap-3 border-b border-line px-4 py-3">
         <span className="h-3.5 w-3.5 shrink-0 rounded-full" style={{ background: color }} aria-hidden />
@@ -319,7 +359,7 @@ function flyCard(el: HTMLElement, target: Element, delay: number, clones: Set<HT
  * The items on a room floor, as a stack of photo cards (portalled into the room's floor anchor).
  * Hovering the stack fans the cards out so each one can be seen and opened.
  */
-function RoomStack({ items, color, onOpen }: { items: ValuedItem[]; color: string; onOpen: (id: string) => void }) {
+function RoomStack({ items, color, onOpen, draggable }: { items: ValuedItem[]; color: string; onOpen: (id: string) => void; draggable?: boolean }) {
   if (items.length === 0) return null
   const n = items.length
   const mid = (n - 1) / 2
@@ -347,12 +387,18 @@ function RoomStack({ items, color, onOpen }: { items: ValuedItem[]; color: strin
             key={vi.item.id}
             type="button"
             onClick={() => onOpen(vi.item.id)}
+            draggable={draggable}
+            onDragStart={(e) => {
+              e.dataTransfer.setData(DRAG_TYPE, vi.item.id)
+              e.dataTransfer.setData('text/plain', vi.item.name)
+              e.dataTransfer.effectAllowed = 'move'
+            }}
             title={`${vi.item.name} · ${formatEur(vi.valuation.fair_value_eur)}`}
-            className="room-card absolute -left-1/2 -top-1/2 flex items-center justify-center overflow-hidden rounded-xl border-2 bg-white shadow-[0_6px_14px_-6px_rgba(15,23,42,0.5)]"
+            className={`${draggable ? 'cursor-grab active:cursor-grabbing' : ''} room-card absolute -left-1/2 -top-1/2 flex items-center justify-center overflow-hidden rounded-xl border-2 bg-white shadow-[0_6px_14px_-6px_rgba(15,23,42,0.5)]`}
             style={{ ...vars, borderColor: color }}
           >
             {vi.valuation.image_url ? (
-              <img src={vi.valuation.image_url} alt="" className="h-full w-full object-contain p-1" />
+              <img src={vi.valuation.image_url} alt="" draggable={false} className="h-full w-full object-contain p-1" />
             ) : (
               <span className="h-4 w-4 rounded-md bg-clay" />
             )}
@@ -393,7 +439,7 @@ function useRoomFloors(): Element[] {
  * the cards spin while it thinks and then fly into each person's box.
  * Meter on top, the house in the middle (the 3D frame), one box per person on the sides.
  */
-export function SplitBoard({ scenario, error, names, people, solving, unsplit, onSplit, onOpenItem }: SplitBoardProps) {
+export function SplitBoard({ scenario, error, names, people, solving, unsplit, onSplit, onOpenItem, onMoveItem }: SplitBoardProps) {
   const [showDetails, setShowDetails] = useState(false)
   /** Who approved which proposal; a new proposal needs new approvals. */
   const [approvals, setApprovals] = useState<Record<string, string>>({})
@@ -404,6 +450,49 @@ export function SplitBoard({ scenario, error, names, people, solving, unsplit, o
   const [landed, setLanded] = useState<Set<string>>(new Set())
   const startedAt = useRef(0)
   const floors = useRoomFloors()
+  /** Room the dragged card would land in (dropping over the house picks the nearest room). */
+  const [roomOver, setRoomOver] = useState<number | null>(null)
+  const roomDropRef = useRef<((side: number, id: string) => void) | null>(null)
+  useEffect(() => {
+    const nearestRoom = (e: DragEvent): number | null => {
+      if (!e.dataTransfer?.types.includes(DRAG_TYPE) || !roomDropRef.current) return null
+      if ((e.target as Element | null)?.closest?.('[data-split-box]')) return null // a side box handles it
+      const frame = document.querySelector('.world-frame')?.getBoundingClientRect()
+      if (!frame || e.clientX < frame.left || e.clientX > frame.right || e.clientY < frame.top || e.clientY > frame.bottom) return null
+      let best: number | null = null
+      let bestD = Infinity
+      floors.slice(0, 2).forEach((f, i) => {
+        const r = f.getBoundingClientRect()
+        const d = Math.hypot(r.left + r.width / 2 - e.clientX, r.top + r.height / 2 - e.clientY)
+        if (d < bestD) [best, bestD] = [i, d]
+      })
+      return best
+    }
+    const onOver = (e: DragEvent) => {
+      const side = nearestRoom(e)
+      setRoomOver(side)
+      if (side === null) return
+      e.preventDefault()
+      if (e.dataTransfer) e.dataTransfer.dropEffect = 'move'
+    }
+    const onDrop = (e: DragEvent) => {
+      const side = nearestRoom(e)
+      setRoomOver(null)
+      if (side === null) return
+      e.preventDefault()
+      const id = e.dataTransfer?.getData(DRAG_TYPE)
+      if (id) roomDropRef.current?.(side, id)
+    }
+    const clear = () => setRoomOver(null)
+    window.addEventListener('dragover', onOver)
+    window.addEventListener('drop', onDrop)
+    window.addEventListener('dragend', clear)
+    return () => {
+      window.removeEventListener('dragover', onOver)
+      window.removeEventListener('drop', onDrop)
+      window.removeEventListener('dragend', clear)
+    }
+  }, [floors])
   const cardEls = useRef(new Map<string, HTMLElement>())
   const clones = useRef(new Set<HTMLElement>())
   /** Latest scenario for the flight, which must not restart when a save refreshes it. */
@@ -507,7 +596,22 @@ export function SplitBoard({ scenario, error, names, people, solving, unsplit, o
   const toggle = (name: string) =>
     setApprovals((prev) => ({ ...prev, [name]: prev[name] === proposal ? '' : proposal }))
 
+  const canDrag = onMoveItem !== undefined && anySplit && !busy
+  /** Drop on a box: pin the item there (no-op if it is already there). */
+  const dropInto = (key: string) =>
+    canDrag
+      ? (id: string) => {
+          const action = DROP_ACTION[key]
+          const cur = split.assignments.find((a) => a.item_id === id)
+          if (!action || !cur || cur.action === action) return
+          onMoveItem?.(id, action)
+        }
+      : undefined
+
+  roomDropRef.current = canDrag ? (side, id) => dropInto(String(side))?.(id) : null
+
   const note = (a: Assignment, side: 0 | 1) => {
+    if (byId.get(a.item_id)?.item.forced_action) return 'Placed by hand'
     if (a.action === 'keep_a_buy_new_b' || a.action === 'keep_b_buy_new_a') {
       return `${names[1 - side]} ${verb(names[1 - side], 'buys', 'buy')} a new one on idealo`
     }
@@ -516,7 +620,9 @@ export function SplitBoard({ scenario, error, names, people, solving, unsplit, o
 
   const row = (a: Assignment, n?: string) => {
     const vi = byId.get(a.item_id)
-    return vi ? <ItemRow key={a.item_id} vi={vi} a={a} note={n} onOpen={() => onOpenItem(a.item_id)} /> : null
+    return vi ? (
+      <ItemRow key={a.item_id} vi={vi} a={a} note={n} draggable={canDrag} onOpen={() => onOpenItem(a.item_id)} />
+    ) : null
   }
 
   const box = (name: string, i: number) =>
@@ -530,6 +636,7 @@ export function SplitBoard({ scenario, error, names, people, solving, unsplit, o
         share={shares[i]}
         approved={isApproved(name)}
         onApprove={anySplit && !busy ? () => toggle(name) : undefined}
+        onDropItem={dropInto(String(i))}
       >
         {mine[i].length ? (
           <ul>{mine[i].map((a) => row(a, note(a, i as 0 | 1)))}</ul>
@@ -550,7 +657,7 @@ export function SplitBoard({ scenario, error, names, people, solving, unsplit, o
   const left = all.map(box).filter((_, i) => i % 2 === 0)
   const right = all.map(box).filter((_, i) => i % 2 === 1)
   const soldBox = anySold && (
-    <PersonBox key="sold" dropKey="sold" name="Sold and split" color="#64748b" approved={false}>
+    <PersonBox key="sold" dropKey="sold" name="Sold and split" color="#64748b" approved={false} onDropItem={dropInto('sold')}>
       {sold.length ? <ul>{sold.map((a) => row(a, 'Sold, money split by share'))}</ul> : null}
     </PersonBox>
   )
@@ -656,11 +763,28 @@ export function SplitBoard({ scenario, error, names, people, solving, unsplit, o
       {/* Split items sit on their owner's room floor in the house */}
       {floors.slice(0, 2).map((floor, side) =>
         createPortal(
-          <RoomStack
-            items={mine[side].map((a) => byId.get(a.item_id)).filter((vi): vi is ValuedItem => !!vi)}
-            color={participantColor(side)}
-            onOpen={onOpenItem}
-          />,
+          <>
+            {roomOver === side && (
+              <span
+                className="pointer-events-none absolute animate-pulse rounded-full"
+                style={{
+                  width: 150,
+                  height: 150,
+                  left: -75,
+                  top: -75,
+                  background: `${participantColor(side)}33`,
+                  boxShadow: `0 0 0 3px ${participantColor(side)}`,
+                }}
+                aria-hidden
+              />
+            )}
+            <RoomStack
+              items={mine[side].map((a) => byId.get(a.item_id)).filter((vi): vi is ValuedItem => !!vi)}
+              color={participantColor(side)}
+              onOpen={onOpenItem}
+              draggable={canDrag}
+            />
+          </>,
           floor,
           `room-${side}`,
         ),

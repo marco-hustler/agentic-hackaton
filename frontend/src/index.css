@@ -536,12 +536,34 @@ body {
 }
 
 /* ---- Split: meter on top, house in the middle, one box per person on the sides ---- */
+/* The shell sits under the world stage (painted first, no z-index lift). */
+.split-shell,
+.split-shell .inventory-shell-inner {
+  z-index: auto;
+}
 :root {
-  --split-top: var(--house-chrome);
+  /* Below the shell's embedded toolbar row (notch band + toolbar + inner gap). */
+  --split-top: calc(var(--house-chrome-compact) + 72px + 16px);
+  /* Page gutter + shell inner padding */
+  --split-x: 28px;
+  --split-bottom: 28px;
   --meter-h: 118px;
   --side-w: clamp(300px, 26vw, 420px);
 }
+@media (min-width: 640px) {
+  :root {
+    --split-top: calc(var(--house-chrome-compact) + 76px + 20px);
+  }
+}
+@media (min-width: 1024px) {
+  :root {
+    --split-x: 48px;
+    --split-bottom: 44px;
+  }
+}
 .world-frame[data-mode="house"][data-tab="split"] {
+  left: var(--split-x);
+  right: var(--split-x);
   top: calc(var(--split-top) + var(--meter-h) + 12px);
   bottom: calc(100% - var(--split-top) - var(--meter-h) - 12px - 30vh);
 }
@@ -549,8 +571,8 @@ body {
   position: absolute;
   z-index: 30;
   top: var(--split-top);
-  left: 12px;
-  right: 12px;
+  left: var(--split-x);
+  right: var(--split-x);
   height: var(--meter-h);
   padding: 14px 18px;
 }
@@ -559,9 +581,9 @@ body {
   position: absolute;
   z-index: 30;
   top: calc(var(--split-top) + var(--meter-h) + 24px + 30vh);
-  bottom: 0;
-  left: 12px;
-  right: 12px;
+  bottom: var(--split-bottom);
+  left: var(--split-x);
+  right: var(--split-x);
   overflow-y: auto;
   padding-bottom: 12px;
   display: flex;
@@ -578,14 +600,14 @@ body {
 }
 @media (min-width: 1024px) {
   .world-frame[data-mode="house"][data-tab="split"] {
-    left: calc(24px + var(--side-w) + 24px);
-    right: calc(24px + var(--side-w) + 24px);
+    left: calc(var(--split-x) + var(--side-w) + 24px);
+    right: calc(var(--split-x) + var(--side-w) + 24px);
     top: calc(var(--split-top) + var(--meter-h) + 16px);
-    bottom: 24px;
+    bottom: var(--split-bottom);
   }
   .split-meter {
-    left: calc(24px + var(--side-w) + 24px);
-    right: calc(24px + var(--side-w) + 24px);
+    left: calc(var(--split-x) + var(--side-w) + 24px);
+    right: calc(var(--split-x) + var(--side-w) + 24px);
   }
   .split-sides {
     display: contents;
@@ -594,7 +616,7 @@ body {
     position: absolute;
     z-index: 30;
     top: var(--split-top);
-    bottom: 24px;
+    bottom: var(--split-bottom);
     width: var(--side-w);
   }
   .split-side .panel {
@@ -602,10 +624,10 @@ body {
     max-height: none;
   }
   .split-side-left {
-    left: 24px;
+    left: var(--split-x);
   }
   .split-side-right {
-    right: 24px;
+    right: var(--split-x);
   }
 }
 /* Pile of items waiting for the next Split, floating over the house */
@@ -693,9 +715,9 @@ body {
 
 @media (min-width: 1024px) {
   .split-tray {
-    left: calc(24px + var(--side-w) + 48px);
-    right: calc(24px + var(--side-w) + 48px);
-    bottom: 36px;
+    left: calc(var(--split-x) + var(--side-w) + 48px);
+    right: calc(var(--split-x) + var(--side-w) + 48px);
+    bottom: calc(var(--split-bottom) + 12px);
     max-height: 52vh;
     justify-content: flex-end;
     gap: 14px;

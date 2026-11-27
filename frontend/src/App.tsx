@@ -10,6 +10,7 @@ import { HouseNav, type HouseTab } from './house/HouseNav'
 import { InventoryPanel } from './house/InventoryPanel'
 import { ItemDetail } from './house/ItemDetail'
 import { SplitBoard } from './house/SplitBoard'
+import { SplitShell } from './house/SplitShell'
 import type { ValuedItem } from './types/inventory'
 import { useHouseInventory } from './house/useHouseInventory'
 import { CreateProcessWizard } from './overlays/CreateProcessWizard'
@@ -153,6 +154,20 @@ export default function App() {
 
   return (
     <div className="relative h-full min-h-screen overflow-hidden bg-canvas text-ink">
+      {/* Split: inventory-style shell painted under the (clipped) world stage. */}
+      {inside && focusProcess && tab === 'split' && (
+        <SplitShell
+          processTitle={focusProcess.title}
+          tab={tab}
+          onTab={(t) => {
+            setDetailId(null)
+            setAddingObject(false)
+            setTab(t)
+          }}
+          onBackToWorld={backToWorld}
+          inventoryCount={inventory.itemCount}
+        />
+      )}
       {/* Layer: world. Full screen in the neighbourhood, left stage inside a house. */}
       <div className="world-stage">
         <WorldCanvas
@@ -203,6 +218,7 @@ export default function App() {
                 unsplit={inventory.unsplit}
                 onSplit={inventory.splitAll}
                 onOpenItem={setDetailId}
+                onMoveItem={inventory.forceAction}
               />
               {detailVi && (
                 <>
@@ -224,6 +240,14 @@ export default function App() {
               demo={demo}
               error={demoError}
               names={names}
+              tab={tab}
+              onTab={(t) => {
+                setDetailId(null)
+                setAddingObject(false)
+                setTab(t)
+              }}
+              onBackToWorld={backToWorld}
+              inventoryCount={inventory.itemCount}
               onOpenItem={(id) => {
                 setTab('split')
                 setDetailId(id)

@@ -33,8 +33,8 @@ export function HouseNav({
   onAddObject,
   inventoryCount = null,
 }: HouseNavProps) {
-  /* Inventory: title lives as a notch on the white shell; chrome is logo + account only. */
-  const inventoryNotchTitle = tab === 'inventory'
+  /* Every house tab: title lives as a notch on the white shell; chrome is logo + account only. */
+  const inventoryNotchTitle = tab === 'inventory' || tab === 'split' || tab === 'export'
 
   return (
     <header
