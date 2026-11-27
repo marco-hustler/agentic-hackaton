@@ -1,6 +1,6 @@
 import { OrbitControls, OrthographicCamera } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
-import { useLayoutEffect, useRef, useState } from 'react'
+import { useLayoutEffect, useRef, useState, type RefObject } from 'react'
 import type { ProcessSummary } from '../types/process'
 import { CameraRig, type CameraShot } from './CameraRig'
 import { setHoverCursor } from './cursor'
@@ -21,6 +21,8 @@ type WorldCanvasProps = {
   /** Rooms (with items) for the focused house. */
   focusRooms: RoomInfo[] | null
   spinRequest: number
+  /** Screen rect the scene is framed in; see CameraRig. */
+  frameRef: RefObject<HTMLElement | null>
   onCreateProcess: () => void
   onRequestOpen: (id: string) => void
   onConfirmEnter: () => void
@@ -35,7 +37,7 @@ const SHOT: Record<WorldMode, CameraShot> = { world: 'world', confirm: 'focus', 
 
 /**
  * The isometric 3D neighbourhood: every house is a process.
- * world → click a house → confirm (camera centres on it) → house (roof off, rooms).
+ * world → click a house → confirm (camera centres on it) → house (interior pops in, rooms).
  */
 export function WorldCanvas({
   processes,
@@ -43,6 +45,7 @@ export function WorldCanvas({
   focusId,
   focusRooms,
   spinRequest,
+  frameRef,
   onCreateProcess,
   onRequestOpen,
   onConfirmEnter,
@@ -109,7 +112,7 @@ export function WorldCanvas({
           maxZoom={160}
           screenSpacePanning
         />
-        <CameraRig shot={SHOT[mode]} focus={focusSlot} spinRequest={spinRequest} />
+        <CameraRig shot={SHOT[mode]} focus={focusSlot} spinRequest={spinRequest} frameRef={frameRef} />
 
         <color attach="background" args={[WORLD.background]} />
         <hemisphereLight args={['#ffffff', '#cfc6b8', 0.9]} />
@@ -182,7 +185,7 @@ export function WorldCanvas({
             <div
               role="dialog"
               aria-label={`Enter ${focusProcess.title}`}
-              className="panel pointer-events-auto w-72 p-4"
+              className="panel pop-in pointer-events-auto w-72 p-4"
               style={{ background: '#ffffff', transform: 'translateX(calc(50% + 150px))' }}
             >
               <p className="label-sm text-terracotta">{KIND_META[focusProcess.kind].label}</p>
@@ -193,7 +196,7 @@ export function WorldCanvas({
                 </span>
                 <span className="pill pill-neutral">{1 + focusProcess.participantEmails.length} people</span>
               </div>
-              <p className="mt-2 text-sm text-ink2">The roof comes off and you see one room per person.</p>
+              <p className="mt-2 text-sm text-ink2">Step inside: one room per person, every item in its place.</p>
               <div className="mt-4 flex justify-end gap-2">
                 <button type="button" className="btn btn-ghost h-9" onClick={onCancel}>
                   Not now
@@ -209,7 +212,7 @@ export function WorldCanvas({
         {focusRooms?.map((room, i) =>
           shown.has(roomLabelId(i)) ? (
             <div key={i} ref={register(roomLabelId(i))} className="absolute left-0 top-0" style={{ visibility: 'hidden' }}>
-              <div className="panel flex items-center gap-2 py-1 pl-2 pr-3" style={{ borderRadius: 9999 }}>
+              <div className="panel pop-in-late flex items-center gap-2 py-1 pl-2 pr-3" style={{ borderRadius: 9999 }}>
                 <span className="h-2.5 w-2.5 rounded-full" style={{ background: room.color }} />
                 <span className="text-xs font-bold text-petrol">{room.kind}</span>
                 <span className="text-xs text-ink2">

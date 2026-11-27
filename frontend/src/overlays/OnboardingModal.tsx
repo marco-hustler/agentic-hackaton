@@ -15,12 +15,12 @@ export function OnboardingModal({ open, onClose, onStart }: OnboardingModalProps
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-      <button type="button" className="absolute inset-0 bg-midnight/40" aria-label="Close onboarding" onClick={onClose} />
+      <button type="button" className="fade-in absolute inset-0 bg-midnight/40" aria-label="Close onboarding" onClick={onClose} />
       <div
         role="dialog"
         aria-modal="true"
         aria-labelledby="onboarding-title"
-        className="panel relative z-10 w-full max-w-md p-6"
+        className="panel pop-in relative z-10 w-full max-w-md p-6"
         style={{ background: '#ffffff' }}
       >
         <p className="label-sm text-terracotta">Welcome</p>

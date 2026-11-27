@@ -7,6 +7,7 @@ import { setHoverCursor } from './cursor'
 import { Tree } from './Ground'
 import { HouseInterior } from './HouseInterior'
 import type { Vec2 } from './layout'
+import { OUT, POP, safeScale, spring, stepSpring, type Spring } from './motion'
 import { KIND_META, WORLD } from './palette'
 import { buildRooms, participantColor, participantNames, ROOM_PLANS, roomBounds, type RoomInfo } from './rooms'
 
@@ -15,7 +16,7 @@ type HouseProps = {
   position: Vec2
   /** Rooms to show when opened; defaults to empty rooms for the participants. */
   rooms?: RoomInfo[]
-  /** true = roof off, interior visible. */
+  /** true = exterior away, interior visible. */
   open: boolean
   /** true = sink out of view (another house is open). */
   hidden: boolean
@@ -27,9 +28,6 @@ type HouseProps = {
 const BODY = { w: 2.2, h: 1.3, d: 1.8 }
 const ROOF_H = 0.9
 const BODY_Z = -0.3
-/** Seconds for the full open (or close) sequence. */
-const OPEN_SECONDS = 1.4
-
 function useRoofGeometry() {
   return useMemo(() => {
     const overhang = 0.18
@@ -46,25 +44,19 @@ function useRoofGeometry() {
   }, [])
 }
 
-/** 0 before a, 1 after b, smooth in between. */
-function phase(p: number, a: number, b: number) {
-  const t = Math.min(1, Math.max(0, (p - a) / (b - a)))
-  return t * t * (3 - 2 * t)
-}
-
 /**
  * A process as a little house on its lot. Hover lifts it; click asks to enter.
- * When open, the roof lifts away, the shell folds down and the cutaway
- * interior (one room per person) rises in its place.
+ * When open, the exterior shrinks away and the cutaway interior (one room
+ * per person) pops in with a spring; pawns pop into their rooms one by one.
  */
 export function House({ process, position, rooms, open, hidden, interactive, onOpen, onHover }: HouseProps) {
   const root = useRef<THREE.Group>(null)
-  const roof = useRef<THREE.Group>(null)
-  const roofMat = useRef<THREE.MeshStandardMaterial>(null)
   const shell = useRef<THREE.Group>(null)
   const interior = useRef<THREE.Group>(null)
   const pawnRefs = useRef<(THREE.Group | null)[]>([])
-  const progress = useRef(0)
+  const springs = useRef({ root: spring(0), shell: spring(1), interior: spring(0), lift: spring(0) })
+  /** Per pawn: scale spring + whether it currently stands inside. */
+  const pawnState = useRef<{ s: Spring; inside: boolean; wait: number }[]>([])
   const [hovered, setHovered] = useState(false)
   const roofGeo = useRoofGeometry()
   const kind = KIND_META[process.kind]
@@ -87,49 +79,48 @@ export function House({ process, position, rooms, open, hidden, interactive, onO
   useFrame((_, dt) => {
     const g = root.current
     if (!g) return
+    const sp = springs.current
 
-    // Spawn snap, hover lift, sink when hidden.
-    const k = 1 - Math.exp(-dt * 10)
-    const lift = hovered && interactive && !open ? 0.25 : 0
-    g.position.y += (lift - g.position.y) * k
-    const targetScale = hidden ? 0 : 1
-    const s = g.scale.x + (targetScale - g.scale.x) * (1 - Math.exp(-dt * 7))
-    g.scale.setScalar(s)
+    // Spawn pop, hover lift, shrink away when another house is open.
+    g.position.y = stepSpring(sp.lift, hovered && interactive && !open ? 0.25 : 0, dt)
+    const s = stepSpring(sp.root, hidden ? 0 : 1, dt, hidden ? OUT : POP)
+    g.scale.setScalar(safeScale(s))
     g.visible = s > 0.02
 
-    // Open / close sequence.
-    const goal = open ? 1 : 0
-    const step = dt / OPEN_SECONDS
-    progress.current += Math.max(-step, Math.min(step, goal - progress.current))
-    const p = progress.current
-
-    const roofT = phase(p, 0, 0.45)
-    if (roof.current && roofMat.current) {
-      roof.current.position.y = 0.16 + BODY.h + roofT * 2.6
-      roof.current.rotation.z = roofT * 0.35
-      roofMat.current.opacity = 1 - phase(p, 0.15, 0.45)
-      roof.current.visible = roofMat.current.opacity > 0.01
-    }
-
-    const shellT = phase(p, 0.25, 0.6)
+    // Open: exterior out first, then the interior pops in. Close: the reverse.
+    const inX = sp.interior.x
+    const shellX = stepSpring(sp.shell, open ? 0 : inX < 0.25 ? 1 : 0, dt, open ? OUT : POP)
     if (shell.current) {
-      shell.current.scale.y = Math.max(0.001, 1 - shellT)
-      shell.current.visible = shellT < 0.99
+      shell.current.scale.setScalar(safeScale(shellX))
+      shell.current.visible = shellX > 0.01
     }
-
-    const inT = phase(p, 0.45, 1)
+    const inS = stepSpring(sp.interior, open && shellX < 0.35 ? 1 : 0, dt, open ? POP : OUT)
     if (interior.current) {
-      interior.current.scale.set(0.6 + 0.4 * inT, Math.max(0.001, inT), 0.6 + 0.4 * inT)
-      interior.current.visible = inT > 0.01
+      interior.current.scale.setScalar(safeScale(inS))
+      interior.current.visible = inS > 0.01
     }
 
-    const walkT = phase(p, 0.55, 1)
+    // Pawns: shrink where they stand, reappear in place with a staggered pop.
+    const wantInside = open && inS > 0.6
     pawnSpots.forEach((spot, i) => {
       const pawn = pawnRefs.current[i]
       if (!pawn) return
-      pawn.position.lerpVectors(spot.from, spot.to, walkT)
-      // Little hop while walking in.
-      pawn.position.y += Math.sin(walkT * Math.PI) * 0.35
+      const st = (pawnState.current[i] ??= { s: spring(1), inside: false, wait: 0 })
+      let target = 1
+      if (st.inside !== wantInside) {
+        target = 0
+        if (st.s.x < 0.05) {
+          st.inside = wantInside
+          st.wait = i * 0.07
+          pawn.position.copy(wantInside ? spot.to : spot.from)
+        }
+      } else if (st.wait > 0) {
+        st.wait -= dt
+        target = 0
+      }
+      const ps = stepSpring(st.s, target, dt, target ? POP : OUT)
+      pawn.scale.setScalar(safeScale(ps))
+      pawn.visible = ps > 0.02
     })
   })
 
@@ -156,7 +147,7 @@ export function House({ process, position, rooms, open, hidden, interactive, onO
           onOpen()
         }}
       >
-        {/* Exterior shell: folds down when the house opens */}
+        {/* Exterior (walls + roof): shrinks away when the house opens */}
         <group ref={shell}>
           <RoundedBox
             args={[BODY.w + 0.4, 0.16, BODY.d + 0.4]}
@@ -195,13 +186,12 @@ export function House({ process, position, rooms, open, hidden, interactive, onO
             <meshStandardMaterial color={WORLD.window} emissive={WORLD.window} emissiveIntensity={0.25} />
           </mesh>
           <Tree x={-1.65} z={1.0} scale={0.5} variant={1} />
-        </group>
-
-        {/* Roof: lifts and fades away when opening */}
-        <group ref={roof} position={[0, 0.16 + BODY.h, BODY_Z]}>
-          <mesh geometry={roofGeo} castShadow>
-            <meshStandardMaterial ref={roofMat} color={kind.roof} roughness={0.6} flatShading transparent />
-          </mesh>
+          {/* Roof */}
+          <group position={[0, 0.16 + BODY.h, BODY_Z]}>
+            <mesh geometry={roofGeo} castShadow>
+              <meshStandardMaterial color={kind.roof} roughness={0.6} flatShading />
+            </mesh>
+          </group>
         </group>
 
         {/* Cutaway interior: one room per person */}
@@ -209,7 +199,7 @@ export function House({ process, position, rooms, open, hidden, interactive, onO
           <HouseInterior rooms={roomList} />
         </group>
 
-        {/* People as pawns: wait on the path, walk into their room on open */}
+        {/* People as pawns: wait on the path, pop into their room on open */}
         {pawnSpots.map((spot, i) => (
           <group
             key={i}

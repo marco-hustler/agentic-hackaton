@@ -1,3 +1,5 @@
+import type { DemoScenario, HouseholdItem, ItemValuation, SplitMode, SplitResult, ValuedItem } from '../types/inventory'
+
 /** Thin fetch helper for the FastAPI backend (proxied in Vite dev). */
 
 export class ApiError extends Error {
@@ -40,5 +42,30 @@ export function getHealth() {
 
 /** Preloaded demo scenario. Server reads idealo from cache only: no live calls. */
 export function getDemo() {
-  return api<import('../types/inventory').DemoScenario>('/api/demo')
+  return api<DemoScenario>('/api/demo')
+}
+
+/** Deterministic solver, a few ms. Never touches idealo or an LLM. */
+export function solveSplit(body: {
+  party_a_name: string
+  party_b_name: string
+  mode: SplitMode
+  valued_items: ValuedItem[]
+}) {
+  return api<SplitResult>('/api/solve', { method: 'POST', body: JSON.stringify(body) })
+}
+
+/** Recompute depreciation + fair value after a condition/year edit (0 MCP calls). */
+export function reapplyDepreciation(item: HouseholdItem, valuation: ItemValuation) {
+  return api<ItemValuation>('/api/reapply-depreciation', {
+    method: 'POST',
+    body: JSON.stringify({ item, valuation }),
+  })
+}
+
+export type IdealoStatus = { live_enabled: boolean; logged_in: boolean; used?: number; limit?: number }
+
+/** Live flag + today's budget. Reads local state only. */
+export function getIdealoStatus() {
+  return api<IdealoStatus>('/api/idealo/status')
 }

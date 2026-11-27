@@ -1,28 +1,15 @@
 import { useMemo, useState } from 'react'
-import type { Assignment, AssignmentAction, DemoScenario, ValuedItem } from '../types/inventory'
+import type { Assignment, DemoScenario, ValuedItem } from '../types/inventory'
 import { categoryColor } from '../world/palette'
-import { formatEur, verb } from './format'
+import { actionPill } from './assignment'
+import { formatEur } from './format'
 
 type InventoryPanelProps = {
   processTitle: string
   demo: DemoScenario | null
   error: string | null
   names: [string, string]
-}
-
-function actionPill(action: AssignmentAction, [a, b]: [string, string]) {
-  switch (action) {
-    case 'party_a':
-      return { text: `${a} 100%`, cls: 'bg-[#ffdad4] text-[#8a1c10]' }
-    case 'party_b':
-      return { text: `${b} 100%`, cls: 'pill-settled' }
-    case 'sell_split':
-      return { text: 'Sell & split', cls: 'pill-draft' }
-    case 'keep_a_buy_new_b':
-      return { text: `${a} ${verb(a, 'keeps', 'keep')} · ${b} ${verb(b, 'buys', 'buy')} new`, cls: 'pill-live' }
-    case 'keep_b_buy_new_a':
-      return { text: `${b} ${verb(b, 'keeps', 'keep')} · ${a} ${verb(a, 'buys', 'buy')} new`, cls: 'pill-live' }
-  }
+  onOpenItem: (id: string) => void
 }
 
 function SparkIcon() {
@@ -39,12 +26,14 @@ function ItemCard({
   names,
   open,
   onToggle,
+  onOpen,
 }: {
   vi: ValuedItem
   assignment: Assignment | undefined
   names: [string, string]
   open: boolean
   onToggle: () => void
+  onOpen: () => void
 }) {
   const { item, valuation: v } = vi
   const checked = v.data_source !== 'demo_fallback'
@@ -112,16 +101,16 @@ function ItemCard({
           </dl>
           <p className="mt-2 text-xs text-ink2">{v.depreciation_explanation}</p>
           {assignment?.rationale && <p className="dashed-rule mt-2 pt-2 text-xs text-ink2">{assignment.rationale}</p>}
-          {v.product_url && (
-            <a
-              href={v.product_url}
-              target="_blank"
-              rel="noreferrer"
-              className="btn btn-agent mt-2 h-8 px-3 text-xs"
-            >
-              View on idealo
-            </a>
-          )}
+          <div className="mt-2 flex flex-wrap gap-2">
+            <button type="button" onClick={onOpen} className="btn btn-primary h-8 px-3 text-xs">
+              Details & edit →
+            </button>
+            {v.product_url && (
+              <a href={v.product_url} target="_blank" rel="noreferrer" className="btn btn-agent h-8 px-3 text-xs">
+                View on idealo
+              </a>
+            )}
+          </div>
         </div>
       )}
 
@@ -143,7 +132,7 @@ function ItemCard({
 }
 
 /** Right-hand inventory: search, category filter, idealo-backed item cards. */
-export function InventoryPanel({ processTitle, demo, error, names }: InventoryPanelProps) {
+export function InventoryPanel({ processTitle, demo, error, names, onOpenItem }: InventoryPanelProps) {
   const [query, setQuery] = useState('')
   const [category, setCategory] = useState<string | null>(null)
   const [openId, setOpenId] = useState<string | null>(null)
@@ -241,6 +230,7 @@ export function InventoryPanel({ processTitle, demo, error, names }: InventoryPa
               names={names}
               open={effectiveOpen === vi.item.id}
               onToggle={() => setOpenId(effectiveOpen === vi.item.id ? '' : vi.item.id)}
+              onOpen={() => onOpenItem(vi.item.id)}
             />
           ))}
         </ul>

@@ -4,6 +4,7 @@ import { useRef, useState } from 'react'
 import type * as THREE from 'three'
 import { setHoverCursor } from './cursor'
 import { LOT_SIZE, type Vec2 } from './layout'
+import { OUT, POP, safeScale, spring, stepSpring } from './motion'
 import { WORLD } from './palette'
 
 type PlusLotProps = {
@@ -22,14 +23,16 @@ const DASH_COUNT = 7
 export function PlusLot({ position, hero = false, onCreate, onHover, hidden = false }: PlusLotProps) {
   const root = useRef<THREE.Group>(null)
   const token = useRef<THREE.Group>(null)
+  const rootSpring = useRef(spring(0))
+  const tokenSpring = useRef(spring(1))
   const [hovered, setHovered] = useState(false)
   const size = hero ? 2.0 : 0.95
 
   useFrame(({ clock }, dt) => {
     const r = root.current
     if (r) {
-      const s = r.scale.x + ((hidden ? 0 : 1) - r.scale.x) * (1 - Math.exp(-dt * 7))
-      r.scale.setScalar(s)
+      const s = stepSpring(rootSpring.current, hidden ? 0 : 1, dt, hidden ? OUT : POP)
+      r.scale.setScalar(safeScale(s))
       r.visible = s > 0.02
     }
     const g = token.current
@@ -38,7 +41,7 @@ export function PlusLot({ position, hero = false, onCreate, onHover, hidden = fa
     g.position.y = (hero ? 1.9 : 1.1) + Math.sin(t * 1.8) * 0.12
     g.rotation.y += dt * (hovered ? 1.6 : 0.5)
     const target = hovered ? 1.15 : 1
-    g.scale.setScalar(g.scale.x + (target - g.scale.x) * (1 - Math.exp(-dt * 10)))
+    g.scale.setScalar(safeScale(stepSpring(tokenSpring.current, target, dt)))
   })
 
   const dashes = []
