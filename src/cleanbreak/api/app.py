@@ -28,7 +28,7 @@ from cleanbreak.models import (
 )
 from cleanbreak.paths import REPO_ROOT, resolve_repo_path
 from cleanbreak.solver.optimizer import solve_split
-from cleanbreak.valuation.engine import build_demo_fallback_valuations, build_valuation
+from cleanbreak.valuation.engine import build_demo_fallback_valuations, compute_depreciation
 
 load_dotenv()
 
@@ -122,22 +122,22 @@ async def idealo_status() -> dict:
 
 @app.post("/api/reapply-depreciation", response_model=ItemValuation)
 async def reapply_depreciation(req: RevalueSingleRequest) -> ItemValuation:
-    """Recalculate fair_value_eur after user edits condition/year/depreciation slider (0 MCP calls)."""
+    """Recalculate only depreciation and fair value after a slider/condition edit (0 MCP calls).
+
+    Offer count, scarcity, friction and the deal flag stay exactly as idealo reported them.
+    """
     v = req.valuation
-    return build_valuation(
-        req.item,
-        matched_title=v.matched_title,
-        offers=v.top_offers,
-        price_history=v.price_history,
-        fallback_price_eur=v.trusted_market_price_eur,
-        product_ref=v.product_ref,
-        product_url=v.product_url,
-        image_url=v.image_url,
-        is_substitute=v.is_substitute,
-        substitute_reason=v.substitute_reason,
-        category_label=v.category_label,
-        test_grade=v.test_grade,
-        data_source=v.data_source,
+    factor, explanation = compute_depreciation(
+        purchase_year=req.item.purchase_year,
+        condition=req.item.condition,
+        override=req.item.depreciation_override,
+    )
+    return v.model_copy(
+        update={
+            "depreciation_factor": factor,
+            "depreciation_explanation": explanation,
+            "fair_value_eur": round(v.trusted_market_price_eur * factor, 2),
+        }
     )
 
 

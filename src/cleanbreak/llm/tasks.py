@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import re
+import secrets
 from datetime import datetime
 
 from cleanbreak.llm.client import AgnosticLLMClient
@@ -43,11 +44,22 @@ async def parse_messy_inventory(
                 parsed = json.loads(raw_json)
                 items_data = parsed.get("items", [])
                 if isinstance(items_data, list) and items_data:
-                    return [HouseholdItemInput.model_validate(item) for item in items_data]
+                    return _with_unique_ids([HouseholdItemInput.model_validate(item) for item in items_data])
             except Exception:
                 pass
 
-    return _fallback_parse_inventory(raw_text, party_a_name=party_a_name, party_b_name=party_b_name)
+    return _with_unique_ids(
+        _fallback_parse_inventory(raw_text, party_a_name=party_a_name, party_b_name=party_b_name)
+    )
+
+
+def _with_unique_ids(items: list[HouseholdItemInput]) -> list[HouseholdItemInput]:
+    """Server-assigned ids (`<slug>_<6 hex>`): never collide with demo ids or earlier parses."""
+    out = []
+    for item in items:
+        slug = re.sub(r"[^a-z0-9]+", "_", (item.name or item.id).lower()).strip("_")[:24] or "item"
+        out.append(item.model_copy(update={"id": f"{slug}_{secrets.token_hex(3)}"}))
+    return out
 
 
 def _fallback_parse_inventory(
