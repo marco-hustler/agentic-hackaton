@@ -21,6 +21,9 @@ type HouseProps = {
   /** true = sink out of view (another house is open). */
   hidden: boolean
   interactive: boolean
+  /** Item highlighted in the open interior. */
+  selectedItemId?: string | null
+  onSelectItem?: (id: string) => void
   onOpen: () => void
   onHover: (hovered: boolean) => void
 }
@@ -49,7 +52,18 @@ function useRoofGeometry() {
  * When open, the exterior shrinks away and the cutaway interior (one room
  * per person) pops in with a spring; pawns pop into their rooms one by one.
  */
-export function House({ process, position, rooms, open, hidden, interactive, onOpen, onHover }: HouseProps) {
+export function House({
+  process,
+  position,
+  rooms,
+  open,
+  hidden,
+  interactive,
+  selectedItemId,
+  onSelectItem,
+  onOpen,
+  onHover,
+}: HouseProps) {
   const root = useRef<THREE.Group>(null)
   const shell = useRef<THREE.Group>(null)
   const interior = useRef<THREE.Group>(null)
@@ -196,7 +210,7 @@ export function House({ process, position, rooms, open, hidden, interactive, onO
 
         {/* Cutaway interior: one room per person */}
         <group ref={interior} visible={false}>
-          <HouseInterior rooms={roomList} />
+          <HouseInterior rooms={roomList} selectedId={selectedItemId} onSelectItem={open ? onSelectItem : undefined} />
         </group>
 
         {/* People as pawns: wait on the path, pop into their room on open */}

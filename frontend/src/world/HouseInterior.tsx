@@ -1,10 +1,22 @@
 import { RoundedBox } from '@react-three/drei'
-import { useMemo } from 'react'
+import { useFrame } from '@react-three/fiber'
+import { useMemo, useRef, useState } from 'react'
 import * as THREE from 'three'
+import { setHoverCursor } from './cursor'
+import { safeScale, spring, stepSpring } from './motion'
 import { categoryColor, WORLD } from './palette'
-import { INTERIOR, ROOM_PLANS, roomBounds, type RoomInfo, type RoomKind } from './rooms'
+import {
+  CRATE,
+  crateOffset,
+  INTERIOR,
+  ROOM_PLANS,
+  roomBounds,
+  type RoomInfo,
+  type RoomItem,
+  type RoomKind,
+} from './rooms'
 
-const FLOOR_Y = 0.1
+const FLOOR_Y = CRATE.floorY
 const DOOR_GAP = 0.5
 const WALL_COLOR = '#fbf9f3'
 const WALL_TOP = '#eae0d5'
@@ -177,33 +189,107 @@ function Furniture({ kind, w, d }: { kind: RoomKind; w: number; d: number }) {
 }
 
 /** Items in a room as small crates on the free front half of the floor. */
-function Crates({ categories, w, d }: { categories: string[]; w: number; d: number }) {
-  const size = 0.17
-  const gap = 0.26
-  const cols = Math.max(1, Math.floor((w - 0.3) / gap))
+function Crate({
+  item,
+  position,
+  selected,
+  onSelect,
+}: {
+  item: RoomItem
+  position: [number, number]
+  selected: boolean
+  onSelect?: (id: string) => void
+}) {
+  const ref = useRef<THREE.Group>(null)
+  const [hovered, setHovered] = useState(false)
+  const pop = useRef(spring(0))
+  const lift = useRef(spring(0))
+
+  useFrame(({ clock }, dt) => {
+    const g = ref.current
+    if (!g) return
+    const s = stepSpring(pop.current, selected ? 1.45 : hovered ? 1.2 : 1, dt)
+    g.scale.setScalar(safeScale(s))
+    const bob = selected ? Math.sin(clock.getElapsedTime() * 3) * 0.03 : 0
+    g.position.y = stepSpring(lift.current, selected ? 0.28 : 0, dt) + bob
+  })
+
   return (
-    <group position={[-((Math.min(cols, categories.length) - 1) * gap) / 2, 0, d / 2 - 0.3]}>
-      {categories.slice(0, cols * 3).map((c, i) => {
-        const col = i % cols
-        const row = Math.floor(i / cols)
-        return (
-          <RoundedBox
-            key={i}
-            args={[size, size, size]}
-            radius={0.025}
-            position={[col * gap, size / 2, -row * gap]}
-            castShadow
-          >
-            <meshStandardMaterial color={categoryColor(c)} roughness={0.55} />
-          </RoundedBox>
-        )
-      })}
+    <group position={[position[0], 0, position[1]]}>
+      <group
+        ref={ref}
+        scale={0.001}
+        onPointerOver={(e) => {
+          if (!onSelect) return
+          e.stopPropagation()
+          setHovered(true)
+          setHoverCursor(true)
+        }}
+        onPointerOut={() => {
+          setHovered(false)
+          setHoverCursor(false)
+        }}
+        onClick={(e) => {
+          if (!onSelect) return
+          e.stopPropagation()
+          onSelect(item.id)
+        }}
+      >
+        <RoundedBox args={[CRATE.size, CRATE.size, CRATE.size]} radius={0.025} position={[0, CRATE.size / 2, 0]} castShadow>
+          <meshStandardMaterial
+            color={categoryColor(item.category)}
+            roughness={0.55}
+            emissive={selected ? '#ffffff' : '#000000'}
+            emissiveIntensity={selected ? 0.18 : 0}
+          />
+        </RoundedBox>
+      </group>
+      {/* Contact shadow ring under the selected crate */}
+      {selected && (
+        <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.012, 0]}>
+          <ringGeometry args={[0.13, 0.17, 24]} />
+          <meshBasicMaterial color={WORLD.door} transparent opacity={0.55} />
+        </mesh>
+      )}
     </group>
   )
 }
 
+function Crates({
+  items,
+  w,
+  d,
+  selectedId,
+  onSelect,
+}: {
+  items: RoomItem[]
+  w: number
+  d: number
+  selectedId: string | null
+  onSelect?: (id: string) => void
+}) {
+  return (
+    <>
+      {items.map((it, i) => {
+        const at = crateOffset(i, items.length, w, d)
+        return at ? (
+          <Crate key={it.id} item={it} position={at} selected={it.id === selectedId} onSelect={onSelect} />
+        ) : null
+      })}
+    </>
+  )
+}
+
 /** Roofless cutaway of a house: one tinted room per person, with furniture and item crates. */
-export function HouseInterior({ rooms }: { rooms: RoomInfo[] }) {
+export function HouseInterior({
+  rooms,
+  selectedId = null,
+  onSelectItem,
+}: {
+  rooms: RoomInfo[]
+  selectedId?: string | null
+  onSelectItem?: (id: string) => void
+}) {
   const count = rooms.length
   const walls = useWalls(count)
   const plan = ROOM_PLANS[count]
@@ -231,7 +317,7 @@ export function HouseInterior({ rooms }: { rooms: RoomInfo[] }) {
               <meshStandardMaterial color={tint(room.color, 0.7)} roughness={0.95} />
             </mesh>
             <Furniture kind={room.kind} w={b.w} d={b.d} />
-            <Crates categories={room.itemCategories} w={b.w} d={b.d} />
+            <Crates items={room.items} w={b.w} d={b.d} selectedId={selectedId} onSelect={onSelectItem} />
           </group>
         )
       })}

@@ -12,7 +12,7 @@ import { CreateProcessWizard } from './overlays/CreateProcessWizard'
 import { OnboardingModal } from './overlays/OnboardingModal'
 import { roomForAction } from './types/inventory'
 import type { ProcessSummary } from './types/process'
-import { buildRooms, participantNames } from './world/rooms'
+import { buildRooms, participantNames, type RoomItem } from './world/rooms'
 import { WorldCanvas, type WorldMode } from './world/WorldCanvas'
 
 const ONBOARDING_KEY = 'cleanbreak.onboarding.seen'
@@ -42,6 +42,9 @@ export default function App() {
   const [focusId, setFocusId] = useState<string | null>(null)
   const [spinRequest, setSpinRequest] = useState(0)
   const [detailId, setDetailId] = useState<string | null>(null)
+  /** Card expanded in the list: highlights its crate without leaving the list. */
+  const [listId, setListId] = useState<string | null>(null)
+  const selectedItemId = detailId ?? listId
   const frameRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -61,6 +64,7 @@ export default function App() {
         setMode('world')
         setFocusId(null)
       } else if (mode === 'house' && detailId) {
+        setListId(detailId)
         setDetailId(null)
       } else if (mode === 'house') {
         setMode('world')
@@ -85,13 +89,19 @@ export default function App() {
 
   const focusRooms = useMemo(() => {
     if (!focusProcess) return null
-    const perRoom: string[][] = []
+    const perRoom: RoomItem[][] = []
     if (demo) {
-      const category = new Map(demo.valued_items.map((vi) => [vi.item.id, vi.item.category]))
+      const byId = new Map(demo.valued_items.map((vi) => [vi.item.id, vi]))
       for (const a of demo.split.assignments) {
         const room = roomForAction(a.action)
-        if (room === null) continue
-        ;(perRoom[room] ??= []).push(category.get(a.item_id) ?? 'General')
+        const vi = byId.get(a.item_id)
+        if (room === null || !vi) continue
+        ;(perRoom[room] ??= []).push({
+          id: vi.item.id,
+          name: vi.item.name,
+          category: vi.item.category,
+          valueEur: vi.valuation.fair_value_eur,
+        })
       }
     }
     return buildRooms(focusProcess, perRoom)
@@ -111,6 +121,7 @@ export default function App() {
 
   function backToWorld() {
     setDetailId(null)
+    setListId(null)
     setMode('world')
     setFocusId(null)
   }
@@ -129,6 +140,8 @@ export default function App() {
           focusRooms={focusRooms}
           spinRequest={spinRequest}
           frameRef={frameRef}
+          selectedItemId={selectedItemId}
+          onSelectItem={setDetailId}
           onCreateProcess={openWizard}
           onRequestOpen={(id) => {
             setFocusId(id)
@@ -182,7 +195,10 @@ export default function App() {
                 assignment={demo?.split.assignments.find((a) => a.item_id === detailVi.item.id)}
                 names={names}
                 solving={inventory.solving}
-                onBack={() => setDetailId(null)}
+                onBack={() => {
+                  setListId(detailVi.item.id)
+                  setDetailId(null)
+                }}
                 onUpdate={(patch) => inventory.updateItem(detailVi.item.id, patch)}
               />
             ) : (
@@ -191,6 +207,8 @@ export default function App() {
                 demo={demo}
                 error={demoError}
                 names={names}
+                openId={listId}
+                onOpenChange={setListId}
                 onOpenItem={setDetailId}
               />
             )}

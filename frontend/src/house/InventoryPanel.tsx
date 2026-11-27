@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import type { Assignment, DemoScenario, ValuedItem } from '../types/inventory'
 import { categoryColor } from '../world/palette'
 import { actionPill } from './assignment'
@@ -9,6 +9,9 @@ type InventoryPanelProps = {
   demo: DemoScenario | null
   error: string | null
   names: [string, string]
+  /** Expanded card (controlled, so the diorama can highlight its crate). */
+  openId: string | null
+  onOpenChange: (id: string | null) => void
   onOpenItem: (id: string) => void
 }
 
@@ -44,7 +47,7 @@ function ItemCard({
   const pill = assignment ? actionPill(assignment.action, names) : null
 
   return (
-    <li className="rounded-2xl border border-line bg-surface-low p-3 transition hover:bg-[#f0eee8]">
+    <li data-item-id={item.id} className="rounded-2xl border border-line bg-surface-low p-3 transition hover:bg-[#f0eee8]">
       <button type="button" onClick={onToggle} aria-expanded={open} className="flex w-full items-start gap-3 text-left">
         <span
           className="flex h-12 w-12 shrink-0 flex-col items-center justify-center rounded-xl border border-line bg-surface"
@@ -132,10 +135,17 @@ function ItemCard({
 }
 
 /** Right-hand inventory: search, category filter, idealo-backed item cards. */
-export function InventoryPanel({ processTitle, demo, error, names, onOpenItem }: InventoryPanelProps) {
+export function InventoryPanel({
+  processTitle,
+  demo,
+  error,
+  names,
+  openId,
+  onOpenChange,
+  onOpenItem,
+}: InventoryPanelProps) {
   const [query, setQuery] = useState('')
   const [category, setCategory] = useState<string | null>(null)
-  const [openId, setOpenId] = useState<string | null>(null)
 
   const items = useMemo(() => demo?.valued_items ?? [], [demo])
   const assignments = useMemo(
@@ -155,7 +165,14 @@ export function InventoryPanel({ processTitle, demo, error, names, onOpenItem }:
       (!q || vi.item.name.toLowerCase().includes(q) || vi.item.category.toLowerCase().includes(q)),
   )
   const checkedCount = items.filter((vi) => vi.valuation.data_source !== 'demo_fallback').length
-  const effectiveOpen = openId ?? visible[0]?.item.id ?? null
+  const effectiveOpen = openId
+  const listRef = useRef<HTMLUListElement>(null)
+  useEffect(() => {
+    if (!openId) return
+    listRef.current
+      ?.querySelector(`[data-item-id="${CSS.escape(openId)}"]`)
+      ?.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+  }, [openId])
 
   return (
     <section className="panel flex h-full flex-col overflow-hidden" style={{ background: '#ffffff' }} aria-label="Inventory">
@@ -221,7 +238,7 @@ export function InventoryPanel({ processTitle, demo, error, names, onOpenItem }:
         {error && <p className="rounded-xl bg-[#ffdad6] p-3 text-sm text-[#93000a]">Could not load the inventory: {error}</p>}
         {!demo && !error && <p className="text-sm text-muted">Loading inventory…</p>}
         {demo && visible.length === 0 && <p className="text-sm text-muted">No items match.</p>}
-        <ul className="space-y-2.5">
+        <ul ref={listRef} className="space-y-2.5">
           {visible.map((vi) => (
             <ItemCard
               key={vi.item.id}
@@ -229,7 +246,7 @@ export function InventoryPanel({ processTitle, demo, error, names, onOpenItem }:
               assignment={assignments.get(vi.item.id)}
               names={names}
               open={effectiveOpen === vi.item.id}
-              onToggle={() => setOpenId(effectiveOpen === vi.item.id ? '' : vi.item.id)}
+              onToggle={() => onOpenChange(effectiveOpen === vi.item.id ? null : vi.item.id)}
               onOpen={() => onOpenItem(vi.item.id)}
             />
           ))}
