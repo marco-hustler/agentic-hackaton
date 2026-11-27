@@ -3,7 +3,7 @@ import type { ProcessKind, ProcessStatus } from '../types/process'
 /** Diorama colours, taken from DESIGN.md (Tactical Diorama). */
 export const WORLD = {
   background: '#f8f6f0',
-  plateBase: '#1e293b',
+  plateBase: '#2f7a57',
   plateEdge: '#0f172a',
   lawn: '#cfdfc8',
   lawnDark: '#b9d0b1',
