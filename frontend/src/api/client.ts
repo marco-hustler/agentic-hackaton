@@ -125,3 +125,24 @@ export async function getProcess(id: string) {
   const row = await api<ApiProcess>(`/api/processes/${id}`)
   return mapProcess(row)
 }
+
+/** A house's own items + solver mode, stored server-side per process. */
+export type ProcessInventory = {
+  mode: SplitMode
+  valued_items: ValuedItem[]
+  updated_at?: string | null
+}
+
+/** First read seeds the house from the demo (idealo cache only, 0 MCP calls). */
+export function getProcessInventory(processId: string) {
+  return api<ProcessInventory>(`/api/processes/${processId}/inventory`)
+}
+
+/** `keepalive` lets the last save finish while the page is closing. */
+export function saveProcessInventory(processId: string, inventory: ProcessInventory, keepalive = false) {
+  return api<ProcessInventory>(`/api/processes/${processId}/inventory`, {
+    method: 'PUT',
+    body: JSON.stringify({ mode: inventory.mode, valued_items: inventory.valued_items }),
+    keepalive,
+  })
+}

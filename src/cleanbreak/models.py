@@ -232,3 +232,14 @@ class SplitResult(BaseModel):
     arbitrage_highlights: list[AssignedItemResult] = Field(default_factory=list)
     replacement_basket: list[ReplacementSuggestion] = Field(default_factory=list)
     mediator_summary: str = ""
+
+
+class ProcessInventory(BaseModel):
+    """A house's own inventory: items with their idealo valuations, plus the chosen solver mode.
+
+    The split itself is not stored: it is recomputed by the deterministic solver.
+    """
+
+    mode: SplitMode = "balanced"
+    valued_items: list[ValuedItem] = Field(default_factory=list)
+    updated_at: str | None = None

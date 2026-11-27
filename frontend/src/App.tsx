@@ -211,6 +211,7 @@ export default function App() {
             processTitle={focusProcess.title}
             balance={balance}
             tab={tab}
+            saving={demo ? inventory.saving : null}
             onTab={(t) => {
               setDetailId(null)
               setTab(t)

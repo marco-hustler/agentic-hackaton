@@ -10,7 +10,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from threading import Lock
 
-from cleanbreak.models import ProcessCreate, ProcessKind, ProcessStatus, ProcessSummary
+from cleanbreak.models import ProcessCreate, ProcessInventory, ProcessKind, ProcessStatus, ProcessSummary
 from cleanbreak.paths import REPO_ROOT, resolve_repo_path
 
 _DEFAULT_DB = REPO_ROOT / "data" / "processes.db"
@@ -55,6 +55,16 @@ class ProcessStore:
                     participant_emails TEXT NOT NULL,
                     owner_id TEXT NOT NULL DEFAULT 'local-user',
                     created_at TEXT NOT NULL,
+                    updated_at TEXT NOT NULL
+                )
+                """
+            )
+            conn.execute(
+                """
+                CREATE TABLE IF NOT EXISTS process_inventories (
+                    process_id TEXT PRIMARY KEY REFERENCES processes(id) ON DELETE CASCADE,
+                    mode TEXT NOT NULL,
+                    valued_items TEXT NOT NULL,
                     updated_at TEXT NOT NULL
                 )
                 """
@@ -149,6 +159,40 @@ class ProcessStore:
             if cur.rowcount == 0:
                 return None
         return self.get_process(process_id)
+
+    def get_inventory(self, process_id: str) -> ProcessInventory | None:
+        """The saved inventory for a process, or None if none was saved yet."""
+        with self._connect() as conn:
+            row = conn.execute(
+                "SELECT mode, valued_items, updated_at FROM process_inventories WHERE process_id = ?",
+                (process_id,),
+            ).fetchone()
+        if row is None:
+            return None
+        return ProcessInventory.model_validate(
+            {"mode": row["mode"], "valued_items": json.loads(row["valued_items"]), "updated_at": row["updated_at"]}
+        )
+
+    def save_inventory(self, process_id: str, inventory: ProcessInventory) -> ProcessInventory | None:
+        """Upsert a process's inventory. None if the process does not exist."""
+        if self.get_process(process_id) is None:
+            return None
+        now = _utc_now()
+        items_json = json.dumps([vi.model_dump(mode="json") for vi in inventory.valued_items])
+        with self._connect() as conn:
+            conn.execute(
+                """
+                INSERT INTO process_inventories (process_id, mode, valued_items, updated_at)
+                VALUES (?, ?, ?, ?)
+                ON CONFLICT(process_id) DO UPDATE SET
+                    mode = excluded.mode,
+                    valued_items = excluded.valued_items,
+                    updated_at = excluded.updated_at
+                """,
+                (process_id, inventory.mode, items_json, now),
+            )
+            conn.commit()
+        return inventory.model_copy(update={"updated_at": now})
 
     @staticmethod
     def _row_to_summary(row: sqlite3.Row) -> ProcessSummary:

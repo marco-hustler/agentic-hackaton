@@ -26,6 +26,7 @@ from cleanbreak.models import (
     HouseholdItemInput,
     ItemValuation,
     ProcessCreate,
+    ProcessInventory,
     ProcessStatusUpdate,
     ProcessSummary,
     SplitMode,
@@ -165,15 +166,43 @@ async def patch_process(process_id: str, payload: ProcessStatusUpdate) -> Proces
     return updated
 
 
+async def _demo_valued_items(raw: dict | None = None) -> tuple[list[ValuedItem], str | None]:
+    """Demo items valued from the idealo cache only (never live), with transparent fallback."""
+    raw = raw or json.loads(DEMO_PATH.read_text(encoding="utf-8"))
+    items = [HouseholdItemInput.model_validate(i) for i in raw["items"]]
+    valuations, warning, _ = await _value_items(items, country=raw.get("country", "DE"), mode="cache_only")
+    return [ValuedItem(item=item, valuation=val) for item, val in zip(items, valuations)], warning
+
+
+@app.get("/api/processes/{process_id}/inventory", response_model=ProcessInventory)
+async def get_process_inventory(process_id: str) -> ProcessInventory:
+    """A house's saved inventory. The first visit seeds it from the demo (idealo cache only, 0 MCP calls)."""
+    store = get_process_store()
+    if store.get_process(process_id) is None:
+        raise HTTPException(status_code=404, detail="Process not found")
+    saved = store.get_inventory(process_id)
+    if saved is not None:
+        return saved
+    valued, _ = await _demo_valued_items()
+    seeded = store.save_inventory(process_id, ProcessInventory(valued_items=valued))
+    assert seeded is not None
+    return seeded
+
+
+@app.put("/api/processes/{process_id}/inventory", response_model=ProcessInventory)
+async def put_process_inventory(process_id: str, payload: ProcessInventory) -> ProcessInventory:
+    """Save a house's items (edits, locks, priorities, depreciation) and solver mode."""
+    saved = get_process_store().save_inventory(process_id, payload)
+    if saved is None:
+        raise HTTPException(status_code=404, detail="Process not found")
+    return saved
+
+
 @app.get("/api/demo")
 async def get_demo_scenario(mode: SplitMode = "balanced") -> dict:
     """Return the preloaded Berlin WG scenario, valuations (cached idealo if present, else fallback), and solved split."""
     raw = json.loads(DEMO_PATH.read_text(encoding="utf-8"))
-    items = [HouseholdItemInput.model_validate(i) for i in raw["items"]]
-
-    # Try cached idealo valuations first; fall back transparently if probe hasn't run yet.
-    valuations, warning, _ = await _value_items(items, country=raw.get("country", "DE"), mode="cache_only")
-    valued = [ValuedItem(item=item, valuation=val) for item, val in zip(items, valuations)]
+    valued, warning = await _demo_valued_items(raw)
 
     split = solve_split(
         SplitRequest(

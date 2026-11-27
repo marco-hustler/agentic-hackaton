@@ -6,6 +6,8 @@ type HouseNavProps = {
   processTitle: string
   balance: [number, number] | null
   tab: HouseTab
+  /** null = nothing loaded yet; true while an edit is waiting to be stored. */
+  saving: boolean | null
   onTab: (tab: HouseTab) => void
   onBackToWorld: () => void
 }
@@ -18,7 +20,7 @@ const TABS = [
 ] as const
 
 /** Top bar inside a house: breadcrumb, view tabs and the live balance. */
-export function HouseNav({ processTitle, balance, tab, onTab, onBackToWorld }: HouseNavProps) {
+export function HouseNav({ processTitle, balance, tab, saving, onTab, onBackToWorld }: HouseNavProps) {
   return (
     <header className="absolute inset-x-0 top-0 z-40 flex h-16 items-center gap-3 border-b border-line bg-canvas/90 px-4 backdrop-blur sm:px-6">
       <button type="button" onClick={onBackToWorld} className="flex items-center gap-2" title="Back to the world">
@@ -62,6 +64,11 @@ export function HouseNav({ processTitle, balance, tab, onTab, onBackToWorld }: H
         })}
       </nav>
 
+      {saving !== null && (
+        <span className="hidden text-xs font-semibold text-muted lg:inline" aria-live="polite">
+          {saving ? 'Saving…' : 'Saved'}
+        </span>
+      )}
       {balance && (
         <span className="pill pill-settled hidden sm:inline-flex">
           <span className="pulse-dot" /> Balance {balance[0]}/{balance[1]}
