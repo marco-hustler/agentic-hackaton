@@ -54,10 +54,12 @@ class IdealoMCPClient:
         manual_callback: bool = False,
         interactive: bool = False,
         budget: CallBudget | None = None,
+        access_token: str | None = None,
     ) -> None:
         self.server_url = server_url or os.getenv("IDEALO_MCP_URL", "https://mcp.idealo.com/mcp")
         self.country = (country or os.getenv("IDEALO_COUNTRY", "DE")).upper()
         self.token_file = resolve_repo_path(token_file) if token_file else default_token_path()
+        self.access_token = (access_token or "").strip() or None
         resolved_cache_dir = cache_dir or os.getenv("IDEALO_CACHE_DIR", "data/cache")
         self.cache = DiskCache(resolved_cache_dir)
         # Item bundles (found / not_found) never expire; error bundles carry their own short expiry.
@@ -70,7 +72,7 @@ class IdealoMCPClient:
         self._tool_names: set[str] = set()
 
     def has_login(self) -> bool:
-        return tokens_present(self.token_file)
+        return bool(self.access_token) or tokens_present(self.token_file)
 
     @asynccontextmanager
     async def connect(self) -> AsyncIterator["IdealoMCPClient"]:
@@ -80,6 +82,7 @@ class IdealoMCPClient:
             callback_port=self.callback_port,
             manual_callback=self.manual_callback,
             interactive=self.interactive,
+            access_token=self.access_token,
         )
         http_client = create_mcp_http_client(
             auth=auth,

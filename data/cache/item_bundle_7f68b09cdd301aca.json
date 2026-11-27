@@ -1,0 +1,2328 @@
+{
+  "namespace": "item_bundle",
+  "request": {
+    "query": "smarthone samsung a57",
+    "country": "DE"
+  },
+  "cached_at": 1795803615.110042,
+  "data": {
+    "query": "smarthone samsung a57",
+    "country": "DE",
+    "outcome": "found",
+    "product_ref": "pr.v1.k1.GYYadil3XBjROa8w6tvfF4ErKpqaZyV9dLnT08TJHNIR1dUa0Q",
+    "top_product": {
+      "productRef": "pr.v1.k1.GYYadil3XBjROa8w6tvfF4ErKpqaZyV9dLnT08TJHNIR1dUa0Q",
+      "itemType": "PRODUCT",
+      "siteId": 1,
+      "name": "Samsung Galaxy A57",
+      "nameDelta": "8GB 256GB Awesome Gray",
+      "price": "379,00 €",
+      "imageUrl": "https://cdn.idealo.com/folder/Product/209770/5/209770546/s1_produktbild_mobil/samsung-galaxy-a57-8gb-256gb-awesome-gray.jpg",
+      "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/209770546_-galaxy-a57-8gb-256gb-awesome-gray-samsung.html",
+      "userReviewsSummary": {
+        "averageRating": 4.76,
+        "totalReviewCount": 99
+      },
+      "testReportsSummary": {
+        "grade": "2,0"
+      },
+      "totalOfferCount": 37
+    },
+    "search": {
+      "query": "smarthone samsung a57",
+      "availableCategories": [
+        {
+          "categoryId": "19116",
+          "categoryName": "Handys & Smartphones",
+          "amount": 91
+        },
+        {
+          "categoryId": "14852",
+          "categoryName": "Displayschutzfolien",
+          "amount": 362
+        },
+        {
+          "categoryId": "5453",
+          "categoryName": "Handyhüllen",
+          "amount": 2304
+        },
+        {
+          "categoryId": "25397",
+          "categoryName": "Handy-Ersatzteile",
+          "amount": 85
+        },
+        {
+          "categoryId": "26439",
+          "categoryName": "Sportarmbänder",
+          "amount": 7
+        },
+        {
+          "categoryId": "8412",
+          "categoryName": "Handy-Ladegeräte",
+          "amount": 4
+        },
+        {
+          "categoryId": "18802",
+          "categoryName": "Handyhalterungen",
+          "amount": 15
+        },
+        {
+          "categoryId": "9972",
+          "categoryName": "Bücher",
+          "amount": 5
+        },
+        {
+          "categoryId": "5455",
+          "categoryName": "Handy-Akkus",
+          "amount": 2
+        },
+        {
+          "categoryId": "26700",
+          "categoryName": "Bauchtaschen",
+          "amount": 2
+        },
+        {
+          "categoryId": "9173",
+          "categoryName": "Fahrradtaschen",
+          "amount": 1
+        },
+        {
+          "categoryId": "32424",
+          "categoryName": "Smartwatch-Zubehör",
+          "amount": 1
+        },
+        {
+          "categoryId": "26136",
+          "categoryName": "Kabellose Ladegeräte",
+          "amount": 11
+        },
+        {
+          "categoryId": "2520",
+          "categoryName": "Kopfhörer",
+          "amount": 4
+        },
+        {
+          "categoryId": "16452",
+          "categoryName": "Handyschmuck",
+          "amount": 4
+        },
+        {
+          "categoryId": "5456",
+          "categoryName": "Sonstiges Handyzubehör",
+          "amount": 1
+        }
+      ],
+      "availableManufacturers": [
+        {
+          "manufacturerId": "1049",
+          "manufacturerName": "Samsung",
+          "amount": 156
+        },
+        {
+          "manufacturerId": "119977",
+          "manufacturerName": "Spigen",
+          "amount": 10
+        },
+        {
+          "manufacturerId": "170126",
+          "manufacturerName": "Ringke",
+          "amount": 7
+        },
+        {
+          "manufacturerId": "129088",
+          "manufacturerName": "PanzerGlass",
+          "amount": 13
+        },
+        {
+          "manufacturerId": "153708",
+          "manufacturerName": "SP Connect",
+          "amount": 2
+        },
+        {
+          "manufacturerId": "163496",
+          "manufacturerName": "Selencia",
+          "amount": 65
+        },
+        {
+          "manufacturerId": "147539",
+          "manufacturerName": "Displex",
+          "amount": 4
+        },
+        {
+          "manufacturerId": "167080",
+          "manufacturerName": "Tech-Protect",
+          "amount": 46
+        },
+        {
+          "manufacturerId": "1320",
+          "manufacturerName": "Hama",
+          "amount": 21
+        },
+        {
+          "manufacturerId": "121571",
+          "manufacturerName": "Urban Armor Gear",
+          "amount": 2
+        },
+        {
+          "manufacturerId": "146244",
+          "manufacturerName": "Quad Lock",
+          "amount": 1
+        },
+        {
+          "manufacturerId": "122777",
+          "manufacturerName": "Nillkin",
+          "amount": 12
+        },
+        {
+          "manufacturerId": "185773",
+          "manufacturerName": "moex",
+          "amount": 88
+        },
+        {
+          "manufacturerId": "57604",
+          "manufacturerName": "OtterBox",
+          "amount": 12
+        },
+        {
+          "manufacturerId": "177290",
+          "manufacturerName": "CaseMe",
+          "amount": 8
+        },
+        {
+          "manufacturerId": "58377",
+          "manufacturerName": "Cellular Line",
+          "amount": 11
+        },
+        {
+          "manufacturerId": "128350",
+          "manufacturerName": "SBS Mobile",
+          "amount": 10
+        },
+        {
+          "manufacturerId": "147532",
+          "manufacturerName": "Black Rock Mobile",
+          "amount": 7
+        },
+        {
+          "manufacturerId": "173631",
+          "manufacturerName": "Wozinsky",
+          "amount": 3
+        },
+        {
+          "manufacturerId": "167079",
+          "manufacturerName": "3mk",
+          "amount": 22
+        },
+        {
+          "manufacturerId": "115881",
+          "manufacturerName": "Peter Jäckel",
+          "amount": 14
+        },
+        {
+          "manufacturerId": "53980",
+          "manufacturerName": "PEDEA",
+          "amount": 4
+        },
+        {
+          "manufacturerId": "158240",
+          "manufacturerName": "Protectorking",
+          "amount": 127
+        },
+        {
+          "manufacturerId": "178371",
+          "manufacturerName": "ONEFLOW",
+          "amount": 117
+        },
+        {
+          "manufacturerId": "155342",
+          "manufacturerName": "BROTECT",
+          "amount": 2
+        },
+        {
+          "manufacturerId": "175866",
+          "manufacturerName": "Mobile Origin",
+          "amount": 5
+        },
+        {
+          "manufacturerId": "164921",
+          "manufacturerName": "Accezz",
+          "amount": 20
+        },
+        {
+          "manufacturerId": "15948",
+          "manufacturerName": "Guess",
+          "amount": 8
+        },
+        {
+          "manufacturerId": "159022",
+          "manufacturerName": "imoshion",
+          "amount": 87
+        },
+        {
+          "manufacturerId": "178333",
+          "manufacturerName": "Burga",
+          "amount": 22
+        },
+        {
+          "manufacturerId": "178378",
+          "manufacturerName": "Tec-Expert",
+          "amount": 107
+        },
+        {
+          "manufacturerId": "149872",
+          "manufacturerName": "iDeal of Sweden",
+          "amount": 18
+        },
+        {
+          "manufacturerId": "143993",
+          "manufacturerName": "4smarts",
+          "amount": 5
+        },
+        {
+          "manufacturerId": "161308",
+          "manufacturerName": "Dux Ducis",
+          "amount": 8
+        },
+        {
+          "manufacturerId": "124928",
+          "manufacturerName": "Nevox",
+          "amount": 4
+        },
+        {
+          "manufacturerId": "113680",
+          "manufacturerName": "White Diamonds",
+          "amount": 2
+        },
+        {
+          "manufacturerId": "148681",
+          "manufacturerName": "JT Berlin",
+          "amount": 1
+        },
+        {
+          "manufacturerId": "170558",
+          "manufacturerName": "Tactical",
+          "amount": 15
+        },
+        {
+          "manufacturerId": "37522",
+          "manufacturerName": "Eiger",
+          "amount": 8
+        },
+        {
+          "manufacturerId": "128427",
+          "manufacturerName": "19twenty8",
+          "amount": 15
+        },
+        {
+          "manufacturerId": "116377",
+          "manufacturerName": "Wigento",
+          "amount": 21
+        },
+        {
+          "manufacturerId": "129472",
+          "manufacturerName": "CG Mobile",
+          "amount": 4
+        },
+        {
+          "manufacturerId": "4925",
+          "manufacturerName": "Karl Lagerfeld",
+          "amount": 3
+        },
+        {
+          "manufacturerId": "166228",
+          "manufacturerName": "NoName",
+          "amount": 2
+        },
+        {
+          "manufacturerId": "120994",
+          "manufacturerName": "ISY",
+          "amount": 14
+        },
+        {
+          "manufacturerId": "165423",
+          "manufacturerName": "FIXED",
+          "amount": 11
+        },
+        {
+          "manufacturerId": "151584",
+          "manufacturerName": "NALIA",
+          "amount": 12
+        },
+        {
+          "manufacturerId": "169110",
+          "manufacturerName": "Eazy Case",
+          "amount": 8
+        },
+        {
+          "manufacturerId": "134829",
+          "manufacturerName": "Avizar",
+          "amount": 105
+        },
+        {
+          "manufacturerId": "185276",
+          "manufacturerName": "Mobiwear",
+          "amount": 43
+        },
+        {
+          "manufacturerId": "182654",
+          "manufacturerName": "Hurtel",
+          "amount": 4
+        },
+        {
+          "manufacturerId": "117043",
+          "manufacturerName": "eSTUFF",
+          "amount": 2
+        },
+        {
+          "manufacturerId": "169938",
+          "manufacturerName": "Bizon",
+          "amount": 57
+        },
+        {
+          "manufacturerId": "163137",
+          "manufacturerName": "Force Case",
+          "amount": 2
+        },
+        {
+          "manufacturerId": "110376",
+          "manufacturerName": "Tech21 UK",
+          "amount": 2
+        },
+        {
+          "manufacturerId": "188542",
+          "manufacturerName": "CRONG",
+          "amount": 5
+        },
+        {
+          "manufacturerId": "179902",
+          "manufacturerName": "Techsuit",
+          "amount": 19
+        },
+        {
+          "manufacturerId": "134194",
+          "manufacturerName": "Just in Case",
+          "amount": 4
+        },
+        {
+          "manufacturerId": "116220",
+          "manufacturerName": "Puro",
+          "amount": 2
+        },
+        {
+          "manufacturerId": "186448",
+          "manufacturerName": "Mayaxess",
+          "amount": 16
+        },
+        {
+          "manufacturerId": "159531",
+          "manufacturerName": "Clappio",
+          "amount": 29
+        },
+        {
+          "manufacturerId": "163136",
+          "manufacturerName": "Bigben Connected",
+          "amount": 3
+        },
+        {
+          "manufacturerId": "154752",
+          "manufacturerName": "kwmobile",
+          "amount": 16
+        },
+        {
+          "manufacturerId": "109861",
+          "manufacturerName": "Forcell",
+          "amount": 1
+        },
+        {
+          "manufacturerId": "178332",
+          "manufacturerName": "Betterfon",
+          "amount": 8
+        },
+        {
+          "manufacturerId": "177454",
+          "manufacturerName": "SHEIN",
+          "amount": 484
+        },
+        {
+          "manufacturerId": "168617",
+          "manufacturerName": "Evelatus",
+          "amount": 19
+        },
+        {
+          "manufacturerId": "153625",
+          "manufacturerName": "Cool Accesorios",
+          "amount": 11
+        },
+        {
+          "manufacturerId": "190028",
+          "manufacturerName": "Etteri",
+          "amount": 1
+        },
+        {
+          "manufacturerId": "179376",
+          "manufacturerName": "Prio",
+          "amount": 4
+        },
+        {
+          "manufacturerId": "168984",
+          "manufacturerName": "BlueBuilt",
+          "amount": 9
+        },
+        {
+          "manufacturerId": "40504",
+          "manufacturerName": "Bedifol",
+          "amount": 1
+        },
+        {
+          "manufacturerId": "13840",
+          "manufacturerName": "SiGN",
+          "amount": 2
+        },
+        {
+          "manufacturerId": "8420",
+          "manufacturerName": "Elite Sport",
+          "amount": 3
+        },
+        {
+          "manufacturerId": "178368",
+          "manufacturerName": "Maniacase",
+          "amount": 147
+        },
+        {
+          "manufacturerId": "73648",
+          "manufacturerName": "Mobilis",
+          "amount": 2
+        },
+        {
+          "manufacturerId": "152221",
+          "manufacturerName": "Holland Animal Care",
+          "amount": 2
+        },
+        {
+          "manufacturerId": "118945",
+          "manufacturerName": "Red Bull",
+          "amount": 1
+        },
+        {
+          "manufacturerId": "167643",
+          "manufacturerName": "Bildner Verlag",
+          "amount": 3
+        },
+        {
+          "manufacturerId": "186444",
+          "manufacturerName": "Screenor",
+          "amount": 5
+        },
+        {
+          "manufacturerId": "164539",
+          "manufacturerName": "AlzaGuard",
+          "amount": 12
+        },
+        {
+          "manufacturerId": "43980",
+          "manufacturerName": "Noreve",
+          "amount": 200
+        },
+        {
+          "manufacturerId": "177163",
+          "manufacturerName": "Screenguard",
+          "amount": 16
+        },
+        {
+          "manufacturerId": "188539",
+          "manufacturerName": "Araree",
+          "amount": 1
+        },
+        {
+          "manufacturerId": "182684",
+          "manufacturerName": "FeelNeedy",
+          "amount": 1
+        },
+        {
+          "manufacturerId": "182277",
+          "manufacturerName": "Merkloos",
+          "amount": 13
+        },
+        {
+          "manufacturerId": "182155",
+          "manufacturerName": "My Way",
+          "amount": 2
+        },
+        {
+          "manufacturerId": "180294",
+          "manufacturerName": "Lippa",
+          "amount": 2
+        },
+        {
+          "manufacturerId": "179375",
+          "manufacturerName": "SoSkild",
+          "amount": 1
+        },
+        {
+          "manufacturerId": "178349",
+          "manufacturerName": "Handyhuellen.de",
+          "amount": 2
+        },
+        {
+          "manufacturerId": "131052",
+          "manufacturerName": "Goospery",
+          "amount": 4
+        },
+        {
+          "manufacturerId": "105201",
+          "manufacturerName": "Muvit",
+          "amount": 1
+        },
+        {
+          "manufacturerId": "28923",
+          "manufacturerName": "Golla",
+          "amount": 3
+        },
+        {
+          "manufacturerId": "4924",
+          "manufacturerName": "Lacoste",
+          "amount": 1
+        },
+        {
+          "manufacturerId": "170332",
+          "manufacturerName": "Cover-Discount",
+          "amount": 125
+        },
+        {
+          "manufacturerId": "188543",
+          "manufacturerName": "Enkay",
+          "amount": 7
+        },
+        {
+          "manufacturerId": "88328",
+          "manufacturerName": "Just Uhren",
+          "amount": 4
+        },
+        {
+          "manufacturerId": "179427",
+          "manufacturerName": "iMak",
+          "amount": 7
+        },
+        {
+          "manufacturerId": "146084",
+          "manufacturerName": "Universal Billard",
+          "amount": 2
+        },
+        {
+          "manufacturerId": "129474",
+          "manufacturerName": "Adore June",
+          "amount": 2
+        }
+      ],
+      "availableFilters": [
+        {
+          "attributeId": "15583",
+          "name": "Produkttyp",
+          "filters": [
+            {
+              "filterId": "10228479",
+              "content": "5G Handy",
+              "amount": 90
+            },
+            {
+              "filterId": "4287437",
+              "content": "LTE Smartphone",
+              "amount": 90
+            },
+            {
+              "filterId": "2305516",
+              "content": "Phablet",
+              "amount": 90
+            },
+            {
+              "filterId": "4287435",
+              "content": "Android Handy",
+              "amount": 90
+            },
+            {
+              "filterId": "1827440",
+              "content": "Dual-SIM Handy",
+              "amount": 90
+            },
+            {
+              "filterId": "105861537",
+              "content": "Handy-Schutzfolie",
+              "amount": 352
+            },
+            {
+              "filterId": "1116711",
+              "content": "Schutzfolie",
+              "amount": 278
+            },
+            {
+              "filterId": "1502416",
+              "content": "Handy-Case",
+              "amount": 1948
+            },
+            {
+              "filterId": "3916365",
+              "content": "Echtglas-Displayschutz",
+              "amount": 228
+            },
+            {
+              "filterId": "1978971",
+              "content": "Handy Klapphülle",
+              "amount": 377
+            },
+            {
+              "filterId": "104859563",
+              "content": "Handykamera Schutz",
+              "amount": 7
+            },
+            {
+              "filterId": "784549",
+              "content": "Handytasche",
+              "amount": 23
+            },
+            {
+              "filterId": "2887855",
+              "content": "Handy-Displayeinheit",
+              "amount": 23
+            },
+            {
+              "filterId": "3916363",
+              "content": "Displayblickschutzfolie",
+              "amount": 47
+            },
+            {
+              "filterId": "3232888",
+              "content": "Bumper",
+              "amount": 40
+            },
+            {
+              "filterId": "2887853",
+              "content": "Handy-Anschlussbuchse",
+              "amount": 5
+            },
+            {
+              "filterId": "2887851",
+              "content": "Handy-Abdeckung",
+              "amount": 11
+            },
+            {
+              "filterId": "2887858",
+              "content": "Handy-Kameramodul",
+              "amount": 3
+            },
+            {
+              "filterId": "4008969",
+              "content": "Handy Sportarmband",
+              "amount": 7
+            },
+            {
+              "filterId": "1638993",
+              "content": "Flip Case",
+              "amount": 1
+            },
+            {
+              "filterId": "7490149",
+              "content": "Blickschutzfilter",
+              "amount": 9
+            },
+            {
+              "filterId": "10023726",
+              "content": "Handykette",
+              "amount": 82
+            },
+            {
+              "filterId": "105344746",
+              "content": "Unterwasser-Handyhülle",
+              "amount": 3
+            },
+            {
+              "filterId": "7811966",
+              "content": "Handy Schnellladegerät",
+              "amount": 4
+            },
+            {
+              "filterId": "3916362",
+              "content": "Antireflexfolie",
+              "amount": 8
+            },
+            {
+              "filterId": "3916364",
+              "content": "Displayspiegelfolie",
+              "amount": 4
+            },
+            {
+              "filterId": "104422687",
+              "content": "Auto-Handyhalterung",
+              "amount": 11
+            },
+            {
+              "filterId": "4810181",
+              "content": "Original Handy-Akku",
+              "amount": 2
+            },
+            {
+              "filterId": "2887869",
+              "content": "Handy-Werkzeug",
+              "amount": 1
+            },
+            {
+              "filterId": "2887857",
+              "content": "Handy-Flexkabel",
+              "amount": 1
+            },
+            {
+              "filterId": "7972206",
+              "content": "Ratgeber",
+              "amount": 1
+            },
+            {
+              "filterId": "4135275",
+              "content": "Sachbuch",
+              "amount": 1
+            },
+            {
+              "filterId": "1541706",
+              "content": "iPhone Hülle",
+              "amount": 8
+            },
+            {
+              "filterId": "4506430",
+              "content": "Laufgürtel",
+              "amount": 2
+            },
+            {
+              "filterId": "868391",
+              "content": "Lenkertasche",
+              "amount": 1
+            },
+            {
+              "filterId": "10365356",
+              "content": "Apple Watch Armband",
+              "amount": 1
+            },
+            {
+              "filterId": "104815683",
+              "content": "Wandladegerät",
+              "amount": 3
+            },
+            {
+              "filterId": "422612",
+              "content": "Reiseladegerät",
+              "amount": 3
+            },
+            {
+              "filterId": "102156851",
+              "content": "Handyhalterung Fahrrad",
+              "amount": 4
+            },
+            {
+              "filterId": "7680485",
+              "content": "Earbuds",
+              "amount": 4
+            },
+            {
+              "filterId": "527927",
+              "content": "Bluetooth-Kopfhörer",
+              "amount": 4
+            },
+            {
+              "filterId": "808012",
+              "content": "In-Ear-Kopfhörer",
+              "amount": 4
+            },
+            {
+              "filterId": "2090436",
+              "content": "Universal-Ladegerät Handy",
+              "amount": 1
+            },
+            {
+              "filterId": "8941802",
+              "content": "Handy Griff",
+              "amount": 3
+            },
+            {
+              "filterId": "1636455",
+              "content": "Handy-Taschenzubehör",
+              "amount": 1
+            },
+            {
+              "filterId": "10152064",
+              "content": "Handykordel",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "suggestedFilters": [],
+      "sizeAttributes": [],
+      "results": [
+        {
+          "productRef": "pr.v1.k1.GYYadil3XBjROa8w6tvfF4ErKpqaZyV9dLnT08TJHNIR1dUa0Q",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "Samsung Galaxy A57",
+          "nameDelta": "8GB 256GB Awesome Gray",
+          "price": "379,00 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/209770/5/209770546/s1_produktbild_mobil/samsung-galaxy-a57-8gb-256gb-awesome-gray.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/209770546_-galaxy-a57-8gb-256gb-awesome-gray-samsung.html",
+          "userReviewsSummary": {
+            "averageRating": 4.76,
+            "totalReviewCount": 99
+          },
+          "testReportsSummary": {
+            "grade": "2,0"
+          },
+          "totalOfferCount": 37
+        },
+        {
+          "productRef": "pr.v1.k1.eOeJTRDkoGY5RJE7dmvBlsfNtTWZlU5aA4APlWPOqxCWHoJ_OA",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "Samsung Galaxy A57",
+          "nameDelta": "8GB 128GB Awesome Gray",
+          "price": "344,90 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/209770/5/209770537/s1_produktbild_mobil/samsung-galaxy-a57-8gb-128gb-awesome-gray.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/209770537_-galaxy-a57-8gb-128gb-awesome-gray-samsung.html",
+          "userReviewsSummary": {
+            "averageRating": 4.76,
+            "totalReviewCount": 99
+          },
+          "testReportsSummary": {
+            "grade": "2,0"
+          },
+          "totalOfferCount": 39
+        },
+        {
+          "productRef": "pr.v1.k1.Y-O1QeskY6FbWT8XvL66bJtkjUozcNfTtTevdC9ruBQLYMZ0MQ",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "Samsung Galaxy A57",
+          "nameDelta": "8GB 256GB Awesome Navy",
+          "price": "379,00 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/209770/5/209770542/s1_produktbild_mobil/samsung-galaxy-a57-8gb-256gb-awesome-navy.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/209770542_-galaxy-a57-8gb-256gb-awesome-navy-samsung.html",
+          "userReviewsSummary": {
+            "averageRating": 4.76,
+            "totalReviewCount": 99
+          },
+          "testReportsSummary": {
+            "grade": "2,0"
+          },
+          "totalOfferCount": 32
+        },
+        {
+          "productRef": "pr.v1.k1.aC-KOR2GEzyrPgPcAQH46KL-ge32FmifuAO7szXkTbKdA47MWA",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "Samsung Galaxy A57",
+          "nameDelta": "8GB 128GB Awesome Navy",
+          "price": "349,00 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/209770/5/209770535/s1_produktbild_mobil/samsung-galaxy-a57-8gb-128gb-awesome-navy.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/209770535_-galaxy-a57-8gb-128gb-awesome-navy-samsung.html",
+          "userReviewsSummary": {
+            "averageRating": 4.76,
+            "totalReviewCount": 99
+          },
+          "testReportsSummary": {
+            "grade": "2,0"
+          },
+          "totalOfferCount": 36
+        },
+        {
+          "productRef": "pr.v1.k1.G49p-11cMsM6v4RnFScEFkzS0mae1SObeIGVarYZyXALeG6Etw",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "Samsung Galaxy A57",
+          "nameDelta": "8GB 128GB Awesome Icyblue",
+          "price": "349,90 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/209770/4/209770416/s1_produktbild_mobil/samsung-galaxy-a57-8gb-128gb-awesome-icyblue.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/209770416_-galaxy-a57-8gb-128gb-awesome-icyblue-samsung.html",
+          "userReviewsSummary": {
+            "averageRating": 4.76,
+            "totalReviewCount": 99
+          },
+          "testReportsSummary": {
+            "grade": "2,0"
+          },
+          "totalOfferCount": 33
+        },
+        {
+          "productRef": "pr.v1.k1.ic0voXzYzXSJeA-zPQG9Nrb9uRtiHTWLQlUeHQCLmFVr-1aXhg",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "Samsung Galaxy A57",
+          "nameDelta": "8GB 256GB Awesome Icyblue",
+          "price": "383,90 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/209770/5/209770541/s1_produktbild_mobil/samsung-galaxy-a57-8gb-256gb-awesome-icyblue.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/209770541_-galaxy-a57-8gb-256gb-awesome-icyblue-samsung.html",
+          "userReviewsSummary": {
+            "averageRating": 4.76,
+            "totalReviewCount": 99
+          },
+          "testReportsSummary": {
+            "grade": "2,0"
+          },
+          "totalOfferCount": 33
+        },
+        {
+          "productRef": "pr.v1.k1.lBpBxlNa2kyB36Wr3B9s8X-TXyFj9Zo8ndATeusl5if2rK7Ilw",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "Samsung Galaxy A57",
+          "nameDelta": "8GB 256GB Awesome Lilac",
+          "price": "394,90 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/209770/5/209770540/s1_produktbild_mobil/samsung-galaxy-a57-8gb-256gb-awesome-lilac.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/209770540_-galaxy-a57-8gb-256gb-awesome-lilac-samsung.html",
+          "userReviewsSummary": {
+            "averageRating": 4.76,
+            "totalReviewCount": 99
+          },
+          "testReportsSummary": {
+            "grade": "2,0"
+          },
+          "totalOfferCount": 27
+        },
+        {
+          "productRef": "pr.v1.k1.tna1-XAoTVxgINSsRFOkD4LcteK9dBcH5t_5G98_WeOvO6irdA",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "Samsung Galaxy A57",
+          "nameDelta": "8GB 256GB Awesome Navy EU",
+          "price": "374,99 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/210599/5/210599525/s1_produktbild_mobil/samsung-galaxy-a57-8gb-256gb-awesome-navy-eu.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/210599525_-galaxy-a57-8gb-256gb-awesome-navy-eu-samsung.html",
+          "userReviewsSummary": {
+            "averageRating": 4.76,
+            "totalReviewCount": 99
+          },
+          "testReportsSummary": {
+            "grade": "2,0"
+          },
+          "totalOfferCount": 18
+        },
+        {
+          "productRef": "pr.v1.k1.VxTrwoHZ8bAwgQkDJtS3TTUMPvfgMfvizGgRA8hyFzoisR50Qg",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "Samsung Galaxy A57",
+          "nameDelta": "8GB 128GB Awesome Lilac",
+          "price": "359,00 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/209770/5/209770539/s1_produktbild_mobil/samsung-galaxy-a57-8gb-128gb-awesome-lilac.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/209770539_-galaxy-a57-8gb-128gb-awesome-lilac-samsung.html",
+          "userReviewsSummary": {
+            "averageRating": 4.76,
+            "totalReviewCount": 99
+          },
+          "testReportsSummary": {
+            "grade": "2,0"
+          },
+          "totalOfferCount": 32
+        },
+        {
+          "productRef": "pr.v1.k1.q3qU1hhcQy86O2DdOqIK50IASN8r-bCjNXorPVwnVecWe4zEug",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "Samsung Galaxy A57",
+          "nameDelta": "8GB 256GB Awesome Gray EU",
+          "price": "386,39 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/210599/5/210599507/s1_produktbild_mobil/samsung-galaxy-a57-8gb-256gb-awesome-gray-eu.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/210599507_-galaxy-a57-8gb-256gb-awesome-gray-eu-samsung.html",
+          "userReviewsSummary": {
+            "averageRating": 4.76,
+            "totalReviewCount": 99
+          },
+          "testReportsSummary": {
+            "grade": "2,0"
+          },
+          "totalOfferCount": 21
+        }
+      ]
+    },
+    "details": {
+      "productRef": "pr.v1.k1.GYYadil3XBjROa8w6tvfF4ErKpqaZyV9dLnT08TJHNIR1dUa0Q",
+      "itemType": "PRODUCT",
+      "siteId": 1,
+      "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/209770546_-galaxy-a57-8gb-256gb-awesome-gray-samsung.html",
+      "name": "Samsung Galaxy A57",
+      "nameDelta": "8GB 256GB Awesome Gray",
+      "imageUrls": [
+        "https://cdn.idealo.com/folder/Product/209770/5/209770546/s1_produktbild_mobil/samsung-galaxy-a57-8gb-256gb-awesome-gray.jpg"
+      ],
+      "nextOffset": 3,
+      "offers": [
+        {
+          "key": "c67148eae52155a923af3b64db8060ae",
+          "price": "379,00 €",
+          "basePrice": null,
+          "shop": {
+            "shopId": "285519",
+            "merchantId": null,
+            "name": "mediamarkt.de",
+            "merchantName": null,
+            "rating": {
+              "count": 18594,
+              "avg": 3.85
+            },
+            "isMarketplace": false
+          },
+          "payments": [
+            {
+              "costCode": "PP",
+              "name": "PayPal"
+            },
+            {
+              "costCode": "SUW",
+              "name": "Sofort."
+            },
+            {
+              "costCode": "CBC",
+              "name": "Kreditkarte"
+            },
+            {
+              "costCode": "CIA",
+              "name": "Vorkasse"
+            },
+            {
+              "costCode": "AMZP",
+              "name": "Amazon Pay"
+            }
+          ],
+          "showPaymentDisclaimer": false,
+          "delivery": {
+            "deliveryText": "bis Di. 01.12.2026",
+            "deliveryStatus": "SHORT",
+            "earlyDeliveryDate": null,
+            "lateDeliveryDate": "2026-12-01"
+          },
+          "freeReturnDays": 30,
+          "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=c67148eae52155a923af3b64db8060ae&categoryId=19116&pos=1&price=379.00&productid=209770546&sid=285519&type=offer&media=ipc-public-mcp",
+          "minShippingCost": "0,00 €",
+          "hasAlwaysFreeShipping": true,
+          "cheapestTotalPriceOffer": true,
+          "freshness": "2026-11-27T17:20:14.333Z"
+        },
+        {
+          "key": "41eca7b7792dee991dda17a010ed5f2e",
+          "price": "387,90 €",
+          "basePrice": null,
+          "shop": {
+            "shopId": "335764",
+            "merchantId": null,
+            "name": "joybuy.de",
+            "merchantName": null,
+            "rating": {
+              "count": 171,
+              "avg": 2.32
+            },
+            "isMarketplace": false
+          },
+          "payments": [
+            {
+              "costCode": "PP",
+              "name": "PayPal"
+            },
+            {
+              "costCode": "SUW",
+              "name": "Sofort."
+            },
+            {
+              "costCode": "CBC",
+              "name": "Kreditkarte"
+            }
+          ],
+          "showPaymentDisclaimer": false,
+          "delivery": {
+            "deliveryText": "bis Mo. 30.11.2026",
+            "deliveryStatus": "SHORT",
+            "earlyDeliveryDate": null,
+            "lateDeliveryDate": "2026-11-30"
+          },
+          "freeReturnDays": 30,
+          "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=41eca7b7792dee991dda17a010ed5f2e&categoryId=19116&pos=3&price=387.90&productid=209770546&sid=335764&type=offer&media=ipc-public-mcp",
+          "minShippingCost": "0,00 €",
+          "hasAlwaysFreeShipping": true,
+          "cheapestTotalPriceOffer": false,
+          "freshness": "2026-11-27T17:20:14.333Z"
+        }
+      ],
+      "prosCons": {
+        "pros": [
+          "ordentliche Hauptkamera",
+          "langer Update-Support",
+          "gute Akkulaufzeit",
+          "helles OLED-Display",
+          "hochwertiges und wasserdichtes Gehäuse"
+        ],
+        "cons": [
+          "schwache Ultraweitwinkel-Kamera und keine Telekamera",
+          "nur 8 GB RAM und schwacher Prozessor",
+          "dicke Displayränder",
+          "kein Wireless-Charging"
+        ]
+      },
+      "testReports": {
+        "summary": {
+          "grade": "2,0",
+          "averageRating": 80.3157894736842,
+          "rating": "gut",
+          "ratingCount": 19
+        },
+        "list": [
+          {
+            "providerName": "connect",
+            "shortDescription": "Einzeltest Samsung Galaxy A57",
+            "summaryText": "Es handelt sich um ein verbessertes Mittelklasse-Smartphone mit längerer Akkulaufzeit, stärkerer Plattform, besserer Kamera und optimierter Funktechnik. Es gibt jedoch Kritikpunkte wie unterdurchschnittliche Prozessorleistung, begrenzte Kamera-Verbesserungen und veraltete Displayränder. Zudem ist der Preis ambitioniert.",
+            "ratingValue": "77,6/100",
+            "publishedAt": 1780999200000,
+            "language": "de",
+            "issue": "online",
+            "testedProductsCount": 1
+          },
+          {
+            "providerName": "MORE Magazine",
+            "shortDescription": "Einzeltest Samsung Galaxy A57",
+            "summaryText": "Das Galaxy A57 punktet mit einem exzellenten AMOLED Display, einem schlanken Design und einer langen Update-Garantie. Es gibt jedoch Einschränkungen bei der Kamera und dem Prozessor, die im Vergleich zur Konkurrenz weniger leistungsstark sind. Zudem fehlt die Möglichkeit des kabellosen Ladens.",
+            "ratingValue": "76/100",
+            "publishedAt": 1781085600000,
+            "language": "de",
+            "issue": "online",
+            "testedProductsCount": 1
+          },
+          {
+            "providerName": "tariftipp.de",
+            "shortDescription": "Einzeltest Samsung Galaxy A57 5G",
+            "summaryText": "Bemerkenswert sind das helle AMOLED-Display mit 120 Hz, die starke Kamera mit OIS und die ausgereifte Software mit vielen KI-Funktionen. Der fehlende Telezoom und der nicht erweiterbare Speicher schmälern den Eindruck etwas.",
+            "ratingValue": "92,9/100",
+            "publishedAt": 1780999200000,
+            "language": "de",
+            "issue": "online",
+            "testedProductsCount": 1
+          },
+          {
+            "providerName": "notebookcheck",
+            "shortDescription": "Einzeltest Samsung Galaxy A57",
+            "summaryText": "Das Samsung Galaxy A57 5G bietet ein schlankes, hochwertig verarbeitetes Gehäuse mit IP68, langen Update-Support und gute Alltagsleistung. Das helle AMOLED-Display überzeugt im Alltag, die Kamera bleibt aber nur solide. Schwächen sind die enttäuschende Akkulaufzeit, USB 2.0 und wenige Bluetooth-Codecs. Mäßige Gaming-Performance, 240-Hz-PWM-Dimming und fehlendes kabelloses Laden schmälern den Eindruck.",
+            "ratingValue": "81,5/100",
+            "publishedAt": 1783677600000,
+            "language": "de",
+            "issue": "online",
+            "testedProductsCount": 1
+          },
+          {
+            "providerName": "Konsument",
+            "shortDescription": "Einzeltest Samsung Galaxy A57 5G",
+            "summaryText": "Display: sehr gut; Kamera: gut; Audioqualität: gut; Haltbarkeit: sehr gut; Akku: durchschnittlich; Sicherheit: sehr gut",
+            "ratingValue": "gut",
+            "publishedAt": 1790244000000,
+            "language": "de",
+            "issue": "10/2026",
+            "testedProductsCount": 1
+          },
+          {
+            "providerName": "stuff.tv",
+            "shortDescription": "Einzeltest Samsung Galaxy A57",
+            "summaryText": "Zu den Vorteilen des Samsung Galaxy A57 zählen ein Design, das an die hochwertigeren Modelle erinnert, ein Akku und Ladeleistung, die mit dem teureren Galaxy S26+ mithalten können, sowie Haupt- und Selfie-Kameras, die für den Preis konkurrenzfähig sind. Allerdings gibt es auch Nachteile: Es ist für ein Mittelklasse-Modell recht teuer und die Hardware hinkt der Konkurrenz hinterher. Die Makrokamera bietet keinen Mehrwert und im Vergleich zum Vorgängermodell gibt es kaum Neuerungen, obwohl dieses nun deutlich günstiger ist.",
+            "ratingValue": "3/5",
+            "publishedAt": 1776074400000,
+            "language": "de",
+            "issue": "online",
+            "testedProductsCount": 1
+          },
+          {
+            "providerName": "chip.de",
+            "shortDescription": "Einzeltest Samsung Galaxy A57",
+            "summaryText": "Das Samsung Galaxy A57 ist ein empfehlenswertes Mittelklasse-Smartphone mit einem scharfen und farbintensiven 6,7 Zoll OLED-Display. Es bietet eine ordentliche Leistung dank des Exynos 1680, eine lange Akkulaufzeit und liegt leicht in der Hand. Kritikpunkte sind das Fehlen von kabellosem Aufladen und die mittelmäßige Kamera.",
+            "ratingValue": "gut (1,8)",
+            "publishedAt": 1776765600000,
+            "language": "de",
+            "issue": "online",
+            "testedProductsCount": 1
+          },
+          {
+            "providerName": "pokde.net",
+            "shortDescription": "Einzeltest Samsung Galaxy A57",
+            "summaryText": "Geboten werden ein schlankes, leichtes Design mit hochwertigem Gefühl und ein lebendiges 120-Hz-OLED-Display, das auch im Freien gut sichtbar ist. Es gibt außerdem einen zuverlässigen Akku, alltagstaugliche Kameras und 6 Jahre Betriebssystem- und Sicherheitsupdates. Praktisch ist auch das 45-W-Laden. Allerdings fehlt es an GPU-Leistung, der Fingerabdrucksensor kann manchmal langsam sein und es gibt keine Teleobjektivlinse oder Unterstützung für drahtloses Laden.",
+            "ratingValue": "7,9/10",
+            "publishedAt": 1777543200000,
+            "language": "de",
+            "issue": "online",
+            "testedProductsCount": 1
+          },
+          {
+            "providerName": "Techradar",
+            "shortDescription": "Einzeltest Samsung Galaxy A57",
+            "summaryText": "Das Samsung Galaxy A57 punktet mit einem ansprechenden Display, schlankem Design und benutzerfreundlicher Software. Die Kamera und der Prozessor sind für den Alltag ausreichend, jedoch nicht für Profis geeignet. Ein Nachteil ist der erhöhte Preis im Vergleich zum Vorgängermodell A56.",
+            "ratingValue": "4/5",
+            "publishedAt": 1776938400000,
+            "language": "de",
+            "issue": "online",
+            "testedProductsCount": 1
+          },
+          {
+            "providerName": "t3.com",
+            "shortDescription": "Einzeltest Samsung Galaxy A57",
+            "summaryText": "Das Mittelklasse-Smartphone bietet wesentliche Merkmale der Galaxy S26-Reihe zu einem deutlich geringeren Preis. Es überzeugt mit hochwertigen Materialien, Fotospaß und starken Lautsprechern. Allerdings gibt es Einschränkungen bei der Leistung und der veralteten Akkutechnologie.",
+            "ratingValue": "4/5",
+            "publishedAt": 1776852000000,
+            "language": "de",
+            "issue": "online",
+            "testedProductsCount": 1
+          },
+          {
+            "providerName": "AbsoluteGeeks",
+            "shortDescription": "Einzeltest Samsung Galaxy A57 5G",
+            "summaryText": "Das Galaxy A57 5G ist ein Handy, das sich auf das Wesentliche konzentriert. Es ist schlank, stilvoll und extrem widerstandsfähig. Es gibt viele durchdachte Funktionen und KI-Tools, die Freude statt Frustration hervorrufen.",
+            "ratingValue": "4,5/5",
+            "publishedAt": 1776333600000,
+            "language": "de",
+            "issue": "online",
+            "testedProductsCount": 1
+          },
+          {
+            "providerName": "trustedreviews.com",
+            "shortDescription": "Einzeltest Samsung Galaxy A57 5G",
+            "summaryText": "Es handelt sich um ein schlankes, hochwertiges Smartphone mit einem hellen 6,7-Zoll-AMOLED-Display und zuverlässiger Leistung für den Alltag. Schwachstellen sind mittelmäßige Kameras, eine durchschnittliche Akkulaufzeit und hohe Kosten für zusätzlichen Speicher. Der Fingerabdrucksensor ist langsam und unzuverlässig.",
+            "ratingValue": "4/5",
+            "publishedAt": 1776765600000,
+            "language": "de",
+            "issue": "online",
+            "testedProductsCount": 1
+          },
+          {
+            "providerName": "ComputerBild",
+            "shortDescription": "Einzeltest Samsung Galaxy A57",
+            "summaryText": "Im Test wurden ein beeindruckend helles Display sowie eine hochwertige 50-MP-Hauptkamera festgestellt. Es gibt jedoch keine echte Tele-Linse und die Möglichkeit des induktiven Ladens fehlt.",
+            "ratingValue": "gut (1,6)",
+            "publishedAt": 1777284000000,
+            "language": "de",
+            "issue": "online",
+            "testedProductsCount": 1
+          },
+          {
+            "providerName": "smartzone.de",
+            "shortDescription": "Einzeltest Samsung Galaxy A57",
+            "summaryText": "Das Samsung Galaxy A57 überzeugt mit schlankem, hochwertigem IP68-Gehäuse, starkem AMOLED-Display und sehr langer Update-Versorgung. Hauptkamera und Videoqualität sind im Alltag gut, die Akkulaufzeit ebenfalls. Wenig Begeisterung erzeugen der nur durchschnittliche Prozessor, das wenig flexible Kamerasetup und fehlende Premium-Extras.",
+            "ratingValue": "84/100",
+            "publishedAt": 1781344800000,
+            "language": "de",
+            "issue": "online",
+            "testedProductsCount": 1
+          },
+          {
+            "providerName": "TURN ON",
+            "shortDescription": "Einzeltest Samsung Galaxy A57",
+            "summaryText": "Das Samsung Galaxy A57 punktet mit ultraschlankem Design, hellem OLED-Display und starker Mittelklasse-Performance. Es gibt jedoch Kritikpunkte wie die fingerabdruckanfällige Rückseite, den langsamen USB-C-2.0-Anschluss und vorinstallierte Bloatware. Die KI-Tools der Awesome Intelligence sind zudem unausgereift.",
+            "ratingValue": "4/5",
+            "publishedAt": 1778148000000,
+            "language": "de",
+            "issue": "online",
+            "testedProductsCount": 1
+          },
+          {
+            "providerName": "Stiftung Warentest",
+            "shortDescription": "Einzeltest Samsung Galaxy A57 5G",
+            "summaryText": "Das Samsung Galaxy A57 5G punktet mit sehr gutem Display und guter Handhabung, einschließlich Menü und Handhabung. Die Kamera liefert gute Ergebnisse, während die Akkulaufzeit und Netzempfindlichkeit nur befriedigend sind. Die Stabilität ist insgesamt gut, aber die Kratzfestigkeit könnte besser sein.",
+            "ratingValue": "2,0",
+            "publishedAt": 1788343200000,
+            "language": "de",
+            "issue": "online",
+            "testedProductsCount": 1
+          },
+          {
+            "providerName": "BeyondPixels",
+            "shortDescription": "Einzeltest Samsung Galaxy A57",
+            "summaryText": "Das Samsung Galaxy A57 5G ist ein zukunftssicherer Allrounder, der durch ein hervorragendes OLED-Display, ein ansprechendes Design, eine gute Performance und eine zuverlässige Alltagskamera besticht. Es gibt außerdem eine ordentliche Akkulaufzeit und vielseitige KI-Funktionen. Einschränkungen zeigen sich bei anspruchsvollen 3D-Spielen und fehlenden Funktionen wie Top-Zoom oder kabelloses Aufladen.",
+            "ratingValue": "8,5/10",
+            "publishedAt": 1783591200000,
+            "language": "de",
+            "issue": "online",
+            "testedProductsCount": 1
+          },
+          {
+            "providerName": "Tech Advisor",
+            "shortDescription": "Einzeltest Samsung Galaxy A57",
+            "summaryText": "Zu den Vorteilen zählen ein eleganteres und robusteres Design, eine scharfe Benutzeroberfläche sowie eine starke Softwareunterstützung für 6 Jahre. Auf der anderen Seite unterscheiden sich die Kameras kaum und es gibt leistungsfähigere Alternativen für den gleichen Preis.",
+            "ratingValue": "3,5/5",
+            "publishedAt": 1776765600000,
+            "language": "de",
+            "issue": "online",
+            "testedProductsCount": 1
+          },
+          {
+            "providerName": "tomsguide.com",
+            "shortDescription": "Einzeltest Samsung Galaxy A57",
+            "summaryText": "Das Samsung Galaxy A57 ist ein solides Smartphone, das eine starke Akkulaufzeit, ein hochwertiges Design und ein großes Display bietet. Es gibt jedoch Schwächen in der Leistung und bei der Kamera-Hardware. Zusätzlich bietet es KI-Funktionen auf S26-Niveau.",
+            "ratingValue": "4/5",
+            "publishedAt": 1776506400000,
+            "language": "de",
+            "issue": "online",
+            "testedProductsCount": 1
+          }
+        ]
+      },
+      "productSpecification": {
+        "groups": [
+          {
+            "name": "EU-Energielabel",
+            "type": "DEFAULT",
+            "attributes": [
+              {
+                "name": "Energieeffizienzklasse",
+                "value": "A"
+              },
+              {
+                "name": "Akkulaufzeit pro Ladezyklus",
+                "value": "52h"
+              },
+              {
+                "name": "Zuverlässigkeitsklasse",
+                "value": "A"
+              },
+              {
+                "name": "Reparierbarkeitsklasse",
+                "value": "C"
+              },
+              {
+                "name": "Akkulaufzeit in Zyklen",
+                "value": "1.200 x"
+              },
+              {
+                "name": "Eindringschutzgrad",
+                "value": "IP68"
+              }
+            ]
+          },
+          {
+            "name": "Allgemeines",
+            "type": "DEFAULT",
+            "attributes": [
+              {
+                "name": "Markteinführung",
+                "value": "2026"
+              },
+              {
+                "name": "Serien",
+                "value": "Samsung Galaxy, Samsung Galaxy A"
+              },
+              {
+                "name": "Smartphone Klasse",
+                "value": "Mittelklasse"
+              },
+              {
+                "name": "Produkt-Highlights",
+                "value": "neuester Mobilfunkstandard 5G"
+              }
+            ]
+          },
+          {
+            "name": "Display",
+            "type": "DEFAULT",
+            "attributes": [
+              {
+                "name": "Displaygröße",
+                "value": "6,7 Zoll"
+              },
+              {
+                "name": "Displaygröße",
+                "value": "17,018 cm"
+              },
+              {
+                "name": "Displayauflösung",
+                "value": "2.340 x 1.080 Pixel"
+              },
+              {
+                "name": "Displayauflösung",
+                "value": "Full HD"
+              },
+              {
+                "name": "Displayart",
+                "value": "AMOLED"
+              },
+              {
+                "name": "Bildwiederholungsfrequenz",
+                "value": "120 Hz"
+              },
+              {
+                "name": "Display-Seitenverhältnis",
+                "value": "19,5:9"
+              },
+              {
+                "name": "Display-Besonderheiten",
+                "value": "Super AMOLED Display, Always On Display, Punch-Hole-Display, HDR10+"
+              },
+              {
+                "name": "Displaymaterial",
+                "value": "Gorilla Glass Victus+"
+              },
+              {
+                "name": "Displayeigenschaft",
+                "value": "kratzfest"
+              },
+              {
+                "name": "Pixeldichte",
+                "value": "385 ppi"
+              },
+              {
+                "name": "Screen-to-Body Ratio",
+                "value": "88,8 %"
+              },
+              {
+                "name": "Helligkeit",
+                "value": "1.900 cd/m²"
+              }
+            ]
+          },
+          {
+            "name": "Hauptkamera",
+            "type": "DEFAULT",
+            "attributes": [
+              {
+                "name": "Kamera-Technik",
+                "value": "Triple-Kamera, optische Bildstabilisierung, 4k-Videoaufnahme"
+              },
+              {
+                "name": "Kamera 1",
+                "value": "50MP, Weitwinkel, f/1,8, OIS"
+              },
+              {
+                "name": "Kamera 2",
+                "value": "12MP, Ultra-Weitwinkel, f/2,2, 123°"
+              },
+              {
+                "name": "Kamera 3",
+                "value": "5MP, Macro, f/2,4"
+              },
+              {
+                "name": "Blitz",
+                "value": "LED Blitz"
+              },
+              {
+                "name": "Fokus-Funktion",
+                "value": "Phasen-Fokus (PDAF)"
+              },
+              {
+                "name": "Bildstabilisator",
+                "value": "optisch (OIS)"
+              },
+              {
+                "name": "Aufnahme-Funktionen",
+                "value": "Panorama, HDR"
+              },
+              {
+                "name": "Hauptkamera Videoaufzeichnung",
+                "value": "4K (30fps), Full HD (60/30fps)"
+              },
+              {
+                "name": "Kamera-Feature",
+                "value": "Best Face"
+              },
+              {
+                "name": "DxO Mark (Kamera-Index)",
+                "value": "150"
+              },
+              {
+                "name": "DxO Mark",
+                "value": "163 (vergebener max Wert 05/2024)"
+              }
+            ]
+          },
+          {
+            "name": "Selfie-Kamera",
+            "type": "DEFAULT",
+            "attributes": [
+              {
+                "name": "Selfie-Kamera 1",
+                "value": "12MP, Weitwinkel, f/2,2"
+              },
+              {
+                "name": "Selfie-Aufnahmefunktion",
+                "value": "HDR"
+              },
+              {
+                "name": "Selfie-Videoaufzeichnung",
+                "value": "4K (30fps), Full HD (60/30fps)"
+              }
+            ]
+          },
+          {
+            "name": "Hardware",
+            "type": "DEFAULT",
+            "attributes": [
+              {
+                "name": "RAM",
+                "value": "8 GB"
+              },
+              {
+                "name": "interner Speicher",
+                "value": "256 GB"
+              },
+              {
+                "name": "Prozessorhersteller",
+                "value": "Samsung"
+              },
+              {
+                "name": "Prozessortyp",
+                "value": "Exynos 1680"
+              },
+              {
+                "name": "Prozessorkern",
+                "value": "Octa-Core (8)"
+              },
+              {
+                "name": "max CPU-Taktrate",
+                "value": "2,9 GHz"
+              },
+              {
+                "name": "Grafikprozessor (GPU)",
+                "value": "Xclipse 550"
+              },
+              {
+                "name": "Dual-SIM Technik",
+                "value": "Dual-SIM Standby"
+              },
+              {
+                "name": "SIM-Karten",
+                "value": "Nano-SIM, eSIM"
+              },
+              {
+                "name": "Speicherkarte",
+                "value": "ohne Slot"
+              },
+              {
+                "name": "Sensoren",
+                "value": "Annäherungssensor, Kreiselsensor (Gyroskop), Beschleunigungssensor (G-Sensor), Magnetometer, Fingerabdrucksensor"
+              },
+              {
+                "name": "Ortungsdienste",
+                "value": "GPS, A-GPS, Galileo, GLONASS, BeiDou, QZSS"
+              },
+              {
+                "name": "Audiofeatures",
+                "value": "Stereo-Lautsprecher, Dolby Atmos"
+              }
+            ]
+          },
+          {
+            "name": "Software",
+            "type": "DEFAULT",
+            "attributes": [
+              {
+                "name": "verfügbares Betriebssystem",
+                "value": "Android 16"
+              },
+              {
+                "name": "Update-Garantie",
+                "value": "6 Jahre Android-Updates, 6 Jahre Sicherheitspatches"
+              },
+              {
+                "name": "Benutzeroberfläche",
+                "value": "One UI 8.5"
+              },
+              {
+                "name": "vorinstallierte Apps",
+                "value": "Google Play Store, Google Services"
+              },
+              {
+                "name": "KI-Funktion",
+                "value": "Google Gemini"
+              }
+            ]
+          },
+          {
+            "name": "Kommunikation",
+            "type": "DEFAULT",
+            "attributes": [
+              {
+                "name": "Mobilfunkstandards",
+                "value": "5G, 4G, 3G, 2G"
+              },
+              {
+                "name": "mobile Datenkommunikationen",
+                "value": "EDGE, GPRS, GSM, LTE, WCDMA, UMTS, SA, NSA"
+              },
+              {
+                "name": "LTE-Frequenzbänder",
+                "value": "B1, B2, B3, B4, B5, B7, B8, B12, B17, B20, B25, B26, B28, B32, B38, B40, B41, B66"
+              },
+              {
+                "name": "lokale Verbindungen",
+                "value": "Wi-Fi Direct, Bluetooth, WLAN, Dualband WLan, NFC"
+              },
+              {
+                "name": "WLAN-Standards",
+                "value": "WiFi 1 (b), WiFi 2 (a), WiFi 3 (g), WiFi 4 (n), WiFi 5 (ac), WiFi 6 (ax), WiFi 6e"
+              },
+              {
+                "name": "WLAN-Frequenzbänder",
+                "value": "2,4 GHz, 5 GHz"
+              },
+              {
+                "name": "Bluetooth-Version",
+                "value": "6.0"
+              }
+            ]
+          },
+          {
+            "name": "Schnittstellen",
+            "type": "DEFAULT",
+            "attributes": [
+              {
+                "name": "Anschluss",
+                "value": "USB-C"
+              },
+              {
+                "name": "USB-Standards",
+                "value": "2.0, OTG (On-The-Go)"
+              }
+            ]
+          },
+          {
+            "name": "Gehäuse",
+            "type": "DEFAULT",
+            "attributes": [
+              {
+                "name": "Bauform",
+                "value": "Barren Handy"
+              },
+              {
+                "name": "Farbe",
+                "value": "grau"
+              },
+              {
+                "name": "Gehäusematerialien",
+                "value": "gehärtetes Glas, Aluminium Rahmen"
+              },
+              {
+                "name": "Gehäuseeigenschaften",
+                "value": "wasserdicht, staubdicht"
+              },
+              {
+                "name": "Schutzart",
+                "value": "IP68"
+              },
+              {
+                "name": "physische Tasten",
+                "value": "Ein/Aus-Taste, Lautstärke-Regler"
+              },
+              {
+                "name": "Position Fingerabdrucksensor",
+                "value": "Frontseite, im Display"
+              },
+              {
+                "name": "Gewicht",
+                "value": "179 g"
+              },
+              {
+                "name": "Höhe",
+                "value": "161,5 mm"
+              },
+              {
+                "name": "Breite",
+                "value": "76,8 mm"
+              },
+              {
+                "name": "Tiefe",
+                "value": "6,9 mm"
+              }
+            ]
+          },
+          {
+            "name": "Akku & Laufzeiten",
+            "type": "DEFAULT",
+            "attributes": [
+              {
+                "name": "Akku-Kapazität",
+                "value": "5.000 mAh"
+              },
+              {
+                "name": "Akku-Eigenschaften",
+                "value": "fest verbauter Akku, Schnellladefunktion"
+              },
+              {
+                "name": "Ladestrom Spezifikation",
+                "value": "45W"
+              }
+            ]
+          },
+          {
+            "name": "",
+            "type": "IMPORTANT",
+            "attributes": [
+              {
+                "name": "Gelistet seit",
+                "value": "März 2026"
+              },
+              {
+                "name": "Produkttypen",
+                "value": "5G Handy, LTE Smartphone, Dual-SIM Handy, Android Handy, Phablet"
+              }
+            ]
+          },
+          {
+            "name": "",
+            "type": "OTHER",
+            "attributes": [
+              {
+                "name": "integrierte Sicherheiten",
+                "value": "Fingerabdruck, Gesichtserkennung"
+              }
+            ]
+          }
+        ]
+      },
+      "productOverview": [
+        "6,7 Zoll",
+        "Full HD",
+        "120 Hz",
+        "50 MP",
+        "8 GB RAM",
+        "256 GB interner Speicher",
+        "Exynos 1680",
+        "Android 16",
+        "5.000 mAh"
+      ],
+      "productDetailsUrl": "https://www.idealo.de/preisvergleich/OffersOfProduct/209770546_-galaxy-a57-8gb-256gb-awesome-gray-samsung.html#datasheet",
+      "priceTrend": {
+        "history": [
+          {
+            "dateTime": 1793228399999,
+            "price": 38200
+          },
+          {
+            "dateTime": 1793314799999,
+            "price": 38699
+          },
+          {
+            "dateTime": 1793401199999,
+            "price": 36900
+          },
+          {
+            "dateTime": 1793487599999,
+            "price": 38790
+          },
+          {
+            "dateTime": 1793573999999,
+            "price": 37998
+          },
+          {
+            "dateTime": 1793660399999,
+            "price": 28560
+          },
+          {
+            "dateTime": 1793746799999,
+            "price": 36900
+          },
+          {
+            "dateTime": 1793833199999,
+            "price": 36900
+          },
+          {
+            "dateTime": 1793919599999,
+            "price": 38500
+          },
+          {
+            "dateTime": 1794005999999,
+            "price": 38500
+          },
+          {
+            "dateTime": 1794092399999,
+            "price": 38486
+          },
+          {
+            "dateTime": 1794178799999,
+            "price": 37999
+          },
+          {
+            "dateTime": 1794265199999,
+            "price": 37900
+          },
+          {
+            "dateTime": 1794351599999,
+            "price": 37900
+          },
+          {
+            "dateTime": 1794437999999,
+            "price": 38790
+          },
+          {
+            "dateTime": 1794524399999,
+            "price": 37999
+          },
+          {
+            "dateTime": 1794610799999,
+            "price": 37900
+          },
+          {
+            "dateTime": 1794697199999,
+            "price": 37900
+          },
+          {
+            "dateTime": 1794783599999,
+            "price": 37900
+          },
+          {
+            "dateTime": 1794869999999,
+            "price": 37900
+          },
+          {
+            "dateTime": 1794956399999,
+            "price": 37900
+          },
+          {
+            "dateTime": 1795042799999,
+            "price": 37900
+          },
+          {
+            "dateTime": 1795129199999,
+            "price": 37899
+          },
+          {
+            "dateTime": 1795215599999,
+            "price": 37800
+          },
+          {
+            "dateTime": 1795301999999,
+            "price": 37800
+          },
+          {
+            "dateTime": 1795388399999,
+            "price": 37900
+          },
+          {
+            "dateTime": 1795474799999,
+            "price": 37900
+          },
+          {
+            "dateTime": 1795561199999,
+            "price": 37900
+          },
+          {
+            "dateTime": 1795647599999,
+            "price": 37600
+          },
+          {
+            "dateTime": 1795733999999,
+            "price": 37600
+          },
+          {
+            "dateTime": 1795800014353,
+            "price": 37900
+          }
+        ]
+      }
+    },
+    "offers": {
+      "nextOffset": 5,
+      "offers": [
+        {
+          "key": "c67148eae52155a923af3b64db8060ae",
+          "price": "379,00 €",
+          "basePrice": null,
+          "shop": {
+            "shopId": "285519",
+            "merchantId": null,
+            "name": "mediamarkt.de",
+            "merchantName": null,
+            "rating": {
+              "count": 18594,
+              "avg": 3.85
+            },
+            "isMarketplace": false
+          },
+          "payments": [
+            {
+              "costCode": "PP",
+              "name": "PayPal"
+            },
+            {
+              "costCode": "SUW",
+              "name": "Sofort."
+            },
+            {
+              "costCode": "CBC",
+              "name": "Kreditkarte"
+            },
+            {
+              "costCode": "CIA",
+              "name": "Vorkasse"
+            },
+            {
+              "costCode": "AMZP",
+              "name": "Amazon Pay"
+            }
+          ],
+          "showPaymentDisclaimer": false,
+          "delivery": {
+            "deliveryText": "bis Di. 01.12.2026",
+            "deliveryStatus": "SHORT",
+            "earlyDeliveryDate": null,
+            "lateDeliveryDate": "2026-12-01"
+          },
+          "freeReturnDays": 30,
+          "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=c67148eae52155a923af3b64db8060ae&categoryId=19116&pos=1&price=379.00&productid=209770546&sid=285519&type=offer&media=ipc-public-mcp",
+          "minShippingCost": "0,00 €",
+          "hasAlwaysFreeShipping": true,
+          "cheapestTotalPriceOffer": true,
+          "freshness": "2026-11-27T17:20:14.714Z"
+        },
+        {
+          "key": "41eca7b7792dee991dda17a010ed5f2e",
+          "price": "387,90 €",
+          "basePrice": null,
+          "shop": {
+            "shopId": "335764",
+            "merchantId": null,
+            "name": "joybuy.de",
+            "merchantName": null,
+            "rating": {
+              "count": 171,
+              "avg": 2.32
+            },
+            "isMarketplace": false
+          },
+          "payments": [
+            {
+              "costCode": "PP",
+              "name": "PayPal"
+            },
+            {
+              "costCode": "SUW",
+              "name": "Sofort."
+            },
+            {
+              "costCode": "CBC",
+              "name": "Kreditkarte"
+            }
+          ],
+          "showPaymentDisclaimer": false,
+          "delivery": {
+            "deliveryText": "bis Mo. 30.11.2026",
+            "deliveryStatus": "SHORT",
+            "earlyDeliveryDate": null,
+            "lateDeliveryDate": "2026-11-30"
+          },
+          "freeReturnDays": 30,
+          "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=41eca7b7792dee991dda17a010ed5f2e&categoryId=19116&pos=3&price=387.90&productid=209770546&sid=335764&type=offer&media=ipc-public-mcp",
+          "minShippingCost": "0,00 €",
+          "hasAlwaysFreeShipping": true,
+          "cheapestTotalPriceOffer": false,
+          "freshness": "2026-11-27T17:20:14.715Z"
+        },
+        {
+          "key": "16e06902b8512ee2d6b8dfb89ff45e94",
+          "price": "389,93 €",
+          "basePrice": null,
+          "shop": {
+            "shopId": "295945",
+            "merchantId": null,
+            "name": "buyzoxs.de",
+            "merchantName": null,
+            "rating": {
+              "count": 1005,
+              "avg": 4.56
+            },
+            "isMarketplace": false
+          },
+          "payments": [
+            {
+              "costCode": "PP",
+              "name": "PayPal"
+            },
+            {
+              "costCode": "SUW",
+              "name": "Sofort."
+            },
+            {
+              "costCode": "CBC",
+              "name": "Kreditkarte"
+            },
+            {
+              "costCode": "APPLE_PAY",
+              "name": "Apple Pay"
+            },
+            {
+              "costCode": "CIA",
+              "name": "Vorkasse"
+            }
+          ],
+          "showPaymentDisclaimer": false,
+          "delivery": {
+            "deliveryText": "bis Di. 01.12.2026",
+            "deliveryStatus": "SHORT",
+            "earlyDeliveryDate": null,
+            "lateDeliveryDate": "2026-12-01"
+          },
+          "freeReturnDays": null,
+          "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=16e06902b8512ee2d6b8dfb89ff45e94&categoryId=19116&pos=4&price=389.93&productid=209770546&sid=295945&type=offer&media=ipc-public-mcp",
+          "minShippingCost": "0,00 €",
+          "hasAlwaysFreeShipping": true,
+          "cheapestTotalPriceOffer": false,
+          "freshness": "2026-11-27T17:20:14.715Z"
+        },
+        {
+          "key": "d4622db9015590b6ceb2f60dc1dd9f5b",
+          "price": "395,00 €",
+          "basePrice": null,
+          "shop": {
+            "shopId": "1140",
+            "merchantId": null,
+            "name": "computeruniverse.net",
+            "merchantName": null,
+            "rating": {
+              "count": 29704,
+              "avg": 3.78
+            },
+            "isMarketplace": false
+          },
+          "payments": [
+            {
+              "costCode": "INV",
+              "name": "Rechnung"
+            },
+            {
+              "costCode": "PP",
+              "name": "PayPal"
+            },
+            {
+              "costCode": "SUW",
+              "name": "Sofort."
+            },
+            {
+              "costCode": "CBC",
+              "name": "Kreditkarte"
+            },
+            {
+              "costCode": "APPLE_PAY",
+              "name": "Apple Pay"
+            },
+            {
+              "costCode": "CIA",
+              "name": "Vorkasse"
+            },
+            {
+              "costCode": "AMZP",
+              "name": "Amazon Pay"
+            }
+          ],
+          "showPaymentDisclaimer": false,
+          "delivery": {
+            "deliveryText": "Mo. 07.12.–Di. 15.12.2026",
+            "deliveryStatus": "LONG",
+            "earlyDeliveryDate": "2026-12-07",
+            "lateDeliveryDate": "2026-12-15"
+          },
+          "freeReturnDays": 30,
+          "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=d4622db9015590b6ceb2f60dc1dd9f5b&categoryId=19116&pos=5&price=395.00&productid=209770546&sid=1140&type=offer&media=ipc-public-mcp",
+          "minShippingCost": "6,99 €",
+          "hasAlwaysFreeShipping": false,
+          "cheapestTotalPriceOffer": false,
+          "freshness": "2026-11-27T17:20:14.715Z"
+        }
+      ]
+    },
+    "price_history": {
+      "priceTrend": {
+        "history": [
+          {
+            "dateTime": 1793228399999,
+            "price": "382,00 €",
+            "dateTimeISO": "2026-10-28T22:59:59.999Z"
+          },
+          {
+            "dateTime": 1793314799999,
+            "price": "386,99 €",
+            "dateTimeISO": "2026-10-29T22:59:59.999Z",
+            "priceChangePercent": 1.306282722513089
+          },
+          {
+            "dateTime": 1793401199999,
+            "price": "369,00 €",
+            "dateTimeISO": "2026-10-30T22:59:59.999Z",
+            "priceChangePercent": -4.648698932788961
+          },
+          {
+            "dateTime": 1793487599999,
+            "price": "387,90 €",
+            "dateTimeISO": "2026-10-31T22:59:59.999Z",
+            "priceChangePercent": 5.121951219512195
+          },
+          {
+            "dateTime": 1793573999999,
+            "price": "379,98 €",
+            "dateTimeISO": "2026-11-01T22:59:59.999Z",
+            "priceChangePercent": -2.0417633410672855
+          },
+          {
+            "dateTime": 1793660399999,
+            "price": "285,60 €",
+            "dateTimeISO": "2026-11-02T22:59:59.999Z",
+            "priceChangePercent": -24.83814937628296
+          },
+          {
+            "dateTime": 1793746799999,
+            "price": "369,00 €",
+            "dateTimeISO": "2026-11-03T22:59:59.999Z",
+            "priceChangePercent": 29.20168067226891
+          },
+          {
+            "dateTime": 1793833199999,
+            "price": "369,00 €",
+            "dateTimeISO": "2026-11-04T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1793919599999,
+            "price": "385,00 €",
+            "dateTimeISO": "2026-11-05T22:59:59.999Z",
+            "priceChangePercent": 4.336043360433604
+          },
+          {
+            "dateTime": 1794005999999,
+            "price": "385,00 €",
+            "dateTimeISO": "2026-11-06T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1794092399999,
+            "price": "384,86 €",
+            "dateTimeISO": "2026-11-07T22:59:59.999Z",
+            "priceChangePercent": -0.03636363636363636
+          },
+          {
+            "dateTime": 1794178799999,
+            "price": "379,99 €",
+            "dateTimeISO": "2026-11-08T22:59:59.999Z",
+            "priceChangePercent": -1.2653952086473004
+          },
+          {
+            "dateTime": 1794265199999,
+            "price": "379,00 €",
+            "dateTimeISO": "2026-11-09T22:59:59.999Z",
+            "priceChangePercent": -0.26053317192557696
+          },
+          {
+            "dateTime": 1794351599999,
+            "price": "379,00 €",
+            "dateTimeISO": "2026-11-10T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1794437999999,
+            "price": "387,90 €",
+            "dateTimeISO": "2026-11-11T22:59:59.999Z",
+            "priceChangePercent": 2.3482849604221636
+          },
+          {
+            "dateTime": 1794524399999,
+            "price": "379,99 €",
+            "dateTimeISO": "2026-11-12T22:59:59.999Z",
+            "priceChangePercent": -2.039185357050786
+          },
+          {
+            "dateTime": 1794610799999,
+            "price": "379,00 €",
+            "dateTimeISO": "2026-11-13T22:59:59.999Z",
+            "priceChangePercent": -0.26053317192557696
+          },
+          {
+            "dateTime": 1794697199999,
+            "price": "379,00 €",
+            "dateTimeISO": "2026-11-14T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1794783599999,
+            "price": "379,00 €",
+            "dateTimeISO": "2026-11-15T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1794869999999,
+            "price": "379,00 €",
+            "dateTimeISO": "2026-11-16T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1794956399999,
+            "price": "379,00 €",
+            "dateTimeISO": "2026-11-17T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1795042799999,
+            "price": "379,00 €",
+            "dateTimeISO": "2026-11-18T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1795129199999,
+            "price": "378,99 €",
+            "dateTimeISO": "2026-11-19T22:59:59.999Z",
+            "priceChangePercent": -0.002638522427440633
+          },
+          {
+            "dateTime": 1795215599999,
+            "price": "378,00 €",
+            "dateTimeISO": "2026-11-20T22:59:59.999Z",
+            "priceChangePercent": -0.2612206126810734
+          },
+          {
+            "dateTime": 1795301999999,
+            "price": "378,00 €",
+            "dateTimeISO": "2026-11-21T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1795388399999,
+            "price": "379,00 €",
+            "dateTimeISO": "2026-11-22T22:59:59.999Z",
+            "priceChangePercent": 0.26455026455026454
+          },
+          {
+            "dateTime": 1795474799999,
+            "price": "379,00 €",
+            "dateTimeISO": "2026-11-23T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1795561199999,
+            "price": "379,00 €",
+            "dateTimeISO": "2026-11-24T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1795647599999,
+            "price": "376,00 €",
+            "dateTimeISO": "2026-11-25T22:59:59.999Z",
+            "priceChangePercent": -0.79155672823219
+          },
+          {
+            "dateTime": 1795733999999,
+            "price": "376,00 €",
+            "dateTimeISO": "2026-11-26T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1795800015082,
+            "price": "379,00 €",
+            "dateTimeISO": "2026-11-27T17:20:15.082Z",
+            "priceChangePercent": 0.7978723404255319
+          }
+        ],
+        "statistics": {
+          "minPrice": "285,60 €",
+          "maxPrice": "387,90 €",
+          "avgPrice": "376,36 €",
+          "currentPrice": "379,00 €",
+          "priceChangePercent": -0.7853403141361256,
+          "lowestPriceDate": "2026-11-02T22:59:59.999Z",
+          "highestPriceDate": "2026-10-31T22:59:59.999Z"
+        },
+        "samplingGranularity": "daily",
+        "dataSourceConfidence": 0.95,
+        "periodDays": 29.8,
+        "totalDataPoints": 31
+      }
+    },
+    "all_cached": false
+  }
+}

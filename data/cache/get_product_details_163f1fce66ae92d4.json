@@ -1,0 +1,881 @@
+{
+  "namespace": "get_product_details",
+  "request": {
+    "productRef": "pr.v1.k1.GYYadil3XBjROa8w6tvfF4ErKpqaZyV9dLnT08TJHNIR1dUa0Q",
+    "country": "DE"
+  },
+  "cached_at": 1795803614.55739,
+  "data": {
+    "productRef": "pr.v1.k1.GYYadil3XBjROa8w6tvfF4ErKpqaZyV9dLnT08TJHNIR1dUa0Q",
+    "itemType": "PRODUCT",
+    "siteId": 1,
+    "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/209770546_-galaxy-a57-8gb-256gb-awesome-gray-samsung.html",
+    "name": "Samsung Galaxy A57",
+    "nameDelta": "8GB 256GB Awesome Gray",
+    "imageUrls": [
+      "https://cdn.idealo.com/folder/Product/209770/5/209770546/s1_produktbild_mobil/samsung-galaxy-a57-8gb-256gb-awesome-gray.jpg"
+    ],
+    "nextOffset": 3,
+    "offers": [
+      {
+        "key": "c67148eae52155a923af3b64db8060ae",
+        "price": "379,00 €",
+        "basePrice": null,
+        "shop": {
+          "shopId": "285519",
+          "merchantId": null,
+          "name": "mediamarkt.de",
+          "merchantName": null,
+          "rating": {
+            "count": 18594,
+            "avg": 3.85
+          },
+          "isMarketplace": false
+        },
+        "payments": [
+          {
+            "costCode": "PP",
+            "name": "PayPal"
+          },
+          {
+            "costCode": "SUW",
+            "name": "Sofort."
+          },
+          {
+            "costCode": "CBC",
+            "name": "Kreditkarte"
+          },
+          {
+            "costCode": "CIA",
+            "name": "Vorkasse"
+          },
+          {
+            "costCode": "AMZP",
+            "name": "Amazon Pay"
+          }
+        ],
+        "showPaymentDisclaimer": false,
+        "delivery": {
+          "deliveryText": "bis Di. 01.12.2026",
+          "deliveryStatus": "SHORT",
+          "earlyDeliveryDate": null,
+          "lateDeliveryDate": "2026-12-01"
+        },
+        "freeReturnDays": 30,
+        "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=c67148eae52155a923af3b64db8060ae&categoryId=19116&pos=1&price=379.00&productid=209770546&sid=285519&type=offer&media=ipc-public-mcp",
+        "minShippingCost": "0,00 €",
+        "hasAlwaysFreeShipping": true,
+        "cheapestTotalPriceOffer": true,
+        "freshness": "2026-11-27T17:20:14.333Z"
+      },
+      {
+        "key": "41eca7b7792dee991dda17a010ed5f2e",
+        "price": "387,90 €",
+        "basePrice": null,
+        "shop": {
+          "shopId": "335764",
+          "merchantId": null,
+          "name": "joybuy.de",
+          "merchantName": null,
+          "rating": {
+            "count": 171,
+            "avg": 2.32
+          },
+          "isMarketplace": false
+        },
+        "payments": [
+          {
+            "costCode": "PP",
+            "name": "PayPal"
+          },
+          {
+            "costCode": "SUW",
+            "name": "Sofort."
+          },
+          {
+            "costCode": "CBC",
+            "name": "Kreditkarte"
+          }
+        ],
+        "showPaymentDisclaimer": false,
+        "delivery": {
+          "deliveryText": "bis Mo. 30.11.2026",
+          "deliveryStatus": "SHORT",
+          "earlyDeliveryDate": null,
+          "lateDeliveryDate": "2026-11-30"
+        },
+        "freeReturnDays": 30,
+        "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=41eca7b7792dee991dda17a010ed5f2e&categoryId=19116&pos=3&price=387.90&productid=209770546&sid=335764&type=offer&media=ipc-public-mcp",
+        "minShippingCost": "0,00 €",
+        "hasAlwaysFreeShipping": true,
+        "cheapestTotalPriceOffer": false,
+        "freshness": "2026-11-27T17:20:14.333Z"
+      }
+    ],
+    "prosCons": {
+      "pros": [
+        "ordentliche Hauptkamera",
+        "langer Update-Support",
+        "gute Akkulaufzeit",
+        "helles OLED-Display",
+        "hochwertiges und wasserdichtes Gehäuse"
+      ],
+      "cons": [
+        "schwache Ultraweitwinkel-Kamera und keine Telekamera",
+        "nur 8 GB RAM und schwacher Prozessor",
+        "dicke Displayränder",
+        "kein Wireless-Charging"
+      ]
+    },
+    "testReports": {
+      "summary": {
+        "grade": "2,0",
+        "averageRating": 80.3157894736842,
+        "rating": "gut",
+        "ratingCount": 19
+      },
+      "list": [
+        {
+          "providerName": "connect",
+          "shortDescription": "Einzeltest Samsung Galaxy A57",
+          "summaryText": "Es handelt sich um ein verbessertes Mittelklasse-Smartphone mit längerer Akkulaufzeit, stärkerer Plattform, besserer Kamera und optimierter Funktechnik. Es gibt jedoch Kritikpunkte wie unterdurchschnittliche Prozessorleistung, begrenzte Kamera-Verbesserungen und veraltete Displayränder. Zudem ist der Preis ambitioniert.",
+          "ratingValue": "77,6/100",
+          "publishedAt": 1780999200000,
+          "language": "de",
+          "issue": "online",
+          "testedProductsCount": 1
+        },
+        {
+          "providerName": "MORE Magazine",
+          "shortDescription": "Einzeltest Samsung Galaxy A57",
+          "summaryText": "Das Galaxy A57 punktet mit einem exzellenten AMOLED Display, einem schlanken Design und einer langen Update-Garantie. Es gibt jedoch Einschränkungen bei der Kamera und dem Prozessor, die im Vergleich zur Konkurrenz weniger leistungsstark sind. Zudem fehlt die Möglichkeit des kabellosen Ladens.",
+          "ratingValue": "76/100",
+          "publishedAt": 1781085600000,
+          "language": "de",
+          "issue": "online",
+          "testedProductsCount": 1
+        },
+        {
+          "providerName": "tariftipp.de",
+          "shortDescription": "Einzeltest Samsung Galaxy A57 5G",
+          "summaryText": "Bemerkenswert sind das helle AMOLED-Display mit 120 Hz, die starke Kamera mit OIS und die ausgereifte Software mit vielen KI-Funktionen. Der fehlende Telezoom und der nicht erweiterbare Speicher schmälern den Eindruck etwas.",
+          "ratingValue": "92,9/100",
+          "publishedAt": 1780999200000,
+          "language": "de",
+          "issue": "online",
+          "testedProductsCount": 1
+        },
+        {
+          "providerName": "notebookcheck",
+          "shortDescription": "Einzeltest Samsung Galaxy A57",
+          "summaryText": "Das Samsung Galaxy A57 5G bietet ein schlankes, hochwertig verarbeitetes Gehäuse mit IP68, langen Update-Support und gute Alltagsleistung. Das helle AMOLED-Display überzeugt im Alltag, die Kamera bleibt aber nur solide. Schwächen sind die enttäuschende Akkulaufzeit, USB 2.0 und wenige Bluetooth-Codecs. Mäßige Gaming-Performance, 240-Hz-PWM-Dimming und fehlendes kabelloses Laden schmälern den Eindruck.",
+          "ratingValue": "81,5/100",
+          "publishedAt": 1783677600000,
+          "language": "de",
+          "issue": "online",
+          "testedProductsCount": 1
+        },
+        {
+          "providerName": "Konsument",
+          "shortDescription": "Einzeltest Samsung Galaxy A57 5G",
+          "summaryText": "Display: sehr gut; Kamera: gut; Audioqualität: gut; Haltbarkeit: sehr gut; Akku: durchschnittlich; Sicherheit: sehr gut",
+          "ratingValue": "gut",
+          "publishedAt": 1790244000000,
+          "language": "de",
+          "issue": "10/2026",
+          "testedProductsCount": 1
+        },
+        {
+          "providerName": "stuff.tv",
+          "shortDescription": "Einzeltest Samsung Galaxy A57",
+          "summaryText": "Zu den Vorteilen des Samsung Galaxy A57 zählen ein Design, das an die hochwertigeren Modelle erinnert, ein Akku und Ladeleistung, die mit dem teureren Galaxy S26+ mithalten können, sowie Haupt- und Selfie-Kameras, die für den Preis konkurrenzfähig sind. Allerdings gibt es auch Nachteile: Es ist für ein Mittelklasse-Modell recht teuer und die Hardware hinkt der Konkurrenz hinterher. Die Makrokamera bietet keinen Mehrwert und im Vergleich zum Vorgängermodell gibt es kaum Neuerungen, obwohl dieses nun deutlich günstiger ist.",
+          "ratingValue": "3/5",
+          "publishedAt": 1776074400000,
+          "language": "de",
+          "issue": "online",
+          "testedProductsCount": 1
+        },
+        {
+          "providerName": "chip.de",
+          "shortDescription": "Einzeltest Samsung Galaxy A57",
+          "summaryText": "Das Samsung Galaxy A57 ist ein empfehlenswertes Mittelklasse-Smartphone mit einem scharfen und farbintensiven 6,7 Zoll OLED-Display. Es bietet eine ordentliche Leistung dank des Exynos 1680, eine lange Akkulaufzeit und liegt leicht in der Hand. Kritikpunkte sind das Fehlen von kabellosem Aufladen und die mittelmäßige Kamera.",
+          "ratingValue": "gut (1,8)",
+          "publishedAt": 1776765600000,
+          "language": "de",
+          "issue": "online",
+          "testedProductsCount": 1
+        },
+        {
+          "providerName": "pokde.net",
+          "shortDescription": "Einzeltest Samsung Galaxy A57",
+          "summaryText": "Geboten werden ein schlankes, leichtes Design mit hochwertigem Gefühl und ein lebendiges 120-Hz-OLED-Display, das auch im Freien gut sichtbar ist. Es gibt außerdem einen zuverlässigen Akku, alltagstaugliche Kameras und 6 Jahre Betriebssystem- und Sicherheitsupdates. Praktisch ist auch das 45-W-Laden. Allerdings fehlt es an GPU-Leistung, der Fingerabdrucksensor kann manchmal langsam sein und es gibt keine Teleobjektivlinse oder Unterstützung für drahtloses Laden.",
+          "ratingValue": "7,9/10",
+          "publishedAt": 1777543200000,
+          "language": "de",
+          "issue": "online",
+          "testedProductsCount": 1
+        },
+        {
+          "providerName": "Techradar",
+          "shortDescription": "Einzeltest Samsung Galaxy A57",
+          "summaryText": "Das Samsung Galaxy A57 punktet mit einem ansprechenden Display, schlankem Design und benutzerfreundlicher Software. Die Kamera und der Prozessor sind für den Alltag ausreichend, jedoch nicht für Profis geeignet. Ein Nachteil ist der erhöhte Preis im Vergleich zum Vorgängermodell A56.",
+          "ratingValue": "4/5",
+          "publishedAt": 1776938400000,
+          "language": "de",
+          "issue": "online",
+          "testedProductsCount": 1
+        },
+        {
+          "providerName": "t3.com",
+          "shortDescription": "Einzeltest Samsung Galaxy A57",
+          "summaryText": "Das Mittelklasse-Smartphone bietet wesentliche Merkmale der Galaxy S26-Reihe zu einem deutlich geringeren Preis. Es überzeugt mit hochwertigen Materialien, Fotospaß und starken Lautsprechern. Allerdings gibt es Einschränkungen bei der Leistung und der veralteten Akkutechnologie.",
+          "ratingValue": "4/5",
+          "publishedAt": 1776852000000,
+          "language": "de",
+          "issue": "online",
+          "testedProductsCount": 1
+        },
+        {
+          "providerName": "AbsoluteGeeks",
+          "shortDescription": "Einzeltest Samsung Galaxy A57 5G",
+          "summaryText": "Das Galaxy A57 5G ist ein Handy, das sich auf das Wesentliche konzentriert. Es ist schlank, stilvoll und extrem widerstandsfähig. Es gibt viele durchdachte Funktionen und KI-Tools, die Freude statt Frustration hervorrufen.",
+          "ratingValue": "4,5/5",
+          "publishedAt": 1776333600000,
+          "language": "de",
+          "issue": "online",
+          "testedProductsCount": 1
+        },
+        {
+          "providerName": "trustedreviews.com",
+          "shortDescription": "Einzeltest Samsung Galaxy A57 5G",
+          "summaryText": "Es handelt sich um ein schlankes, hochwertiges Smartphone mit einem hellen 6,7-Zoll-AMOLED-Display und zuverlässiger Leistung für den Alltag. Schwachstellen sind mittelmäßige Kameras, eine durchschnittliche Akkulaufzeit und hohe Kosten für zusätzlichen Speicher. Der Fingerabdrucksensor ist langsam und unzuverlässig.",
+          "ratingValue": "4/5",
+          "publishedAt": 1776765600000,
+          "language": "de",
+          "issue": "online",
+          "testedProductsCount": 1
+        },
+        {
+          "providerName": "ComputerBild",
+          "shortDescription": "Einzeltest Samsung Galaxy A57",
+          "summaryText": "Im Test wurden ein beeindruckend helles Display sowie eine hochwertige 50-MP-Hauptkamera festgestellt. Es gibt jedoch keine echte Tele-Linse und die Möglichkeit des induktiven Ladens fehlt.",
+          "ratingValue": "gut (1,6)",
+          "publishedAt": 1777284000000,
+          "language": "de",
+          "issue": "online",
+          "testedProductsCount": 1
+        },
+        {
+          "providerName": "smartzone.de",
+          "shortDescription": "Einzeltest Samsung Galaxy A57",
+          "summaryText": "Das Samsung Galaxy A57 überzeugt mit schlankem, hochwertigem IP68-Gehäuse, starkem AMOLED-Display und sehr langer Update-Versorgung. Hauptkamera und Videoqualität sind im Alltag gut, die Akkulaufzeit ebenfalls. Wenig Begeisterung erzeugen der nur durchschnittliche Prozessor, das wenig flexible Kamerasetup und fehlende Premium-Extras.",
+          "ratingValue": "84/100",
+          "publishedAt": 1781344800000,
+          "language": "de",
+          "issue": "online",
+          "testedProductsCount": 1
+        },
+        {
+          "providerName": "TURN ON",
+          "shortDescription": "Einzeltest Samsung Galaxy A57",
+          "summaryText": "Das Samsung Galaxy A57 punktet mit ultraschlankem Design, hellem OLED-Display und starker Mittelklasse-Performance. Es gibt jedoch Kritikpunkte wie die fingerabdruckanfällige Rückseite, den langsamen USB-C-2.0-Anschluss und vorinstallierte Bloatware. Die KI-Tools der Awesome Intelligence sind zudem unausgereift.",
+          "ratingValue": "4/5",
+          "publishedAt": 1778148000000,
+          "language": "de",
+          "issue": "online",
+          "testedProductsCount": 1
+        },
+        {
+          "providerName": "Stiftung Warentest",
+          "shortDescription": "Einzeltest Samsung Galaxy A57 5G",
+          "summaryText": "Das Samsung Galaxy A57 5G punktet mit sehr gutem Display und guter Handhabung, einschließlich Menü und Handhabung. Die Kamera liefert gute Ergebnisse, während die Akkulaufzeit und Netzempfindlichkeit nur befriedigend sind. Die Stabilität ist insgesamt gut, aber die Kratzfestigkeit könnte besser sein.",
+          "ratingValue": "2,0",
+          "publishedAt": 1788343200000,
+          "language": "de",
+          "issue": "online",
+          "testedProductsCount": 1
+        },
+        {
+          "providerName": "BeyondPixels",
+          "shortDescription": "Einzeltest Samsung Galaxy A57",
+          "summaryText": "Das Samsung Galaxy A57 5G ist ein zukunftssicherer Allrounder, der durch ein hervorragendes OLED-Display, ein ansprechendes Design, eine gute Performance und eine zuverlässige Alltagskamera besticht. Es gibt außerdem eine ordentliche Akkulaufzeit und vielseitige KI-Funktionen. Einschränkungen zeigen sich bei anspruchsvollen 3D-Spielen und fehlenden Funktionen wie Top-Zoom oder kabelloses Aufladen.",
+          "ratingValue": "8,5/10",
+          "publishedAt": 1783591200000,
+          "language": "de",
+          "issue": "online",
+          "testedProductsCount": 1
+        },
+        {
+          "providerName": "Tech Advisor",
+          "shortDescription": "Einzeltest Samsung Galaxy A57",
+          "summaryText": "Zu den Vorteilen zählen ein eleganteres und robusteres Design, eine scharfe Benutzeroberfläche sowie eine starke Softwareunterstützung für 6 Jahre. Auf der anderen Seite unterscheiden sich die Kameras kaum und es gibt leistungsfähigere Alternativen für den gleichen Preis.",
+          "ratingValue": "3,5/5",
+          "publishedAt": 1776765600000,
+          "language": "de",
+          "issue": "online",
+          "testedProductsCount": 1
+        },
+        {
+          "providerName": "tomsguide.com",
+          "shortDescription": "Einzeltest Samsung Galaxy A57",
+          "summaryText": "Das Samsung Galaxy A57 ist ein solides Smartphone, das eine starke Akkulaufzeit, ein hochwertiges Design und ein großes Display bietet. Es gibt jedoch Schwächen in der Leistung und bei der Kamera-Hardware. Zusätzlich bietet es KI-Funktionen auf S26-Niveau.",
+          "ratingValue": "4/5",
+          "publishedAt": 1776506400000,
+          "language": "de",
+          "issue": "online",
+          "testedProductsCount": 1
+        }
+      ]
+    },
+    "productSpecification": {
+      "groups": [
+        {
+          "name": "EU-Energielabel",
+          "type": "DEFAULT",
+          "attributes": [
+            {
+              "name": "Energieeffizienzklasse",
+              "value": "A"
+            },
+            {
+              "name": "Akkulaufzeit pro Ladezyklus",
+              "value": "52h"
+            },
+            {
+              "name": "Zuverlässigkeitsklasse",
+              "value": "A"
+            },
+            {
+              "name": "Reparierbarkeitsklasse",
+              "value": "C"
+            },
+            {
+              "name": "Akkulaufzeit in Zyklen",
+              "value": "1.200 x"
+            },
+            {
+              "name": "Eindringschutzgrad",
+              "value": "IP68"
+            }
+          ]
+        },
+        {
+          "name": "Allgemeines",
+          "type": "DEFAULT",
+          "attributes": [
+            {
+              "name": "Markteinführung",
+              "value": "2026"
+            },
+            {
+              "name": "Serien",
+              "value": "Samsung Galaxy, Samsung Galaxy A"
+            },
+            {
+              "name": "Smartphone Klasse",
+              "value": "Mittelklasse"
+            },
+            {
+              "name": "Produkt-Highlights",
+              "value": "neuester Mobilfunkstandard 5G"
+            }
+          ]
+        },
+        {
+          "name": "Display",
+          "type": "DEFAULT",
+          "attributes": [
+            {
+              "name": "Displaygröße",
+              "value": "6,7 Zoll"
+            },
+            {
+              "name": "Displaygröße",
+              "value": "17,018 cm"
+            },
+            {
+              "name": "Displayauflösung",
+              "value": "2.340 x 1.080 Pixel"
+            },
+            {
+              "name": "Displayauflösung",
+              "value": "Full HD"
+            },
+            {
+              "name": "Displayart",
+              "value": "AMOLED"
+            },
+            {
+              "name": "Bildwiederholungsfrequenz",
+              "value": "120 Hz"
+            },
+            {
+              "name": "Display-Seitenverhältnis",
+              "value": "19,5:9"
+            },
+            {
+              "name": "Display-Besonderheiten",
+              "value": "Super AMOLED Display, Always On Display, Punch-Hole-Display, HDR10+"
+            },
+            {
+              "name": "Displaymaterial",
+              "value": "Gorilla Glass Victus+"
+            },
+            {
+              "name": "Displayeigenschaft",
+              "value": "kratzfest"
+            },
+            {
+              "name": "Pixeldichte",
+              "value": "385 ppi"
+            },
+            {
+              "name": "Screen-to-Body Ratio",
+              "value": "88,8 %"
+            },
+            {
+              "name": "Helligkeit",
+              "value": "1.900 cd/m²"
+            }
+          ]
+        },
+        {
+          "name": "Hauptkamera",
+          "type": "DEFAULT",
+          "attributes": [
+            {
+              "name": "Kamera-Technik",
+              "value": "Triple-Kamera, optische Bildstabilisierung, 4k-Videoaufnahme"
+            },
+            {
+              "name": "Kamera 1",
+              "value": "50MP, Weitwinkel, f/1,8, OIS"
+            },
+            {
+              "name": "Kamera 2",
+              "value": "12MP, Ultra-Weitwinkel, f/2,2, 123°"
+            },
+            {
+              "name": "Kamera 3",
+              "value": "5MP, Macro, f/2,4"
+            },
+            {
+              "name": "Blitz",
+              "value": "LED Blitz"
+            },
+            {
+              "name": "Fokus-Funktion",
+              "value": "Phasen-Fokus (PDAF)"
+            },
+            {
+              "name": "Bildstabilisator",
+              "value": "optisch (OIS)"
+            },
+            {
+              "name": "Aufnahme-Funktionen",
+              "value": "Panorama, HDR"
+            },
+            {
+              "name": "Hauptkamera Videoaufzeichnung",
+              "value": "4K (30fps), Full HD (60/30fps)"
+            },
+            {
+              "name": "Kamera-Feature",
+              "value": "Best Face"
+            },
+            {
+              "name": "DxO Mark (Kamera-Index)",
+              "value": "150"
+            },
+            {
+              "name": "DxO Mark",
+              "value": "163 (vergebener max Wert 05/2024)"
+            }
+          ]
+        },
+        {
+          "name": "Selfie-Kamera",
+          "type": "DEFAULT",
+          "attributes": [
+            {
+              "name": "Selfie-Kamera 1",
+              "value": "12MP, Weitwinkel, f/2,2"
+            },
+            {
+              "name": "Selfie-Aufnahmefunktion",
+              "value": "HDR"
+            },
+            {
+              "name": "Selfie-Videoaufzeichnung",
+              "value": "4K (30fps), Full HD (60/30fps)"
+            }
+          ]
+        },
+        {
+          "name": "Hardware",
+          "type": "DEFAULT",
+          "attributes": [
+            {
+              "name": "RAM",
+              "value": "8 GB"
+            },
+            {
+              "name": "interner Speicher",
+              "value": "256 GB"
+            },
+            {
+              "name": "Prozessorhersteller",
+              "value": "Samsung"
+            },
+            {
+              "name": "Prozessortyp",
+              "value": "Exynos 1680"
+            },
+            {
+              "name": "Prozessorkern",
+              "value": "Octa-Core (8)"
+            },
+            {
+              "name": "max CPU-Taktrate",
+              "value": "2,9 GHz"
+            },
+            {
+              "name": "Grafikprozessor (GPU)",
+              "value": "Xclipse 550"
+            },
+            {
+              "name": "Dual-SIM Technik",
+              "value": "Dual-SIM Standby"
+            },
+            {
+              "name": "SIM-Karten",
+              "value": "Nano-SIM, eSIM"
+            },
+            {
+              "name": "Speicherkarte",
+              "value": "ohne Slot"
+            },
+            {
+              "name": "Sensoren",
+              "value": "Annäherungssensor, Kreiselsensor (Gyroskop), Beschleunigungssensor (G-Sensor), Magnetometer, Fingerabdrucksensor"
+            },
+            {
+              "name": "Ortungsdienste",
+              "value": "GPS, A-GPS, Galileo, GLONASS, BeiDou, QZSS"
+            },
+            {
+              "name": "Audiofeatures",
+              "value": "Stereo-Lautsprecher, Dolby Atmos"
+            }
+          ]
+        },
+        {
+          "name": "Software",
+          "type": "DEFAULT",
+          "attributes": [
+            {
+              "name": "verfügbares Betriebssystem",
+              "value": "Android 16"
+            },
+            {
+              "name": "Update-Garantie",
+              "value": "6 Jahre Android-Updates, 6 Jahre Sicherheitspatches"
+            },
+            {
+              "name": "Benutzeroberfläche",
+              "value": "One UI 8.5"
+            },
+            {
+              "name": "vorinstallierte Apps",
+              "value": "Google Play Store, Google Services"
+            },
+            {
+              "name": "KI-Funktion",
+              "value": "Google Gemini"
+            }
+          ]
+        },
+        {
+          "name": "Kommunikation",
+          "type": "DEFAULT",
+          "attributes": [
+            {
+              "name": "Mobilfunkstandards",
+              "value": "5G, 4G, 3G, 2G"
+            },
+            {
+              "name": "mobile Datenkommunikationen",
+              "value": "EDGE, GPRS, GSM, LTE, WCDMA, UMTS, SA, NSA"
+            },
+            {
+              "name": "LTE-Frequenzbänder",
+              "value": "B1, B2, B3, B4, B5, B7, B8, B12, B17, B20, B25, B26, B28, B32, B38, B40, B41, B66"
+            },
+            {
+              "name": "lokale Verbindungen",
+              "value": "Wi-Fi Direct, Bluetooth, WLAN, Dualband WLan, NFC"
+            },
+            {
+              "name": "WLAN-Standards",
+              "value": "WiFi 1 (b), WiFi 2 (a), WiFi 3 (g), WiFi 4 (n), WiFi 5 (ac), WiFi 6 (ax), WiFi 6e"
+            },
+            {
+              "name": "WLAN-Frequenzbänder",
+              "value": "2,4 GHz, 5 GHz"
+            },
+            {
+              "name": "Bluetooth-Version",
+              "value": "6.0"
+            }
+          ]
+        },
+        {
+          "name": "Schnittstellen",
+          "type": "DEFAULT",
+          "attributes": [
+            {
+              "name": "Anschluss",
+              "value": "USB-C"
+            },
+            {
+              "name": "USB-Standards",
+              "value": "2.0, OTG (On-The-Go)"
+            }
+          ]
+        },
+        {
+          "name": "Gehäuse",
+          "type": "DEFAULT",
+          "attributes": [
+            {
+              "name": "Bauform",
+              "value": "Barren Handy"
+            },
+            {
+              "name": "Farbe",
+              "value": "grau"
+            },
+            {
+              "name": "Gehäusematerialien",
+              "value": "gehärtetes Glas, Aluminium Rahmen"
+            },
+            {
+              "name": "Gehäuseeigenschaften",
+              "value": "wasserdicht, staubdicht"
+            },
+            {
+              "name": "Schutzart",
+              "value": "IP68"
+            },
+            {
+              "name": "physische Tasten",
+              "value": "Ein/Aus-Taste, Lautstärke-Regler"
+            },
+            {
+              "name": "Position Fingerabdrucksensor",
+              "value": "Frontseite, im Display"
+            },
+            {
+              "name": "Gewicht",
+              "value": "179 g"
+            },
+            {
+              "name": "Höhe",
+              "value": "161,5 mm"
+            },
+            {
+              "name": "Breite",
+              "value": "76,8 mm"
+            },
+            {
+              "name": "Tiefe",
+              "value": "6,9 mm"
+            }
+          ]
+        },
+        {
+          "name": "Akku & Laufzeiten",
+          "type": "DEFAULT",
+          "attributes": [
+            {
+              "name": "Akku-Kapazität",
+              "value": "5.000 mAh"
+            },
+            {
+              "name": "Akku-Eigenschaften",
+              "value": "fest verbauter Akku, Schnellladefunktion"
+            },
+            {
+              "name": "Ladestrom Spezifikation",
+              "value": "45W"
+            }
+          ]
+        },
+        {
+          "name": "",
+          "type": "IMPORTANT",
+          "attributes": [
+            {
+              "name": "Gelistet seit",
+              "value": "März 2026"
+            },
+            {
+              "name": "Produkttypen",
+              "value": "5G Handy, LTE Smartphone, Dual-SIM Handy, Android Handy, Phablet"
+            }
+          ]
+        },
+        {
+          "name": "",
+          "type": "OTHER",
+          "attributes": [
+            {
+              "name": "integrierte Sicherheiten",
+              "value": "Fingerabdruck, Gesichtserkennung"
+            }
+          ]
+        }
+      ]
+    },
+    "productOverview": [
+      "6,7 Zoll",
+      "Full HD",
+      "120 Hz",
+      "50 MP",
+      "8 GB RAM",
+      "256 GB interner Speicher",
+      "Exynos 1680",
+      "Android 16",
+      "5.000 mAh"
+    ],
+    "productDetailsUrl": "https://www.idealo.de/preisvergleich/OffersOfProduct/209770546_-galaxy-a57-8gb-256gb-awesome-gray-samsung.html#datasheet",
+    "priceTrend": {
+      "history": [
+        {
+          "dateTime": 1793228399999,
+          "price": 38200
+        },
+        {
+          "dateTime": 1793314799999,
+          "price": 38699
+        },
+        {
+          "dateTime": 1793401199999,
+          "price": 36900
+        },
+        {
+          "dateTime": 1793487599999,
+          "price": 38790
+        },
+        {
+          "dateTime": 1793573999999,
+          "price": 37998
+        },
+        {
+          "dateTime": 1793660399999,
+          "price": 28560
+        },
+        {
+          "dateTime": 1793746799999,
+          "price": 36900
+        },
+        {
+          "dateTime": 1793833199999,
+          "price": 36900
+        },
+        {
+          "dateTime": 1793919599999,
+          "price": 38500
+        },
+        {
+          "dateTime": 1794005999999,
+          "price": 38500
+        },
+        {
+          "dateTime": 1794092399999,
+          "price": 38486
+        },
+        {
+          "dateTime": 1794178799999,
+          "price": 37999
+        },
+        {
+          "dateTime": 1794265199999,
+          "price": 37900
+        },
+        {
+          "dateTime": 1794351599999,
+          "price": 37900
+        },
+        {
+          "dateTime": 1794437999999,
+          "price": 38790
+        },
+        {
+          "dateTime": 1794524399999,
+          "price": 37999
+        },
+        {
+          "dateTime": 1794610799999,
+          "price": 37900
+        },
+        {
+          "dateTime": 1794697199999,
+          "price": 37900
+        },
+        {
+          "dateTime": 1794783599999,
+          "price": 37900
+        },
+        {
+          "dateTime": 1794869999999,
+          "price": 37900
+        },
+        {
+          "dateTime": 1794956399999,
+          "price": 37900
+        },
+        {
+          "dateTime": 1795042799999,
+          "price": 37900
+        },
+        {
+          "dateTime": 1795129199999,
+          "price": 37899
+        },
+        {
+          "dateTime": 1795215599999,
+          "price": 37800
+        },
+        {
+          "dateTime": 1795301999999,
+          "price": 37800
+        },
+        {
+          "dateTime": 1795388399999,
+          "price": 37900
+        },
+        {
+          "dateTime": 1795474799999,
+          "price": 37900
+        },
+        {
+          "dateTime": 1795561199999,
+          "price": 37900
+        },
+        {
+          "dateTime": 1795647599999,
+          "price": 37600
+        },
+        {
+          "dateTime": 1795733999999,
+          "price": 37600
+        },
+        {
+          "dateTime": 1795800014353,
+          "price": 37900
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,1623 @@
+{
+  "namespace": "item_bundle",
+  "request": {
+    "query": "sony playstation 5 slim (ps5 slim)",
+    "country": "DE"
+  },
+  "cached_at": 1795803202.133631,
+  "data": {
+    "query": "Sony PlayStation 5 Slim (PS5 Slim)",
+    "country": "DE",
+    "outcome": "found",
+    "product_ref": "pr.v1.k1.ZICDqPUZXOKMD_86OqZjqpajPRZ4fGSwXrUKh-8qT0r756ybjQ",
+    "top_product": {
+      "productRef": "pr.v1.k1.ZICDqPUZXOKMD_86OqZjqpajPRZ4fGSwXrUKh-8qT0r756ybjQ",
+      "itemType": "PRODUCT",
+      "siteId": 1,
+      "name": "Sony PlayStation 5 Slim (PS5 Slim)",
+      "nameDelta": "Standard Edition",
+      "price": "1.099,00 €",
+      "imageUrl": "https://cdn.idealo.com/folder/Product/203721/2/203721237/s1_produktbild_mobil/sony-playstation-5-slim-ps5-slim-standard-edition.jpg",
+      "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/203721237_-playstation-5-slim-ps5-slim-standard-edition-sony.html",
+      "userReviewsSummary": {
+        "averageRating": 4.87,
+        "totalReviewCount": 38
+      },
+      "testReportsSummary": {
+        "grade": "1,9"
+      },
+      "totalOfferCount": 12
+    },
+    "search": {
+      "query": "Sony PlayStation 5 Slim (PS5 Slim)",
+      "availableCategories": [
+        {
+          "categoryId": "3189",
+          "categoryName": "Spielekonsolen",
+          "amount": 26
+        },
+        {
+          "categoryId": "4752",
+          "categoryName": "Gamingzubehör",
+          "amount": 92
+        },
+        {
+          "categoryId": "18845",
+          "categoryName": "Konsolentaschen & Handheldtaschen",
+          "amount": 40
+        },
+        {
+          "categoryId": "3014",
+          "categoryName": "Gamepads",
+          "amount": 19
+        },
+        {
+          "categoryId": "4852",
+          "categoryName": "PC-Modding",
+          "amount": 7
+        },
+        {
+          "categoryId": "32482",
+          "categoryName": "PS5 Spiele",
+          "amount": 3
+        },
+        {
+          "categoryId": "5172",
+          "categoryName": "Gaming Headsets",
+          "amount": 8
+        },
+        {
+          "categoryId": "7712",
+          "categoryName": "Externe Festplatten",
+          "amount": 4
+        },
+        {
+          "categoryId": "21160",
+          "categoryName": "Videospiele",
+          "amount": 3
+        }
+      ],
+      "availableManufacturers": [
+        {
+          "manufacturerId": "1013",
+          "manufacturerName": "Sony",
+          "amount": 36
+        },
+        {
+          "manufacturerId": "1884",
+          "manufacturerName": "Bigben Interactive",
+          "amount": 10
+        },
+        {
+          "manufacturerId": "172133",
+          "manufacturerName": "Oniverse",
+          "amount": 2
+        },
+        {
+          "manufacturerId": "137452",
+          "manufacturerName": "Nacon",
+          "amount": 4
+        },
+        {
+          "manufacturerId": "172122",
+          "manufacturerName": "Maxx Tech by Contact Sales",
+          "amount": 4
+        },
+        {
+          "manufacturerId": "26266",
+          "manufacturerName": "Venom",
+          "amount": 3
+        },
+        {
+          "manufacturerId": "162232",
+          "manufacturerName": "Freaks & Geeks",
+          "amount": 7
+        },
+        {
+          "manufacturerId": "172309",
+          "manufacturerName": "4mount",
+          "amount": 5
+        },
+        {
+          "manufacturerId": "44323",
+          "manufacturerName": "Subsonic",
+          "amount": 4
+        },
+        {
+          "manufacturerId": "27521",
+          "manufacturerName": "Nyko",
+          "amount": 1
+        },
+        {
+          "manufacturerId": "45360",
+          "manufacturerName": "PowerA",
+          "amount": 1
+        },
+        {
+          "manufacturerId": "173341",
+          "manufacturerName": "Vicabo",
+          "amount": 3
+        },
+        {
+          "manufacturerId": "172307",
+          "manufacturerName": "fossi3D",
+          "amount": 1
+        },
+        {
+          "manufacturerId": "166113",
+          "manufacturerName": "Dobe Fomis Electronics",
+          "amount": 2
+        },
+        {
+          "manufacturerId": "123437",
+          "manufacturerName": "Patona",
+          "amount": 2
+        },
+        {
+          "manufacturerId": "145842",
+          "manufacturerName": "Piranha Gamer",
+          "amount": 1
+        },
+        {
+          "manufacturerId": "188650",
+          "manufacturerName": "Dead Wave",
+          "amount": 1
+        },
+        {
+          "manufacturerId": "164741",
+          "manufacturerName": "Oivo",
+          "amount": 1
+        },
+        {
+          "manufacturerId": "140320",
+          "manufacturerName": "Stealth by Accessories 4 Technology",
+          "amount": 2
+        },
+        {
+          "manufacturerId": "165513",
+          "manufacturerName": "Graugear",
+          "amount": 9
+        },
+        {
+          "manufacturerId": "39392",
+          "manufacturerName": "StarTech",
+          "amount": 2
+        },
+        {
+          "manufacturerId": "20101",
+          "manufacturerName": "Deltaco",
+          "amount": 3
+        },
+        {
+          "manufacturerId": "77926",
+          "manufacturerName": "AccuCell",
+          "amount": 2
+        },
+        {
+          "manufacturerId": "9522",
+          "manufacturerName": "Trust",
+          "amount": 1
+        },
+        {
+          "manufacturerId": "74056",
+          "manufacturerName": "Go!iMP",
+          "amount": 4
+        },
+        {
+          "manufacturerId": "182494",
+          "manufacturerName": "YAXO",
+          "amount": 1
+        },
+        {
+          "manufacturerId": "165423",
+          "manufacturerName": "FIXED",
+          "amount": 1
+        },
+        {
+          "manufacturerId": "165707",
+          "manufacturerName": "uRage",
+          "amount": 4
+        },
+        {
+          "manufacturerId": "182722",
+          "manufacturerName": "Deep Explorer",
+          "amount": 7
+        },
+        {
+          "manufacturerId": "112682",
+          "manufacturerName": "Innovelis",
+          "amount": 1
+        },
+        {
+          "manufacturerId": "5340",
+          "manufacturerName": "Speedlink",
+          "amount": 4
+        },
+        {
+          "manufacturerId": "157651",
+          "manufacturerName": "NanoRS",
+          "amount": 1
+        },
+        {
+          "manufacturerId": "176131",
+          "manufacturerName": "Maclean",
+          "amount": 1
+        },
+        {
+          "manufacturerId": "165701",
+          "manufacturerName": "VICTRIX",
+          "amount": 1
+        },
+        {
+          "manufacturerId": "1320",
+          "manufacturerName": "Hama",
+          "amount": 2
+        },
+        {
+          "manufacturerId": "47047",
+          "manufacturerName": "Performance Designed Products",
+          "amount": 1
+        },
+        {
+          "manufacturerId": "2100",
+          "manufacturerName": "Arctic Cooling",
+          "amount": 2
+        },
+        {
+          "manufacturerId": "66820",
+          "manufacturerName": "Gioteck",
+          "amount": 1
+        }
+      ],
+      "availableFilters": [
+        {
+          "attributeId": "15583",
+          "name": "Produkttyp",
+          "filters": [
+            {
+              "filterId": "104371516",
+              "content": "PS5 Konsole",
+              "amount": 24
+            },
+            {
+              "filterId": "469667",
+              "content": "Heimkonsole",
+              "amount": 26
+            },
+            {
+              "filterId": "104364171",
+              "content": "PS5 Bundle",
+              "amount": 10
+            },
+            {
+              "filterId": "313171",
+              "content": "Gehäusezubehör",
+              "amount": 5
+            },
+            {
+              "filterId": "104379978",
+              "content": "PS5-Cover",
+              "amount": 30
+            },
+            {
+              "filterId": "104384524",
+              "content": "PS5 Standfuß",
+              "amount": 26
+            },
+            {
+              "filterId": "2325632",
+              "content": "Spielekonsolen Standfuß",
+              "amount": 32
+            },
+            {
+              "filterId": "102892507",
+              "content": "PS5 Controller Ladestation",
+              "amount": 27
+            },
+            {
+              "filterId": "421140",
+              "content": "Controller-Ladestation",
+              "amount": 19
+            },
+            {
+              "filterId": "313177",
+              "content": "Spielekonsolen-Stromversorgung",
+              "amount": 23
+            },
+            {
+              "filterId": "101372044",
+              "content": "PS5-Controller",
+              "amount": 19
+            },
+            {
+              "filterId": "107601449",
+              "content": "PS5 Lüfter",
+              "amount": 13
+            },
+            {
+              "filterId": "5586733",
+              "content": "Spielekonsolenlüfter",
+              "amount": 14
+            },
+            {
+              "filterId": "101715383",
+              "content": "PS5-Controller-Skin",
+              "amount": 2
+            },
+            {
+              "filterId": "103403562",
+              "content": "Spielekonsolen-Wandhalterung",
+              "amount": 9
+            },
+            {
+              "filterId": "104384523",
+              "content": "PS5 Wandhalterung",
+              "amount": 4
+            },
+            {
+              "filterId": "102892502",
+              "content": "Controller Batterie",
+              "amount": 4
+            },
+            {
+              "filterId": "977082",
+              "content": "PC-Controller",
+              "amount": 5
+            },
+            {
+              "filterId": "2177973",
+              "content": "Android-Controller",
+              "amount": 2
+            },
+            {
+              "filterId": "2177974",
+              "content": "iOS-Controller",
+              "amount": 2
+            },
+            {
+              "filterId": "2455293",
+              "content": "PS4-Controller",
+              "amount": 1
+            },
+            {
+              "filterId": "977084",
+              "content": "PS3-Controller",
+              "amount": 1
+            },
+            {
+              "filterId": "101588659",
+              "content": "M.2 Kühler",
+              "amount": 7
+            },
+            {
+              "filterId": "313173",
+              "content": "Konverter",
+              "amount": 1
+            },
+            {
+              "filterId": "3928648",
+              "content": "Gaming-Zubehörtasche",
+              "amount": 1
+            },
+            {
+              "filterId": "5355774",
+              "content": "PS4 Konsole",
+              "amount": 2
+            },
+            {
+              "filterId": "5355773",
+              "content": "PS4 Bundle",
+              "amount": 2
+            },
+            {
+              "filterId": "101382407",
+              "content": "PS5 Actionspiel",
+              "amount": 3
+            },
+            {
+              "filterId": "101382416",
+              "content": "PS5 Rollenspiel",
+              "amount": 2
+            },
+            {
+              "filterId": "102892506",
+              "content": "Headset-Ständer",
+              "amount": 5
+            },
+            {
+              "filterId": "1685238",
+              "content": "Controller Hülle",
+              "amount": 2
+            },
+            {
+              "filterId": "313168",
+              "content": "Spielekonsolen-Datenträger",
+              "amount": 1
+            },
+            {
+              "filterId": "3053992",
+              "content": "PS4 Headset",
+              "amount": 7
+            },
+            {
+              "filterId": "101320587",
+              "content": "PS5 Headset",
+              "amount": 2
+            },
+            {
+              "filterId": "101414061",
+              "content": "PS5 Strategiespiel",
+              "amount": 1
+            },
+            {
+              "filterId": "313795",
+              "content": "Controller Adapter",
+              "amount": 3
+            },
+            {
+              "filterId": "1966127",
+              "content": "Xbox Headset",
+              "amount": 2
+            },
+            {
+              "filterId": "1833749",
+              "content": "PC Headset",
+              "amount": 2
+            },
+            {
+              "filterId": "101320588",
+              "content": "Xbox Series X|S Headset",
+              "amount": 1
+            },
+            {
+              "filterId": "10068311",
+              "content": "Nintendo Switch Headset",
+              "amount": 1
+            },
+            {
+              "filterId": "102892504",
+              "content": "Grip Kit",
+              "amount": 4
+            },
+            {
+              "filterId": "765550",
+              "content": "Konsolenmodding",
+              "amount": 3
+            },
+            {
+              "filterId": "1443858",
+              "content": "Game Kit",
+              "amount": 3
+            },
+            {
+              "filterId": "1209881",
+              "content": "USB Festplatte",
+              "amount": 4
+            },
+            {
+              "filterId": "5362637",
+              "content": "Xbox One Headset",
+              "amount": 1
+            },
+            {
+              "filterId": "101382417",
+              "content": "PS5 Simulation",
+              "amount": 1
+            },
+            {
+              "filterId": "101382414",
+              "content": "PS5 Open World Spiel",
+              "amount": 1
+            },
+            {
+              "filterId": "101382410",
+              "content": "PS5 Ego Shooter (FPS)",
+              "amount": 1
+            },
+            {
+              "filterId": "101382408",
+              "content": "PS5 Adventure Spiel",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "suggestedFilters": [],
+      "sizeAttributes": [],
+      "results": [
+        {
+          "productRef": "pr.v1.k1.ZICDqPUZXOKMD_86OqZjqpajPRZ4fGSwXrUKh-8qT0r756ybjQ",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "Sony PlayStation 5 Slim (PS5 Slim)",
+          "nameDelta": "Standard Edition",
+          "price": "1.099,00 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/203721/2/203721237/s1_produktbild_mobil/sony-playstation-5-slim-ps5-slim-standard-edition.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/203721237_-playstation-5-slim-ps5-slim-standard-edition-sony.html",
+          "userReviewsSummary": {
+            "averageRating": 4.87,
+            "totalReviewCount": 38
+          },
+          "testReportsSummary": {
+            "grade": "1,9"
+          },
+          "totalOfferCount": 12
+        },
+        {
+          "productRef": "pr.v1.k1.T8oQJtaxSf3ah03UUsA4t2gUATfRmBE3jIJW-tE9cNKdqVjXzA",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "Sony PlayStation 5 Slim (PS5 Slim)",
+          "nameDelta": "Standard Edition + 2 DualSense Controller",
+          "price": "1.116,00 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/203735/1/203735136/s1_produktbild_mobil/sony-playstation-5-slim-ps5-slim-standard-edition-2-dualsense-controller.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/203735136_-playstation-5-slim-ps5-slim-standard-edition-2-dualsense-controller-sony.html",
+          "userReviewsSummary": {
+            "averageRating": 4.87,
+            "totalReviewCount": 38
+          },
+          "testReportsSummary": {
+            "grade": "1,9"
+          },
+          "totalOfferCount": 5
+        },
+        {
+          "productRef": "pr.v1.k1.5r_XU5haMnuHViUxBJqM67eUswuXyC2KR6zIS5UQb8fJFgNVrA",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "Sony PlayStation 5 Slim (PS5 Slim) Digital Edition",
+          "nameDelta": "Standard Edition 825GB",
+          "price": "899,00 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/207748/7/207748718/s1_produktbild_mobil/sony-playstation-5-slim-ps5-slim-digital-edition-standard-edition-825gb.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/207748718_-playstation-5-slim-ps5-slim-digital-edition-standard-edition-825gb-sony.html",
+          "userReviewsSummary": {
+            "averageRating": 4.31,
+            "totalReviewCount": 39
+          },
+          "testReportsSummary": {
+            "grade": "1,2"
+          },
+          "totalOfferCount": 7
+        },
+        {
+          "productRef": "pr.v1.k1.WyCI3fVR6JyiQgrphVxxzNHXpStnx_4mgWxcgN-GS7DZlJvChw",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "Sony PlayStation 5 Slim (PS5 Slim) Digital Edition",
+          "nameDelta": "Standard Edition 825GB + 2 Controller",
+          "price": "990,50 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/208528/1/208528152/s1_produktbild_mobil/sony-playstation-5-slim-ps5-slim-digital-edition-standard-edition-825gb-2-controller.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/208528152_-playstation-5-slim-ps5-slim-digital-edition-standard-edition-825gb-2-controller-sony.html",
+          "userReviewsSummary": {
+            "averageRating": 4.31,
+            "totalReviewCount": 39
+          },
+          "testReportsSummary": {
+            "grade": "1,2"
+          },
+          "totalOfferCount": 3
+        },
+        {
+          "productRef": "pr.v1.k1.Gz0ChRQ4YFevct3aZtWx4w-HKa23SnuCeq_wnxYe7S95wvME5A",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "Sony PlayStation 5 Slim (PS5 Slim) Digital Edition",
+          "nameDelta": "Standard",
+          "price": "976,45 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/203721/3/203721340/s1_produktbild_mobil/sony-playstation-5-slim-ps5-slim-digital-edition-standard-edition.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/203721340_-playstation-5-slim-ps5-slim-digital-edition-standard-edition-sony.html",
+          "userReviewsSummary": {
+            "averageRating": 4.31,
+            "totalReviewCount": 39
+          },
+          "testReportsSummary": {
+            "grade": "1,2"
+          },
+          "totalOfferCount": 2
+        },
+        {
+          "productRef": "pr.v1.k1.ngEiXXJHV-XJRGvLEuFOn7fv1RTJkce_-GFJaDjBceWdRBWHDA",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "Sony PlayStation 5 Slim (PS5 Slim)",
+          "nameDelta": "Fortnite Erblühendes-Chaos-Bundle",
+          "price": "1.150,00 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/208438/5/208438554/s1_produktbild_mobil/sony-playstation-5-slim-ps5-slim-fortnite-erbluehendes-chaos-bundle.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/208438554_-playstation-5-slim-ps5-slim-fortnite-erbluehendes-chaos-bundle-sony.html",
+          "userReviewsSummary": {
+            "averageRating": 4.87,
+            "totalReviewCount": 38
+          },
+          "testReportsSummary": {
+            "grade": "1,9"
+          },
+          "totalOfferCount": 2
+        },
+        {
+          "productRef": "pr.v1.k1.wdo5F7C7bkOscmq4UrEJQCxdicu5Q9AV517pdYPvzxmRK7m2gw",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "Sony PS5 Slim Digital Edition Disc Laufwerk",
+          "price": "77,99 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/203559/7/203559708/s1_produktbild_mobil/sony-ps5-slim-digital-edition-disc-laufwerk.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/203559708_-ps5-slim-digital-edition-disc-laufwerk-sony.html",
+          "userReviewsSummary": {
+            "averageRating": 4.34,
+            "totalReviewCount": 587
+          },
+          "totalOfferCount": 33
+        },
+        {
+          "productRef": "pr.v1.k1.Ap_vYPYWlmpKyXLssv60iVRKagro-GYnEqawrsa2iN4-Ck3gqg",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "Sony PlayStation 5 Slim (PS5 Slim)",
+          "nameDelta": "Standard Edition + GTA VI",
+          "price": "1.499,00 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/215147/2/215147247/s1_produktbild_mobil/sony-playstation-5-slim-ps5-slim-standard-edition-gta-vi.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/215147247_-playstation-5-slim-ps5-slim-standard-edition-gta-vi-sony.html",
+          "userReviewsSummary": {
+            "averageRating": 4.87,
+            "totalReviewCount": 38
+          },
+          "testReportsSummary": {
+            "grade": "1,9"
+          },
+          "totalOfferCount": 1
+        },
+        {
+          "productRef": "pr.v1.k1.lWjC1x_fID4eur0VL3fuC_36wWPt5ZQ1J2eKePaxTF7v2yx5wQ",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "Sony PlayStation 5 Slim (PS5 Slim)",
+          "nameDelta": "Ghost of Yotei Gold Limited Edition",
+          "price": "1.500,00 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/207644/5/207644580/s1_produktbild_mobil/sony-playstation-5-slim-ps5-slim-ghost-of-yotei-gold-limited-edition.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/207644580_-playstation-5-slim-ps5-slim-ghost-of-yotei-gold-limited-edition-sony.html",
+          "userReviewsSummary": {
+            "averageRating": 4.87,
+            "totalReviewCount": 38
+          },
+          "testReportsSummary": {
+            "grade": "1,9"
+          },
+          "totalOfferCount": 1
+        },
+        {
+          "productRef": "pr.v1.k1.iQ7vbgwl_NnsDCOhPyEke-TMio1oCzXbG7eUyvJKJWhJZDe9dg",
+          "itemType": "PRODUCT",
+          "siteId": 1,
+          "name": "Sony PlayStation 5 Slim (PS5 Slim)",
+          "nameDelta": "Standard Edition + 2 DualSense Controller + GTA VI",
+          "price": "1.599,00 €",
+          "imageUrl": "https://cdn.idealo.com/folder/Product/215147/2/215147240/s1_produktbild_mobil/sony-playstation-5-slim-ps5-slim-standard-edition-2-dualsense-controller-gta-vi.jpg",
+          "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/215147240_-playstation-5-slim-ps5-slim-standard-edition-2-dualsense-controller-gta-vi-sony.html",
+          "userReviewsSummary": {
+            "averageRating": 4.87,
+            "totalReviewCount": 38
+          },
+          "testReportsSummary": {
+            "grade": "1,9"
+          },
+          "totalOfferCount": 1
+        }
+      ]
+    },
+    "details": {
+      "productRef": "pr.v1.k1.ZICDqPUZXOKMD_86OqZjqpajPRZ4fGSwXrUKh-8qT0r756ybjQ",
+      "itemType": "PRODUCT",
+      "siteId": 1,
+      "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/203721237_-playstation-5-slim-ps5-slim-standard-edition-sony.html",
+      "name": "Sony PlayStation 5 Slim (PS5 Slim)",
+      "nameDelta": "Standard Edition",
+      "imageUrls": [
+        "https://cdn.idealo.com/folder/Product/203721/2/203721237/s1_produktbild_mobil/sony-playstation-5-slim-ps5-slim-standard-edition.jpg"
+      ],
+      "nextOffset": 3,
+      "offers": [
+        {
+          "key": "5c6bcca37a89a464624c714c87989942",
+          "price": "1.099,00 €",
+          "basePrice": null,
+          "shop": {
+            "shopId": "26895",
+            "merchantId": "95594954",
+            "name": "kaufland.de",
+            "merchantName": "Zeya-GmbH",
+            "rating": {
+              "count": null,
+              "avg": null
+            },
+            "isMarketplace": true
+          },
+          "payments": [
+            {
+              "costCode": "INV",
+              "name": "Rechnung"
+            },
+            {
+              "costCode": "PP",
+              "name": "PayPal"
+            },
+            {
+              "costCode": "DD",
+              "name": "Lastschrift"
+            },
+            {
+              "costCode": "SUW",
+              "name": "Sofort."
+            },
+            {
+              "costCode": "CBC",
+              "name": "Kreditkarte"
+            },
+            {
+              "costCode": "CIA",
+              "name": "Vorkasse"
+            }
+          ],
+          "showPaymentDisclaimer": false,
+          "delivery": {
+            "deliveryText": "bis Mo. 30.11.2026",
+            "deliveryStatus": "SHORT",
+            "earlyDeliveryDate": null,
+            "lateDeliveryDate": "2026-11-30"
+          },
+          "freeReturnDays": 14,
+          "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=5c6bcca37a89a464624c714c87989942&categoryId=3189&pos=2&price=1099.00&productid=203721237&sid=26895&type=offer&media=ipc-public-mcp",
+          "minShippingCost": "0,00 €",
+          "hasAlwaysFreeShipping": true,
+          "cheapestTotalPriceOffer": false,
+          "freshness": "2026-11-27T17:13:21.500Z"
+        },
+        {
+          "key": "450a545d39c849f5658ec8d70588c7c0",
+          "price": "1.099,00 €",
+          "basePrice": null,
+          "shop": {
+            "shopId": "24111",
+            "merchantId": null,
+            "name": "euronics.de",
+            "merchantName": "Euronics XXL Johann + Wittmer",
+            "rating": {
+              "count": null,
+              "avg": null
+            },
+            "isMarketplace": true
+          },
+          "payments": [
+            {
+              "costCode": "PP",
+              "name": "PayPal"
+            },
+            {
+              "costCode": "CBC",
+              "name": "Kreditkarte"
+            },
+            {
+              "costCode": "APPLE_PAY",
+              "name": "Apple Pay"
+            },
+            {
+              "costCode": "CIA",
+              "name": "Vorkasse"
+            }
+          ],
+          "showPaymentDisclaimer": false,
+          "delivery": {
+            "deliveryText": "bis Di. 01.12.2026",
+            "deliveryStatus": "SHORT",
+            "earlyDeliveryDate": null,
+            "lateDeliveryDate": "2026-12-01"
+          },
+          "freeReturnDays": null,
+          "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=450a545d39c849f5658ec8d70588c7c0&categoryId=3189&pos=3&price=1099.00&productid=203721237&sid=24111&type=offer&media=ipc-public-mcp",
+          "minShippingCost": "6,99 €",
+          "hasAlwaysFreeShipping": false,
+          "cheapestTotalPriceOffer": false,
+          "freshness": "2026-11-27T17:13:21.500Z"
+        }
+      ],
+      "prosCons": {
+        "pros": [
+          "reduzierte Größe",
+          "1 TB integrierter Speicher",
+          "2 USB-C-Anschlüsse"
+        ],
+        "cons": [
+          "ungewöhnliche Design-Entscheidungen",
+          "kein vertikaler Ständer enthalten",
+          "Internet für die Einrichtung erforderlich"
+        ]
+      },
+      "testReports": {
+        "summary": {
+          "grade": "1,9",
+          "averageRating": 82,
+          "rating": "gut",
+          "ratingCount": 2
+        },
+        "list": [
+          {
+            "providerName": "IMTEST",
+            "shortDescription": "Einzeltest PlayStation 5 Slim",
+            "summaryText": "Bis auf den kleineren Formfaktor bietet die Slim-Version keinen signifikanten Vorteil gegenüber der ursprünglichen Variante. Sie enttäuscht mit erhöhtem Energieverbrauch, Wärme- und Geräuschentwicklung. Zudem fehlt der Standfuß im Lieferumfang und der Preis ist unverhältnismäßig hoch. Dennoch bleibt die PS5 eine ausgezeichnete Konsole mit hervorragender Spieleleistung, einem guten Controller und einer großen Auswahl an Spielen.",
+            "ratingValue": "gut (1,9)",
+            "publishedAt": 1701082800000,
+            "language": "de",
+            "issue": "online",
+            "testedProductsCount": 1
+          },
+          {
+            "providerName": "ComputerBild",
+            "shortDescription": "Einzeltest Sony PlayStation 5 Slim",
+            "summaryText": "Sony hat die PlayStation 5 Slim verbessert, indem sie kompakter ist und eine größere SSD hat. Allerdings verbraucht sie mehr Strom, wird etwas wärmer und die Lüfter sind lauter. Ein Wechsel von der normalen PS5 zur Slim ist nicht empfehlenswert, aber für Neukäufer ist die Slim eine gute Wahl.",
+            "ratingValue": "gut (1,9)",
+            "publishedAt": 1726653600000,
+            "language": "de",
+            "issue": "online",
+            "testedProductsCount": 1
+          }
+        ]
+      },
+      "productSpecification": {
+        "groups": [
+          {
+            "name": "Datenspeicher",
+            "type": "DEFAULT",
+            "attributes": [
+              {
+                "name": "Speicher erweiterbar",
+                "value": "Ja"
+              },
+              {
+                "name": "Festplattentypen",
+                "value": "SSD, M.2 SSD (2280)"
+              },
+              {
+                "name": "mitgelieferter Speicher",
+                "value": "1.000 GB"
+              },
+              {
+                "name": "Speichermedium",
+                "value": "Ultra HD-Blu-ray"
+              }
+            ]
+          },
+          {
+            "name": "Anschlüsse",
+            "type": "DEFAULT",
+            "attributes": [
+              {
+                "name": "HDMI-Ausgänge",
+                "value": "1"
+              },
+              {
+                "name": "Datenkommunikation",
+                "value": "Netzwerk, WLAN"
+              },
+              {
+                "name": "WLAN-Standard",
+                "value": "IEEE 802.11 a/b/g/n/ac/ax"
+              },
+              {
+                "name": "Anzahl USB 2.0 Anschlüsse",
+                "value": "2"
+              },
+              {
+                "name": "LAN-Standard",
+                "value": "Gigabit Ethernet (10/100/1000 Mbit/s)"
+              },
+              {
+                "name": "digitaler Ausgang",
+                "value": "HDMI"
+              },
+              {
+                "name": "weiterer Anschluss",
+                "value": "1 x USB Type C"
+              }
+            ]
+          },
+          {
+            "name": "Leistung",
+            "type": "DEFAULT",
+            "attributes": [
+              {
+                "name": "Prozessortyp",
+                "value": "AMD Ryzen „Zen 2“"
+              },
+              {
+                "name": "Taktfrequenz",
+                "value": "3.500 MHz"
+              },
+              {
+                "name": "Prozessorkerne",
+                "value": "8"
+              },
+              {
+                "name": "Prozessorarchitektur",
+                "value": "64-Bit"
+              },
+              {
+                "name": "Arbeitsspeicher (RAM)",
+                "value": "16.384 MB"
+              },
+              {
+                "name": "RAM-Typ",
+                "value": "GDDR6"
+              },
+              {
+                "name": "Grafikchipsatz",
+                "value": "AMD Radeon RDNA 2"
+              }
+            ]
+          },
+          {
+            "name": "Design",
+            "type": "DEFAULT",
+            "attributes": [
+              {
+                "name": "Farbe",
+                "value": "weiß"
+              },
+              {
+                "name": "Zweite Farbe",
+                "value": "schwarz"
+              },
+              {
+                "name": "Oberfläche",
+                "value": "matt"
+              },
+              {
+                "name": "Standgerät",
+                "value": "Ja"
+              }
+            ]
+          },
+          {
+            "name": "Controller",
+            "type": "DEFAULT",
+            "attributes": [
+              {
+                "name": "Spielsteuerung",
+                "value": "Controller"
+              },
+              {
+                "name": "Controllertyp",
+                "value": "kabelloser Controller"
+              },
+              {
+                "name": "Controller-Eigenschaften",
+                "value": "Beschleunigungssensor, PlayStation-Layout, Lagesensor (Gyrosensor), Headset-Anschluss via 3,5mm Klinke, Mikrofon, Vibration"
+              },
+              {
+                "name": "Bedienelemente",
+                "value": "2 Analog-Sticks, 4 Schultertasten, 4 Aktionstasten, Select-Taste, Steuerkreuz"
+              }
+            ]
+          },
+          {
+            "name": "Wiedergabe",
+            "type": "DEFAULT",
+            "attributes": [
+              {
+                "name": "Multimedia-Funktionen",
+                "value": "Blu-ray-Wiedergabe, High Dynamic Range (HDR)"
+              },
+              {
+                "name": "Soundmodus",
+                "value": "Tempest 3D Audio Tech"
+              },
+              {
+                "name": "Unterstützte Auflösungen",
+                "value": "4K, 8K"
+              }
+            ]
+          },
+          {
+            "name": "Abmessungen und Lieferumfang",
+            "type": "DEFAULT",
+            "attributes": [
+              {
+                "name": "Abmessungen",
+                "value": "358 × 96 × 216 mm"
+              },
+              {
+                "name": "Gewicht",
+                "value": "3.200 g"
+              },
+              {
+                "name": "Mitgelieferte Hardware",
+                "value": "1 x Controller"
+              }
+            ]
+          },
+          {
+            "name": "",
+            "type": "IMPORTANT",
+            "attributes": [
+              {
+                "name": "Gelistet seit",
+                "value": "Januar 2024"
+              },
+              {
+                "name": "Produkttypen",
+                "value": "PS5 Konsole, Heimkonsole"
+              },
+              {
+                "name": "interner Speicher",
+                "value": "1.000 GB"
+              },
+              {
+                "name": "Veröffentlichungsjahr",
+                "value": "2023"
+              }
+            ]
+          },
+          {
+            "name": "",
+            "type": "OTHER",
+            "attributes": [
+              {
+                "name": "Plattform",
+                "value": "PlayStation 5 (PS5)"
+              },
+              {
+                "name": "Serie",
+                "value": "Sony PlayStation"
+              }
+            ]
+          }
+        ]
+      },
+      "productOverview": [
+        "interner Speicher 1.000 GB",
+        "AMD Ryzen „Zen 2“",
+        "8 Prozessorkerne",
+        "Arbeitsspeicher (RAM) 16.384 MB",
+        "RAM-Typ GDDR6",
+        "HDMI",
+        "WLAN"
+      ],
+      "productDetailsUrl": "https://www.idealo.de/preisvergleich/OffersOfProduct/203721237_-playstation-5-slim-ps5-slim-standard-edition-sony.html#datasheet",
+      "priceTrend": {
+        "history": [
+          {
+            "dateTime": 1793228399999,
+            "price": 62300
+          },
+          {
+            "dateTime": 1793314799999,
+            "price": 64999
+          },
+          {
+            "dateTime": 1793401199999,
+            "price": 64375
+          },
+          {
+            "dateTime": 1793487599999,
+            "price": 64999
+          },
+          {
+            "dateTime": 1793573999999,
+            "price": 64999
+          },
+          {
+            "dateTime": 1793660399999,
+            "price": 64375
+          },
+          {
+            "dateTime": 1793746799999,
+            "price": 64999
+          },
+          {
+            "dateTime": 1793833199999,
+            "price": 64999
+          },
+          {
+            "dateTime": 1793919599999,
+            "price": 64999
+          },
+          {
+            "dateTime": 1794005999999,
+            "price": 61303
+          },
+          {
+            "dateTime": 1794092399999,
+            "price": 64999
+          },
+          {
+            "dateTime": 1794178799999,
+            "price": 64999
+          },
+          {
+            "dateTime": 1794265199999,
+            "price": 64999
+          },
+          {
+            "dateTime": 1794351599999,
+            "price": 64999
+          },
+          {
+            "dateTime": 1794437999999,
+            "price": 67900
+          },
+          {
+            "dateTime": 1794524399999,
+            "price": 67900
+          },
+          {
+            "dateTime": 1794610799999,
+            "price": 67900
+          },
+          {
+            "dateTime": 1794697199999,
+            "price": 71899
+          },
+          {
+            "dateTime": 1794783599999,
+            "price": 72900
+          },
+          {
+            "dateTime": 1794869999999,
+            "price": 71290
+          },
+          {
+            "dateTime": 1794956399999,
+            "price": 66900
+          },
+          {
+            "dateTime": 1795042799999,
+            "price": 66900
+          },
+          {
+            "dateTime": 1795129199999,
+            "price": 66300
+          },
+          {
+            "dateTime": 1795215599999,
+            "price": 66900
+          },
+          {
+            "dateTime": 1795301999999,
+            "price": 59288
+          },
+          {
+            "dateTime": 1795388399999,
+            "price": 83900
+          },
+          {
+            "dateTime": 1795474799999,
+            "price": 66900
+          },
+          {
+            "dateTime": 1795561199999,
+            "price": 76900
+          },
+          {
+            "dateTime": 1795647599999,
+            "price": 76900
+          },
+          {
+            "dateTime": 1795733999999,
+            "price": 88400
+          },
+          {
+            "dateTime": 1795799601463,
+            "price": 102999
+          }
+        ]
+      }
+    },
+    "offers": {
+      "nextOffset": 5,
+      "offers": [
+        {
+          "key": "5c6bcca37a89a464624c714c87989942",
+          "price": "1.099,00 €",
+          "basePrice": null,
+          "shop": {
+            "shopId": "26895",
+            "merchantId": "95594954",
+            "name": "kaufland.de",
+            "merchantName": "Zeya-GmbH",
+            "rating": {
+              "count": null,
+              "avg": null
+            },
+            "isMarketplace": true
+          },
+          "payments": [
+            {
+              "costCode": "INV",
+              "name": "Rechnung"
+            },
+            {
+              "costCode": "PP",
+              "name": "PayPal"
+            },
+            {
+              "costCode": "DD",
+              "name": "Lastschrift"
+            },
+            {
+              "costCode": "SUW",
+              "name": "Sofort."
+            },
+            {
+              "costCode": "CBC",
+              "name": "Kreditkarte"
+            },
+            {
+              "costCode": "CIA",
+              "name": "Vorkasse"
+            }
+          ],
+          "showPaymentDisclaimer": false,
+          "delivery": {
+            "deliveryText": "bis Mo. 30.11.2026",
+            "deliveryStatus": "SHORT",
+            "earlyDeliveryDate": null,
+            "lateDeliveryDate": "2026-11-30"
+          },
+          "freeReturnDays": 14,
+          "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=5c6bcca37a89a464624c714c87989942&categoryId=3189&pos=2&price=1099.00&productid=203721237&sid=26895&type=offer&media=ipc-public-mcp",
+          "minShippingCost": "0,00 €",
+          "hasAlwaysFreeShipping": true,
+          "cheapestTotalPriceOffer": false,
+          "freshness": "2026-11-27T17:13:21.772Z"
+        },
+        {
+          "key": "450a545d39c849f5658ec8d70588c7c0",
+          "price": "1.099,00 €",
+          "basePrice": null,
+          "shop": {
+            "shopId": "24111",
+            "merchantId": null,
+            "name": "euronics.de",
+            "merchantName": "Euronics XXL Johann + Wittmer",
+            "rating": {
+              "count": null,
+              "avg": null
+            },
+            "isMarketplace": true
+          },
+          "payments": [
+            {
+              "costCode": "PP",
+              "name": "PayPal"
+            },
+            {
+              "costCode": "CBC",
+              "name": "Kreditkarte"
+            },
+            {
+              "costCode": "APPLE_PAY",
+              "name": "Apple Pay"
+            },
+            {
+              "costCode": "CIA",
+              "name": "Vorkasse"
+            }
+          ],
+          "showPaymentDisclaimer": false,
+          "delivery": {
+            "deliveryText": "bis Di. 01.12.2026",
+            "deliveryStatus": "SHORT",
+            "earlyDeliveryDate": null,
+            "lateDeliveryDate": "2026-12-01"
+          },
+          "freeReturnDays": null,
+          "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=450a545d39c849f5658ec8d70588c7c0&categoryId=3189&pos=3&price=1099.00&productid=203721237&sid=24111&type=offer&media=ipc-public-mcp",
+          "minShippingCost": "6,99 €",
+          "hasAlwaysFreeShipping": false,
+          "cheapestTotalPriceOffer": false,
+          "freshness": "2026-11-27T17:13:21.772Z"
+        },
+        {
+          "key": "7f3f265cd35b5bdb592ce35ebf298c87",
+          "price": "1.099,00 €",
+          "basePrice": null,
+          "shop": {
+            "shopId": "6980",
+            "merchantId": null,
+            "name": "notebooksbilliger.de",
+            "merchantName": null,
+            "rating": {
+              "count": 12336,
+              "avg": 2.07
+            },
+            "isMarketplace": false
+          },
+          "payments": [
+            {
+              "costCode": "INV",
+              "name": "Rechnung"
+            },
+            {
+              "costCode": "PP",
+              "name": "PayPal"
+            },
+            {
+              "costCode": "SUW",
+              "name": "Sofort."
+            },
+            {
+              "costCode": "CBC",
+              "name": "Kreditkarte"
+            },
+            {
+              "costCode": "CIA",
+              "name": "Vorkasse"
+            },
+            {
+              "costCode": "AMZP",
+              "name": "Amazon Pay"
+            }
+          ],
+          "showPaymentDisclaimer": false,
+          "delivery": {
+            "deliveryText": "Mo. 30.11.–Di. 01.12.2026",
+            "deliveryStatus": "SHORT",
+            "earlyDeliveryDate": "2026-11-30",
+            "lateDeliveryDate": "2026-12-01"
+          },
+          "freeReturnDays": 30,
+          "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=7f3f265cd35b5bdb592ce35ebf298c87&categoryId=3189&pos=4&price=1099.00&productid=203721237&sid=6980&type=offer&media=ipc-public-mcp",
+          "minShippingCost": "8,99 €",
+          "hasAlwaysFreeShipping": false,
+          "cheapestTotalPriceOffer": false,
+          "freshness": "2026-11-27T17:13:21.772Z"
+        },
+        {
+          "key": "c12d90d1f20337c3a1cd06f752202a9d",
+          "price": "1.205,73 €",
+          "basePrice": null,
+          "shop": {
+            "shopId": "336868",
+            "merchantId": null,
+            "name": "mixoutlet.de",
+            "merchantName": null,
+            "rating": {
+              "count": 17,
+              "avg": 3.13
+            },
+            "isMarketplace": false
+          },
+          "payments": [
+            {
+              "costCode": "DD",
+              "name": "Lastschrift"
+            },
+            {
+              "costCode": "CBC",
+              "name": "Kreditkarte"
+            },
+            {
+              "costCode": "CIA",
+              "name": "Vorkasse"
+            }
+          ],
+          "showPaymentDisclaimer": false,
+          "delivery": {
+            "deliveryText": "Mi. 02.12.–Fr. 04.12.2026",
+            "deliveryStatus": "MEDIUM",
+            "earlyDeliveryDate": "2026-12-02",
+            "lateDeliveryDate": "2026-12-04"
+          },
+          "freeReturnDays": null,
+          "relocatorUrl": "https://www.idealo.de/relocator/relocate?offerKey=c12d90d1f20337c3a1cd06f752202a9d&categoryId=3189&pos=5&price=1205.73&productid=203721237&sid=336868&type=offer&media=ipc-public-mcp",
+          "minShippingCost": "0,00 €",
+          "hasAlwaysFreeShipping": true,
+          "cheapestTotalPriceOffer": false,
+          "freshness": "2026-11-27T17:13:21.772Z"
+        }
+      ]
+    },
+    "price_history": {
+      "priceTrend": {
+        "history": [
+          {
+            "dateTime": 1793228399999,
+            "price": "623,00 €",
+            "dateTimeISO": "2026-10-28T22:59:59.999Z"
+          },
+          {
+            "dateTime": 1793314799999,
+            "price": "649,99 €",
+            "dateTimeISO": "2026-10-29T22:59:59.999Z",
+            "priceChangePercent": 4.332263242375602
+          },
+          {
+            "dateTime": 1793401199999,
+            "price": "643,75 €",
+            "dateTimeISO": "2026-10-30T22:59:59.999Z",
+            "priceChangePercent": -0.9600147694579916
+          },
+          {
+            "dateTime": 1793487599999,
+            "price": "649,99 €",
+            "dateTimeISO": "2026-10-31T22:59:59.999Z",
+            "priceChangePercent": 0.9693203883495146
+          },
+          {
+            "dateTime": 1793573999999,
+            "price": "649,99 €",
+            "dateTimeISO": "2026-11-01T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1793660399999,
+            "price": "643,75 €",
+            "dateTimeISO": "2026-11-02T22:59:59.999Z",
+            "priceChangePercent": -0.9600147694579916
+          },
+          {
+            "dateTime": 1793746799999,
+            "price": "649,99 €",
+            "dateTimeISO": "2026-11-03T22:59:59.999Z",
+            "priceChangePercent": 0.9693203883495146
+          },
+          {
+            "dateTime": 1793833199999,
+            "price": "649,99 €",
+            "dateTimeISO": "2026-11-04T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1793919599999,
+            "price": "649,99 €",
+            "dateTimeISO": "2026-11-05T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1794005999999,
+            "price": "613,03 €",
+            "dateTimeISO": "2026-11-06T22:59:59.999Z",
+            "priceChangePercent": -5.686241326789643
+          },
+          {
+            "dateTime": 1794092399999,
+            "price": "649,99 €",
+            "dateTimeISO": "2026-11-07T22:59:59.999Z",
+            "priceChangePercent": 6.029068724205993
+          },
+          {
+            "dateTime": 1794178799999,
+            "price": "649,99 €",
+            "dateTimeISO": "2026-11-08T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1794265199999,
+            "price": "649,99 €",
+            "dateTimeISO": "2026-11-09T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1794351599999,
+            "price": "649,99 €",
+            "dateTimeISO": "2026-11-10T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1794437999999,
+            "price": "679,00 €",
+            "dateTimeISO": "2026-11-11T22:59:59.999Z",
+            "priceChangePercent": 4.463145586855182
+          },
+          {
+            "dateTime": 1794524399999,
+            "price": "679,00 €",
+            "dateTimeISO": "2026-11-12T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1794610799999,
+            "price": "679,00 €",
+            "dateTimeISO": "2026-11-13T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1794697199999,
+            "price": "718,99 €",
+            "dateTimeISO": "2026-11-14T22:59:59.999Z",
+            "priceChangePercent": 5.889543446244478
+          },
+          {
+            "dateTime": 1794783599999,
+            "price": "729,00 €",
+            "dateTimeISO": "2026-11-15T22:59:59.999Z",
+            "priceChangePercent": 1.3922307681608923
+          },
+          {
+            "dateTime": 1794869999999,
+            "price": "712,90 €",
+            "dateTimeISO": "2026-11-16T22:59:59.999Z",
+            "priceChangePercent": -2.2085048010973938
+          },
+          {
+            "dateTime": 1794956399999,
+            "price": "669,00 €",
+            "dateTimeISO": "2026-11-17T22:59:59.999Z",
+            "priceChangePercent": -6.157946416047132
+          },
+          {
+            "dateTime": 1795042799999,
+            "price": "669,00 €",
+            "dateTimeISO": "2026-11-18T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1795129199999,
+            "price": "663,00 €",
+            "dateTimeISO": "2026-11-19T22:59:59.999Z",
+            "priceChangePercent": -0.8968609865470852
+          },
+          {
+            "dateTime": 1795215599999,
+            "price": "669,00 €",
+            "dateTimeISO": "2026-11-20T22:59:59.999Z",
+            "priceChangePercent": 0.904977375565611
+          },
+          {
+            "dateTime": 1795301999999,
+            "price": "592,88 €",
+            "dateTimeISO": "2026-11-21T22:59:59.999Z",
+            "priceChangePercent": -11.378176382660687
+          },
+          {
+            "dateTime": 1795388399999,
+            "price": "839,00 €",
+            "dateTimeISO": "2026-11-22T22:59:59.999Z",
+            "priceChangePercent": 41.51261638105519
+          },
+          {
+            "dateTime": 1795474799999,
+            "price": "669,00 €",
+            "dateTimeISO": "2026-11-23T22:59:59.999Z",
+            "priceChangePercent": -20.262216924910607
+          },
+          {
+            "dateTime": 1795561199999,
+            "price": "769,00 €",
+            "dateTimeISO": "2026-11-24T22:59:59.999Z",
+            "priceChangePercent": 14.947683109118087
+          },
+          {
+            "dateTime": 1795647599999,
+            "price": "769,00 €",
+            "dateTimeISO": "2026-11-25T22:59:59.999Z",
+            "priceChangePercent": 0
+          },
+          {
+            "dateTime": 1795733999999,
+            "price": "884,00 €",
+            "dateTimeISO": "2026-11-26T22:59:59.999Z",
+            "priceChangePercent": 14.954486345903772
+          },
+          {
+            "dateTime": 1795799602105,
+            "price": "1.029,99 €",
+            "dateTimeISO": "2026-11-27T17:13:22.105Z",
+            "priceChangePercent": 16.514705882352942
+          }
+        ],
+        "statistics": {
+          "minPrice": "592,88 €",
+          "maxPrice": "1.029,99 €",
+          "avgPrice": "691,75 €",
+          "currentPrice": "1.029,99 €",
+          "priceChangePercent": 65.3274478330658,
+          "lowestPriceDate": "2026-11-21T22:59:59.999Z",
+          "highestPriceDate": "2026-11-27T17:13:22.105Z"
+        },
+        "samplingGranularity": "daily",
+        "dataSourceConfidence": 0.95,
+        "periodDays": 29.8,
+        "totalDataPoints": 31
+      }
+    },
+    "all_cached": false
+  }
+}

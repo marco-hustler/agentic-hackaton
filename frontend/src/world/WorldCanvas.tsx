@@ -24,6 +24,8 @@ type WorldCanvasProps = {
   /** Screen rect the scene is framed in; see CameraRig. */
   frameRef: RefObject<HTMLElement | null>
   onCreateProcess: () => void
+  /** When false, empty lots do not start the create wizard. */
+  canCreateProcess?: boolean
   onRequestOpen: (id: string) => void
   onConfirmEnter: () => void
   onCancel: () => void
@@ -48,6 +50,7 @@ export function WorldCanvas({
   spinRequest,
   frameRef,
   onCreateProcess,
+  canCreateProcess = true,
   onRequestOpen,
   onConfirmEnter,
   onCancel,
@@ -148,7 +151,12 @@ export function WorldCanvas({
 
         {/* Every free lot is a hit area that starts a new process */}
         {freeSlots.map(([x, z]) => (
-          <FreeLot key={`free-${x}-${z}`} position={[x, z]} interactive={mode === 'world'} onCreate={onCreateProcess} />
+          <FreeLot
+            key={`free-${x}-${z}`}
+            position={[x, z]}
+            interactive={mode === 'world' && canCreateProcess}
+            onCreate={onCreateProcess}
+          />
         ))}
 
         <LabelProjector anchors={anchorsRef} registry={registry} />
@@ -237,7 +245,7 @@ export function WorldCanvas({
               </button>
             </li>
           ))}
-          {freeSlots.length > 0 && (
+          {freeSlots.length > 0 && canCreateProcess && (
             <li>
               <button type="button" onClick={onCreateProcess}>
                 Create a new process

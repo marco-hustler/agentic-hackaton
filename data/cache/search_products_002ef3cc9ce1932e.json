@@ -1,0 +1,392 @@
+{
+  "namespace": "search_products",
+  "request": {
+    "query": "PlayStation 5 Slim",
+    "country": "DE"
+  },
+  "cached_at": 1795803193.7493088,
+  "data": {
+    "query": "PlayStation 5 Slim",
+    "availableCategories": [
+      {
+        "categoryId": "3189",
+        "categoryName": "Spielekonsolen",
+        "amount": 0
+      }
+    ],
+    "availableManufacturers": [
+      {
+        "manufacturerId": "1013",
+        "manufacturerName": "Sony",
+        "amount": 35,
+        "searchFilterId": "471423"
+      }
+    ],
+    "availableFilters": [
+      {
+        "attributeId": "15583",
+        "name": "Produkttyp",
+        "filters": [
+          {
+            "filterId": "104371516",
+            "content": "PS5 Konsole",
+            "amount": 24
+          },
+          {
+            "filterId": "104364171",
+            "content": "PS5 Bundle",
+            "amount": 10
+          },
+          {
+            "filterId": "469667",
+            "content": "Heimkonsole",
+            "amount": 33
+          },
+          {
+            "filterId": "5355774",
+            "content": "PS4 Konsole",
+            "amount": 9
+          },
+          {
+            "filterId": "469666",
+            "content": "Handheld",
+            "amount": 3
+          },
+          {
+            "filterId": "5355773",
+            "content": "PS4 Bundle",
+            "amount": 7
+          },
+          {
+            "filterId": "5355768",
+            "content": "PS Vita Bundle",
+            "amount": 1
+          }
+        ]
+      },
+      {
+        "attributeId": "29866",
+        "name": "interner Speicher",
+        "filters": [
+          {
+            "filterId": "1360512",
+            "content": "1 TB",
+            "amount": 16
+          },
+          {
+            "filterId": "236067",
+            "content": "bis 500 GB",
+            "amount": 2
+          },
+          {
+            "filterId": "1360511",
+            "content": "500 GB",
+            "amount": 7
+          }
+        ]
+      },
+      {
+        "attributeId": "20490",
+        "name": "Veröffentlichungsjahr",
+        "filters": [
+          {
+            "filterId": "107224256",
+            "content": "2026",
+            "amount": 5
+          },
+          {
+            "filterId": "106494655",
+            "content": "2025",
+            "amount": 8
+          },
+          {
+            "filterId": "104846653",
+            "content": "2024",
+            "amount": 4
+          },
+          {
+            "filterId": "103999995",
+            "content": "2023",
+            "amount": 4
+          },
+          {
+            "filterId": "100661508",
+            "content": "2020",
+            "amount": 1
+          },
+          {
+            "filterId": "9853470",
+            "content": "2019",
+            "amount": 1
+          },
+          {
+            "filterId": "9050665",
+            "content": "2018",
+            "amount": 1
+          },
+          {
+            "filterId": "6178977",
+            "content": "2016",
+            "amount": 4
+          },
+          {
+            "filterId": "2410012",
+            "content": "2013",
+            "amount": 1
+          },
+          {
+            "filterId": "1547958",
+            "content": "2008",
+            "amount": 1
+          }
+        ]
+      },
+      {
+        "attributeId": "16311",
+        "name": "Serie",
+        "filters": [
+          {
+            "filterId": "3765161",
+            "content": "Sony PlayStation",
+            "amount": 32
+          },
+          {
+            "filterId": "1085536",
+            "content": "Sony PSP",
+            "amount": 1
+          },
+          {
+            "filterId": "1826461",
+            "content": "Sony PlayStation Vita",
+            "amount": 1
+          }
+        ]
+      }
+    ],
+    "suggestedFilters": [
+      {
+        "id": "104371516",
+        "type": "SEARCH_FILTER"
+      },
+      {
+        "id": "3765161",
+        "type": "SEARCH_FILTER"
+      },
+      {
+        "id": "471423",
+        "type": "MANUFACTURER"
+      },
+      {
+        "id": "104364171",
+        "type": "SEARCH_FILTER"
+      },
+      {
+        "id": "469667",
+        "type": "SEARCH_FILTER"
+      },
+      {
+        "id": "107224256",
+        "type": "SEARCH_FILTER"
+      },
+      {
+        "id": "5355774",
+        "type": "SEARCH_FILTER"
+      },
+      {
+        "id": "469666",
+        "type": "SEARCH_FILTER"
+      },
+      {
+        "id": "106494655",
+        "type": "SEARCH_FILTER"
+      },
+      {
+        "id": "1085536",
+        "type": "SEARCH_FILTER"
+      }
+    ],
+    "sizeAttributes": [],
+    "results": [
+      {
+        "productRef": "pr.v1.k1.ZICDqPUZXOKMD_86OqZjqpajPRZ4fGSwXrUKh-8qT0r756ybjQ",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "Sony PlayStation 5 Slim (PS5 Slim)",
+        "nameDelta": "Standard Edition",
+        "price": "1.099,00 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/203721/2/203721237/s1_produktbild_mobil/sony-playstation-5-slim-ps5-slim-standard-edition.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/203721237_-playstation-5-slim-ps5-slim-standard-edition-sony.html",
+        "userReviewsSummary": {
+          "averageRating": 4.87,
+          "totalReviewCount": 38
+        },
+        "testReportsSummary": {
+          "grade": "1,9"
+        },
+        "totalOfferCount": 12
+      },
+      {
+        "productRef": "pr.v1.k1.5r_XU5haMnuHViUxBJqM67eUswuXyC2KR6zIS5UQb8fJFgNVrA",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "Sony PlayStation 5 Slim (PS5 Slim) Digital Edition",
+        "nameDelta": "Standard Edition 825GB",
+        "price": "899,00 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/207748/7/207748718/s1_produktbild_mobil/sony-playstation-5-slim-ps5-slim-digital-edition-standard-edition-825gb.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/207748718_-playstation-5-slim-ps5-slim-digital-edition-standard-edition-825gb-sony.html",
+        "userReviewsSummary": {
+          "averageRating": 4.31,
+          "totalReviewCount": 39
+        },
+        "testReportsSummary": {
+          "grade": "1,2"
+        },
+        "totalOfferCount": 7
+      },
+      {
+        "productRef": "pr.v1.k1.T8oQJtaxSf3ah03UUsA4t2gUATfRmBE3jIJW-tE9cNKdqVjXzA",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "Sony PlayStation 5 Slim (PS5 Slim)",
+        "nameDelta": "Standard Edition + 2 DualSense Controller",
+        "price": "1.116,00 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/203735/1/203735136/s1_produktbild_mobil/sony-playstation-5-slim-ps5-slim-standard-edition-2-dualsense-controller.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/203735136_-playstation-5-slim-ps5-slim-standard-edition-2-dualsense-controller-sony.html",
+        "userReviewsSummary": {
+          "averageRating": 4.87,
+          "totalReviewCount": 38
+        },
+        "testReportsSummary": {
+          "grade": "1,9"
+        },
+        "totalOfferCount": 5
+      },
+      {
+        "productRef": "pr.v1.k1.WyCI3fVR6JyiQgrphVxxzNHXpStnx_4mgWxcgN-GS7DZlJvChw",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "Sony PlayStation 5 Slim (PS5 Slim) Digital Edition",
+        "nameDelta": "Standard Edition 825GB + 2 Controller",
+        "price": "990,50 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/208528/1/208528152/s1_produktbild_mobil/sony-playstation-5-slim-ps5-slim-digital-edition-standard-edition-825gb-2-controller.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/208528152_-playstation-5-slim-ps5-slim-digital-edition-standard-edition-825gb-2-controller-sony.html",
+        "userReviewsSummary": {
+          "averageRating": 4.31,
+          "totalReviewCount": 39
+        },
+        "testReportsSummary": {
+          "grade": "1,2"
+        },
+        "totalOfferCount": 3
+      },
+      {
+        "productRef": "pr.v1.k1.Gz0ChRQ4YFevct3aZtWx4w-HKa23SnuCeq_wnxYe7S95wvME5A",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "Sony PlayStation 5 Slim (PS5 Slim) Digital Edition",
+        "nameDelta": "Standard",
+        "price": "976,45 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/203721/3/203721340/s1_produktbild_mobil/sony-playstation-5-slim-ps5-slim-digital-edition-standard-edition.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/203721340_-playstation-5-slim-ps5-slim-digital-edition-standard-edition-sony.html",
+        "userReviewsSummary": {
+          "averageRating": 4.31,
+          "totalReviewCount": 39
+        },
+        "testReportsSummary": {
+          "grade": "1,2"
+        },
+        "totalOfferCount": 2
+      },
+      {
+        "productRef": "pr.v1.k1.42zucGS64JDH8oIFyLhGMjc7cpSPz2ecglp7dezf1LjTz0ANOw",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "Sony PlayStation 5 Slim (PS5 Slim) Digital Edition",
+        "nameDelta": "30th Anniversary Collection",
+        "price": "1.380,71 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/204861/0/204861050/s1_produktbild_mobil/sony-playstation-5-slim-ps5-slim-digital-edition-30th-anniversary-collection.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/204861050_-playstation-5-slim-ps5-slim-digital-edition-30th-anniversary-collection-sony.html",
+        "userReviewsSummary": {
+          "averageRating": 4.31,
+          "totalReviewCount": 39
+        },
+        "testReportsSummary": {
+          "grade": "1,2"
+        },
+        "totalOfferCount": 1
+      },
+      {
+        "productRef": "pr.v1.k1.E_pVaRIk6m4q_Aqocv9CWgazJGx41qGsJebRglvGRXv_TIjjTQ",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "Sony PlayStation 5 Slim (PS5 Slim) Digital Edition",
+        "nameDelta": "825GB Fortnite Erblühendes-Chaos-Bundle",
+        "price": "1.055,09 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/208438/5/208438551/s1_produktbild_mobil/sony-playstation-5-slim-ps5-slim-digital-edition-825gb-fortnite-erbluehendes-chaos-bundle.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/208438551_-playstation-5-slim-ps5-slim-digital-edition-825gb-fortnite-erbluehendes-chaos-bundle-sony.html",
+        "userReviewsSummary": {
+          "averageRating": 4.31,
+          "totalReviewCount": 39
+        },
+        "testReportsSummary": {
+          "grade": "1,2"
+        },
+        "totalOfferCount": 4
+      },
+      {
+        "productRef": "pr.v1.k1.iQ7vbgwl_NnsDCOhPyEke-TMio1oCzXbG7eUyvJKJWhJZDe9dg",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "Sony PlayStation 5 Slim (PS5 Slim)",
+        "nameDelta": "Standard Edition + 2 DualSense Controller + GTA VI",
+        "price": "1.599,00 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/215147/2/215147240/s1_produktbild_mobil/sony-playstation-5-slim-ps5-slim-standard-edition-2-dualsense-controller-gta-vi.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/215147240_-playstation-5-slim-ps5-slim-standard-edition-2-dualsense-controller-gta-vi-sony.html",
+        "userReviewsSummary": {
+          "averageRating": 4.87,
+          "totalReviewCount": 38
+        },
+        "testReportsSummary": {
+          "grade": "1,9"
+        },
+        "totalOfferCount": 1
+      },
+      {
+        "productRef": "pr.v1.k1.4L67SlI0FAsmSRLXBWgG5vpftaQDE5d_JHmCthAGNknUBJgA4Q",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "Sony PlayStation 5 Slim (PS5 Slim) Digital Edition",
+        "nameDelta": "825GB Marvel's Wolverine Limited",
+        "price": "1.300,00 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/213459/7/213459717/s1_produktbild_mobil/sony-playstation-5-slim-ps5-slim-digital-edition-825gb-marvel-s-wolverine-limited-edition.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/213459717_-playstation-5-slim-ps5-slim-digital-edition-825gb-marvel-s-wolverine-limited-edition-sony.html",
+        "userReviewsSummary": {
+          "averageRating": 4.31,
+          "totalReviewCount": 39
+        },
+        "testReportsSummary": {
+          "grade": "1,2"
+        },
+        "totalOfferCount": 1
+      },
+      {
+        "productRef": "pr.v1.k1.4_RolyjANXPyM3szTLofgoS_ioz_6TOLsRIhSFmefe12-7LxFg",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "Sony PlayStation 5 Slim (PS5 Slim) Digital Edition",
+        "nameDelta": "2 DualSense Controller",
+        "price": "999,99 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/203720/9/203720920/s1_produktbild_mobil/sony-playstation-5-slim-ps5-slim-digital-edition-2-dualsense-controller.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/203720920_-playstation-5-slim-ps5-slim-digital-edition-2-dualsense-controller-sony.html",
+        "userReviewsSummary": {
+          "averageRating": 4.31,
+          "totalReviewCount": 39
+        },
+        "testReportsSummary": {
+          "grade": "1,2"
+        },
+        "totalOfferCount": 3
+      }
+    ]
+  }
+}

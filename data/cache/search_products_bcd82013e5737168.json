@@ -1,0 +1,683 @@
+{
+  "namespace": "search_products",
+  "request": {
+    "query": "Sony PlayStation 5 Slim (PS5 Slim)",
+    "country": "DE"
+  },
+  "cached_at": 1795803201.266537,
+  "data": {
+    "query": "Sony PlayStation 5 Slim (PS5 Slim)",
+    "availableCategories": [
+      {
+        "categoryId": "3189",
+        "categoryName": "Spielekonsolen",
+        "amount": 26
+      },
+      {
+        "categoryId": "4752",
+        "categoryName": "Gamingzubehör",
+        "amount": 92
+      },
+      {
+        "categoryId": "18845",
+        "categoryName": "Konsolentaschen & Handheldtaschen",
+        "amount": 40
+      },
+      {
+        "categoryId": "3014",
+        "categoryName": "Gamepads",
+        "amount": 19
+      },
+      {
+        "categoryId": "4852",
+        "categoryName": "PC-Modding",
+        "amount": 7
+      },
+      {
+        "categoryId": "32482",
+        "categoryName": "PS5 Spiele",
+        "amount": 3
+      },
+      {
+        "categoryId": "5172",
+        "categoryName": "Gaming Headsets",
+        "amount": 8
+      },
+      {
+        "categoryId": "7712",
+        "categoryName": "Externe Festplatten",
+        "amount": 4
+      },
+      {
+        "categoryId": "21160",
+        "categoryName": "Videospiele",
+        "amount": 3
+      }
+    ],
+    "availableManufacturers": [
+      {
+        "manufacturerId": "1013",
+        "manufacturerName": "Sony",
+        "amount": 36
+      },
+      {
+        "manufacturerId": "1884",
+        "manufacturerName": "Bigben Interactive",
+        "amount": 10
+      },
+      {
+        "manufacturerId": "172133",
+        "manufacturerName": "Oniverse",
+        "amount": 2
+      },
+      {
+        "manufacturerId": "137452",
+        "manufacturerName": "Nacon",
+        "amount": 4
+      },
+      {
+        "manufacturerId": "172122",
+        "manufacturerName": "Maxx Tech by Contact Sales",
+        "amount": 4
+      },
+      {
+        "manufacturerId": "26266",
+        "manufacturerName": "Venom",
+        "amount": 3
+      },
+      {
+        "manufacturerId": "162232",
+        "manufacturerName": "Freaks & Geeks",
+        "amount": 7
+      },
+      {
+        "manufacturerId": "172309",
+        "manufacturerName": "4mount",
+        "amount": 5
+      },
+      {
+        "manufacturerId": "44323",
+        "manufacturerName": "Subsonic",
+        "amount": 4
+      },
+      {
+        "manufacturerId": "27521",
+        "manufacturerName": "Nyko",
+        "amount": 1
+      },
+      {
+        "manufacturerId": "45360",
+        "manufacturerName": "PowerA",
+        "amount": 1
+      },
+      {
+        "manufacturerId": "173341",
+        "manufacturerName": "Vicabo",
+        "amount": 3
+      },
+      {
+        "manufacturerId": "172307",
+        "manufacturerName": "fossi3D",
+        "amount": 1
+      },
+      {
+        "manufacturerId": "166113",
+        "manufacturerName": "Dobe Fomis Electronics",
+        "amount": 2
+      },
+      {
+        "manufacturerId": "123437",
+        "manufacturerName": "Patona",
+        "amount": 2
+      },
+      {
+        "manufacturerId": "145842",
+        "manufacturerName": "Piranha Gamer",
+        "amount": 1
+      },
+      {
+        "manufacturerId": "188650",
+        "manufacturerName": "Dead Wave",
+        "amount": 1
+      },
+      {
+        "manufacturerId": "164741",
+        "manufacturerName": "Oivo",
+        "amount": 1
+      },
+      {
+        "manufacturerId": "140320",
+        "manufacturerName": "Stealth by Accessories 4 Technology",
+        "amount": 2
+      },
+      {
+        "manufacturerId": "165513",
+        "manufacturerName": "Graugear",
+        "amount": 9
+      },
+      {
+        "manufacturerId": "39392",
+        "manufacturerName": "StarTech",
+        "amount": 2
+      },
+      {
+        "manufacturerId": "20101",
+        "manufacturerName": "Deltaco",
+        "amount": 3
+      },
+      {
+        "manufacturerId": "77926",
+        "manufacturerName": "AccuCell",
+        "amount": 2
+      },
+      {
+        "manufacturerId": "9522",
+        "manufacturerName": "Trust",
+        "amount": 1
+      },
+      {
+        "manufacturerId": "74056",
+        "manufacturerName": "Go!iMP",
+        "amount": 4
+      },
+      {
+        "manufacturerId": "182494",
+        "manufacturerName": "YAXO",
+        "amount": 1
+      },
+      {
+        "manufacturerId": "165423",
+        "manufacturerName": "FIXED",
+        "amount": 1
+      },
+      {
+        "manufacturerId": "165707",
+        "manufacturerName": "uRage",
+        "amount": 4
+      },
+      {
+        "manufacturerId": "182722",
+        "manufacturerName": "Deep Explorer",
+        "amount": 7
+      },
+      {
+        "manufacturerId": "112682",
+        "manufacturerName": "Innovelis",
+        "amount": 1
+      },
+      {
+        "manufacturerId": "5340",
+        "manufacturerName": "Speedlink",
+        "amount": 4
+      },
+      {
+        "manufacturerId": "157651",
+        "manufacturerName": "NanoRS",
+        "amount": 1
+      },
+      {
+        "manufacturerId": "176131",
+        "manufacturerName": "Maclean",
+        "amount": 1
+      },
+      {
+        "manufacturerId": "165701",
+        "manufacturerName": "VICTRIX",
+        "amount": 1
+      },
+      {
+        "manufacturerId": "1320",
+        "manufacturerName": "Hama",
+        "amount": 2
+      },
+      {
+        "manufacturerId": "47047",
+        "manufacturerName": "Performance Designed Products",
+        "amount": 1
+      },
+      {
+        "manufacturerId": "2100",
+        "manufacturerName": "Arctic Cooling",
+        "amount": 2
+      },
+      {
+        "manufacturerId": "66820",
+        "manufacturerName": "Gioteck",
+        "amount": 1
+      }
+    ],
+    "availableFilters": [
+      {
+        "attributeId": "15583",
+        "name": "Produkttyp",
+        "filters": [
+          {
+            "filterId": "104371516",
+            "content": "PS5 Konsole",
+            "amount": 24
+          },
+          {
+            "filterId": "469667",
+            "content": "Heimkonsole",
+            "amount": 26
+          },
+          {
+            "filterId": "104364171",
+            "content": "PS5 Bundle",
+            "amount": 10
+          },
+          {
+            "filterId": "313171",
+            "content": "Gehäusezubehör",
+            "amount": 5
+          },
+          {
+            "filterId": "104379978",
+            "content": "PS5-Cover",
+            "amount": 30
+          },
+          {
+            "filterId": "104384524",
+            "content": "PS5 Standfuß",
+            "amount": 26
+          },
+          {
+            "filterId": "2325632",
+            "content": "Spielekonsolen Standfuß",
+            "amount": 32
+          },
+          {
+            "filterId": "102892507",
+            "content": "PS5 Controller Ladestation",
+            "amount": 27
+          },
+          {
+            "filterId": "421140",
+            "content": "Controller-Ladestation",
+            "amount": 19
+          },
+          {
+            "filterId": "313177",
+            "content": "Spielekonsolen-Stromversorgung",
+            "amount": 23
+          },
+          {
+            "filterId": "101372044",
+            "content": "PS5-Controller",
+            "amount": 19
+          },
+          {
+            "filterId": "107601449",
+            "content": "PS5 Lüfter",
+            "amount": 13
+          },
+          {
+            "filterId": "5586733",
+            "content": "Spielekonsolenlüfter",
+            "amount": 14
+          },
+          {
+            "filterId": "101715383",
+            "content": "PS5-Controller-Skin",
+            "amount": 2
+          },
+          {
+            "filterId": "103403562",
+            "content": "Spielekonsolen-Wandhalterung",
+            "amount": 9
+          },
+          {
+            "filterId": "104384523",
+            "content": "PS5 Wandhalterung",
+            "amount": 4
+          },
+          {
+            "filterId": "102892502",
+            "content": "Controller Batterie",
+            "amount": 4
+          },
+          {
+            "filterId": "977082",
+            "content": "PC-Controller",
+            "amount": 5
+          },
+          {
+            "filterId": "2177973",
+            "content": "Android-Controller",
+            "amount": 2
+          },
+          {
+            "filterId": "2177974",
+            "content": "iOS-Controller",
+            "amount": 2
+          },
+          {
+            "filterId": "2455293",
+            "content": "PS4-Controller",
+            "amount": 1
+          },
+          {
+            "filterId": "977084",
+            "content": "PS3-Controller",
+            "amount": 1
+          },
+          {
+            "filterId": "101588659",
+            "content": "M.2 Kühler",
+            "amount": 7
+          },
+          {
+            "filterId": "313173",
+            "content": "Konverter",
+            "amount": 1
+          },
+          {
+            "filterId": "3928648",
+            "content": "Gaming-Zubehörtasche",
+            "amount": 1
+          },
+          {
+            "filterId": "5355774",
+            "content": "PS4 Konsole",
+            "amount": 2
+          },
+          {
+            "filterId": "5355773",
+            "content": "PS4 Bundle",
+            "amount": 2
+          },
+          {
+            "filterId": "101382407",
+            "content": "PS5 Actionspiel",
+            "amount": 3
+          },
+          {
+            "filterId": "101382416",
+            "content": "PS5 Rollenspiel",
+            "amount": 2
+          },
+          {
+            "filterId": "102892506",
+            "content": "Headset-Ständer",
+            "amount": 5
+          },
+          {
+            "filterId": "1685238",
+            "content": "Controller Hülle",
+            "amount": 2
+          },
+          {
+            "filterId": "313168",
+            "content": "Spielekonsolen-Datenträger",
+            "amount": 1
+          },
+          {
+            "filterId": "3053992",
+            "content": "PS4 Headset",
+            "amount": 7
+          },
+          {
+            "filterId": "101320587",
+            "content": "PS5 Headset",
+            "amount": 2
+          },
+          {
+            "filterId": "101414061",
+            "content": "PS5 Strategiespiel",
+            "amount": 1
+          },
+          {
+            "filterId": "313795",
+            "content": "Controller Adapter",
+            "amount": 3
+          },
+          {
+            "filterId": "1966127",
+            "content": "Xbox Headset",
+            "amount": 2
+          },
+          {
+            "filterId": "1833749",
+            "content": "PC Headset",
+            "amount": 2
+          },
+          {
+            "filterId": "101320588",
+            "content": "Xbox Series X|S Headset",
+            "amount": 1
+          },
+          {
+            "filterId": "10068311",
+            "content": "Nintendo Switch Headset",
+            "amount": 1
+          },
+          {
+            "filterId": "102892504",
+            "content": "Grip Kit",
+            "amount": 4
+          },
+          {
+            "filterId": "765550",
+            "content": "Konsolenmodding",
+            "amount": 3
+          },
+          {
+            "filterId": "1443858",
+            "content": "Game Kit",
+            "amount": 3
+          },
+          {
+            "filterId": "1209881",
+            "content": "USB Festplatte",
+            "amount": 4
+          },
+          {
+            "filterId": "5362637",
+            "content": "Xbox One Headset",
+            "amount": 1
+          },
+          {
+            "filterId": "101382417",
+            "content": "PS5 Simulation",
+            "amount": 1
+          },
+          {
+            "filterId": "101382414",
+            "content": "PS5 Open World Spiel",
+            "amount": 1
+          },
+          {
+            "filterId": "101382410",
+            "content": "PS5 Ego Shooter (FPS)",
+            "amount": 1
+          },
+          {
+            "filterId": "101382408",
+            "content": "PS5 Adventure Spiel",
+            "amount": 1
+          }
+        ]
+      }
+    ],
+    "suggestedFilters": [],
+    "sizeAttributes": [],
+    "results": [
+      {
+        "productRef": "pr.v1.k1.ZICDqPUZXOKMD_86OqZjqpajPRZ4fGSwXrUKh-8qT0r756ybjQ",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "Sony PlayStation 5 Slim (PS5 Slim)",
+        "nameDelta": "Standard Edition",
+        "price": "1.099,00 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/203721/2/203721237/s1_produktbild_mobil/sony-playstation-5-slim-ps5-slim-standard-edition.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/203721237_-playstation-5-slim-ps5-slim-standard-edition-sony.html",
+        "userReviewsSummary": {
+          "averageRating": 4.87,
+          "totalReviewCount": 38
+        },
+        "testReportsSummary": {
+          "grade": "1,9"
+        },
+        "totalOfferCount": 12
+      },
+      {
+        "productRef": "pr.v1.k1.T8oQJtaxSf3ah03UUsA4t2gUATfRmBE3jIJW-tE9cNKdqVjXzA",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "Sony PlayStation 5 Slim (PS5 Slim)",
+        "nameDelta": "Standard Edition + 2 DualSense Controller",
+        "price": "1.116,00 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/203735/1/203735136/s1_produktbild_mobil/sony-playstation-5-slim-ps5-slim-standard-edition-2-dualsense-controller.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/203735136_-playstation-5-slim-ps5-slim-standard-edition-2-dualsense-controller-sony.html",
+        "userReviewsSummary": {
+          "averageRating": 4.87,
+          "totalReviewCount": 38
+        },
+        "testReportsSummary": {
+          "grade": "1,9"
+        },
+        "totalOfferCount": 5
+      },
+      {
+        "productRef": "pr.v1.k1.5r_XU5haMnuHViUxBJqM67eUswuXyC2KR6zIS5UQb8fJFgNVrA",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "Sony PlayStation 5 Slim (PS5 Slim) Digital Edition",
+        "nameDelta": "Standard Edition 825GB",
+        "price": "899,00 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/207748/7/207748718/s1_produktbild_mobil/sony-playstation-5-slim-ps5-slim-digital-edition-standard-edition-825gb.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/207748718_-playstation-5-slim-ps5-slim-digital-edition-standard-edition-825gb-sony.html",
+        "userReviewsSummary": {
+          "averageRating": 4.31,
+          "totalReviewCount": 39
+        },
+        "testReportsSummary": {
+          "grade": "1,2"
+        },
+        "totalOfferCount": 7
+      },
+      {
+        "productRef": "pr.v1.k1.WyCI3fVR6JyiQgrphVxxzNHXpStnx_4mgWxcgN-GS7DZlJvChw",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "Sony PlayStation 5 Slim (PS5 Slim) Digital Edition",
+        "nameDelta": "Standard Edition 825GB + 2 Controller",
+        "price": "990,50 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/208528/1/208528152/s1_produktbild_mobil/sony-playstation-5-slim-ps5-slim-digital-edition-standard-edition-825gb-2-controller.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/208528152_-playstation-5-slim-ps5-slim-digital-edition-standard-edition-825gb-2-controller-sony.html",
+        "userReviewsSummary": {
+          "averageRating": 4.31,
+          "totalReviewCount": 39
+        },
+        "testReportsSummary": {
+          "grade": "1,2"
+        },
+        "totalOfferCount": 3
+      },
+      {
+        "productRef": "pr.v1.k1.Gz0ChRQ4YFevct3aZtWx4w-HKa23SnuCeq_wnxYe7S95wvME5A",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "Sony PlayStation 5 Slim (PS5 Slim) Digital Edition",
+        "nameDelta": "Standard",
+        "price": "976,45 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/203721/3/203721340/s1_produktbild_mobil/sony-playstation-5-slim-ps5-slim-digital-edition-standard-edition.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/203721340_-playstation-5-slim-ps5-slim-digital-edition-standard-edition-sony.html",
+        "userReviewsSummary": {
+          "averageRating": 4.31,
+          "totalReviewCount": 39
+        },
+        "testReportsSummary": {
+          "grade": "1,2"
+        },
+        "totalOfferCount": 2
+      },
+      {
+        "productRef": "pr.v1.k1.ngEiXXJHV-XJRGvLEuFOn7fv1RTJkce_-GFJaDjBceWdRBWHDA",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "Sony PlayStation 5 Slim (PS5 Slim)",
+        "nameDelta": "Fortnite Erblühendes-Chaos-Bundle",
+        "price": "1.150,00 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/208438/5/208438554/s1_produktbild_mobil/sony-playstation-5-slim-ps5-slim-fortnite-erbluehendes-chaos-bundle.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/208438554_-playstation-5-slim-ps5-slim-fortnite-erbluehendes-chaos-bundle-sony.html",
+        "userReviewsSummary": {
+          "averageRating": 4.87,
+          "totalReviewCount": 38
+        },
+        "testReportsSummary": {
+          "grade": "1,9"
+        },
+        "totalOfferCount": 2
+      },
+      {
+        "productRef": "pr.v1.k1.wdo5F7C7bkOscmq4UrEJQCxdicu5Q9AV517pdYPvzxmRK7m2gw",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "Sony PS5 Slim Digital Edition Disc Laufwerk",
+        "price": "77,99 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/203559/7/203559708/s1_produktbild_mobil/sony-ps5-slim-digital-edition-disc-laufwerk.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/203559708_-ps5-slim-digital-edition-disc-laufwerk-sony.html",
+        "userReviewsSummary": {
+          "averageRating": 4.34,
+          "totalReviewCount": 587
+        },
+        "totalOfferCount": 33
+      },
+      {
+        "productRef": "pr.v1.k1.Ap_vYPYWlmpKyXLssv60iVRKagro-GYnEqawrsa2iN4-Ck3gqg",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "Sony PlayStation 5 Slim (PS5 Slim)",
+        "nameDelta": "Standard Edition + GTA VI",
+        "price": "1.499,00 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/215147/2/215147247/s1_produktbild_mobil/sony-playstation-5-slim-ps5-slim-standard-edition-gta-vi.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/215147247_-playstation-5-slim-ps5-slim-standard-edition-gta-vi-sony.html",
+        "userReviewsSummary": {
+          "averageRating": 4.87,
+          "totalReviewCount": 38
+        },
+        "testReportsSummary": {
+          "grade": "1,9"
+        },
+        "totalOfferCount": 1
+      },
+      {
+        "productRef": "pr.v1.k1.lWjC1x_fID4eur0VL3fuC_36wWPt5ZQ1J2eKePaxTF7v2yx5wQ",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "Sony PlayStation 5 Slim (PS5 Slim)",
+        "nameDelta": "Ghost of Yotei Gold Limited Edition",
+        "price": "1.500,00 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/207644/5/207644580/s1_produktbild_mobil/sony-playstation-5-slim-ps5-slim-ghost-of-yotei-gold-limited-edition.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/207644580_-playstation-5-slim-ps5-slim-ghost-of-yotei-gold-limited-edition-sony.html",
+        "userReviewsSummary": {
+          "averageRating": 4.87,
+          "totalReviewCount": 38
+        },
+        "testReportsSummary": {
+          "grade": "1,9"
+        },
+        "totalOfferCount": 1
+      },
+      {
+        "productRef": "pr.v1.k1.iQ7vbgwl_NnsDCOhPyEke-TMio1oCzXbG7eUyvJKJWhJZDe9dg",
+        "itemType": "PRODUCT",
+        "siteId": 1,
+        "name": "Sony PlayStation 5 Slim (PS5 Slim)",
+        "nameDelta": "Standard Edition + 2 DualSense Controller + GTA VI",
+        "price": "1.599,00 €",
+        "imageUrl": "https://cdn.idealo.com/folder/Product/215147/2/215147240/s1_produktbild_mobil/sony-playstation-5-slim-ps5-slim-standard-edition-2-dualsense-controller-gta-vi.jpg",
+        "url": "https://www.idealo.de/preisvergleich/OffersOfProduct/215147240_-playstation-5-slim-ps5-slim-standard-edition-2-dualsense-controller-gta-vi-sony.html",
+        "userReviewsSummary": {
+          "averageRating": 4.87,
+          "totalReviewCount": 38
+        },
+        "testReportsSummary": {
+          "grade": "1,9"
+        },
+        "totalOfferCount": 1
+      }
+    ]
+  }
+}

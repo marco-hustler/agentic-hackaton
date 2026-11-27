@@ -95,6 +95,10 @@ def test_put_persists_edits_per_process() -> None:
     assert untouched["mode"] == "balanced"
     assert untouched["valued_items"] == []
 
+    # Saving user edits advances draft -> collecting, while untouched stays draft.
+    assert client.get(f"/api/processes/{pid}").json()["status"] == "collecting"
+    assert client.get(f"/api/processes/{other}").json()["status"] == "draft"
+
 
 def test_inventories_are_isolated_across_processes() -> None:
     client = TestClient(app)

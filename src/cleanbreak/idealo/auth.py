@@ -3,10 +3,12 @@
 from __future__ import annotations
 
 import asyncio
+import base64
 import http.server
 import json
 import os
 import threading
+import time
 import webbrowser
 from pathlib import Path
 from typing import TypeVar
@@ -45,14 +47,37 @@ def default_token_path() -> Path:
     return resolve_repo_path(os.getenv("IDEALO_TOKEN_FILE", ".idealo_tokens.json"))
 
 
+def _is_jwt_expired(token: str, *, leeway_seconds: int = 30) -> bool:
+    """Return True only if `token` is a valid JWT whose `exp` timestamp has passed.
+
+    idealo's API Gateway answers expired Bearer tokens with HTTP 403 (explicit deny)
+    instead of 401, which prevents the MCP SDK from triggering OAuth re-login.
+    """
+    parts = token.split(".")
+    if len(parts) != 3:
+        return False
+    try:
+        padded = parts[1] + "=" * (-len(parts[1]) % 4)
+        payload = json.loads(base64.urlsafe_b64decode(padded))
+        exp = payload.get("exp")
+        return isinstance(exp, (int, float)) and time.time() >= (exp - leeway_seconds)
+    except Exception:
+        return False
+
+
 def tokens_present(token_file: str | Path) -> bool:
-    """Cheap, offline check that a previous `--list-tools` login saved an access token."""
+    """Cheap, offline check that a previous `--list-tools` login saved a live access token."""
     try:
         raw = json.loads(Path(token_file).read_text(encoding="utf-8"))
     except (OSError, ValueError):
         return False
     tokens = raw.get("tokens") if isinstance(raw, dict) else None
-    return isinstance(tokens, dict) and bool(tokens.get("access_token"))
+    if not isinstance(tokens, dict):
+        return False
+    access_token = tokens.get("access_token")
+    if not isinstance(access_token, str) or not access_token:
+        return False
+    return not _is_jwt_expired(access_token)
 
 
 async def _refuse_interactive_login(authorization_url: str) -> None:
@@ -63,6 +88,26 @@ async def _refuse_interactive_login(authorization_url: str) -> None:
 
 async def _no_callback():  # pragma: no cover - never reached because redirect raises first
     raise LoginRequired("idealo login required.")
+
+
+class MemoryTokenStorage(TokenStorage):
+    """In-memory tokens for a single request (browser session access token override)."""
+
+    def __init__(self, access_token: str, *, token_type: str = "Bearer") -> None:
+        self._tokens = OAuthToken(access_token=access_token.strip(), token_type=token_type)
+        self._client_info: OAuthClientInformationFull | None = None
+
+    async def get_tokens(self) -> OAuthToken | None:
+        return self._tokens
+
+    async def set_tokens(self, tokens: OAuthToken) -> None:
+        self._tokens = tokens
+
+    async def get_client_info(self) -> OAuthClientInformationFull | None:
+        return self._client_info
+
+    async def set_client_info(self, client_info: OAuthClientInformationFull) -> None:
+        self._client_info = client_info
 
 
 class FileTokenStorage(TokenStorage):
@@ -89,7 +134,12 @@ class FileTokenStorage(TokenStorage):
 
     async def get_tokens(self) -> OAuthToken | None:
         raw = self._read().get("tokens")
-        return OAuthToken.model_validate(raw) if raw else None
+        if not raw:
+            return None
+        tok = OAuthToken.model_validate(raw)
+        if tok.access_token and _is_jwt_expired(tok.access_token):
+            return None
+        return tok
 
     async def set_tokens(self, tokens: OAuthToken) -> None:
         data = self._read()
@@ -217,11 +267,15 @@ def build_oauth_provider(
     callback_port: int = 6274,
     manual_callback: bool = False,
     interactive: bool = True,
+    access_token: str | None = None,
 ) -> OAuthClientProvider:
     """Create a configured MCP v2 OAuthClientProvider with persisted token storage.
 
     `interactive=False` (server use) never opens a browser or waits for a callback: an
     authorization redirect raises LoginRequired instead.
+
+    When `access_token` is set (browser session override), tokens live in memory for this
+    request only — server env / token file stay untouched.
     """
     catcher = LoopbackCallbackCatcher(port=callback_port, manual=manual_callback)
     metadata = OAuthClientMetadata(
@@ -230,10 +284,17 @@ def build_oauth_provider(
         grant_types=["authorization_code", "refresh_token"],
         response_types=["code"],
     )
+    storage: TokenStorage
+    if tokens_present(token_file):
+        storage = FileTokenStorage(token_file)
+    elif access_token and access_token.strip():
+        storage = MemoryTokenStorage(access_token.strip())
+    else:
+        storage = FileTokenStorage(token_file)
     return OAuthClientProvider(
         server_url=server_url,
         client_metadata=metadata,
-        storage=FileTokenStorage(token_file),
+        storage=storage,
         redirect_handler=catcher.redirect_handler if interactive else _refuse_interactive_login,
         callback_handler=catcher.callback_handler if interactive else _no_callback,
     )

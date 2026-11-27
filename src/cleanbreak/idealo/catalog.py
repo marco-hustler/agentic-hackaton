@@ -16,7 +16,7 @@ from pydantic import BaseModel
 
 from cleanbreak.models import HouseholdItemInput, ValuedItem
 from cleanbreak.paths import resolve_repo_path
-from cleanbreak.valuation.engine import build_valuation
+from cleanbreak.valuation.engine import assess_scarcity, build_valuation
 
 class CatalogHit(BaseModel):
     product_ref: str
@@ -50,6 +50,38 @@ def _demo_categories(demo_path: Path) -> dict[str, str]:
     return {i.get("search_query", "").lower(): i.get("category", "General") for i in raw.get("items", [])}
 
 
+def hits_from_search_payload(data: dict, *, default_category: str = "General") -> list[CatalogHit]:
+    """Normalize raw idealo `search_products` payload into CatalogHit objects."""
+    hits: dict[str, CatalogHit] = {}
+    avail = data.get("availableCategories")
+    inferred_cat = default_category
+    if isinstance(avail, list) and avail and isinstance(avail[0], dict):
+        cat_name = str(avail[0].get("name") or avail[0].get("label") or "").strip()
+        if cat_name:
+            inferred_cat = cat_name
+
+    for r in data.get("results") or []:
+        if not isinstance(r, dict):
+            continue
+        ref, price = r.get("productRef"), parse_price(r.get("price"))
+        if not ref or price is None or ref in hits:
+            continue
+        reviews = r.get("userReviewsSummary") or {}
+        hits[ref] = CatalogHit(
+            product_ref=str(ref),
+            name=str(r.get("name") or "").strip(),
+            variant=str(r.get("nameDelta") or "").strip(),
+            price_eur=price,
+            image_url=r.get("imageUrl"),
+            url=r.get("url"),
+            offer_count=int(r.get("totalOfferCount") or 0),
+            rating=reviews.get("averageRating"),
+            review_count=int(reviews.get("totalReviewCount") or 0),
+            category=default_category if default_category != "General" else inferred_cat,
+        )
+    return list(hits.values())
+
+
 def load_catalog(cache_dir: str | Path = "data/cache", demo_path: str | Path = "data/demo_berlin_wg.json") -> list[CatalogHit]:
     """Every distinct product found in cached searches, with the query that found it."""
     categories = _demo_categories(resolve_repo_path(demo_path))
@@ -62,23 +94,9 @@ def load_catalog(cache_dir: str | Path = "data/cache", demo_path: str | Path = "
         data = record.get("data") or {}
         query = str((record.get("request") or {}).get("query") or data.get("query") or "")
         category = categories.get(query.lower(), "General")
-        for r in data.get("results") or []:
-            ref, price = r.get("productRef"), parse_price(r.get("price"))
-            if not ref or price is None or ref in hits:
-                continue
-            reviews = r.get("userReviewsSummary") or {}
-            hits[ref] = CatalogHit(
-                product_ref=ref,
-                name=str(r.get("name") or "").strip(),
-                variant=str(r.get("nameDelta") or "").strip(),
-                price_eur=price,
-                image_url=r.get("imageUrl"),
-                url=r.get("url"),
-                offer_count=int(r.get("totalOfferCount") or 0),
-                rating=reviews.get("averageRating"),
-                review_count=int(reviews.get("totalReviewCount") or 0),
-                category=category,
-            )
+        for hit in hits_from_search_payload(data, default_category=category):
+            if hit.product_ref not in hits:
+                hits[hit.product_ref] = hit
     return list(hits.values())
 
 
@@ -112,6 +130,7 @@ def valued_item_from_hit(hit: CatalogHit, *, current_year: int | None = None) ->
         category=hit.category,
         purchase_year=year,
     )
+    scarcity, friction = assess_scarcity(hit.offer_count)
     valuation = build_valuation(
         item,
         matched_title=title,
@@ -122,7 +141,13 @@ def valued_item_from_hit(hit: CatalogHit, *, current_year: int | None = None) ->
         image_url=hit.image_url,
         data_source="idealo_cached",
         current_year=year,
-    ).model_copy(update={"offer_count": hit.offer_count})
+    ).model_copy(
+        update={
+            "offer_count": hit.offer_count,
+            "scarcity_level": scarcity,
+            "replacement_friction": friction,
+        }
+    )
     return ValuedItem(item=item, valuation=valuation)
 
 

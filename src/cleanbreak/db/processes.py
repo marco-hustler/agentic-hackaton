@@ -197,6 +197,17 @@ class ProcessStore:
             updated_at=now,
         )
 
+    @staticmethod
+    def _clean_emails(raw_emails: list[str]) -> list[str]:
+        emails = [e.strip().lower() for e in raw_emails if e.strip()]
+        seen: set[str] = set()
+        unique: list[str] = []
+        for email in emails:
+            if email not in seen:
+                seen.add(email)
+                unique.append(email)
+        return unique
+
     def update_status(self, process_id: str, status: ProcessStatus) -> ProcessSummary | None:
         return self.update_process(process_id, status=status)
 
@@ -205,37 +216,45 @@ class ProcessStore:
         process_id: str,
         *,
         status: ProcessStatus | None = None,
+        title: str | None = None,
         participant_emails: list[str] | None = None,
     ) -> ProcessSummary | None:
-        """Patch status and/or collaborator emails. None if the process is missing."""
-        if status is None and participant_emails is None:
-            return self.get_process(process_id)
+        """Patch status, title, and/or collaborator emails. None if the process is missing."""
+        existing = self.get_process(process_id)
+        if existing is None:
+            return None
+        if status is None and title is None and participant_emails is None:
+            return existing
+
         now = _utc_now()
-        fields: list[str] = ["updated_at = ?"]
-        values: list[object] = [now]
-        if status is not None:
-            fields.append("status = ?")
-            values.append(status)
-        if participant_emails is not None:
-            emails = [e.strip().lower() for e in participant_emails if e.strip()]
-            seen: set[str] = set()
-            unique: list[str] = []
-            for email in emails:
-                if email not in seen:
-                    seen.add(email)
-                    unique.append(email)
-            fields.append("participant_emails = ?")
-            values.append(json.dumps(unique))
-        values.append(process_id)
+        next_status = status if status is not None else existing.status
+        next_title = (title or "").strip() if title is not None else existing.title
+        if not next_title:
+            next_title = existing.title
+        next_emails = (
+            self._clean_emails(participant_emails)
+            if participant_emails is not None
+            else existing.participant_emails
+        )
+
         with self._connect() as conn:
-            cur = conn.execute(
-                f"UPDATE processes SET {', '.join(fields)} WHERE id = ?",
-                values,
+            conn.execute(
+                """
+                UPDATE processes
+                SET status = ?, title = ?, participant_emails = ?, updated_at = ?
+                WHERE id = ?
+                """,
+                (next_status, next_title, json.dumps(next_emails), now, process_id),
             )
             conn.commit()
-            if cur.rowcount == 0:
-                return None
         return self.get_process(process_id)
+
+    def delete_process(self, process_id: str) -> bool:
+        with self._connect() as conn:
+            conn.execute("DELETE FROM process_inventories WHERE process_id = ?", (process_id,))
+            cur = conn.execute("DELETE FROM processes WHERE id = ?", (process_id,))
+            conn.commit()
+            return cur.rowcount > 0
 
     def get_inventory(self, process_id: str) -> ProcessInventory | None:
         """The saved inventory for a process, or None if none was saved yet."""
@@ -255,9 +274,20 @@ class ProcessStore:
             }
         )
 
-    def save_inventory(self, process_id: str, inventory: ProcessInventory) -> ProcessInventory | None:
-        """Upsert a process's inventory. None if the process does not exist."""
-        if self.get_process(process_id) is None:
+    def save_inventory(
+        self,
+        process_id: str,
+        inventory: ProcessInventory,
+        *,
+        advance_draft: bool = False,
+    ) -> ProcessInventory | None:
+        """Upsert a process's inventory. None if the process does not exist.
+
+        When `advance_draft` is True (user-initiated PUT), a `draft` process advances
+        automatically to `collecting` so the 3D world reflects active work.
+        """
+        existing = self.get_process(process_id)
+        if existing is None:
             return None
         now = _utc_now()
         items_json = json.dumps([vi.model_dump(mode="json") for vi in inventory.valued_items])
@@ -275,6 +305,16 @@ class ProcessStore:
                 """,
                 (process_id, inventory.mode, items_json, split_json, now),
             )
+            if advance_draft and existing.status == "draft":
+                conn.execute(
+                    "UPDATE processes SET status = ?, updated_at = ? WHERE id = ?",
+                    ("collecting", now, process_id),
+                )
+            elif advance_draft:
+                conn.execute(
+                    "UPDATE processes SET updated_at = ? WHERE id = ?",
+                    (now, process_id),
+                )
             conn.commit()
         return inventory.model_copy(update={"updated_at": now})
 

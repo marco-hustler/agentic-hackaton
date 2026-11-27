@@ -120,6 +120,10 @@ body {
     color: #fff;
     box-shadow: var(--shadow-slate);
   }
+  .view-switch-option:disabled {
+    cursor: not-allowed;
+    opacity: 0.45;
+  }
 
   .process-list-card {
     display: block;
@@ -782,12 +786,174 @@ body {
   animation: fade-in 180ms ease-out both;
 }
 
+/* ---- AI chat typing dots ---- */
+.ai-typing-dot {
+  display: inline-block;
+  width: 0.35rem;
+  height: 0.35rem;
+  border-radius: 999px;
+  background: var(--muted);
+  animation: ai-typing 1.05s ease-in-out infinite;
+}
+.ai-typing-dot:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.ai-typing-dot:nth-child(3) {
+  animation-delay: 0.3s;
+}
+@keyframes ai-typing {
+  0%,
+  80%,
+  100% {
+    opacity: 0.35;
+    transform: translateY(0);
+  }
+  40% {
+    opacity: 1;
+    transform: translateY(-3px);
+  }
+}
+
+/* ---- idealo valuing overlay (add-item) ---- */
+.idealo-loading {
+  position: absolute;
+  inset: 0;
+  z-index: 30;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 40%, rgba(0, 45, 83, 0.18), transparent 70%),
+    rgba(248, 246, 240, 0.72);
+  backdrop-filter: blur(10px);
+  animation: fade-in 220ms ease-out both;
+}
+.idealo-loading-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.1rem;
+  width: min(100%, 18rem);
+  padding: 1.75rem 1.5rem 1.4rem;
+  border-radius: 1.35rem;
+  background: #002d53;
+  box-shadow:
+    0 24px 48px -16px rgba(0, 45, 83, 0.55),
+    0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+.idealo-loading-mark {
+  position: relative;
+  width: 11.5rem;
+  padding-bottom: 0.85rem;
+}
+.idealo-loading-logo {
+  display: block;
+  width: 100%;
+  height: auto;
+  animation: idealo-breathe 2.2s ease-in-out infinite;
+}
+.idealo-loading-bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 0.28rem;
+  border-radius: 999px;
+  background: rgba(255, 102, 0, 0.22);
+  overflow: hidden;
+}
+.idealo-loading-bar::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 42%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #ff8a3d, #ff6600, #ff8a3d);
+  box-shadow: 0 0 12px rgba(255, 102, 0, 0.65);
+  animation: idealo-sweep 1.35s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+.idealo-loading-label {
+  margin: 0;
+  min-height: 2.4em;
+  text-align: center;
+  font-size: 0.8125rem;
+  font-weight: 650;
+  letter-spacing: 0.01em;
+  color: rgba(255, 255, 255, 0.88);
+}
+.idealo-loading-label-swap {
+  animation: idealo-phrase 420ms ease-out both;
+}
+@keyframes idealo-phrase {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.idealo-loading-dots {
+  display: flex;
+  gap: 0.35rem;
+}
+.idealo-loading-dots i {
+  width: 0.35rem;
+  height: 0.35rem;
+  border-radius: 999px;
+  background: #ff6600;
+  animation: idealo-dot 1.05s ease-in-out infinite;
+}
+.idealo-loading-dots i:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.idealo-loading-dots i:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes idealo-breathe {
+  0%,
+  100% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  50% {
+    transform: scale(1.035);
+    filter: brightness(1.08);
+  }
+}
+@keyframes idealo-sweep {
+  0% {
+    transform: translateX(-120%);
+  }
+  100% {
+    transform: translateX(280%);
+  }
+}
+@keyframes idealo-dot {
+  0%,
+  80%,
+  100% {
+    opacity: 0.35;
+    transform: translateY(0);
+  }
+  40% {
+    opacity: 1;
+    transform: translateY(-3px);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .pulse-dot,
   .split-button,
   .pop-in,
   .pop-in-late,
-  .fade-in {
+  .fade-in,
+  .idealo-loading-logo,
+  .idealo-loading-bar::after,
+  .idealo-loading-dots i,
+  .idealo-loading-label-swap {
     animation: none;
   }
 }

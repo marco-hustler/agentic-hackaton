@@ -90,3 +90,24 @@ def test_patch_process_participants() -> None:
 def test_get_missing_process_404() -> None:
     client = TestClient(app)
     assert client.get("/api/processes/does-not-exist").status_code == 404
+
+
+def test_patch_title_and_participants_and_delete_process() -> None:
+    client = TestClient(app)
+    process = client.post("/api/processes", json={"kind": "separation", "title": "Old"}).json()
+    pid = process["id"]
+
+    patched = client.patch(
+        f"/api/processes/{pid}",
+        json={"title": "Berlin WG", "participant_emails": ["Ste@Example.com", "marco@example.com", "ste@example.com"]},
+    )
+    assert patched.status_code == 200
+    body = patched.json()
+    assert body["title"] == "Berlin WG"
+    assert body["status"] == "draft"
+    assert body["participant_emails"] == ["ste@example.com", "marco@example.com"]
+
+    deleted = client.delete(f"/api/processes/{pid}")
+    assert deleted.status_code == 204
+    assert client.get(f"/api/processes/{pid}").status_code == 404
+    assert client.delete(f"/api/processes/{pid}").status_code == 404

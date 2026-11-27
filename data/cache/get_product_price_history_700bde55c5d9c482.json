@@ -1,0 +1,212 @@
+{
+  "namespace": "get_product_price_history",
+  "request": {
+    "productRef": "pr.v1.k1.ZICDqPUZXOKMD_86OqZjqpajPRZ4fGSwXrUKh-8qT0r756ybjQ",
+    "country": "DE"
+  },
+  "cached_at": 1795803202.133246,
+  "data": {
+    "priceTrend": {
+      "history": [
+        {
+          "dateTime": 1793228399999,
+          "price": "623,00 €",
+          "dateTimeISO": "2026-10-28T22:59:59.999Z"
+        },
+        {
+          "dateTime": 1793314799999,
+          "price": "649,99 €",
+          "dateTimeISO": "2026-10-29T22:59:59.999Z",
+          "priceChangePercent": 4.332263242375602
+        },
+        {
+          "dateTime": 1793401199999,
+          "price": "643,75 €",
+          "dateTimeISO": "2026-10-30T22:59:59.999Z",
+          "priceChangePercent": -0.9600147694579916
+        },
+        {
+          "dateTime": 1793487599999,
+          "price": "649,99 €",
+          "dateTimeISO": "2026-10-31T22:59:59.999Z",
+          "priceChangePercent": 0.9693203883495146
+        },
+        {
+          "dateTime": 1793573999999,
+          "price": "649,99 €",
+          "dateTimeISO": "2026-11-01T22:59:59.999Z",
+          "priceChangePercent": 0
+        },
+        {
+          "dateTime": 1793660399999,
+          "price": "643,75 €",
+          "dateTimeISO": "2026-11-02T22:59:59.999Z",
+          "priceChangePercent": -0.9600147694579916
+        },
+        {
+          "dateTime": 1793746799999,
+          "price": "649,99 €",
+          "dateTimeISO": "2026-11-03T22:59:59.999Z",
+          "priceChangePercent": 0.9693203883495146
+        },
+        {
+          "dateTime": 1793833199999,
+          "price": "649,99 €",
+          "dateTimeISO": "2026-11-04T22:59:59.999Z",
+          "priceChangePercent": 0
+        },
+        {
+          "dateTime": 1793919599999,
+          "price": "649,99 €",
+          "dateTimeISO": "2026-11-05T22:59:59.999Z",
+          "priceChangePercent": 0
+        },
+        {
+          "dateTime": 1794005999999,
+          "price": "613,03 €",
+          "dateTimeISO": "2026-11-06T22:59:59.999Z",
+          "priceChangePercent": -5.686241326789643
+        },
+        {
+          "dateTime": 1794092399999,
+          "price": "649,99 €",
+          "dateTimeISO": "2026-11-07T22:59:59.999Z",
+          "priceChangePercent": 6.029068724205993
+        },
+        {
+          "dateTime": 1794178799999,
+          "price": "649,99 €",
+          "dateTimeISO": "2026-11-08T22:59:59.999Z",
+          "priceChangePercent": 0
+        },
+        {
+          "dateTime": 1794265199999,
+          "price": "649,99 €",
+          "dateTimeISO": "2026-11-09T22:59:59.999Z",
+          "priceChangePercent": 0
+        },
+        {
+          "dateTime": 1794351599999,
+          "price": "649,99 €",
+          "dateTimeISO": "2026-11-10T22:59:59.999Z",
+          "priceChangePercent": 0
+        },
+        {
+          "dateTime": 1794437999999,
+          "price": "679,00 €",
+          "dateTimeISO": "2026-11-11T22:59:59.999Z",
+          "priceChangePercent": 4.463145586855182
+        },
+        {
+          "dateTime": 1794524399999,
+          "price": "679,00 €",
+          "dateTimeISO": "2026-11-12T22:59:59.999Z",
+          "priceChangePercent": 0
+        },
+        {
+          "dateTime": 1794610799999,
+          "price": "679,00 €",
+          "dateTimeISO": "2026-11-13T22:59:59.999Z",
+          "priceChangePercent": 0
+        },
+        {
+          "dateTime": 1794697199999,
+          "price": "718,99 €",
+          "dateTimeISO": "2026-11-14T22:59:59.999Z",
+          "priceChangePercent": 5.889543446244478
+        },
+        {
+          "dateTime": 1794783599999,
+          "price": "729,00 €",
+          "dateTimeISO": "2026-11-15T22:59:59.999Z",
+          "priceChangePercent": 1.3922307681608923
+        },
+        {
+          "dateTime": 1794869999999,
+          "price": "712,90 €",
+          "dateTimeISO": "2026-11-16T22:59:59.999Z",
+          "priceChangePercent": -2.2085048010973938
+        },
+        {
+          "dateTime": 1794956399999,
+          "price": "669,00 €",
+          "dateTimeISO": "2026-11-17T22:59:59.999Z",
+          "priceChangePercent": -6.157946416047132
+        },
+        {
+          "dateTime": 1795042799999,
+          "price": "669,00 €",
+          "dateTimeISO": "2026-11-18T22:59:59.999Z",
+          "priceChangePercent": 0
+        },
+        {
+          "dateTime": 1795129199999,
+          "price": "663,00 €",
+          "dateTimeISO": "2026-11-19T22:59:59.999Z",
+          "priceChangePercent": -0.8968609865470852
+        },
+        {
+          "dateTime": 1795215599999,
+          "price": "669,00 €",
+          "dateTimeISO": "2026-11-20T22:59:59.999Z",
+          "priceChangePercent": 0.904977375565611
+        },
+        {
+          "dateTime": 1795301999999,
+          "price": "592,88 €",
+          "dateTimeISO": "2026-11-21T22:59:59.999Z",
+          "priceChangePercent": -11.378176382660687
+        },
+        {
+          "dateTime": 1795388399999,
+          "price": "839,00 €",
+          "dateTimeISO": "2026-11-22T22:59:59.999Z",
+          "priceChangePercent": 41.51261638105519
+        },
+        {
+          "dateTime": 1795474799999,
+          "price": "669,00 €",
+          "dateTimeISO": "2026-11-23T22:59:59.999Z",
+          "priceChangePercent": -20.262216924910607
+        },
+        {
+          "dateTime": 1795561199999,
+          "price": "769,00 €",
+          "dateTimeISO": "2026-11-24T22:59:59.999Z",
+          "priceChangePercent": 14.947683109118087
+        },
+        {
+          "dateTime": 1795647599999,
+          "price": "769,00 €",
+          "dateTimeISO": "2026-11-25T22:59:59.999Z",
+          "priceChangePercent": 0
+        },
+        {
+          "dateTime": 1795733999999,
+          "price": "884,00 €",
+          "dateTimeISO": "2026-11-26T22:59:59.999Z",
+          "priceChangePercent": 14.954486345903772
+        },
+        {
+          "dateTime": 1795799602105,
+          "price": "1.029,99 €",
+          "dateTimeISO": "2026-11-27T17:13:22.105Z",
+          "priceChangePercent": 16.514705882352942
+        }
+      ],
+      "statistics": {
+        "minPrice": "592,88 €",
+        "maxPrice": "1.029,99 €",
+        "avgPrice": "691,75 €",
+        "currentPrice": "1.029,99 €",
+        "priceChangePercent": 65.3274478330658,
+        "lowestPriceDate": "2026-11-21T22:59:59.999Z",
+        "highestPriceDate": "2026-11-27T17:13:22.105Z"
+      },
+      "samplingGranularity": "daily",
+      "dataSourceConfidence": 0.95,
+      "periodDays": 29.8,
+      "totalDataPoints": 31
+    }
+  }
+}
