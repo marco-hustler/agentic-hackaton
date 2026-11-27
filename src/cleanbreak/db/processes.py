@@ -1,4 +1,4 @@
-"""SQLite-backed process store for the Dividealo world."""
+"""Process store for the Dividealo world: SQLite locally, Postgres (Neon) when DATABASE_URL is set."""
 
 from __future__ import annotations
 
@@ -18,6 +18,34 @@ _lock = Lock()
 _store: ProcessStore | None = None
 
 
+class _PgConn:
+    """Minimal sqlite3-like wrapper over psycopg: `?` placeholders, dict rows, commit on clean exit."""
+
+    def __init__(self, url: str) -> None:
+        import psycopg
+        from psycopg.rows import dict_row
+
+        self._conn = psycopg.connect(url, row_factory=dict_row)
+
+    def execute(self, sql: str, params: tuple | list = ()):  # noqa: ANN201 - psycopg cursor
+        return self._conn.execute(sql.replace("?", "%s"), params)
+
+    def commit(self) -> None:
+        self._conn.commit()
+
+    def __enter__(self) -> "_PgConn":
+        return self
+
+    def __exit__(self, exc_type, exc, tb) -> None:  # noqa: ANN001
+        try:
+            if exc_type is None:
+                self._conn.commit()
+            else:
+                self._conn.rollback()
+        finally:
+            self._conn.close()
+
+
 def _utc_now() -> str:
     return datetime.now(timezone.utc).replace(microsecond=0).isoformat()
 
@@ -31,14 +59,25 @@ def _default_title(kind: ProcessKind) -> str:
 
 
 class ProcessStore:
-    """CRUD for split processes. One SQLite file, thread-safe enough for a hackathon demo."""
+    """CRUD for split processes. A SQLite file locally, or Postgres when given a database URL."""
 
-    def __init__(self, db_path: Path) -> None:
+    def __init__(self, db_path: Path | None = None, *, database_url: str | None = None) -> None:
         self.db_path = db_path
-        self.db_path.parent.mkdir(parents=True, exist_ok=True)
+        self.database_url = database_url
+        if db_path is None and database_url is None:
+            raise ValueError("ProcessStore needs a db_path or a database_url")
+        if self.db_path is not None and database_url is None:
+            self.db_path.parent.mkdir(parents=True, exist_ok=True)
         self._init_schema()
 
-    def _connect(self) -> sqlite3.Connection:
+    @property
+    def is_postgres(self) -> bool:
+        return self.database_url is not None
+
+    def _connect(self):  # noqa: ANN202 - sqlite3.Connection or _PgConn
+        if self.database_url is not None:
+            return _PgConn(self.database_url)
+        assert self.db_path is not None
         conn = sqlite3.connect(self.db_path, check_same_thread=False)
         conn.row_factory = sqlite3.Row
         return conn
@@ -69,9 +108,12 @@ class ProcessStore:
                 )
                 """
             )
-            cols = {r["name"] for r in conn.execute("PRAGMA table_info(process_inventories)")}
-            if "split_ids" not in cols:  # added after the first DBs were created
-                conn.execute("ALTER TABLE process_inventories ADD COLUMN split_ids TEXT")
+            if self.is_postgres:
+                conn.execute("ALTER TABLE process_inventories ADD COLUMN IF NOT EXISTS split_ids TEXT")
+            else:
+                cols = {r["name"] for r in conn.execute("PRAGMA table_info(process_inventories)")}
+                if "split_ids" not in cols:  # added after the first DBs were created
+                    conn.execute("ALTER TABLE process_inventories ADD COLUMN split_ids TEXT")
             conn.commit()
 
     def list_processes(self, owner_id: str = "local-user") -> list[ProcessSummary]:
@@ -237,7 +279,7 @@ class ProcessStore:
         return inventory.model_copy(update={"updated_at": now})
 
     @staticmethod
-    def _row_to_summary(row: sqlite3.Row) -> ProcessSummary:
+    def _row_to_summary(row) -> ProcessSummary:  # noqa: ANN001 - sqlite3.Row or dict
         emails = json.loads(row["participant_emails"] or "[]")
         return ProcessSummary(
             id=row["id"],
@@ -251,12 +293,21 @@ class ProcessStore:
 
 
 def get_process_store() -> ProcessStore:
-    """Process-wide singleton; path overridable via PROCESS_DB_FILE for tests."""
+    """Process-wide singleton.
+
+    PROCESS_DB_FILE (tests) wins, then DATABASE_URL (Neon on Vercel), else the local SQLite file.
+    """
     global _store
     with _lock:
         if _store is None:
-            raw = os.getenv("PROCESS_DB_FILE", str(_DEFAULT_DB))
-            _store = ProcessStore(resolve_repo_path(raw))
+            db_file = os.getenv("PROCESS_DB_FILE")
+            database_url = os.getenv("DATABASE_URL")
+            if db_file:
+                _store = ProcessStore(resolve_repo_path(db_file))
+            elif database_url:
+                _store = ProcessStore(database_url=database_url)
+            else:
+                _store = ProcessStore(_DEFAULT_DB)
         return _store
 
 

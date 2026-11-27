@@ -1,0 +1,9 @@
+.venv
+node_modules
+frontend/node_modules
+frontend/dist
+data/processes.db*
+data/idealo_budget.json
+.idealo_tokens.json
+.env
+.env.local
