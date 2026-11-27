@@ -194,18 +194,23 @@ async def _demo_valued_items(raw: dict | None = None) -> tuple[list[ValuedItem],
 
 @app.get("/api/processes/{process_id}/inventory", response_model=ProcessInventory)
 async def get_process_inventory(process_id: str) -> ProcessInventory:
-    """A house's saved inventory. Houses from before per-process inventories have no row yet:
-    they start empty, or with the demo items (idealo cache only, 0 MCP calls) when DEMO_SEED_ENABLED is on."""
+    """A house's own inventory. New processes start empty; each process is independent.
+
+    Optional DEMO_SEED_ENABLED still fills a *missing* inventory from the Berlin WG demo
+    (idealo cache only). Processes created with an empty row are never overwritten.
+    """
     store = get_process_store()
     if store.get_process(process_id) is None:
         raise HTTPException(status_code=404, detail="Process not found")
     saved = store.get_inventory(process_id)
     if saved is not None:
         return saved
-    if not demo_seed_enabled():
-        return ProcessInventory()
-    valued, _ = await _demo_valued_items()
-    seeded = store.save_inventory(process_id, ProcessInventory(valued_items=valued))
+    if demo_seed_enabled():
+        valued, _ = await _demo_valued_items()
+        seeded = store.save_inventory(process_id, ProcessInventory(valued_items=valued))
+        assert seeded is not None
+        return seeded
+    seeded = store.save_inventory(process_id, ProcessInventory(valued_items=[]))
     assert seeded is not None
     return seeded
 

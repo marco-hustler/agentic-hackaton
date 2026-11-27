@@ -67,7 +67,7 @@ export default function App() {
   const [mode, setMode] = useState<WorldMode>(initialPlace ? 'house' : 'world')
   const [focusId, setFocusId] = useState<string | null>(initialPlace?.focusId ?? null)
   const [detailId, setDetailId] = useState<string | null>(null)
-  /** Right-hand view inside a house. Item details live under Split. */
+  /** Right-hand view inside a house. */
   const [tab, setTab] = useState<HouseTab>(initialPlace?.tab ?? 'inventory')
   const [inventoryFilter, setInventoryFilter] = useState('')
   const [addingObject, setAddingObject] = useState(false)
@@ -132,8 +132,8 @@ export default function App() {
     [people, needsCollaborator],
   )
 
-  // Editable inventory for the house we're in. Seeded from the demo scenario
-  // (idealo cache only, zero MCP calls); edits re-run the deterministic solver.
+  // Editable inventory for the house we're in (per process, starts empty).
+  // Edits re-run the deterministic solver.
   const inventory = useHouseInventory(focusId, names, mode === 'house')
   const demo = inventory.scenario
   const demoError = inventory.error
@@ -264,38 +264,23 @@ export default function App() {
             inventoryCount={inventory.itemCount}
           />
           {tab === 'split' ? (
-            <>
-              <SplitBoard
-                scenario={demo}
-                error={demoError}
-                names={names}
-                people={people}
-                needsCollaborator={needsCollaborator}
-                onInviteCollaborator={() => {
-                  goToTab('collaborators')
-                  setInvitingCollaborator(true)
-                }}
-                solving={inventory.solving}
-                unsplit={inventory.unsplit}
-                onSplit={inventory.splitAll}
-                onOpenItem={setDetailId}
-                onMoveItem={inventory.forceAction}
-                processId={focusProcess.id}
-              />
-              {detailVi && !needsCollaborator && (
-                <>
-                  <button
-                    type="button"
-                    aria-label="Close item"
-                    className="fade-in fixed inset-0 z-40 bg-midnight/40 backdrop-blur-sm"
-                    onClick={() => setDetailId(null)}
-                  />
-                  <div className="item-modal" role="dialog" aria-modal="true">
-                    <div className="pop-in flex flex-col">{itemDetail(detailVi, '✕ Close')}</div>
-                  </div>
-                </>
-              )}
-            </>
+            <SplitBoard
+              scenario={demo}
+              error={demoError}
+              names={names}
+              people={people}
+              needsCollaborator={needsCollaborator}
+              onInviteCollaborator={() => {
+                goToTab('collaborators')
+                setInvitingCollaborator(true)
+              }}
+              solving={inventory.solving}
+              unsplit={inventory.unsplit}
+              onSplit={inventory.splitAll}
+              onOpenItem={setDetailId}
+              onMoveItem={inventory.forceAction}
+              processId={focusProcess.id}
+            />
           ) : tab === 'export' ? (
             <ExportPanel
               title={focusProcess.title}
@@ -348,11 +333,21 @@ export default function App() {
               onAddObject={() => setAddingObject(true)}
               onAdd={inventory.addItem}
               onRemove={inventory.removeItem}
-              onOpenItem={(id) => {
-                setTab('split')
-                setDetailId(id)
-              }}
+              onOpenItem={setDetailId}
             />
+          )}
+          {detailVi && (tab === 'inventory' || (tab === 'split' && !needsCollaborator)) && (
+            <>
+              <button
+                type="button"
+                aria-label="Close item"
+                className="fade-in fixed inset-0 z-40 bg-midnight/40 backdrop-blur-sm"
+                onClick={() => setDetailId(null)}
+              />
+              <div className="item-modal" role="dialog" aria-modal="true">
+                <div className="pop-in flex flex-col">{itemDetail(detailVi, '✕ Close')}</div>
+              </div>
+            </>
           )}
         </>
       ) : (

@@ -155,7 +155,7 @@ export type ProcessInventory = {
   updated_at?: string | null
 }
 
-/** First read seeds the house from the demo (idealo cache only, 0 MCP calls). */
+/** Load this process's inventory (empty for new processes; never shared across houses). */
 export function getProcessInventory(processId: string) {
   return api<ProcessInventory>(`/api/processes/${processId}/inventory`)
 }

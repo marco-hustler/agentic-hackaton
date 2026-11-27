@@ -24,7 +24,7 @@ type InventoryPanelProps = {
   inventoryCount?: number | null
   onInventoryFilter: (value: string) => void
   onAddObject: () => void
-  /** Open an item's details (they live in the Split view). */
+  /** Open an item's details. */
   onOpenItem: (id: string) => void
   onAdd: (vi: ValuedItem) => void
   onRemove: (id: string) => void
@@ -79,11 +79,11 @@ export function InventoryPanel({
           <div className="inventory-shell-body">
             {error && <p className="mb-4 rounded-xl bg-[#ffdad6] p-3 text-sm text-[#93000a]">Could not load the inventory: {error}</p>}
 
-            {demo && owned.length === 0 && (
+            {!error && inventoryCount === 0 && (
               <Empty>{q ? 'Nothing in this house matches.' : 'No items yet. Add an object to get started.'}</Empty>
             )}
             <ul className="columns-1 gap-5 sm:columns-2 lg:columns-3 2xl:columns-4">
-              {!demo && !error && <SkeletonCards n={6} />}
+              {inventoryCount == null && !error && <SkeletonCards n={6} />}
               {owned.map((vi) => (
                 <OwnedCard key={vi.item.id} vi={vi} onOpen={() => onOpenItem(vi.item.id)} onRemove={() => onRemove(vi.item.id)} />
               ))}

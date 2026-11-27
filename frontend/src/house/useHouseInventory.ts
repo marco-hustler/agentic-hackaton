@@ -12,7 +12,7 @@ import type {
 /**
  * Editable inventory per house (process), stored in the backend DB.
  *
- * - Load: GET /api/processes/{id}/inventory (first visit seeds the demo items).
+ * - Load: GET /api/processes/{id}/inventory (per process; new houses start empty).
  * - Edit: local state first, then a debounced re-solve and a debounced save.
  * - Leave the house or close the page: any pending save is flushed.
  *
@@ -42,6 +42,33 @@ const REVALUE_FIELDS: (keyof HouseholdItem)[] = ['condition', 'purchase_year', '
 const solveKeyOf = (e: Entry, names: [string, string]) => `${e.version}|${e.mode}|${names[0]}|${names[1]}`
 const saveKeyOf = (e: Entry) => `${e.version}|${e.mode}`
 const errText = (e: unknown) => (e instanceof Error ? e.message : String(e))
+
+/** Placeholder split so the inventory tab can render before the first solve finishes. */
+function pendingEmptySplit(mode: SplitMode, names: [string, string]): SplitResult {
+  return {
+    mode,
+    party_a_name: names[0],
+    party_b_name: names[1],
+    assignments: [],
+    total_fair_value_eur: 0,
+    party_a_received_goods_eur: 0,
+    party_b_received_goods_eur: 0,
+    party_a_entitled_eur: 0,
+    party_b_entitled_eur: 0,
+    sell_pool_eur: 0,
+    cash_transfer_a_to_b_eur: 0,
+    cash_transfer_summary: 'Add household items to calculate a fair split.',
+    party_a_points_won: 0,
+    party_a_points_total: 0,
+    party_b_points_won: 0,
+    party_b_points_total: 0,
+    fairness_score_pct: 100,
+    is_envy_free: true,
+    arbitrage_highlights: [],
+    replacement_basket: [],
+    mediator_summary: 'Add household items to calculate a fair split.',
+  }
+}
 
 export type HouseInventory = {
   /** Same shape as /api/demo so the views read it unchanged. */
@@ -246,20 +273,18 @@ export function useHouseInventory(processId: string | null, names: [string, stri
     return entry.valuedItems.filter((vi) => !inSplit.has(vi.item.id))
   }, [entry])
 
-  const scenario = useMemo<DemoScenario | null>(
-    () =>
-      entry?.split
-        ? {
-            scenario_name: '',
-            party_a_name: names[0],
-            party_b_name: names[1],
-            valued_items: entry.valuedItems,
-            split: entry.split,
-            warning: null,
-          }
-        : null,
-    [entry, names],
-  )
+  const scenario = useMemo<DemoScenario | null>(() => {
+    if (!entry) return null
+    // Inventory is ready as soon as the process loads (may be empty). Split can lag behind.
+    return {
+      scenario_name: '',
+      party_a_name: names[0],
+      party_b_name: names[1],
+      valued_items: entry.valuedItems,
+      split: entry.split ?? pendingEmptySplit(entry.mode, names),
+      warning: null,
+    }
+  }, [entry, names])
 
   return {
     scenario,
